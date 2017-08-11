@@ -29,7 +29,6 @@ RSpec.shared_context "rsyslog_class", :shared_context => :metadata do
         legacy_config_priority =>  70,
         custom_priority =>  90,
         target_file =>  '50_rsyslog.conf',
-        lookup_table_target => 'lookup_table.json',
       }
       EOT
     }

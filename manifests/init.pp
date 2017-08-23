@@ -55,6 +55,7 @@ class rsyslog (
   Boolean $override_default_config,
   Boolean $manage_package,
   Boolean $manage_confdir,
+  Boolean $manage_service,
   Boolean $purge_config_files,
   Integer $global_config_priority,
   Integer $legacy_config_priority,

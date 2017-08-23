@@ -10,17 +10,6 @@ class rsyslog::config (
   Optional[Hash] $lookup_tables = {},
 ) {
 
-  if $::rsyslog::manage_service {
-    concat { "${::rsyslog::confdir}/${::rsyslog::target_file}":
-      owner  => 'root',
-      notify => Service[$::rsyslog::service_name],
-    }
-  } else {
-    concat { "${::rsyslog::confdir}/${::rsyslog::target_file}":
-      owner => 'root',
-    }
-  }
-
   include rsyslog::config::modules
   include rsyslog::config::global
   include rsyslog::config::legacy
@@ -30,7 +19,6 @@ class rsyslog::config (
   include rsyslog::config::inputs
   include rsyslog::config::custom
   include rsyslog::config::lookup_tables
-
 
 }
 

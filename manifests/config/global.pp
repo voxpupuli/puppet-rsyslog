@@ -7,6 +7,7 @@ class rsyslog::config::global {
       * => {
         'priority' => $::rsyslog::global_config_priority,
         'target'   => $::rsyslog::target_file,
+        'confdir'  => $::rsyslog::confdir,
       } + $config,
     }
   }
@@ -18,15 +19,13 @@ class rsyslog::config::global {
   $flattendata = $newtype.keys.reduce({}) |$memo, $key| { $memo + {$key => $newtype[$key]["value"]} }
 
   unless empty($flattendata) {
-    concat::fragment { 'rsyslog::component::global_config::newtype':
-      order   => $::rsyslog::global_config_priority,
-      target  => "${::rsyslog::confdir}/${::rsyslog::target_file}",
-      content => epp('rsyslog/global_config.epp',
-      {
-        'type'   => 'rainerscript',
-        'config' => $flattendata,
-      }),
+    rsyslog::component::global_config { 'rainerscript':
+      *      => {
+        'priority' => $::rsyslog::global_config_priority,
+        'target'   => $::rsyslog::target_file,
+        'confdir'  => $::rsyslog::confdir,
+      },
+      config => $flattendata
     }
   }
 }
-

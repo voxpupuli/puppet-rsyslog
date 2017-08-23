@@ -1,6 +1,7 @@
 define rsyslog::component::lookup_table (
   Integer          $priority,
   String           $target,
+  String           $confdir,
   Hash             $lookup_json,
   String           $lookup_file,
   Boolean          $reload_on_hup,
@@ -22,6 +23,12 @@ define rsyslog::component::lookup_table (
         'file'              => $lookup_file,
         'reload_on_hup'     => $reload_on_hup,
   })
+
+  rsyslog::generate_concat { "rsyslog::concat::lookup_table::${name}":
+    confdir => $confdir,
+    target  => $target,
+    before  => Concat::Fragment["rsyslog::component::lookup_table::${name}"],
+  }
 
   concat::fragment {"rsyslog::component::lookup_table::${name}":
     target  => "${::rsyslog::confdir}/${target}",

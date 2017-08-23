@@ -9,6 +9,7 @@ describe 'rsyslog::component::lookup_table', include_rsyslog: true do
       {
         :priority    => 40,
         :target      => '50_rsyslog.conf',
+        :confdir     => '/etc/rsyslog.d',
         :lookup_json => {
           'version' => 1,
           'nomatch' => 'unk',

@@ -7,6 +7,7 @@ rsyslog::manage_confdir: true
 rsyslog::purge_config_files: true
 rsyslog::override_default_config: true
 rsyslog::config_file: /etc/rsyslog.conf
+rsyslog::manage_service: true
 rsyslog::service_name: rsyslog
 rsyslog::service_status: running
 rsyslog::service_enabled: true

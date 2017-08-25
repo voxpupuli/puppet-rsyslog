@@ -86,6 +86,9 @@ Location of rsyslog main configuration file (default: /etc/rsyslog.conf)
 ##### `rsyslog::override_default_config`
 When set to true, the default configuration file is overridden with just an include statement to the configuration directory .d (default: true)
 
+##### `rsyslog::manage_service`
+Manage the service or not (default: true)
+
 ##### `rsyslog::service_name`
 Name of the service (default: rsyslog)
 
@@ -105,6 +108,12 @@ eg:
 ```yaml
 rsyslog::target_file: 50_rsyslog.conf
 ```
+You can, however, define custom confdirs and/or custom paths for configuration files. All configuration options have the following global options you can add to their hiera keys:
+
+* `priority` - Order in the file to place the config value relative to the other config options in the file. Takes an integer. Defaults to the priority set for the configuration type. See [Ordering](#Ordering) for more.
+* `target` - Target file to place the config values in. Defaults to 50_rsyslog.conf in the default `$confdir`.
+* `confdir` - Target configuration directory. Defaults to `/etc/rsyslog.d`.
+
 
 
 ##### Ordering 

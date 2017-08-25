@@ -22,7 +22,8 @@ rsyslog::input_priority: 30
 rsyslog::main_queue_priority: 40
 rsyslog::template_priority: 50
 rsyslog::action_priority: 60
-rsyslog::legacy_config_priority: 70
+rsyslog::lookup_table_priority: 70
+rsyslog::legacy_config_priority: 80
 rsyslog::custom_priority: 90
 rsyslog::target_file: 50_rsyslog.conf
 

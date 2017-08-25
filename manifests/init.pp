@@ -64,6 +64,7 @@ class rsyslog (
   Integer $input_priority,
   Integer $custom_priority,
   Integer $main_queue_priority,
+  Integer $lookup_table_priority,
   String  $target_file,
 ) {
 

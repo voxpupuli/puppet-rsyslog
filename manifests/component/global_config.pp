@@ -9,6 +9,7 @@ define rsyslog::component::global_config (
 ) {
 
   include rsyslog
+
   if $type == 'legacy' {
     $content = epp('rsyslog/global_config.epp', {
       'config_item' => $name,
@@ -29,7 +30,7 @@ define rsyslog::component::global_config (
   }
 
   concat::fragment {"rsyslog::component::global_config::${name}":
-    target  => "${::rsyslog::confdir}/${target}",
+    target  => "${confdir}/${target}",
     content => inline_epp($format),
     order   => $priority,
   }

@@ -1,0 +1,20 @@
+<%- |
+$ruleset_name,
+$parameters,
+$rules
+| %>
+ruleset (name="<%= $ruleset_name %>"
+<% $parameters.each |$key, $value| { -%>
+  <%= $key %>="<%= $value %>"<%-%>
+<%}-%>
+) {
+<% $rules.each |$rule| { -%>
+  <% $rule.each |$key, $params| { -%>
+    <% if $key == 'set' { -%>
+      <%- $params.each |$var, $value| { -%>
+set $.<%= $var %> = <%= $value %><%-%>
+      <%}-%>
+    <%}-%>
+  <%}-%>
+<%}-%>
+}

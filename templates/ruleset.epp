@@ -24,7 +24,7 @@ ruleset (name="<%= $ruleset_name %>"
 <% elsif $key == 'action' { -%>
   # <%= $params['name'] %> action
 <% if $params['facility'] { -%>
-<%= sprintf( '%-30s %  s%s%s', $params['facility'], 'action(type="',$params['type'],'" ' )%>
+<%= sprintf( '%-30s %s%s%s', $params['facility'], 'action(type="',$params['type'],'" ' )%>
 <% if $params['config'] { -%>
 <% $params['config'].each |$k, $v| { -%>
 <%= sprintf('%33s%-s="%s"',' ',$k,$v)%>

@@ -65,6 +65,7 @@ describe 'rsyslog::component::ruleset', :include_rsyslog => true do
     it do
       is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(
 <<-EOS
+# myruleset ruleset
 ruleset (name="myruleset"
   parser="pmrfc3164.hostname_with_slashes"
   queue.size="10000"
@@ -85,6 +86,7 @@ EOS
             'parser'     => 'pmrfc3164.hostname_with_slashes',
             'queue.size' => '10000'
         },
+        :stop       => true,
         :rules      => [
             {
               'action' => {
@@ -113,12 +115,13 @@ EOS
                 }
               }
             }
-        ]
+        ],
     }}
 
     it do
       is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(
 <<-EOF
+# myruleset ruleset
 ruleset (name="myruleset"
   parser="pmrfc3164.hostname_with_slashes"
   queue.size="10000"
@@ -139,6 +142,7 @@ ruleset (name="myruleset"
     dynaFile="remoteSyslog"
     specifics="/var/log/test"
   )
+  stop
 }
 EOF
       )

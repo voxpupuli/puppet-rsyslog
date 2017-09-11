@@ -148,4 +148,16 @@ EOF
       )
     end
   end
+
+  context 'error test' do
+    let(:params) { {
+      :priority   => 65,
+      :target     => '50_rsyslog.conf',
+      :confdir    => '/etc/rsyslog.d',
+    }}
+
+    it do
+      is_expected.to compile.and_raise_error(/Ruleset MUST have at least one of: action, stop, set, call, or lookup/)
+    end
+  end
 end

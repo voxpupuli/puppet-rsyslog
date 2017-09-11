@@ -3,6 +3,7 @@ define rsyslog::component::ruleset (
   String            $target,
   String            $confdir,
   Array             $rules,
+  Optional[Boolean] $stop = false,
   Optional[Hash]    $parameters = {},
   Optional[String]  $format = '<%= $content %>'
 ) {
@@ -13,6 +14,7 @@ define rsyslog::component::ruleset (
     'ruleset_name' => $name,
     'parameters'   => $parameters,
     'rules'        => $rules,
+    'stop'         => $stop,
   })
 
   rsyslog::generate_concat { "rsyslog::concat::ruleset::${name}":

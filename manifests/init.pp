@@ -72,7 +72,7 @@ class rsyslog (
 ) {
 
   if $manage_service == true and $external_service == true {
-    fail('manage_service and container_service cannot be set at the same time!')
+    fail('manage_service and external_service cannot be set at the same time!')
   } else {
     class { 'rsyslog::base': }
   }

@@ -68,9 +68,13 @@ class rsyslog (
   Integer $parser_priority,
   Integer $ruleset_priority,
   String  $target_file,
+  Optional[String] $container_service = '',
 ) {
 
-
-  class { 'rsyslog::base': }
+  if $manage_service == true and $container_service != '' {
+    fail('manage_service and container_service cannot be set at the same time!')
+  } else {
+    class { 'rsyslog::base': }
+  }
 
 }

@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v2.3.2](https://github.com/voxpupuli/puppet-rsyslog/tree/v2.3.2) (2018-02-24)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v2.3.0...v2.3.2)
+
+**Fixed bugs:**
+
+- facility not present in out put of rulsets when using - action [\#59](https://github.com/voxpupuli/puppet-rsyslog/issues/59)
+- \#59 Fix action facility bug [\#61](https://github.com/voxpupuli/puppet-rsyslog/pull/61) ([dhollinger](https://github.com/dhollinger))
+
 ## [v2.3.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v2.3.0) (2018-01-24)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v2.2.1...v2.3.0)
@@ -18,6 +27,7 @@ These should not affect the functionality of the module.
 
 **Merged pull requests:**
 
+- Release 2.3.0 [\#57](https://github.com/voxpupuli/puppet-rsyslog/pull/57) ([dhollinger](https://github.com/dhollinger))
 - Update documentation around filters [\#56](https://github.com/voxpupuli/puppet-rsyslog/pull/56) ([dhollinger](https://github.com/dhollinger))
 - Property filter operators [\#53](https://github.com/voxpupuli/puppet-rsyslog/pull/53) ([dhollinger](https://github.com/dhollinger))
 

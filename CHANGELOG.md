@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
-## [v2.3.2](https://github.com/voxpupuli/puppet-rsyslog/tree/v2.3.2) (2018-02-24)
+## [v2.3.1](https://github.com/voxpupuli/puppet-rsyslog/tree/v2.3.2) (2018-02-24)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v2.3.0...v2.3.2)
 

@@ -165,7 +165,6 @@ EOF
         rules: [
           {
             'expression_filter' => {
-              'name' => 'myexpressionfilter',
               'filter' => {
                 'if' => {
                   'expression' => '$hostname == "rsyslog_test"',
@@ -189,7 +188,7 @@ ruleset (name="myruleset"
   parser="pmrfc3164.hostname_with_slashes"
   queue.size="10000"
 ) {
-# myexpressionfilter
+# Expression-based Filter
 if $hostname == "rsyslog_test" then {
 call action.ruleset.test
 stop
@@ -214,7 +213,6 @@ stop
         rules: [
           {
             'property_filter' => {
-              'name'     => 'mypropertyfilter',
               'property' => 'msg',
               'operator' => 'contains',
               'value'    => 'error',
@@ -236,7 +234,7 @@ ruleset (name="myruleset"
   parser="pmrfc3164.hostname_with_slashes"
   queue.size="10000"
 ) {
-# mypropertyfilter
+# Property-based Filter
 :msg, contains, "error" {
 call action.ruleset.test
 stop

@@ -13,9 +13,9 @@ ruleset (name="<%= $ruleset_name %>"
 <%- $rules.each |$rule| { -%>
   <%- $rule.each |$key, $params| { -%>
     <%- if $key == 'property_filter' { -%>
-<%= epp('rsyslog/property_filter.epp', { 'filter_name' => $params['name'], 'property' => $params['property'], 'operator' => $params['operator'], 'value' => $params['value'], 'tasks' => $params['tasks']}) %>
+<%= epp('rsyslog/property_filter.epp', { 'filter_name' => 'Property-based Filter', 'property' => $params['property'], 'operator' => $params['operator'], 'value' => $params['value'], 'tasks' => $params['tasks']}) %>
     <%- } elsif $key == 'expression_filter' { -%>
-<%= epp('rsyslog/expression_filter.epp', { 'filter_name' => $params['name'], 'conditionals' => $params['filter'] }) -%>
+<%= epp('rsyslog/expression_filter.epp', { 'filter_name' => 'Expression-based Filter', 'conditionals' => $params['filter'] }) -%>
     <%- } else {  %>
 <%= epp('rsyslog/tasks.epp', { 'tasks' => $rule }) -%>
     <%-}-%>

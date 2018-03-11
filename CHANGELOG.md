@@ -4,14 +4,27 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
-## [v2.3.1](https://github.com/voxpupuli/puppet-rsyslog/tree/v2.3.2) (2018-02-24)
+## [v2.3.2](https://github.com/voxpupuli/puppet-rsyslog/tree/v2.3.2) (2018-03-11)
 
-[Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v2.3.0...v2.3.2)
+[Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v2.3.1...v2.3.2)
+
+**Implemented enhancements:**
+
+- Filters require a unique name when used in rulesets. [\#65](https://github.com/voxpupuli/puppet-rsyslog/issues/65)
+- Remove unique name requirement for Filters inside of a Ruleset resource [\#66](https://github.com/voxpupuli/puppet-rsyslog/pull/66) ([dhollinger](https://github.com/dhollinger))
+
+## [v2.3.1](https://github.com/voxpupuli/puppet-rsyslog/tree/v2.3.1) (2018-02-24)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v2.3.0...v2.3.1)
 
 **Fixed bugs:**
 
 - facility not present in out put of rulsets when using - action [\#59](https://github.com/voxpupuli/puppet-rsyslog/issues/59)
 - \#59 Fix action facility bug [\#61](https://github.com/voxpupuli/puppet-rsyslog/pull/61) ([dhollinger](https://github.com/dhollinger))
+
+**Merged pull requests:**
+
+- Release 2.3.1 [\#63](https://github.com/voxpupuli/puppet-rsyslog/pull/63) ([dhollinger](https://github.com/dhollinger))
 
 ## [v2.3.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v2.3.0) (2018-01-24)
 

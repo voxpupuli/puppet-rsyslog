@@ -672,7 +672,6 @@ rsyslog::server::rulesets:
       queue.type: LinkedList
     rules:
       - expression_filter:
-          name: host_ip_filter
           if:
             expression: '$fromhost-ip == "192.168.255.1"'
             tasks:
@@ -724,7 +723,6 @@ rsyslog::server::rulesets:
           lookup_table: srv-map
           expr: '$fromhost-ip'
       - expression_filter:
-          name: filter_on_srv
           if:
             expression: '$.srv == "windows"'
             tasks:
@@ -795,7 +793,6 @@ rsyslog::server::rulesets:
   ruleset_msg_check_for_error:
     rules:
       - property_filter:
-          name: msg_contains_error
           property: 'msg'
           operator: 'contains'
           value: 'error'

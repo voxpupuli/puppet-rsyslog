@@ -13,26 +13,26 @@ describe 'rsyslog::component::expression_filter', include_rsyslog: true do
         conditionals: {
           if: {
             expression: 'msg == "test"',
-            tasks: {
-              action: {
+            tasks: [
+              {action: {
                 name: 'myaction',
                 type: 'omfile',
                 config: {
                   dynaFile: 'remoteSyslog'
                 }
-              }
-            }
+              }}
+            ]
           },
           else: {
-            tasks: {
-              action: {
+            tasks: [
+              {action: {
                 name: 'myaction2',
                 type: 'omfwd',
                 config: {
                   KeepAlive: 'on'
                 }
-              }
-            }
+              }}
+            ]
           }
         }
       }

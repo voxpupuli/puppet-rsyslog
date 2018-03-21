@@ -168,10 +168,10 @@ EOF
               'filter' => {
                 'if' => {
                   'expression' => '$hostname == "rsyslog_test"',
-                  'tasks'      => {
-                    'call'        => 'action.ruleset.test',
-                    'stop'        => true
-                  }
+                  'tasks'      => [
+                    { 'call'        => 'action.ruleset.test' },
+                    { 'stop'        => true }
+                  ]
                 }
               }
             }
@@ -216,10 +216,10 @@ stop
               'property' => 'msg',
               'operator' => 'contains',
               'value'    => 'error',
-              'tasks'    => {
-                'call'      => 'action.ruleset.test',
-                'stop'      => true
-              }
+              'tasks'    => [
+                { 'call'      => 'action.ruleset.test' },
+                { 'stop'      => true }
+              ]
             }
           }
         ]

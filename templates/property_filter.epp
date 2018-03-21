@@ -1,11 +1,13 @@
 <%- |
 $filter_name,
-$property,
-$operator,
-$value,
-$tasks
+String $property,
+Rsyslog::PropertyOperator $operator,
+String $value,
+Array $tasks
 | -%>
 # <%= $filter_name %>
 :<%= $property %>, <%= $operator %>, "<%= $value %>" {
-<%= epp('rsyslog/tasks.epp', { 'tasks' => $tasks }) -%>
+<%- $tasks.each |$task|  { -%>
+<%= epp('rsyslog/tasks.epp', { 'tasks' => $task }) -%>
+<%-}-%>
 }

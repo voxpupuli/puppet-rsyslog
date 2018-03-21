@@ -18,10 +18,10 @@ describe 'Rsyslog::Component::Ruleset' do
                   'property' => 'msg',
                   'operator' => 'contains',
                   'value'    => 'error',
-                  'tasks'    => {
-                    'call'     => 'action.ruleset.test',
-                    'stop'     => true
-                  }
+                  'tasks'    => [
+                    { 'call'     => 'action.ruleset.test' },
+                    { 'stop'     => true }
+                  ]
                 }
               }
             ]

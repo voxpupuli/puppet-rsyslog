@@ -14,10 +14,10 @@ describe 'Rsyslog expression filters' do
             'conditionals' => {
               'if' => {
                 'expression' => 'msg == "test"',
-                'tasks' => {
-                  'call' => 'ruleset.action.test',
-                  'stop' => true,
-                }
+                'tasks' => [
+                  { 'call' => 'ruleset.action.test' },
+                  { 'stop' => true },
+                ]
               }
             }
           }

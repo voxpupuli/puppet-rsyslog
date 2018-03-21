@@ -9,4 +9,4 @@ $reload_on_hup
 <% } else { -%>
 <% $hup = 'off' -%>
 <%}-%>
-lookup_table(name="<%= $lookup_table_name %>" file="<%= $file %>.json" reloadOnHUP="<%= $hup %>")
+lookup_table(name="<%= $lookup_table_name %>" file="<%= $file %>" reloadOnHUP="<%= $hup %>")

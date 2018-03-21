@@ -19,7 +19,7 @@ describe 'rsyslog::component::lookup_table', include_rsyslog: true do
             { 'index' => '2.2.2.2', 'value' => 'B' }
           ]
         },
-        lookup_file: '/etc/rsyslog.d/example_lookup',
+        lookup_file: '/etc/rsyslog.d/example_lookup.json',
         reload_on_hup: true
       }
     end

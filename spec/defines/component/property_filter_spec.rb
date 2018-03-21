@@ -13,15 +13,17 @@ describe 'rsyslog::component::property_filter', include_rsyslog: true do
         property: 'msg',
         operator: 'contains',
         value: 'val',
-        tasks: {
-          action: {
-            name: 'myaction',
-            type: 'omfile',
-            config: {
-              dynaFile: 'remoteSyslog'
+        tasks: [
+          {
+            action: {
+              name: 'myaction',
+              type: 'omfile',
+              config: {
+                dynaFile: 'remoteSyslog'
+              }
             }
           }
-        }
+        ]
       }
     end
 
@@ -54,15 +56,15 @@ action(type="omfile"
         property: 'msg',
         operator: 'equals',
         value: 'val',
-        tasks: {
-          action: {
+        tasks: [
+          { action: {
             name: 'myaction',
             type: 'omfile',
             config: {
               dynaFile: 'remoteSyslog'
             }
-          }
-        }
+          } }
+        ]
       }
     end
 
@@ -80,15 +82,15 @@ action(type="omfile"
           property: 'msg',
           operator: operator,
           value: 'val',
-          tasks: {
-            action: {
+          tasks: [
+            { action: {
               name: 'myaction',
               type: 'omfile',
               config: {
                 dynaFile: 'remoteSyslog'
               }
-            }
-          }
+            } }
+          ]
         }
       end
 

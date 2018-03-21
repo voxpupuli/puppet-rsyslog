@@ -9,6 +9,8 @@ $conditionals
   <%- } else { -%>
 <%= "${conditional} ${options['expression']} then" %> {
   <%-}-%>
-<%= epp('rsyslog/tasks.epp', { 'tasks' => $options['tasks'] }) -%>
+<%- $options['tasks'].each |$task| { -%>
+<%= epp('rsyslog/tasks.epp', { 'tasks' => $task }) -%>
+<%-}-%>
 }
 <%}-%>

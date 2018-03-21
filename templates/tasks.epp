@@ -1,5 +1,5 @@
 <%- |
-Hash $tasks
+$tasks
 | -%>
 <%- $tasks.each |$config, $cfgval| { -%>
   <%- if $config == 'call' { -%>

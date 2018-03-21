@@ -5,7 +5,7 @@ define rsyslog::component::property_filter (
   String $property,
   Rsyslog::PropertyOperator $operator,
   String $value,
-  Hash $tasks    = {},
+  Array $tasks    = [],
   String $format = '<%= $content %>'
 ) {
   include rsyslog

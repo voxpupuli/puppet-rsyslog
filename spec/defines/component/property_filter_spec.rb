@@ -57,13 +57,13 @@ action(type="omfile"
         operator: 'equals',
         value: 'val',
         tasks: [
-          {action: {
+          { action: {
             name: 'myaction',
             type: 'omfile',
             config: {
               dynaFile: 'remoteSyslog'
             }
-          }}
+          } }
         ]
       }
     end
@@ -83,13 +83,13 @@ action(type="omfile"
           operator: operator,
           value: 'val',
           tasks: [
-            {action: {
+            { action: {
               name: 'myaction',
               type: 'omfile',
               config: {
                 dynaFile: 'remoteSyslog'
               }
-            }}
+            } }
           ]
         }
       end

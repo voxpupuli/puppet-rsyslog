@@ -4,7 +4,19 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
-## [v2.3.2](https://github.com/voxpupuli/puppet-rsyslog/tree/v2.3.2) (2018-03-11)
+## [v3.0.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v3.0.0) (2018-03-21)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v2.3.2...v3.0.0)
+
+**Breaking changes:**
+
+- Switch datatype from Hash to array for task param [\#71](https://github.com/voxpupuli/puppet-rsyslog/pull/71) ([dhollinger](https://github.com/dhollinger))
+
+**Fixed bugs:**
+
+- Lookup table fix [\#70](https://github.com/voxpupuli/puppet-rsyslog/pull/70) ([dhollinger](https://github.com/dhollinger))
+
+## [v2.3.2](https://github.com/voxpupuli/puppet-rsyslog/tree/v2.3.2) (2018-03-12)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v2.3.1...v2.3.2)
 
@@ -12,6 +24,14 @@ These should not affect the functionality of the module.
 
 - Filters require a unique name when used in rulesets. [\#65](https://github.com/voxpupuli/puppet-rsyslog/issues/65)
 - Remove unique name requirement for Filters inside of a Ruleset resource [\#66](https://github.com/voxpupuli/puppet-rsyslog/pull/66) ([dhollinger](https://github.com/dhollinger))
+
+**Fixed bugs:**
+
+- Test travis release fix [\#68](https://github.com/voxpupuli/puppet-rsyslog/pull/68) ([dhollinger](https://github.com/dhollinger))
+
+**Merged pull requests:**
+
+- Release 2.3.2 [\#67](https://github.com/voxpupuli/puppet-rsyslog/pull/67) ([dhollinger](https://github.com/dhollinger))
 
 ## [v2.3.1](https://github.com/voxpupuli/puppet-rsyslog/tree/v2.3.1) (2018-02-24)
 
@@ -24,7 +44,8 @@ These should not affect the functionality of the module.
 
 **Merged pull requests:**
 
-- Release 2.3.1 [\#63](https://github.com/voxpupuli/puppet-rsyslog/pull/63) ([dhollinger](https://github.com/dhollinger))
+- Release 2.3.1 - fixed [\#63](https://github.com/voxpupuli/puppet-rsyslog/pull/63) ([dhollinger](https://github.com/dhollinger))
+- Release 2.3.1 [\#62](https://github.com/voxpupuli/puppet-rsyslog/pull/62) ([dhollinger](https://github.com/dhollinger))
 
 ## [v2.3.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v2.3.0) (2018-01-24)
 

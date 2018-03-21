@@ -675,8 +675,8 @@ rsyslog::server::rulesets:
           if:
             expression: '$fromhost-ip == "192.168.255.1"'
             tasks:
-              call: "ruleset.action.rawlog.standard"
-              stop: true
+              - call: "ruleset.action.rawlog.standard"
+              - stop: true
       - call: "ruleset.client.log.standard"
       - call: "ruleset.unknown.standard"
     stop: true
@@ -726,16 +726,16 @@ rsyslog::server::rulesets:
           if:
             expression: '$.srv == "windows"'
             tasks:
-              call: "ruleset.action.forward.windows"
-              stop: true
+              - call: "ruleset.action.forward.windows"
+              - stop: true
           "else if":
             expression: '$.srv == "unk"'
             tasks:
-              call: "ruleset.action.drop.unknown"
-              stop: true
+              - call: "ruleset.action.drop.unknown"
+              - stop: true
           else:
             tasks:
-              stop: true
+              - stop: true
     stop: true          
 ```
 
@@ -797,8 +797,8 @@ rsyslog::server::rulesets:
           operator: 'contains'
           value: 'error'
           tasks:
-            call: 'ruleset.action.error'
-            stop: true
+            - call: 'ruleset.action.error'
+            - stop: true
 ```
 
 Will Generate:
@@ -849,20 +849,20 @@ rsyslog::server::property_filters:
     operator: contains
     value: some_hostname
     tasks:
-      action:
-        name: omfile_defaults
-        type: omfile
-        facility: "*.*;auth,authpriv.none"
-          config:
-            dynaFile: "remoteSyslog"
-            specifics: "/var/log/test"
-      stop: true
+      - action:
+          name: omfile_defaults
+          type: omfile
+          facility: "*.*;auth,authpriv.none"
+            config:
+              dynaFile: "remoteSyslog"
+              specifics: "/var/log/test"
+      - stop: true
   ip_filter:
     property: fromhost-ip
     operator: startswith
     value: '192'
     tasks:
-      stop: true
+      - stop: true
 ```
 
 will produce
@@ -901,11 +901,11 @@ rsyslog::server::expression_filters:
       if:
         expression: '$msg contains "error"'
         tasks:
-          action:
-            name: omfile_error
-            type: omfile
-            config:
-              specifics: /var/log/errlog
+          - action:
+              name: omfile_error
+              type: omfile
+              config:
+                specifics: /var/log/errlog
 ```
 
 will produce
@@ -926,14 +926,14 @@ rsyslog::server::expression_filters:
     if:
       expression: '$syslogfacility-text == "local0" and $msg startswith "DEVNAME" and ($msg contains "error1" or $msg contains "error0")'
       tasks:
-        stop: true
+        - stop: true
     else:
       tasks:
-        action:
-          name: error_log
-          type: omfile
-          config:
-            specifics: /var/log/errlog
+        - action:
+            name: error_log
+            type: omfile
+            config:
+              specifics: /var/log/errlog
 ```
 
 will produce:

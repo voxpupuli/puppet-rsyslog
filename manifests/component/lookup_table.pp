@@ -1,13 +1,13 @@
 define rsyslog::component::lookup_table (
-  Integer          $priority,
-  String           $target,
-  String           $confdir,
-  Hash             $lookup_json,
-  String           $lookup_file,
-  Boolean          $reload_on_hup,
-  Boolean          $rsyslog_in_docker = false,
-  Optional[String] $json_file = undef,
-  Optional[String] $format = '<%= $content %>'
+  Integer                        $priority,
+  String                         $target,
+  String                         $confdir,
+  Hash                           $lookup_json,
+  Stdlib::AbsolutePath           $lookup_file,
+  Boolean                        $reload_on_hup,
+  Boolean                        $rsyslog_in_docker = false,
+  Optional[Stdlib::AbsolutePath] $json_file = undef,
+  Optional[String]               $format = '<%= $content %>'
 ) {
 
   include rsyslog

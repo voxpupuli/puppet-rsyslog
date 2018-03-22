@@ -4,17 +4,33 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v3.1.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v3.1.0) (2018-03-22)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v3.0.0...v3.1.0)
+
+**Implemented enhancements:**
+
+- Add docker support for lookup\_tables [\#73](https://github.com/voxpupuli/puppet-rsyslog/pull/73) ([dhollinger](https://github.com/dhollinger))
+
+**Merged pull requests:**
+
+- Release 3.0.0 [\#72](https://github.com/voxpupuli/puppet-rsyslog/pull/72) ([dhollinger](https://github.com/dhollinger))
+
 ## [v3.0.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v3.0.0) (2018-03-21)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v2.3.2...v3.0.0)
 
 **Breaking changes:**
 
-- Switch datatype from Hash to array for task param [\#71](https://github.com/voxpupuli/puppet-rsyslog/pull/71) ([dhollinger](https://github.com/dhollinger))
+- Switch datatype from Hash to array fo task param [\#71](https://github.com/voxpupuli/puppet-rsyslog/pull/71) ([dhollinger](https://github.com/dhollinger))
 
 **Fixed bugs:**
 
 - Lookup table fix [\#70](https://github.com/voxpupuli/puppet-rsyslog/pull/70) ([dhollinger](https://github.com/dhollinger))
+
+**Merged pull requests:**
+
+- Re-Release 2.3.2 [\#69](https://github.com/voxpupuli/puppet-rsyslog/pull/69) ([dhollinger](https://github.com/dhollinger))
 
 ## [v2.3.2](https://github.com/voxpupuli/puppet-rsyslog/tree/v2.3.2) (2018-03-12)
 

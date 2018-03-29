@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v3.1.1](https://github.com/voxpupuli/puppet-rsyslog/tree/v3.1.1) (2018-03-29)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v3.1.0...v3.1.1)
+
+**Fixed bugs:**
+
+- Fix action template issue that causes an error when an empty config hash is passed [\#76](https://github.com/voxpupuli/puppet-rsyslog/pull/76) ([dhollinger](https://github.com/dhollinger))
+
+**Merged pull requests:**
+
+- Use docker\_sets in travis.yml [\#75](https://github.com/voxpupuli/puppet-rsyslog/pull/75) ([ekohl](https://github.com/ekohl))
+
 ## [v3.1.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v3.1.0) (2018-03-22)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v3.0.0...v3.1.0)

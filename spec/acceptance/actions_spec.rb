@@ -26,7 +26,7 @@ describe 'Rsyslog actions' do
     end
 
     describe file('/etc/rsyslog.d/50_rsyslog.conf') do
-      its(:content) { is_expected.to contain('action\(type="elasticsearch"\n\s*queue\.type="LinkedList"\n\s*queue\.spoolDirectory="/var/log/rsyslog/queue"\n\)') }
+      its(:content) { is_expected.to match(%r{action\(type="elasticsearch"\n.*name="elasticsearch"\n.*queue\.type="LinkedList"\n.*queue\.spoolDirectory="\/var\/log\/rsyslog\/queue"\n.*\)}) }
     end
   end
 end

@@ -134,15 +134,17 @@ ruleset (name="myruleset"
 
 # utf8-fix
 action(type="mmutf8fix"
-  file="/var/log/fix"
-)
+    name="utf8-fix"
+    file="/var/log/fix"
+  )
 
 
 # myaction2
 action(type="omfile"
-  dynaFile="remoteSyslog"
-  specifics="/var/log/test"
-)
+    name="myaction2"
+    dynaFile="remoteSyslog"
+    specifics="/var/log/test"
+  )
 
   stop
 }

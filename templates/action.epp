@@ -6,19 +6,28 @@ $config
 | -%>
 # <%= $action_name %>
 <% if $facility != "default" and size($config) < 3 { -%>
-<%= sprintf( '%-30s %s%s%s', $facility, 'action(type="',$type,'" ' )-%>
-<% $config.each |$k, $v| { -%> <%= $k -%>="<%= $v -%>" <% }-%>)
+  <%= sprintf( '%-30s %s%s%s', $facility, 'action(type="',$type,'" ' )-%>
+  <%  if $config { -%>
+    <% $config.each |$k, $v| { -%> <%= $k -%>="<%= $v -%>" <% }-%>)
+  <%-}%>
 <%}-%>
 <% elsif $facility != "default" and size($config) > 2 { -%>
-<%= sprintf( '%-30s %s%s%s', $facility, 'action(type="',$type,'" ' )%>
-<% $config.each |$k, $v| { -%>
-<%= sprintf('%33s%-s="%s"',' ',$k,$v)%>
-<%}-%>
+  <%= sprintf( '%-30s %s%s%s', $facility, 'action(type="',$type,'" ' )%>
+  <%  if $config { -%>
+    <% $config.each |$k, $v| { -%>
+      <%= sprintf('%33s%-s="%s"',' ',$k,$v)%>
+    <%}-%>
+  <%}-%>
 <%= sprintf('%32s',')') %>
 <% } else { -%>
 action(type="<%= $type %>"
-<% $config.each |$k, $v| { -%>
+<% if $action_name { -%>
+    name="<%= $action_name %>"
+<%}-%>
+<% if $config { -%>
+  <% $config.each |$k, $v| { -%>
   <%= $k %>="<%= $v %>"
+  <%}-%>
 <%}-%>
 )
 <%}-%>

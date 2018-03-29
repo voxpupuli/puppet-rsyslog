@@ -19,12 +19,14 @@ describe 'Rsyslog::Component::Action', include_rsyslog: true do
     end
 
     it do
-      is_expected.to contain_concat__fragment('rsyslog::component::action::myaction').with_content(
-        %r{(?x)# myaction\n
-        \s*action\(type="omelasticsearch"\s*\n
-        \s*queue\.type="linkedlist"\s*\n
-        \s*queue\.spoolDirectory="\/var\/log\/rsyslog\/queue"\s*\n
-        \s*\)\s*}
+      is_expected.to contain_concat__fragment('rsyslog::component::action::myaction').with_content(<<-CONTENT
+# myaction
+action(type="omelasticsearch"
+    name="myaction"
+    queue.type="linkedlist"
+    queue.spoolDirectory="/var/log/rsyslog/queue"
+  )
+CONTENT
       )
     end
 
@@ -47,10 +49,7 @@ describe 'Rsyslog::Component::Action', include_rsyslog: true do
     end
 
     it do
-      is_expected.to contain_concat__fragment('rsyslog::component::action::myaction').with_content(
-        %r{(?x)# myaction\n
-        ^kern\.\*\s*action\(type="omfile"\s+dynaFile="remoteKern"\s*\)\s*}
-      )
+      is_expected.to contain_concat__fragment('rsyslog::component::action::myaction').with_content(/# myaction\n.*kern\.\*.*action\(type="omfile".*dynaFile="remoteKern".*\)/)
     end
   end
 
@@ -81,22 +80,7 @@ describe 'Rsyslog::Component::Action', include_rsyslog: true do
 
     it do
       is_expected.to contain_concat__fragment('rsyslog::component::action::myaction').with_content(
-        %r{(?x)# myaction\n
-        ^\*\.\*
-        \s*action\(type="omelasticsearch"\s*\n
-        \s*template="plain-syslog"\s*\n
-        \s*searchIndex="logstash-index"\s*\n
-        \s*queue.type="linkedlist"\s*\n
-        \s*queue.spoolDirectory="\/var\/log\/rsyslog\/queue"\s*\n
-        \s*queue.filename="dbq"\s*\n
-        \s*queue.maxdiskspace="100g"\s*\n
-        \s*queue.maxfilesize="100m"\s*\n
-        \s*queue.SaveOnShutdown="on"\s*\n
-        \s*server="logstash.domain.local"\s*\n
-        \s*action.resumeretrycount="-1"\s*\n
-        \s*bulkmode="on"\s*\n
-        \s*dynSearchIndex="on"\s*\n
-        \s*\)\s*$\n}
+        /# myaction\n.*\*\.\*.*action\(type="omelasticsearch".*\n.*template="plain-syslog".*\n.*searchIndex="logstash-index".*\n.*queue.type="linkedlist".*\n.*queue.spoolDirectory="\/var\/log\/rsyslog\/queue".*\n.*queue.filename="dbq".*\n.*queue.maxdiskspace="100g".*\n.*queue.maxfilesize="100m".*\n.*queue.SaveOnShutdown="on".*\n.*server="logstash.domain.local".*\n.*action.resumeretrycount="-1".*\n.*bulkmode="on".*\n.*dynSearchIndex="on".*\n.*\)/
       )
     end
   end

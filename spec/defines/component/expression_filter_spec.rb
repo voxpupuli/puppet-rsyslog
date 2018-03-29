@@ -45,15 +45,17 @@ describe 'rsyslog::component::expression_filter', include_rsyslog: true do
 if msg == "test" then {
 # myaction
 action(type="omfile"
-  dynaFile="remoteSyslog"
-)
+    name="myaction"
+    dynaFile="remoteSyslog"
+  )
 
 }
 else {
 # myaction2
 action(type="omfwd"
-  KeepAlive="on"
-)
+    name="myaction2"
+    KeepAlive="on"
+  )
 
 }
       CONTENT

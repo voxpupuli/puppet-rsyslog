@@ -21,7 +21,9 @@ $config
 <%= sprintf('%32s',')') %>
 <% } else { -%>
 action(type="<%= $type %>"
-       name="<%= $action_name %>"
+<% if $action_name { -%>
+    name="<%= $action_name %>"
+<%}-%>
 <% if $config { -%>
   <% $config.each |$k, $v| { -%>
   <%= $k %>="<%= $v %>"

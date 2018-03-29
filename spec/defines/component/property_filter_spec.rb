@@ -34,8 +34,9 @@ describe 'rsyslog::component::property_filter', include_rsyslog: true do
 :msg, contains, "val" {
 # myaction
 action(type="omfile"
-  dynaFile="remoteSyslog"
-)
+    name="myaction"
+    dynaFile="remoteSyslog"
+  )
 
 }
         CONTENT

@@ -27,7 +27,7 @@ action(type="omelasticsearch"
     queue.spoolDirectory="/var/log/rsyslog/queue"
   )
 CONTENT
-      )
+                                                                                                  )
     end
 
     it { is_expected.to contain_concat('/etc/rsyslog.d/50_rsyslog.conf') }
@@ -49,7 +49,7 @@ CONTENT
     end
 
     it do
-      is_expected.to contain_concat__fragment('rsyslog::component::action::myaction').with_content(/# myaction\n.*kern\.\*.*action\(type="omfile".*dynaFile="remoteKern".*\)/)
+      is_expected.to contain_concat__fragment('rsyslog::component::action::myaction').with_content(%r{# myaction\n.*kern\.\*.*action\(type="omfile".*dynaFile="remoteKern".*\)})
     end
   end
 
@@ -80,7 +80,7 @@ CONTENT
 
     it do
       is_expected.to contain_concat__fragment('rsyslog::component::action::myaction').with_content(
-        /# myaction\n.*\*\.\*.*action\(type="omelasticsearch".*\n.*template="plain-syslog".*\n.*searchIndex="logstash-index".*\n.*queue.type="linkedlist".*\n.*queue.spoolDirectory="\/var\/log\/rsyslog\/queue".*\n.*queue.filename="dbq".*\n.*queue.maxdiskspace="100g".*\n.*queue.maxfilesize="100m".*\n.*queue.SaveOnShutdown="on".*\n.*server="logstash.domain.local".*\n.*action.resumeretrycount="-1".*\n.*bulkmode="on".*\n.*dynSearchIndex="on".*\n.*\)/
+        %r{# myaction\n.*\*\.\*.*action\(type="omelasticsearch".*\n.*template="plain-syslog".*\n.*searchIndex="logstash-index".*\n.*queue.type="linkedlist".*\n.*queue.spoolDirectory="\/var\/log\/rsyslog\/queue".*\n.*queue.filename="dbq".*\n.*queue.maxdiskspace="100g".*\n.*queue.maxfilesize="100m".*\n.*queue.SaveOnShutdown="on".*\n.*server="logstash.domain.local".*\n.*action.resumeretrycount="-1".*\n.*bulkmode="on".*\n.*dynSearchIndex="on".*\n.*\)}
       )
     end
   end

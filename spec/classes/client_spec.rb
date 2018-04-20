@@ -13,7 +13,9 @@ describe 'Rsyslog::Client', include_rsyslog: true do
         inputs: {},
         custom_config: {},
         modules: {},
-        lookup_tables: {}
+        lookup_tables: {},
+        property_filters: {},
+        expression_filters: {}
       )
     }
   end

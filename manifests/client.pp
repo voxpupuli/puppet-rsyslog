@@ -6,6 +6,7 @@ class rsyslog::client (
   Optional[Hash]  $custom_config = {},
   Optional[Hash]  $modules       = {},
   Optional[Hash]  $lookup_tables = {},
+  Hash $rulesets                 = {},
   Hash $property_filters         = {},
   Hash $expression_filters       = {},
 ) {
@@ -20,6 +21,7 @@ class rsyslog::client (
     custom_config      => $custom_config,
     modules            => $modules,
     lookup_tables      => $lookup_tables,
+    rulesets           => $rulesets,
     property_filters   => $property_filters,
     expression_filters => $expression_filters,
   }

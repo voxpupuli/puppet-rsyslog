@@ -16,6 +16,6 @@ $tasks
   <%-} elsif $config == 'stop' { -%>
 stop
   <%} elsif $config == 'exec' { -%>
-<%= epp('rsyslog/exec.epp, { 'value' => $cfgval, }) %><%-%>
+<%= epp('rsyslog/exec.epp', { 'value' => $cfgval, }) %><%-%>
   <%-}-%>
 <%-}-%>

@@ -81,7 +81,7 @@ ruleset (name="myruleset"
   queue.size="10000"
 ) {
 
-set $.srv = lookup("srv-map", $fromhost-ip);
+  set $.srv = lookup("srv-map", $fromhost-ip);
 }
 EOS
       )
@@ -132,14 +132,14 @@ ruleset (name="myruleset"
   queue.size="10000"
 ) {
 
-# utf8-fix
+  # utf8-fix
 action(type="mmutf8fix"
     name="utf8-fix"
     file="/var/log/fix"
   )
 
 
-# myaction2
+  # myaction2
 action(type="omfile"
     name="myaction2"
     dynaFile="remoteSyslog"
@@ -192,8 +192,8 @@ ruleset (name="myruleset"
 ) {
 # Expression-based Filter
 if $hostname == "rsyslog_test" then {
-call action.ruleset.test
-stop
+  call action.ruleset.test
+  stop
   }
 }
       EOF
@@ -238,8 +238,8 @@ ruleset (name="myruleset"
 ) {
 # Property-based Filter
 :msg, contains, "error" {
-call action.ruleset.test
-stop
+  call action.ruleset.test
+  stop
   }
 
 }

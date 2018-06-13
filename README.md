@@ -583,10 +583,13 @@ rsyslog::server::rulesets:
       queue.size: '10000'
     rules:
       - set:
+          # Set a Property with a value from a template.
           $!rcv_time: 'exec_template("s_rcv_time")'
       - set:
+          # Set a Variable with a value from a template.
           $.utime_gen: 'exec_template("s_unixtime_generated")'
       - set:
+          # Set a Variable using the deprecated method with a value from $uuid
           uuid: '$uuid'
       - action:
           name: utf8-fix

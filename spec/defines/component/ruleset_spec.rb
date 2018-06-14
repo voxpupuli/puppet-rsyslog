@@ -37,8 +37,8 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
         target: '50_rsyslog.conf',
         confdir: '/etc/rsyslog.d',
         rules: [
-          { 'set' => { 'uuid' => '$uuid' } },
-          { 'set' => { 'rcv_time' => 'exec_template("s_rcv_time")' } },
+          { 'set' => { '$.uuid' => '$uuid' } },
+          { 'set' => { '$!rcv_time' => 'exec_template("s_rcv_time")' } },
           'call' => 'action.parse.r_msg'
         ]
       }
@@ -49,7 +49,7 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
         %r{(?x)\s*ruleset\s*\(name="myruleset"
         \s*\)\s*{
         \s*set\s*\$\.uuid\s*=\s*\$uuid;
-        \s*set\s*\$\.rcv_time\s*=\s*exec_template\("s_rcv_time"\);
+        \s*set\s*\$!rcv_time\s*=\s*exec_template\("s_rcv_time"\);
         \s*call\s*action\.parse\.r_msg
         \s*}$}
       )

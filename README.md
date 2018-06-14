@@ -566,7 +566,8 @@ Configures Rsyslog ruleset blocks in rainerscript. There are two elements in the
 * `rules` - the actual content that goes inside the ruleset. Currently the following are supported:
   * `action` - rsyslog actions defined inside of the ruleset.
   * `lookup` - Sets a variable to the results of an rsyslog lookup.
-  * `set` - Set an rsyslog variable
+  * `set` - Set an rsyslog variable or property. Property explicitly requires that the set name be a string beginning with `$!`, while a variable can be a plain string or a string starting with `$.`.
+    * **NOTE: Setting the variable with a string that does NOT begin with `$.` is deprecated and will be removed in the next major release!**
   * `call` - call a specific action.
   * `expression_filter` - Filter based on one or more expressions.
   * `property_filter` - Filter based on one or more RsyslogD properties.
@@ -582,10 +583,13 @@ rsyslog::server::rulesets:
       queue.size: '10000'
     rules:
       - set:
-          rcv_time: 'exec_template("s_rcv_time")'
+          # Set a Property with a value from a template.
+          $!rcv_time: 'exec_template("s_rcv_time")'
       - set:
-          utime_gen: 'exec_template("s_unixtime_generated")'
+          # Set a Variable with a value from a template.
+          $.utime_gen: 'exec_template("s_unixtime_generated")'
       - set:
+          # Set a Variable using the deprecated method with a value from $uuid
           uuid: '$uuid'
       - action:
           name: utf8-fix

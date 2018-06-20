@@ -248,6 +248,28 @@ ruleset (name="myruleset"
     end
   end
 
+  context 'ruleset with execute program' do
+    let(:params) do
+      {
+        priority: 65,
+        target: '50_rsyslog.conf',
+        confdir: '/etc/rsyslog.d',
+        rules: [
+          'exec' => '/bin/echo'
+        ]
+      }
+    end
+
+    it do
+      is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(
+        %r{(?x)\s*ruleset\s*\(name="myruleset"
+        \s*\)\s*{
+        \s*\^/bin/echo
+        \s*}$}
+      )
+    end
+  end
+
   context 'error test' do
     let(:params) do
       {

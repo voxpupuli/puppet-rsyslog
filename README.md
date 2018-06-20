@@ -569,6 +569,7 @@ Configures Rsyslog ruleset blocks in rainerscript. There are two elements in the
   * `set` - Set an rsyslog variable or property. Property explicitly requires that the set name be a string beginning with `$!`, while a variable can be a plain string or a string starting with `$.`.
     * **NOTE: Setting the variable with a string that does NOT begin with `$.` is deprecated and will be removed in the next major release!**
   * `call` - call a specific action.
+  * `exec` - execute the following system command
   * `expression_filter` - Filter based on one or more expressions.
   * `property_filter` - Filter based on one or more RsyslogD properties.
 * `stop` - a Boolean to set if the ruleset ends with a stop or not.
@@ -613,6 +614,7 @@ rsyslog::server::rulesets:
           expr: '$fromhost-ip'
       - call: 'action.parse.rawmsg'
       - call: 'action.parse.r_msg'
+      - exec: '/bin/echo'
     stop: true
 ```
 
@@ -645,6 +647,7 @@ ruleset (name="ruleset_eth0_514_tcp"
   set $.srv = lookup("srv-map", $fromhost-ip);
   call action.parse.rawmsg
   call action.parse.r_msg
+  ^/bin/echo
   stop
 }
 

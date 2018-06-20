@@ -1,6 +1,6 @@
 {
   "name": "puppet-rsyslog",
-  "version": "3.1.2-rc0",
+  "version": "3.2.1-rc0",
   "author": "Vox Pupuli",
   "summary": "Manage rsyslog v8 configuration",
   "license": "Apache-2.0",
@@ -46,7 +46,6 @@
     {
       "operatingsystem": "SLES",
       "operatingsystemrelease": [
-        "10",
         "11",
         "12"
       ]
@@ -61,12 +60,6 @@
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
         "9"
-      ]
-    },
-    {
-      "operatingsystem": "Fedora",
-      "operatingsystemrelease": [
-        "25"
       ]
     }
   ],
@@ -83,7 +76,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 4.10.9 < 6.0.0"
+      "version_requirement": ">= 4.10.0 < 6.0.0"
     }
   ],
   "data_provider": "hiera"

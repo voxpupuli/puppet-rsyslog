@@ -37,6 +37,6 @@ describe 'Rsyslog::Component::Ruleset' do
   describe file('/etc/rsyslog.d/50_rsyslog.conf') do
     it { is_expected.to be_file }
     it { is_expected.to be_readable }
-    its(:content) { is_expected.to match(%r{# ruleset_eth0_514_test ruleset\nruleset \(name="ruleset_eth0_514_test"\n\s*queue\.size="10000"\n\) {\n# Property-based Filter\n:msg, contains, "error" {\ncall action\.ruleset\.test\nstop\n\s*}\n\n}}) }
+    its(:content) { is_expected.to match(%r{# ruleset_eth0_514_test ruleset\nruleset \(name="ruleset_eth0_514_test"\n\s*queue\.size="10000"\n\) {\n# Property-based Filter\n:msg, contains, "error" {\n  call action\.ruleset\.test\n  stop\n\s*}\n\n}}) }
   end
 end

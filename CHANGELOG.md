@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v3.2.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v3.2.0) (2018-06-14)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v3.1.1...v3.2.0)
+
+**Implemented enhancements:**
+
+- Add the ability to create custom properties with 'set' [\#86](https://github.com/voxpupuli/puppet-rsyslog/pull/86) ([dhollinger](https://github.com/dhollinger))
+- Add support to rsyslog::client for providing property\_filters and exp… [\#78](https://github.com/voxpupuli/puppet-rsyslog/pull/78) ([fatmcgav](https://github.com/fatmcgav))
+
+**Merged pull requests:**
+
+- Update code to more cleanly format nested configuration [\#85](https://github.com/voxpupuli/puppet-rsyslog/pull/85) ([dhollinger](https://github.com/dhollinger))
+- drop EOL OSs; fix puppet version range [\#83](https://github.com/voxpupuli/puppet-rsyslog/pull/83) ([bastelfreak](https://github.com/bastelfreak))
+- use gitrepos in .fixtures.yml [\#82](https://github.com/voxpupuli/puppet-rsyslog/pull/82) ([bastelfreak](https://github.com/bastelfreak))
+- Rely on beaker-hostgenerator for docker nodesets [\#79](https://github.com/voxpupuli/puppet-rsyslog/pull/79) ([ekohl](https://github.com/ekohl))
+
 ## [v3.1.1](https://github.com/voxpupuli/puppet-rsyslog/tree/v3.1.1) (2018-03-29)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v3.1.0...v3.1.1)
@@ -24,10 +40,6 @@ These should not affect the functionality of the module.
 
 - Add docker support for lookup\_tables [\#73](https://github.com/voxpupuli/puppet-rsyslog/pull/73) ([dhollinger](https://github.com/dhollinger))
 
-**Merged pull requests:**
-
-- Release 3.0.0 [\#72](https://github.com/voxpupuli/puppet-rsyslog/pull/72) ([dhollinger](https://github.com/dhollinger))
-
 ## [v3.0.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v3.0.0) (2018-03-21)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v2.3.2...v3.0.0)
@@ -42,7 +54,6 @@ These should not affect the functionality of the module.
 
 **Merged pull requests:**
 
-- Re-Release 2.3.2 [\#69](https://github.com/voxpupuli/puppet-rsyslog/pull/69) ([dhollinger](https://github.com/dhollinger))
 
 ## [v2.3.2](https://github.com/voxpupuli/puppet-rsyslog/tree/v2.3.2) (2018-03-12)
 
@@ -51,11 +62,8 @@ These should not affect the functionality of the module.
 **Implemented enhancements:**
 
 - Filters require a unique name when used in rulesets. [\#65](https://github.com/voxpupuli/puppet-rsyslog/issues/65)
-- Remove unique name requirement for Filters inside of a Ruleset resource [\#66](https://github.com/voxpupuli/puppet-rsyslog/pull/66) ([dhollinger](https://github.com/dhollinger))
-
-**Fixed bugs:**
-
 - Test travis release fix [\#68](https://github.com/voxpupuli/puppet-rsyslog/pull/68) ([dhollinger](https://github.com/dhollinger))
+- Remove unique name requirement for Filters inside of a Ruleset resource [\#66](https://github.com/voxpupuli/puppet-rsyslog/pull/66) ([dhollinger](https://github.com/dhollinger))
 
 **Merged pull requests:**
 
@@ -72,8 +80,6 @@ These should not affect the functionality of the module.
 
 **Merged pull requests:**
 
-- Release 2.3.1 - fixed [\#63](https://github.com/voxpupuli/puppet-rsyslog/pull/63) ([dhollinger](https://github.com/dhollinger))
-- Release 2.3.1 [\#62](https://github.com/voxpupuli/puppet-rsyslog/pull/62) ([dhollinger](https://github.com/dhollinger))
 
 ## [v2.3.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v2.3.0) (2018-01-24)
 
@@ -89,7 +95,6 @@ These should not affect the functionality of the module.
 
 **Merged pull requests:**
 
-- Release 2.3.0 [\#57](https://github.com/voxpupuli/puppet-rsyslog/pull/57) ([dhollinger](https://github.com/dhollinger))
 - Update documentation around filters [\#56](https://github.com/voxpupuli/puppet-rsyslog/pull/56) ([dhollinger](https://github.com/dhollinger))
 - Property filter operators [\#53](https://github.com/voxpupuli/puppet-rsyslog/pull/53) ([dhollinger](https://github.com/dhollinger))
 
@@ -104,10 +109,8 @@ These should not affect the functionality of the module.
 
 **Merged pull requests:**
 
-- Release 2.2.1 [\#52](https://github.com/voxpupuli/puppet-rsyslog/pull/52) ([dhollinger](https://github.com/dhollinger))
 - Set concat order numeric [\#51](https://github.com/voxpupuli/puppet-rsyslog/pull/51) ([dhollinger](https://github.com/dhollinger))
 - Updated docs to correctly reflect the priority functionality [\#50](https://github.com/voxpupuli/puppet-rsyslog/pull/50) ([dhollinger](https://github.com/dhollinger))
-- release 2.2.0 [\#49](https://github.com/voxpupuli/puppet-rsyslog/pull/49) ([bastelfreak](https://github.com/bastelfreak))
 
 ## [v2.2.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v2.2.0) (2018-01-04)
 
@@ -129,7 +132,6 @@ These should not affect the functionality of the module.
 
 - bump lowest puppet version 4.4.0-\>4.10.9 [\#48](https://github.com/voxpupuli/puppet-rsyslog/pull/48) ([bastelfreak](https://github.com/bastelfreak))
 - Add unit and acceptance tests [\#44](https://github.com/voxpupuli/puppet-rsyslog/pull/44) ([dhollinger](https://github.com/dhollinger))
-- Release 2.1.0 [\#38](https://github.com/voxpupuli/puppet-rsyslog/pull/38) ([dhollinger](https://github.com/dhollinger))
 
 ## [v2.1.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v2.1.0) (2017-12-06)
 
@@ -149,15 +151,16 @@ These should not affect the functionality of the module.
 
 ## [v2.0.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v2.0.0) (2017-12-06)
 
-[Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/1.1.0...v2.0.0)
+[Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v1.1.0...v2.0.0)
 
 **Merged pull requests:**
 
-- Release 2.0.0 [\#36](https://github.com/voxpupuli/puppet-rsyslog/pull/36) ([dhollinger](https://github.com/dhollinger))
 - Add additional README.md shields [\#35](https://github.com/voxpupuli/puppet-rsyslog/pull/35) ([dhollinger](https://github.com/dhollinger))
 - modulesync 1.5.0 [\#34](https://github.com/voxpupuli/puppet-rsyslog/pull/34) ([dhollinger](https://github.com/dhollinger))
 
-## 1.1.0 (2017-10-17)
+## [v1.1.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v1.1.0) (2017-10-17)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/1.1.0...v1.1.0)
 
 * Feature: Added an `external_service` boolean parameter for allowing puppet-rsyslog to manage configs/logs shared with other processes that may be managed by other modules. (https://github.com/crayfishx/puppet-rsyslog/pull/28)
 

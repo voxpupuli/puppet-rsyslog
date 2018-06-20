@@ -264,7 +264,7 @@ ruleset (name="myruleset"
       is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(
         %r{(?x)\s*ruleset\s*\(name="myruleset"
         \s*\)\s*{
-        \s*^/bin/echo
+        \s*\^/bin/echo
         \s*}$}
       )
     end

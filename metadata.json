@@ -66,11 +66,11 @@
   "dependencies": [
     {
       "name": "puppetlabs-stdlib",
-      "version_requirement": ">= 1.0.0 < 5.0.0"
+      "version_requirement": ">= 1.0.0 < 6.0.0"
     },
     {
       "name": "puppetlabs-concat",
-      "version_requirement": ">= 2.0.0 < 5.0.0"
+      "version_requirement": ">= 2.0.0 < 6.0.0"
     }
   ],
   "requirements": [

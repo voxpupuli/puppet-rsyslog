@@ -10,19 +10,21 @@ class rsyslog::base {
   # directly
 
   if $::rsyslog::use_upstream_repo {
-    case $facts['os']['name'] {
-      'Ubuntu': {
-        include ::apt
-        apt::ppa { 'ppa:adiscon/v8-stable': }
+    case $facts['os']['family'] {
+      'Debian': {
+        if $facts['os']['name'] == 'Ubuntu' {
+          include apt
+          apt::ppa { 'ppa:adiscon/v8-stable': }
+        }
       }
-      'RedHat', 'CentOS': {
+      'RedHat': {
         yumrepo { 'upstream_rsyslog':
           ensure   => 'present',
           descr    => 'Adiscon Enterprise Linux rsyslog',
           baseurl  => 'http://rpms.adiscon.com/v8-stable/epel-$releasever/$basearch',
           enabled  => '1',
           gpgcheck => '0',
-          gpgkey   => 'http://rpms.adiscon.com/v8-stable/epel-$releasever/$basearch'
+          gpgkey   => 'http://rpms.adiscon.com/v8-stable/epel-$releasever/$basearch',
         }
       }
       default: { fail("${facts['os']['name']} is not current supported by upstream packages.")}

@@ -8,7 +8,18 @@ describe 'Rsyslog' do
 
     it 'applies' do
       pp = <<-MANIFEST
-      class { 'rsyslog': }
+      case $facts['os']['name'] {
+        'Ubuntu': {
+          $overrides = true
+        }
+        'RedHat', 'CentOS', 'Scientific': {
+          $overrides = false
+        }
+      }
+      class { 'rsyslog':
+        override_default_config => $overrides,
+        purge_config_files      => $overrides,
+      }
       MANIFEST
 
       apply_manifest(pp, catch_failures: true)
@@ -18,7 +29,6 @@ describe 'Rsyslog' do
     describe file('/etc/rsyslog.conf') do
       it { is_expected.to be_file }
       it { is_expected.to be_readable }
-      its(:content) { is_expected.to contain('\$IncludeConfig /etc/rsyslog\.d/\*\.conf') }
     end
 
     describe file('/etc/rsyslog.d') do

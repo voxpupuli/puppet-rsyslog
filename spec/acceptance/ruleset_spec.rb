@@ -8,6 +8,21 @@ describe 'Rsyslog::Component::Ruleset' do
     pp = <<-MANIFEST
       class { 'rsyslog::server':
         rulesets => {
+          'action.ruleset.test' => {
+            'rules' => [
+              {
+                action => {
+                  'name'   => 'action.test',
+                  'type'   => 'omfile',
+                  'config' => {
+                    'queue.type'           => 'LinkedList',
+                    'queue.spoolDirectory' => '/var/log/rsyslog/queue',
+                    'file'                 => '/tmp/error_log',
+                  }
+                },
+              }
+            ]
+          },
           'ruleset_eth0_514_test' => {
             'parameters' => {
               'queue.size' => '10000',

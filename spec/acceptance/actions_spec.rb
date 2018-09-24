@@ -10,11 +10,12 @@ describe 'Rsyslog actions' do
       pp = <<-MANIFEST
       class { 'rsyslog::server':
         actions => {
-          'elasticsearch' => {
-            'type'   => 'elasticsearch',
+          'omfile_all_logs' => {
+            'type'   => 'omfile',
             'config' => {
               'queue.type'           => 'LinkedList',
-              'queue.spoolDirectory' => '/var/log/rsyslog/queue'
+              'queue.spoolDirectory' => '/var/log/rsyslog/queue',
+              'file'                 => '/tmp/log',
             }
           }
         }
@@ -26,7 +27,7 @@ describe 'Rsyslog actions' do
     end
 
     describe file('/etc/rsyslog.d/50_rsyslog.conf') do
-      its(:content) { is_expected.to match(%r{action\(type="elasticsearch"\n.*name="elasticsearch"\n.*queue\.type="LinkedList"\n.*queue\.spoolDirectory="\/var\/log\/rsyslog\/queue"\n.*\)}) }
+      its(:content) { is_expected.to match(%r{# omfile_all_logs\naction\(type="omfile"\n.*name="omfile_all_logs"\n.*queue.type="LinkedList"\n.*queue.spoolDirectory="\/var\/log\/rsyslog\/queue"\n.*file="\/tmp\/log"\n.*\)}) }
     end
   end
 end

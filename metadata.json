@@ -44,19 +44,6 @@
       ]
     },
     {
-      "operatingsystem": "SLES",
-      "operatingsystemrelease": [
-        "11",
-        "12"
-      ]
-    },
-    {
-      "operatingsystem": "OpenSuSE",
-      "operatingsystemrelease": [
-        "13.1"
-      ]
-    },
-    {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
         "9"

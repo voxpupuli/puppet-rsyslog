@@ -1,3 +1,4 @@
+# Class that manages Rsyslog Server config
 class rsyslog::server (
   Optional[Hash] $global_config   = {},
   Optional[Hash] $legacy_config   = {},

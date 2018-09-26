@@ -9,6 +9,10 @@ describe 'Rsyslog inputs' do
     it 'applies with inputs' do
       pp = <<-MANIFEST
       class { 'rsyslog::server':
+        modules => {
+          'imudp'  => {},
+          'imptcp' => {},
+        },
         inputs => {
           'imudp' => {
             'type'  => 'imudp',
@@ -20,6 +24,16 @@ describe 'Rsyslog inputs' do
             'type'  => 'imptcp',
             'config' => {
               'port' => '514',
+            },
+          },
+        },
+        actions => {
+          'default_output' => {
+            'type' => 'omfile',
+            'config' => {
+              'queue.type'           => 'LinkedList',
+              'queue.spoolDirectory' => '/var/log/rsyslog/queue',
+              'file'                 => '/tmp/log',
             },
           },
         },
@@ -40,6 +54,17 @@ describe 'Rsyslog inputs' do
     it 'applies with custom priorities' do
       pp = <<-MANIFEST
 class { 'rsyslog::server':
+        modules => {
+          'imfile' => {
+            'priority' => 5,
+          },
+          'imudp'  => {
+            'priority' => 5,
+          },
+          'imptcp' => {
+            'priority' => 5,
+          },
+        },
         inputs => {
           'imfile' => {
             'priority' => 10,
@@ -68,6 +93,17 @@ class { 'rsyslog::server':
             'config'   => {
               'File' => '/tmp/test-file2',
             },
+          },
+        },
+        actions => {
+          'default_output' => {
+            'priority' => 113,
+            'type'     => 'omfile',
+            'config'   => {
+              'queue.type'           => 'LinkedList',
+              'queue.spoolDirectory' => '/var/log/rsyslog/queue',
+              'file'                 => '/tmp/log',
+            }
           },
         },
       }

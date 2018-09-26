@@ -54,6 +54,7 @@ class rsyslog (
   Boolean $service_enabled,
   Boolean $override_default_config,
   Boolean $manage_package,
+  Boolean $use_upstream_repo,
   Boolean $manage_confdir,
   Boolean $manage_service,
   Boolean $external_service,

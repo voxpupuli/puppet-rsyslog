@@ -68,7 +68,7 @@ Configuration options should be configured in Hiera.  Defaults are defined in da
 
 #### `rsyslog::confdir`
 
-Specifies the main directory where the module will place all configuration files (default: rsyslogd)
+Specifies the main directory where the module will place all configuration files (default: `/etc/rsyslog.d`)
 
 #### `rsyslog::package_name`
 

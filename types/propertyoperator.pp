@@ -1,5 +1,6 @@
 # Enumerable custom type for rsyslog property operators
-type Rsyslog::PropertyOperator = Enum[ 'contains',
+type Rsyslog::PropertyOperator = Enum[
+  'contains',
   'isequal',
   'startswith',
   'regex',

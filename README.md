@@ -669,7 +669,7 @@ Expression filters use traditional `if/else` and `if/else if/else` logic to exec
 The Ruleset `expression_filter` key has a few different keys than the `rsyslog::server::expression_filters` parameter:
 
 * `name` - Currently required to prevent errors. This is logical and only used by Puppet.
-* `filter` - The `filter` key is synonymous with the `conditionals` key found in the `rsyslog::server::expression_filters` parameter. See the [Expression Filter Docs](#expression-based-filters) for more info. 
+* `filter` - The `filter` key is synonymous with the `conditionals` key found in the `rsyslog::server::expression_filters` parameter. See the [Expression Filter Docs](#expression-based-filters) for more info.
 
 Example:
 ```yaml
@@ -679,11 +679,12 @@ rsyslog::server::rulesets:
       queue.type: LinkedList
     rules:
       - expression_filter:
-          if:
-            expression: '$fromhost-ip == "192.168.255.1"'
-            tasks:
-              - call: "ruleset.action.rawlog.standard"
-              - stop: true
+          filter:
+            if:
+              expression: '$fromhost-ip == "192.168.255.1"'
+              tasks:
+                - call: "ruleset.action.rawlog.standard"
+                - stop: true
       - call: "ruleset.client.log.standard"
       - call: "ruleset.unknown.standard"
     stop: true
@@ -730,20 +731,21 @@ rsyslog::server::rulesets:
           lookup_table: srv-map
           expr: '$fromhost-ip'
       - expression_filter:
-          if:
-            expression: '$.srv == "windows"'
-            tasks:
-              - call: "ruleset.action.forward.windows"
-              - stop: true
-          "else if":
-            expression: '$.srv == "unk"'
-            tasks:
-              - call: "ruleset.action.drop.unknown"
-              - stop: true
-          else:
-            tasks:
-              - stop: true
-    stop: true          
+          filter:
+            if:
+              expression: '$.srv == "windows"'
+              tasks:
+                - call: "ruleset.action.forward.windows"
+                - stop: true
+            "else if":
+              expression: '$.srv == "unk"'
+              tasks:
+                - call: "ruleset.action.drop.unknown"
+                - stop: true
+            else:
+              tasks:
+                - stop: true
+    stop: true
 ```
 
 Will produce:
@@ -823,7 +825,7 @@ ruleset(name="ruleset_msg_check_for_error"
 
 ##### `rsyslog::server::property_filters` `rsyslog::server::expression_filters`
 
-Rsyslog has the ability to filter each log line based on log properties and/or variables. 
+Rsyslog has the ability to filter each log line based on log properties and/or variables.
 
 There are four kinds of filters in Rsyslog:
 

@@ -1,5 +1,5 @@
 # Syslog facility data type
-type Rsyslg::Syslog::Facility = Variant[
+type Rsyslog::Syslog::Facility = Variant[
   Enum[
     'kern',
     'user',

@@ -28,9 +28,61 @@ describe 'Rsyslog::Inputs::Imfile' do
     }
   end
 
-  context 'base data' do
-    it 'will pass with valid data' do
-      is_expected.to allow_value(data)
+  context 'with valid data' do
+    context 'full data' do
+      it { is_expected.to allow_value(data) }
+    end
+
+    context 'individual parameters' do
+      it 'is valid' do
+        required_params = { file: data[:file], tag: data[:tag] }
+        data.each do |param, value|
+          expected_param = { param.to_sym => value }
+          is_expected.to allow_value(expected_param.merge!(required_params))
+        end
+      end
+    end
+  end
+
+  context 'with invalid data' do
+    context 'missing defaults' do
+      it 'file missing failure' do
+        is_expected.not_to allow_value(tag: 'tag')
+      end
+
+      it 'tag missing failure' do
+        is_expected.not_to allow_value(file: 'file')
+      end
+    end
+
+    context 'bad strings' do
+      let(:bad_strings) do
+        {
+          file: '',
+          tag: '',
+          'startmsg.regex' => '',
+          'endmsg.regex'   => '',
+          ruleset: ''
+        }
+      end
+
+      it { is_expected.not_to allow_value(:bad_strings) }
+    end
+
+    context 'bad_integers' do
+      let(:bad_int) do
+        {
+          file: 'file',
+          tag: 'tag',
+          persiststateinterval: '100',
+          readtimeout: '10m',
+          maxlinesatonce: '100',
+          maxsubmitatonce: nil,
+          trimlineoverbytes: '1GB'
+        }
+      end
+
+      it { is_expected.not_to allow_value(:bad_int) }
     end
   end
 end

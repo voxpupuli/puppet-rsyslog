@@ -9,7 +9,7 @@ type Rsyslog::Actions::Outputs::Omlibdbi = Struct[{
     'sqlite3',
     'freetds',
   ],
-  server   => Variant[Stdlib::Fqdn, Stdlib::IP::Address],
+  server   => Stdlib::Host,
   uid      => String[1],
   pwd      => String[1],
   db       => String[1],

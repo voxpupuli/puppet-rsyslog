@@ -1,6 +1,6 @@
 # Struct data type for the Rsyslog E-Mail module's Action options
 type Rsyslog::Actions::Outputs::Ommail = Struct[{
-  server             => Variant[Stdlib::Fqdn, Stdlib::IP::Address],
+  server             => Stdlib::Host,
   port               => Stdlib::Port,
   mailfrom           => Pattern[/.+@.+\..+/],
   mailto             => Pattern[/.+@.+\..+/],

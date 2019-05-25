@@ -1,5 +1,5 @@
 type Rsyslog::Actions::Outputs::Omfwd = Struct[{
-  target                            => Optional[Variant[Stdlib::Fqdn, Stdlib::IP::Address]],
+  target                            => Optional[Stdlib::Host],
   port                              => Optional[Stdlib::Port],
   protocol                          => Optional[Enum['tcp', 'udp', 'ossl', 'gtls']],
   networknamespace                  => Optional[String[1]],

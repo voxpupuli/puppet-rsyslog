@@ -34,7 +34,7 @@ describe 'Rsyslog::Inputs::Imbatchreports' do
   context 'with invalid data' do
     context 'missing_defaults' do
       it 'fails missing a default' do
-        ['reports', 'tag'].each do |param|
+        %w[reports tag].each do |param|
           is_expected.not_to allow_value(param.to_sym => param)
         end
       end
@@ -48,7 +48,7 @@ describe 'Rsyslog::Inputs::Imbatchreports' do
           delete: true,
           rename: false,
           programkey: '',
-          timestampkey: 20151011
+          timestampkey: 20_151_011
         }
       end
 

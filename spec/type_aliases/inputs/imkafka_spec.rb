@@ -5,7 +5,7 @@ describe 'Rsyslog::Inputs::Imkafka' do
     {
       broker: 'localhost:9092',
       topic: 'foo',
-      confparam: ['bar', 'baz', 'test'],
+      confparam: %w[bar baz test],
       consumergroup: 'group',
       ruleset: 'kafka_ruleset',
       parsehostname: 'on'
@@ -18,7 +18,7 @@ describe 'Rsyslog::Inputs::Imkafka' do
     end
 
     context 'individual parameters' do
-      it 'should be valid' do
+      it 'is valid' do
         required_params = { topic: data[:topic] }
         data.each do |param, value|
           is_expected.to allow_value({ param.to_sym => value }.merge!(required_params))

@@ -29,12 +29,12 @@ describe 'Rsyslog::Inputs::Imgssapi' do
   context 'with invalid data' do
     let(:bad_data) do
       {
-        inputgssserverrun: 123456,
+        inputgssserverrun: 123_456,
         inputgssserverservicename: '',
         inputgssserverpermitplaintcp: true,
         inputgssservermaxsessions: '200',
         inputgssserverkeepalive: false,
-        inputgsslistenportfilename: 234567
+        inputgsslistenportfilename: 234_567
       }
     end
 

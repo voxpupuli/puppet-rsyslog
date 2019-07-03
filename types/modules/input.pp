@@ -6,6 +6,7 @@ type Rsyslog::Modules::Input = Enum[
   'imkafka',
   'imklog',
   'imkmsg',
+  'immark',
   'impstats',
   'imptcp',
   'imrelp',

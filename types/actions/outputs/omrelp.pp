@@ -1,6 +1,7 @@
 # Struct data type for the Rsyslog RELP module's Action options
 type Rsyslog::Actions::Outputs::Omrelp = Struct[{
   target               => Variant[Stdlib::Fqdn, Stdlib::IP::Address],
+  port                 => Optional[Stdlib::Port],
   template             => Optional[String[1]],
   timeout              => Optional[Integer],
   'conn.timeout'       => Optional[Integer],

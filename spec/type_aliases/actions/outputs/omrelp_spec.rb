@@ -4,6 +4,7 @@ describe 'Rsyslog::Actions::Outputs::Omrelp' do
   let(:data) do
     {
       target: '10.1.1.25',
+      port: 514,
       template: 't_relp',
       timeout: 300,
       'conn.timeout' => 60,
@@ -56,6 +57,7 @@ describe 'Rsyslog::Actions::Outputs::Omrelp' do
     context 'bad integers' do
       let(:bad_int) do
         {
+          port: '600',
           timeout: '300',
           'conn.timeout' => '10s',
           rebindinterval: '5m',

@@ -1,5 +1,5 @@
 type Rsyslog::Actions::Outputs::Omhiredis = Struct[{
-  server         => Optional[Variant[Stdlib::Fqdn, Stdlib::IP::Address]],
+  server         => Optional[Stdlib::Host],
   serverport     => Optional[Stdlib::Port],
   serverpassword => Optional[String[1]],
   mode           => Optional[Enum['queue', 'publish', 'template']],

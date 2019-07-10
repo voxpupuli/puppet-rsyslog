@@ -1,6 +1,6 @@
 # Struct data type for the Rsyslog UDP Spoof module's Action options
 type Rsyslog::Actions::Outputs::Omudpspoof = Struct[{
-  target             => Variant[Stdlib::Fqdn, Stdlib::IP::Address],
+  target             => Stdlib::Host,
   port               => Optional[Stdlib::Port],
   sourcetemplate     => Optional[String[1]],
   'sourceport.start' => Optional[Stdlib::Port],

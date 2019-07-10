@@ -1,6 +1,6 @@
 # Struct data type for the Rsyslog SNMP module's Action options
 type Rsyslog::Actions::Outputs::Omsnmp = Struct[{
-  server => Variant[Stdlib::Fqdn, Stdlib::IP::Address],
+  server => Stdlib::Host,
   port   => Optional[Stdlib::Port],
   transport => Optional[String[1]],
   version   => Optional[Integer[0,1]],

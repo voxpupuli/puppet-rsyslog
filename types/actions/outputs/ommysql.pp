@@ -2,7 +2,7 @@
 #
 # @see https://www.rsyslog.com/doc/v8-stable/configuration/modules/ommysql.html Rsyslog MySQL output module
 type Rsyslog::Actions::Outputs::Ommysql = Struct[{
-  server                => Variant[Stdlib::Fqdn, Stdlib::IP::Address],
+  server                => Stdlib::Host,
   socket                => Optional[Stdlib::Absolutepath],
   db                    => String[1],
   uid                   => String[1],

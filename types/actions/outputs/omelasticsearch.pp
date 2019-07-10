@@ -1,5 +1,5 @@
 type Rsyslog::Actions::Outputs::Omelasticsearch = Struct[{
-  server               => Optional[Variant[String[1], Array[String[1]]]],
+  server               => Optional[Variant[Stdlib::Host, Array[Stdlib::Host]]],
   serverport           => Optional[Stdlib::Port],
   healthchecktimeout   => Optional[Integer],
   searchindex          => Optional[String[1]],

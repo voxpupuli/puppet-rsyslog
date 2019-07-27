@@ -9,7 +9,7 @@ class rsyslog::base {
   # Include the base class in case this class is being called
   # directly
 
-  if $::rsyslog::use_upstream_repo {
+  if $rsyslog::use_upstream_repo {
     case $facts['os']['family'] {
       'Debian': {
         if $facts['os']['name'] == 'Ubuntu' {
@@ -31,22 +31,22 @@ class rsyslog::base {
     }
   }
 
-  if $::rsyslog::manage_package {
-    package { $::rsyslog::package_name:
-      ensure => $::rsyslog::package_version,
+  if $rsyslog::manage_package {
+    package { $rsyslog::package_name:
+      ensure => $rsyslog::package_version,
     }
   }
 
-  if $::rsyslog::feature_packages {
-    package { $::rsyslog::feature_packages:
+  if $rsyslog::feature_packages {
+    package { $rsyslog::feature_packages:
       ensure  => installed,
-      require => Package[$::rsyslog::package_name],
+      require => Package[$rsyslog::package_name],
     }
   }
 
-  if $::rsyslog::manage_confdir {
+  if $rsyslog::manage_confdir {
 
-    $purge_params = $::rsyslog::purge_config_files ? {
+    $purge_params = $rsyslog::purge_config_files ? {
       true  => {
         'purge'   => true,
         'recurse' => true,
@@ -54,14 +54,14 @@ class rsyslog::base {
       false => {}
     }
 
-    $require_package = $::rsyslog::manage_package ? {
+    $require_package = $rsyslog::manage_package ? {
       true => {
-        'require' => Package[$::rsyslog::package_name],
+        'require' => Package[$rsyslog::package_name],
       },
       false => {}
     }
 
-    file { $::rsyslog::confdir:
+    file { $rsyslog::confdir:
       ensure => directory,
       owner  => 'root',
       group  => 'root',
@@ -70,23 +70,23 @@ class rsyslog::base {
     }
   }
 
-  if $::rsyslog::override_default_config {
+  if $rsyslog::override_default_config {
 
     $message = @(EOT)
       # This file is managed by Puppet.  No configuration is placed here
       # all configuration is under the rsyslog.d directory
       |EOT
 
-    file { $::rsyslog::config_file:
+    file { $rsyslog::config_file:
       ensure  => 'file',
-      content => "${message}\n\$IncludeConfig ${::rsyslog::confdir}/*.conf\n",
+      content => "${message}\n\$IncludeConfig ${rsyslog::confdir}/*.conf\n",
     }
   }
 
-  if $::rsyslog::manage_service {
-    service { $::rsyslog::service_name:
-      ensure => $::rsyslog::service_status,
-      enable => $::rsyslog::service_enabled,
+  if $rsyslog::manage_service {
+    service { $rsyslog::service_name:
+      ensure => $rsyslog::service_status,
+      enable => $rsyslog::service_enabled,
     }
   }
 

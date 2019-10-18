@@ -1096,6 +1096,11 @@ rsyslog::server::custom_config:
 
 ```
 
+### Known Issues
+
+* Designed specifically for Rsyslog 8+ and the Rainerscript configuration format. Legacy configuration/Rsyslog < 8 support requires the use of the `custom_config` parameter.
+* The upstream repository for EL8 is currently broken and will not work.
+
 ### License
 
 * This module is licensed under Apache 2.0, see LICENSE for more details

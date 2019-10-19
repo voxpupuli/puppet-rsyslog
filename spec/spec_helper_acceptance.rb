@@ -6,15 +6,17 @@ require 'beaker/module_install_helper'
 run_puppet_install_helper unless ENV['BEAKER_provision'] == 'no'
 
 RSpec.configure do |c|
+  # Readable test descriptions
+  c.formatter = :documentation
+
   # Configure all nodes in nodeset
   c.before :suite do
-    install_module_on(hosts)
-    install_module_dependencies_on(hosts)
+    install_module
+    install_module_dependencies
 
     hosts.each do |host|
-      case fact('os.name')
-      when 'Ubuntu'
-        install_package(host, 'software-properties-common')
+      if fact_on(host, 'os.name') == 'Ubuntu'
+        host.install_package('software-properties-common')
       end
 
       if ENV['BEAKER_PUPPET_COLLECTION'] != 'puppet6'

@@ -4,6 +4,44 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v4.0.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v4.0.0) (2019-10-20)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v3.3.0...v4.0.0)
+
+**Breaking changes:**
+
+- modulesync 2.7.0 and drop puppet 4 [\#115](https://github.com/voxpupuli/puppet-rsyslog/pull/115) ([bastelfreak](https://github.com/bastelfreak))
+
+**Implemented enhancements:**
+
+- Add remaining rsyslog module types [\#111](https://github.com/voxpupuli/puppet-rsyslog/pull/111) ([dhollinger](https://github.com/dhollinger))
+- Rsyslog Action Data Types and Queue Options [\#106](https://github.com/voxpupuli/puppet-rsyslog/pull/106) ([dhollinger](https://github.com/dhollinger))
+
+**Fixed bugs:**
+
+- Ruleset expression filter: problem with documention [\#112](https://github.com/voxpupuli/puppet-rsyslog/issues/112)
+- Allow puppetlabs/concat 6.x, puppetlabs/stdlib 6.x [\#120](https://github.com/voxpupuli/puppet-rsyslog/pull/120) ([dhoppe](https://github.com/dhoppe))
+
+**Closed issues:**
+
+- How to use conditions ? [\#117](https://github.com/voxpupuli/puppet-rsyslog/issues/117)
+- /etc/rsyslog.d/50\_rsyslog.conf doesn't have a puppet header [\#92](https://github.com/voxpupuli/puppet-rsyslog/issues/92)
+
+**Merged pull requests:**
+
+- Clean up acceptance spec helper [\#132](https://github.com/voxpupuli/puppet-rsyslog/pull/132) ([ekohl](https://github.com/ekohl))
+- Add EL 8 support [\#129](https://github.com/voxpupuli/puppet-rsyslog/pull/129) ([dhollinger](https://github.com/dhollinger))
+- Generate REFERENCE.md [\#128](https://github.com/voxpupuli/puppet-rsyslog/pull/128) ([bastelfreak](https://github.com/bastelfreak))
+- Add Input module data types [\#125](https://github.com/voxpupuli/puppet-rsyslog/pull/125) ([dhollinger](https://github.com/dhollinger))
+- types updates [\#124](https://github.com/voxpupuli/puppet-rsyslog/pull/124) ([kenyon](https://github.com/kenyon))
+- base.pp: add final newline to rsyslog.conf [\#123](https://github.com/voxpupuli/puppet-rsyslog/pull/123) ([kenyon](https://github.com/kenyon))
+- More input module data types [\#119](https://github.com/voxpupuli/puppet-rsyslog/pull/119) ([dhollinger](https://github.com/dhollinger))
+- Fix template output if value is array [\#118](https://github.com/voxpupuli/puppet-rsyslog/pull/118) ([waipeng](https://github.com/waipeng))
+- Allow puppetlabs/apt 7.x [\#116](https://github.com/voxpupuli/puppet-rsyslog/pull/116) ([dhoppe](https://github.com/dhoppe))
+- Add imfile and im3195 input types [\#114](https://github.com/voxpupuli/puppet-rsyslog/pull/114) ([dhollinger](https://github.com/dhollinger))
+- \#112 Fix ruleset expression filter examples [\#113](https://github.com/voxpupuli/puppet-rsyslog/pull/113) ([dhollinger](https://github.com/dhollinger))
+- README.md: correct default of rsyslog::confdir [\#105](https://github.com/voxpupuli/puppet-rsyslog/pull/105) ([kenyon](https://github.com/kenyon))
+
 ## [v3.3.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v3.3.0) (2018-10-14)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v3.2.0...v3.3.0)

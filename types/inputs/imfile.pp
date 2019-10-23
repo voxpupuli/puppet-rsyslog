@@ -2,7 +2,7 @@
 type Rsyslog::Inputs::Imfile = Struct[{
   file                    => String[1],
   tag                     => String[1],
-  facility                => Optional[Rsyslog::Syslog::Facility],
+  facility                => Optional[Stdlib::Syslogfacility],
   severity                => Optional[Rsyslog::Syslog::Severity],
   persiststateinterval    => Optional[Integer],
   'startmsg.regex'        => Optional[String[1]],

@@ -2,7 +2,7 @@
 type Rsyslog::Inputs::Imbatchreports = Struct[{
   reports           => String[1],
   tag               => String[1],
-  facility          => Optional[Rsyslog::Syslog::Facility],
+  facility          => Optional[Stdlib::Syslogfacility],
   severity          => Optional[Rsyslog::Syslog::Severity],
   deduplicatespaces => Optional[Enum['on', 'off']],
   delete            => Optional[String[1]],

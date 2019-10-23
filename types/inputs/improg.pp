@@ -2,7 +2,7 @@
 type Rsyslog::Inputs::Improg = Struct[{
   binary           => String[1],
   tag              => String[1],
-  facility         => Optional[Rsyslog::Syslog::Facility],
+  facility         => Optional[Stdlib::Syslogfacility],
   severity         => Optional[Rsyslog::Syslog::Severity],
   confirmmessages  => Optional[Enum['on', 'off']],
   signalonclose    => Optional[Enum['on', 'off']],

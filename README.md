@@ -932,17 +932,18 @@ eg:
 ```yaml
 rsyslog::server::expression_filters:
   complex_filter:
-    if:
-      expression: '$syslogfacility-text == "local0" and $msg startswith "DEVNAME" and ($msg contains "error1" or $msg contains "error0")'
-      tasks:
-        - stop: true
-    else:
-      tasks:
-        - action:
-            name: error_log
-            type: omfile
-            config:
-              specifics: /var/log/errlog
+    conditionals:
+      if:
+        expression: '$syslogfacility-text == "local0" and $msg startswith "DEVNAME" and ($msg contains "error1" or $msg contains "error0")'
+        tasks:
+          - stop: true
+      else:
+        tasks:
+          - action:
+              name: error_log
+              type: omfile
+              config:
+                specifics: /var/log/errlog
 ```
 
 will produce:

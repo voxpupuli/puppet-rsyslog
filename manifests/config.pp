@@ -29,4 +29,3 @@ class rsyslog::config (
   include rsyslog::config::expression_filters
 
 }
-

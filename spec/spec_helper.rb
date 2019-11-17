@@ -37,6 +37,7 @@ if Dir.exist?(File.expand_path('../../lib', __FILE__))
 end
 
 RSpec.configure do |c|
+  c.hiera_config = 'hiera.yaml'
   # Coverage generation
   c.after(:suite) do
     RSpec::Puppet::Coverage.report!

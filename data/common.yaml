@@ -31,19 +31,3 @@ rsyslog::lookup_table_priority: 70
 rsyslog::legacy_config_priority: 80
 rsyslog::custom_priority: 90
 rsyslog::target_file: 50_rsyslog.conf
-
-## Optional configuration values - see README.md
-#rsyslog::server::modules:
-#rsyslog::server::global_config:
-#rsyslog::server::templates:
-#rsyslog::server::actions:
-#rsyslog::server::inputs:
-#rsyslog::server::custom_config:
-#rsyslog::server::main_queue_opts
-#
-#rsyslog::client::modules:
-#rsyslog::client::global_config:
-#rsyslog::client::actions:
-#rsyslog::client::inputs:
-#rsyslog::client::custom_config:
-#

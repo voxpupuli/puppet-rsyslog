@@ -17,6 +17,13 @@ describe 'Rsyslog actions' do
               'queue.spoolDirectory' => '/var/log/rsyslog/queue',
               'file'                 => '/tmp/log',
             }
+          },
+          'myaction' => {
+            'type'   => 'omelasticsearch',
+            'config' => {
+              'queue.type'           => 'linkedlist',
+              'queue.spoolDirectory' => '/var/log/rsyslog/queue'
+            }
           }
         }
       }

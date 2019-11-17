@@ -17,10 +17,10 @@ define rsyslog::component::action (
         'config'      => $config,
   })
 
-  rsyslog::generate_concat { "rsyslog::concat::action::${name}":
+  rsyslog::generate_concat { "rsyslog::concat::action::${title}":
     confdir => $confdir,
     target  => $target,
-    before  => Concat::Fragment["rsyslog::component::action::${name}"],
+    before  => Concat::Fragment["rsyslog::component::action::${title}"],
   }
 
   concat::fragment {"rsyslog::component::action::${name}":

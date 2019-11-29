@@ -8,7 +8,7 @@ describe 'Rsyslog expression filters' do
   context 'with simple expression filter' do
     it 'applies with a simply expression' do
       pp = <<-MANIFEST
-      class { 'rsyslog::server':
+      class { 'rsyslog::config':
         expression_filters => {
           'test_filter' => {
             'conditionals' => {

@@ -1,12 +1,12 @@
 # rsyslog default configuration for debian 9
-rsyslog::client::global_config:
+rsyslog::config::global_config:
   FileOwner:
     value: 'root'
     type: legacy
   FileGroup:
     value: 'adm'
     type: legacy
-  FileCreateMode: 
+  FileCreateMode:
     value: '0640'
     type: legacy
   DirCreateMode:
@@ -24,8 +24,8 @@ rsyslog::client::global_config:
 rsyslog::client::modules:
     imuxsock: {}
     imklog: {}
-    
-rsyslog::client::legacy_config:
+
+rsyslog::config::legacy_config:
   auth_priv_rule:
     key: "auth,authpriv.*"
     value: "/var/log/auth.log"
@@ -48,13 +48,13 @@ rsyslog::client::legacy_config:
     key: "user.*"
     value: "-/var/log/user.log"
   mail_info:
-    key: "mail.info"   
+    key: "mail.info"
     value: "-/var/log/mail.info"
   mail_warn:
-    key: "mail.warn"   
+    key: "mail.warn"
     value: "-/var/log/mail.warn"
   mail_err:
-    key: "mail.err"   
+    key: "mail.err"
     value: "-/var/log/mail.err"
   emergencie_rule:
     key: "*.emerg"

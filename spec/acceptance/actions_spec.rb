@@ -8,7 +8,7 @@ describe 'Rsyslog actions' do
   context 'basic action' do
     it 'applies with action' do
       pp = <<-MANIFEST
-      class { 'rsyslog::server':
+      class { 'rsyslog::config':
         actions => {
           'omfile_all_logs' => {
             'type'   => 'omfile',

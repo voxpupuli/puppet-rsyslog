@@ -6,7 +6,7 @@ describe 'Rsyslog::Component::Ruleset' do
   end
   it 'applies a ruleset' do
     pp = <<-MANIFEST
-      class { 'rsyslog::server':
+      class { 'rsyslog::config':
         rulesets => {
           'action.ruleset.test' => {
             'rules' => [

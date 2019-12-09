@@ -8,7 +8,7 @@ describe 'Rsyslog inputs' do
   context 'basic input' do
     it 'applies with inputs' do
       pp = <<-MANIFEST
-      class { 'rsyslog::server':
+      class { 'rsyslog::config':
         modules => {
           'imudp'  => {},
           'imptcp' => {},
@@ -53,7 +53,7 @@ describe 'Rsyslog inputs' do
   context 'inputs with custom priorities' do
     it 'applies with custom priorities' do
       pp = <<-MANIFEST
-class { 'rsyslog::server':
+class { 'rsyslog::config':
         modules => {
           'imfile' => {
             'priority' => 5,

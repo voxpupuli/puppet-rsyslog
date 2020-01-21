@@ -77,9 +77,14 @@ class rsyslog::base {
       # all configuration is under the rsyslog.d directory
       |EOT
 
+    $_require = $rsyslog::manage_package ? {
+      false   => undef,
+      default => Package[$rsyslog::package_name],
+    }
     file { $rsyslog::config_file:
       ensure  => 'file',
       content => "${message}\n\$IncludeConfig ${rsyslog::confdir}/*.conf\n",
+      require => $_require,
     }
   }
 

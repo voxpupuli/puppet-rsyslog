@@ -78,16 +78,16 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
 
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(
-            <<-EOS
-    # myruleset ruleset
-    ruleset (name="myruleset"
-      parser="pmrfc3164.hostname_with_slashes"
-      queue.size="10000"
-    ) {
+            <<-CONTENT
+# myruleset ruleset
+ruleset (name="myruleset"
+  parser="pmrfc3164.hostname_with_slashes"
+  queue.size="10000"
+) {
 
-      set $.srv = lookup("srv-map", $fromhost-ip);
-    }
-    EOS
+  set $.srv = lookup("srv-map", $fromhost-ip);
+}
+    CONTENT
           )
         end
       end
@@ -129,7 +129,7 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
 
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(
-            <<-EOF
+            <<-CONTENT
 # myruleset ruleset
 ruleset (name="myruleset"
   parser="pmrfc3164.hostname_with_slashes"
@@ -152,7 +152,7 @@ action(type="omfile"
 
   stop
 }
-    EOF
+    CONTENT
           )
         end
       end
@@ -188,7 +188,7 @@ action(type="omfile"
 
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(
-            <<-EOF
+            <<-CONTENT
 # myruleset ruleset
 ruleset (name="myruleset"
   parser="pmrfc3164.hostname_with_slashes"
@@ -200,7 +200,7 @@ if $hostname == "rsyslog_test" then {
   stop
   }
 }
-          EOF
+          CONTENT
           )
         end
       end
@@ -234,7 +234,7 @@ if $hostname == "rsyslog_test" then {
 
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(
-            <<-EOF
+            <<-CONTENT
 # myruleset ruleset
 ruleset (name="myruleset"
   parser="pmrfc3164.hostname_with_slashes"
@@ -247,7 +247,7 @@ ruleset (name="myruleset"
   }
 
 }
-          EOF
+          CONTENT
           )
         end
       end

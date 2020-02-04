@@ -14,7 +14,7 @@ class rsyslog::params {
   $service_enabled = true
   $external_service = false
 
-  case $::osfamily {
+  case $facts['os']['family'] {
     'RedHat': {
       $package_name = 'rsyslog'
       $config_file = '/etc/rsyslog.conf'
@@ -22,6 +22,12 @@ class rsyslog::params {
       $service_name = rsyslog
     }
     'Debian': {
+      $package_name = 'rsyslog'
+      $config_file = '/etc/rsyslog.conf'
+      $confdir = '/etc/rsyslog.d'
+      $service_name = rsyslog
+    }
+    default: {
       $package_name = 'rsyslog'
       $config_file = '/etc/rsyslog.conf'
       $confdir = '/etc/rsyslog.d'

@@ -24,12 +24,12 @@ describe 'Rsyslog::Component::Action', include_rsyslog: true do
 
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::action::myaction').with_content(<<-CONTENT
-    # myaction
-    action(type="omelasticsearch"
-        name="myaction"
-        queue.type="linkedlist"
-        queue.spoolDirectory="/var/log/rsyslog/queue"
-      )
+# myaction
+action(type="omelasticsearch"
+    name="myaction"
+    queue.type="linkedlist"
+    queue.spoolDirectory="/var/log/rsyslog/queue"
+  )
     CONTENT
                                                                                                       )
         end

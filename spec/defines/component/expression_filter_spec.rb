@@ -45,23 +45,23 @@ describe 'rsyslog::component::expression_filter', include_rsyslog: true do
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::expression_filter::myexpressionfilter').with_content(
             <<-CONTENT
-    # myexpressionfilter
-    if msg == "test" then {
-      # myaction
-    action(type="omfile"
-        name="myaction"
-        dynaFile="remoteSyslog"
-      )
+# myexpressionfilter
+if msg == "test" then {
+  # myaction
+action(type="omfile"
+    name="myaction"
+    dynaFile="remoteSyslog"
+  )
 
-    }
-    else {
-      # myaction2
-    action(type="omfwd"
-        name="myaction2"
-        KeepAlive="on"
-      )
+}
+else {
+  # myaction2
+action(type="omfwd"
+    name="myaction2"
+    KeepAlive="on"
+  )
 
-    }
+}
           CONTENT
           )
         end

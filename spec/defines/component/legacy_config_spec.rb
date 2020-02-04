@@ -5,7 +5,7 @@ describe 'rsyslog::component::legacy_config', include_rsyslog: true do
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let(:facts) { os_facts }
-      
+
       let(:title) { 'mylegacy_rules' }
 
       context 'key/value legacy rules' do

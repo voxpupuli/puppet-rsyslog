@@ -5,7 +5,7 @@ describe 'rsyslog::component::lookup_table', include_rsyslog: true do
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let(:facts) { os_facts }
-          
+
       let(:title) { 'mylookuptable' }
 
       context 'default lookup table example' do

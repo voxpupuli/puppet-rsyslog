@@ -77,8 +77,7 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
         end
 
         it do
-          is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(
-            <<-CONTENT
+          is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(<<-CONTENT
 # myruleset ruleset
 ruleset (name="myruleset"
   parser="pmrfc3164.hostname_with_slashes"
@@ -87,7 +86,7 @@ ruleset (name="myruleset"
 
   set $.srv = lookup("srv-map", $fromhost-ip);
 }
-    CONTENT
+CONTENT
           )
         end
       end
@@ -128,8 +127,7 @@ ruleset (name="myruleset"
         end
 
         it do
-          is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(
-            <<-CONTENT
+          is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(<<-CONTENT
 # myruleset ruleset
 ruleset (name="myruleset"
   parser="pmrfc3164.hostname_with_slashes"
@@ -152,7 +150,7 @@ action(type="omfile"
 
   stop
 }
-    CONTENT
+CONTENT
           )
         end
       end
@@ -187,8 +185,7 @@ action(type="omfile"
         end
 
         it do
-          is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(
-            <<-CONTENT
+          is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(<<-CONTENT
 # myruleset ruleset
 ruleset (name="myruleset"
   parser="pmrfc3164.hostname_with_slashes"
@@ -200,7 +197,7 @@ if $hostname == "rsyslog_test" then {
   stop
   }
 }
-          CONTENT
+CONTENT
           )
         end
       end
@@ -233,8 +230,7 @@ if $hostname == "rsyslog_test" then {
         end
 
         it do
-          is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(
-            <<-CONTENT
+          is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(<<-CONTENT
 # myruleset ruleset
 ruleset (name="myruleset"
   parser="pmrfc3164.hostname_with_slashes"
@@ -247,7 +243,7 @@ ruleset (name="myruleset"
   }
 
 }
-          CONTENT
+CONTENT
           )
         end
       end

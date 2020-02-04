@@ -130,28 +130,28 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(
             <<-EOF
-    # myruleset ruleset
-    ruleset (name="myruleset"
-      parser="pmrfc3164.hostname_with_slashes"
-      queue.size="10000"
-    ) {
+# myruleset ruleset
+ruleset (name="myruleset"
+  parser="pmrfc3164.hostname_with_slashes"
+  queue.size="10000"
+) {
 
-      # utf8-fix
-    action(type="mmutf8fix"
-        name="utf8-fix"
-        file="/var/log/fix"
-      )
+  # utf8-fix
+action(type="mmutf8fix"
+    name="utf8-fix"
+    file="/var/log/fix"
+  )
 
 
-      # myaction2
-    action(type="omfile"
-        name="myaction2"
-        dynaFile="remoteSyslog"
-        specifics="/var/log/test"
-      )
+  # myaction2
+action(type="omfile"
+    name="myaction2"
+    dynaFile="remoteSyslog"
+    specifics="/var/log/test"
+  )
 
-      stop
-    }
+  stop
+}
     EOF
           )
         end
@@ -189,17 +189,17 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(
             <<-EOF
-    # myruleset ruleset
-    ruleset (name="myruleset"
-      parser="pmrfc3164.hostname_with_slashes"
-      queue.size="10000"
-    ) {
-    # Expression-based Filter
-    if $hostname == "rsyslog_test" then {
-      call action.ruleset.test
-      stop
-      }
-    }
+# myruleset ruleset
+ruleset (name="myruleset"
+  parser="pmrfc3164.hostname_with_slashes"
+  queue.size="10000"
+) {
+# Expression-based Filter
+if $hostname == "rsyslog_test" then {
+  call action.ruleset.test
+  stop
+  }
+}
           EOF
           )
         end
@@ -235,18 +235,18 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(
             <<-EOF
-    # myruleset ruleset
-    ruleset (name="myruleset"
-      parser="pmrfc3164.hostname_with_slashes"
-      queue.size="10000"
-    ) {
-    # Property-based Filter
-    :msg, contains, "error" {
-      call action.ruleset.test
-      stop
-      }
+# myruleset ruleset
+ruleset (name="myruleset"
+  parser="pmrfc3164.hostname_with_slashes"
+  queue.size="10000"
+) {
+# Property-based Filter
+:msg, contains, "error" {
+  call action.ruleset.test
+  stop
+  }
 
-    }
+}
           EOF
           )
         end

@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v5.0.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v5.0.0) (2020-02-05)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v4.0.0...v5.0.0)
+
+**Breaking changes:**
+
+- Remove Client/Server model and just use config [\#136](https://github.com/voxpupuli/puppet-rsyslog/pull/136) ([dhollinger](https://github.com/dhollinger))
+
+**Fixed bugs:**
+
+- Cyclic dependency [\#127](https://github.com/voxpupuli/puppet-rsyslog/issues/127)
+- Configure /etc/rsyslog.conf after package installation [\#143](https://github.com/voxpupuli/puppet-rsyslog/pull/143) ([amateo](https://github.com/amateo))
+
+**Closed issues:**
+
+- Documentation/comments at init.pp is wrong [\#141](https://github.com/voxpupuli/puppet-rsyslog/issues/141)
+- No way to not use hiera and how to create a separate configuration file per service? [\#138](https://github.com/voxpupuli/puppet-rsyslog/issues/138)
+- Client server split imposes unnecessary restrictions [\#122](https://github.com/voxpupuli/puppet-rsyslog/issues/122)
+
+**Merged pull requests:**
+
+- Test for dependency cycles [\#135](https://github.com/voxpupuli/puppet-rsyslog/pull/135) ([dhollinger](https://github.com/dhollinger))
+- Several datatype changes [\#134](https://github.com/voxpupuli/puppet-rsyslog/pull/134) ([dhollinger](https://github.com/dhollinger))
+- Fix typo in conditionals example [\#130](https://github.com/voxpupuli/puppet-rsyslog/pull/130) ([OlegPS](https://github.com/OlegPS))
+
 ## [v4.0.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v4.0.0) (2019-10-20)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v3.3.0...v4.0.0)

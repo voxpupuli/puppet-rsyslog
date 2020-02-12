@@ -1,4 +1,4 @@
-# Syslog severoty data type
+# Syslog severity data type
 type Rsyslog::Syslog::Severity = Variant[
   Enum[
     'emerg',

@@ -3,7 +3,6 @@
 # https://github.com/voxpupuli/modulesync_config
 
 RSpec.configure do |c|
-  c.hiera_config = 'hiera.yaml'
 end
 
 # puppetlabs_spec_helper will set up coverage if the env variable is set.

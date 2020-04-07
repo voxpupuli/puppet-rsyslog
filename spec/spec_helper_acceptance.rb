@@ -1,28 +1,12 @@
-require 'beaker-rspec'
-require 'beaker-puppet'
-require 'beaker/puppet_install_helper'
-require 'beaker/module_install_helper'
+require 'voxpupuli/acceptance/spec_helper_acceptance'
 
-run_puppet_install_helper unless ENV['BEAKER_provision'] == 'no'
+configure_beaker do |host|
+  if fact_on(host, 'os.name') == 'Ubuntu'
+    host.install_package('software-properties-common')
+  end
 
-RSpec.configure do |c|
-  # Readable test descriptions
-  c.formatter = :documentation
-
-  # Configure all nodes in nodeset
-  c.before :suite do
-    install_module
-    install_module_dependencies
-
-    hosts.each do |host|
-      if fact_on(host, 'os.name') == 'Ubuntu'
-        host.install_package('software-properties-common')
-      end
-
-      if ENV['BEAKER_PUPPET_COLLECTION'] != 'puppet6'
-        on host, puppet('module', 'uninstall', 'puppetlabs-yumrepo_core', '--force'), acceptable_exit_codes: [0, 1]
-      end
-    end
+  if ENV['BEAKER_PUPPET_COLLECTION'] != 'puppet6'
+    on host, puppet('module', 'uninstall', 'puppetlabs-yumrepo_core', '--force'), acceptable_exit_codes: [0, 1]
   end
 end
 

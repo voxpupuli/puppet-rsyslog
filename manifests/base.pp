@@ -65,7 +65,7 @@ class rsyslog::base {
       ensure => directory,
       owner  => 'root',
       group  => 'root',
-      mode   => '0755',
+      mode   => $rsyslog::confdir_permissions,
       *      => $purge_params + $require_package,
     }
   }

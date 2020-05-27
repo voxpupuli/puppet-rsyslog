@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v5.0.1](https://github.com/voxpupuli/puppet-rsyslog/tree/v5.0.1) (2020-05-05)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v5.0.0...v5.0.1)
+
+v5.0.0 was never released to the forge due to an issue with the release process. v5.0.1 contains no functional changes.
+
+**Merged pull requests:**
+
+- Use voxpupuli-acceptance [\#149](https://github.com/voxpupuli/puppet-rsyslog/pull/149) ([ekohl](https://github.com/ekohl))
+
 ## [v5.0.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v5.0.0) (2020-02-05)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v4.0.0...v5.0.0)

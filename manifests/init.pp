@@ -83,6 +83,8 @@
 #   Set the file mode for the generated configuration files.
 # @param confdir_permissions
 #   Set the file mode for the rsyslog.d configuration directory.
+# @param global_conf_perms
+#   Set the file mode for the /etc/rsyslog.conf
 #
 class rsyslog (
   String            $confdir,
@@ -115,6 +117,7 @@ class rsyslog (
   String            $target_file,
   Stdlib::Filemode  $conf_permissions = '0644',
   Stdlib::Filemode  $confdir_permissions = '0755',
+  Stdlib::Filemode  $global_conf_perms = $conf_permissions,
 ) {
 
   if $manage_service == true and $external_service == true {

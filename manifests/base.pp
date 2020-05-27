@@ -84,6 +84,7 @@ class rsyslog::base {
     file { $rsyslog::config_file:
       ensure  => 'file',
       content => "${message}\n\$IncludeConfig ${rsyslog::confdir}/*.conf\n",
+      mode    => $rsyslog::global_conf_perms,
       require => $_require,
     }
   }

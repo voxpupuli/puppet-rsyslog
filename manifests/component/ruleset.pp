@@ -7,7 +7,6 @@ define rsyslog::component::ruleset (
   Optional[Hash]    $parameters = {},
   Optional[String]  $format = '<%= $content %>'
 ) {
-
   include rsyslog
 
   if $rules == [] and $stop == false {
@@ -15,10 +14,10 @@ define rsyslog::component::ruleset (
   }
 
   $content = epp('rsyslog/ruleset.epp', {
-    'ruleset_name' => $name,
-    'parameters'   => $parameters,
-    'rules'        => $rules,
-    'stop'         => $stop,
+      'ruleset_name' => $name,
+      'parameters'   => $parameters,
+      'rules'        => $rules,
+      'stop'         => $stop,
   })
 
   rsyslog::generate_concat { "rsyslog::concat::ruleset::${name}":

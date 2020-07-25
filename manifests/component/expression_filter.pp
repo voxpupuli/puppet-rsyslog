@@ -8,8 +8,8 @@ define rsyslog::component::expression_filter (
   include rsyslog
 
   $content = epp('rsyslog/expression_filter.epp', {
-    'filter_name'  => $name,
-    'conditionals' => $conditionals,
+      'filter_name'  => $name,
+      'conditionals' => $conditionals,
   })
 
   rsyslog::generate_concat { "rsyslog::concat::expression_filter::${name}":

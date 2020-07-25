@@ -7,19 +7,18 @@ define rsyslog::component::global_config (
   Optional[String]  $type = 'rainerscript',
   Optional[String]  $format = '<%= $content %>'
 ) {
-
   include rsyslog
 
   if $type == 'legacy' {
     $content = epp('rsyslog/global_config.epp', {
-      'config_item' => $name,
-      'type'        => $type,
-      'value'       => $value
+        'config_item' => $name,
+        'type'        => $type,
+        'value'       => $value
     })
   } else {
     $content = epp('rsyslog/global_config', {
-      'type'   => $type,
-      'config' => $config,
+        'type'   => $type,
+        'config' => $config,
     })
   }
 
@@ -29,10 +28,9 @@ define rsyslog::component::global_config (
     before  => Concat::Fragment["rsyslog::component::global_config::${name}"],
   }
 
-  concat::fragment {"rsyslog::component::global_config::${name}":
+  concat::fragment { "rsyslog::component::global_config::${name}":
     target  => "${confdir}/${target}",
     content => inline_epp($format),
     order   => $priority,
   }
-
 }

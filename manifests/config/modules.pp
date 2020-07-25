@@ -1,4 +1,4 @@
-class rsyslog::config::modules{
+class rsyslog::config::modules {
   $rsyslog::config::modules.each|$name, $config| {
     rsyslog::component::module { $name:
       * => {

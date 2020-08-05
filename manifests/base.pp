@@ -5,7 +5,6 @@
 #
 # This class manages the base installation for rsyslog
 class rsyslog::base {
-
   # Include the base class in case this class is being called
   # directly
 
@@ -27,7 +26,7 @@ class rsyslog::base {
           gpgkey   => 'http://rpms.adiscon.com/v8-stable/epel-$releasever/$basearch',
         }
       }
-      default: { fail("${facts['os']['name']} is not current supported by upstream packages.")}
+      default: { fail("${facts['os']['name']} is not current supported by upstream packages.") }
     }
   }
 
@@ -45,7 +44,6 @@ class rsyslog::base {
   }
 
   if $rsyslog::manage_confdir {
-
     $purge_params = $rsyslog::purge_config_files ? {
       true  => {
         'purge'   => true,
@@ -71,7 +69,6 @@ class rsyslog::base {
   }
 
   if $rsyslog::override_default_config {
-
     $message = @(EOT)
       # This file is managed by Puppet.  No configuration is placed here
       # all configuration is under the rsyslog.d directory
@@ -95,5 +92,4 @@ class rsyslog::base {
       enable => $rsyslog::service_enabled,
     }
   }
-
 }

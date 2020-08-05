@@ -6,13 +6,12 @@ define rsyslog::component::input (
   Optional[Hash]    $config,
   Optional[String]  $format = '<%= $content %>'
 ) {
-
   include rsyslog
 
   $content = epp('rsyslog/input.epp', {
-        'input_name'  => $name,
-        'type'        => $type,
-        'config'      => $config
+      'input_name'  => $name,
+      'type'        => $type,
+      'config'      => $config
   })
 
   rsyslog::generate_concat { "rsyslog::concat::input::${name}":
@@ -21,10 +20,9 @@ define rsyslog::component::input (
     before  => Concat::Fragment["rsyslog::component::input::${name}"],
   }
 
-  concat::fragment {"rsyslog::component::input::${name}":
+  concat::fragment { "rsyslog::component::input::${name}":
     target  => "${confdir}/${target}",
     content => inline_epp($format),
     order   => $priority,
   }
-
 }

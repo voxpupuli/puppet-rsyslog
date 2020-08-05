@@ -19,6 +19,6 @@ define rsyslog::component::main_queue (
       {
         'object_name' => 'main_queue',
         'config'      => $config
-      }),
+    }),
   }
 }

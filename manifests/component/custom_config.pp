@@ -9,7 +9,6 @@ define rsyslog::component::custom_config (
   String  $content,
   String  $filename_part = $name,
 ) {
-
   include rsyslog
 
   rsyslog::generate_concat { "rsyslog::concat::custom_config::${name}":

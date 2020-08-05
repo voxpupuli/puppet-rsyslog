@@ -11,11 +11,11 @@ define rsyslog::component::property_filter (
   include rsyslog
 
   $content = epp('rsyslog/property_filter.epp', {
-    'filter_name' => $name,
-    'property'    => $property,
-    'operator'    => $operator,
-    'value'       => $value,
-    'tasks'       => $tasks,
+      'filter_name' => $name,
+      'property'    => $property,
+      'operator'    => $operator,
+      'value'       => $value,
+      'tasks'       => $tasks,
   })
 
   rsyslog::generate_concat { "rsyslog::concat::property_filter::${name}":

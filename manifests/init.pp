@@ -119,11 +119,9 @@ class rsyslog (
   Stdlib::Filemode  $confdir_permissions = '0755',
   Stdlib::Filemode  $global_conf_perms = $conf_permissions,
 ) {
-
   if $manage_service == true and $external_service == true {
     fail('manage_service and external_service cannot be set at the same time!')
   } else {
     contain 'rsyslog::base'
   }
-
 }

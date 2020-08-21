@@ -8,46 +8,30 @@
 [![Puppet Forge](https://img.shields.io/puppetforge/f/puppet/rsyslog.svg?style=flat-square)](https://forge.puppet.com/puppet/rsyslog)
 
 #### Table of Contents
-
-* [Overview](#overview)
-* [Description](#description)
-* [Usage](#usage)
-* [Public Classes](#public-classes)
-* [Configuration](#configuration)
-  * [Main system configuration](#main-system-configuration)
-  * [Rsyslog configuration directives](#rsyslog-configuration-directives)
-  * [Configuring objects](#configuring-options)
-    * [Modules](#rsyslogservermodules)
-    * [global_config](#rsyslogserverglobal_config-rsyslogclientglobal_config)
-    * [Queue options](#rsyslogservermain_queue_opts)
-    * [Templates](#rsyslogservertemplates)
-    * [Actions](#rsyslogserveractions-rsyslogclientactions)
-    * [Inputs](#rsyslogserverinputs-rsyslogclientinputs)
-    * [Lookup_tables](#rsyslogserverlookup_tables)
-    * [Parser](#rsyslogserverparser)
-    * [Rulesets](#rsyslogserverrulesets)
-    * [Filters](#rsyslogserverproperty_filters-rsyslogserverexpression_filters)
-    * [legacy_config](#rsyslogserverlegacy_config)
-  * [Positioning](#positioning)
-  * [Formatting](#formatting)
-
 1. [Overview](#overview)
 2. [Module Description](#module-description)
 3. [Setup](#setup)
     * [What this module affects](#what-this-module-affects)
-    * [What this module requires](#requirements)
     * [Beginning with this module](#beginning-with-this-module)
 4. [Usage](#usage)
-    * [Client](#client)
-    * [Trap Daemon](#trap-daemon)
-    * [SNMPv3 Users](#snmpv3-users)
-    * [Access Control](#access-control)
-5. [Reference](#reference)
-6. [Limitations](#limitations)
-    * [OS Support](#os-support)
-    * [Notes](#notes)
-    * [Issues](#issues)
-7. [Development - Guide for contributing to the module](#development)
+    * [Rsyslog configuration directives](#rsyslog-configuration-directives)
+    * [Configuring objects](#configuring-objects)
+       * [Modules](#rsyslogconfigmodules)
+       * [Global configuration](#rsyslogconfigglobal_config)
+       * [Main queue options](#rsyslogconfigmain_queue_opts)
+       * [Templates](#rsyslogconfigtemplates)
+       * [Actions](#rsyslogconfigactions)
+       * [Inputs](#rsyslogconfiginputs)
+       * [Lookup_tables](#rsyslogconfiglookup_tables)
+       * [Parser](#rsyslogconfigparser)
+       * [Rulesets](#rsyslogconfigrulesets)
+       * [Filters](#rsyslogconfigproperty_filters)
+       * [legacy_config](#rsyslogconfiglegacy_config)
+    * [Positioning](#positioning)
+    * [Formatting](#formatting)
+5. [Known Issues](#known-issues)
+6. [License](#license)
+7. [Maintainer](#maintainer)
 
 ## Overview
 This module was first published as `crayfishx/rsyslog`.  It has now moved to `puppet/rsyslog` and is managed by the community group [Vox Pupuli](https://voxpupuli.org).
@@ -1050,16 +1034,15 @@ rsyslog::config::custom_config:
 
 ```
 
-### Known Issues
+## Known Issues
 
 * Designed specifically for Rsyslog 8+ and the Rainerscript configuration format. Legacy configuration/Rsyslog < 8 support requires the use of the `custom_config` parameter.
 * The upstream repository for EL8 is currently broken and will not work.
 
-### License
+## License
 
 * This module is licensed under Apache 2.0, see LICENSE for more details
 
-### Maintainer
+## Maintainer
 
 * This module is maintained by Vox Pupuli.  It was originally written by Craig Dunn (craig@craigdunn.org) @crayfishx.
-

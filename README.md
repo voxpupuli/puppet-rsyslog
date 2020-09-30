@@ -124,7 +124,7 @@ The hash accepts the following three values:
 
 * `type`: values can be `external or builtin` the default value is external and need not be specified explicitly.
 * `config`: its a hash which provides optional parameters to the module loaded.
-* `priority`: The module load order can be priortised based on the optional `priority` value.
+* `priority`: The module load order can be prioritised based on the optional `priority` value.
 
 eg:
 

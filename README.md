@@ -832,18 +832,22 @@ Expression-based filters are also what are used to match against lookup_table da
 
 The `rsyslog::server::expression_filters` parameter is a Hash of hashes where the hash-key is the logical name for the filter. This name is for Puppet resource naming purposes only and has no other function. The filter name has a few additional child keys as well:
 
-* `conditionals` - Hash containing one of three keys (`if`, `else if`, and `else`), which are hashes of hashes.
-  * `if`/`else if`/`else` - Hash of hashes. Must be one of `if`, `else if`, or `else`
+* `conditionals` - Hash describing the different conditional cases, which are hashes of hashes.
+    * `cases` - Hash of hashes. This has two reserved keys and four reserved names:
+      * `if`/`main` - This is the primary condition for your expression. `if` is provided for backwards compatibility. **_required_**
+      * `else`/`default` - This defines the optional "default" or "fall through" condition. `else` is provided for backwards compatibility.
+      * [string] case - All other cases are defined by your own descriptive name. These names are non-functional and purely for organizational purposes. They will render as an `else if` in the rsyslog configuration.
     * `expression` - The string "expression" that will be used to match values. With all the potential options for logic, this was the easiest way to provide everyone with what they may need.
     * `tasks` -  A hash of actions to take in the event of a filter match.
       * All sub-keys for the `tasks` hash maps to another rsyslog configuration object.
 
-eg:
+Old syntax (still works):
 
 ```yaml
 rsyslog::config::expression_filters:
   hostname_filter:
     conditionals:
+      # Uses the "if" keyword
       if:
         expression: '$msg contains "error"'
         tasks:
@@ -854,7 +858,24 @@ rsyslog::config::expression_filters:
                 specifics: /var/log/errlog
 ```
 
-will produce
+New syntax:
+
+```yaml
+rsyslog::config::expression_filters:
+  hostname_filter:
+    conditionals:
+      # Uses the "main" keyword
+      main:
+        expression: '$msg contains "error"'
+        tasks:
+          - action:
+              name: omfile_error
+              type: omfile
+              config:
+                specifics: /var/log/errlog
+```
+
+both will produce:
 
 ```
 if $msg contains "error" then {
@@ -864,16 +885,18 @@ if $msg contains "error" then {
 
 NOTE: Due to the amount of potential options available to the user, the `expression` key is a plain text string field and the expression logic must be written out. See next example for more details.
 
-eg:
+Old Syntax (still works):
 
 ```yaml
 rsyslog::config::expression_filters:
   complex_filter:
     conditionals:
+      # Uses the "if" keyword
       if:
         expression: '$syslogfacility-text == "local0" and $msg startswith "DEVNAME" and ($msg contains "error1" or $msg contains "error0")'
         tasks:
           - stop: true
+      # Uses the "else" keyword
       else:
         tasks:
           - action:
@@ -883,7 +906,28 @@ rsyslog::config::expression_filters:
                 specifics: /var/log/errlog
 ```
 
-will produce:
+New Syntax:
+
+```yaml
+rsyslog::config::expression_filters:
+  complex_filter:
+    conditionals:
+      # Uses the "main" keyword
+      main:
+        expression: '$syslogfacility-text == "local0" and $msg startswith "DEVNAME" and ($msg contains "error1" or $msg contains "error0")'
+        tasks:
+          - stop: true
+      # Uses the "default" keyword
+      default:
+        tasks:
+          - action:
+              name: error_log
+              type: omfile
+              config:
+                specifics: /var/log/errlog
+```
+
+both will produce:
 
 ```
 if $syslogfacility-text == "local0" and $msg startswith "DEVNAME" and ($msg contains "error1" or $msg contains "error0") then {
@@ -891,6 +935,48 @@ if $syslogfacility-text == "local0" and $msg startswith "DEVNAME" and ($msg cont
 }
 else {
   action(type="omfile" specifics="/var/log/errlog")
+}
+```
+
+Example using more than two conditions:
+
+```yaml
+rsyslog::config::expression_filters:
+  complex_filter:
+    conditionals:
+      # Uses the "main" keyword
+      main:
+        expression: '$syslogfacility-text == "local0" and $msg startswith "DEVNAME" and ($msg contains "error1" or $msg contains "error0")'
+        tasks:
+          - stop: true
+      # Uses a descriptive keyname
+      errlog:
+        expression: '$msg contains "error"'
+        tasks:
+          - action:
+              name: omfile_error
+              type: omfile
+              config:
+                - specifics: /var/log/errlog
+      # Uses the "default" keyword
+      default:
+        tasks:
+          - action:
+              name: system_log
+              type: omfile
+              config:
+                specifics: /var/log/system
+```
+
+will produce:
+
+```
+if $syslogfacility-text == "local0" and $msg startswith "DEVNAME" and ($msg contains "error1" or $msg contains "error0") then {
+  stop
+} else if $msg == "error" then {
+  action(type="omfile" specifics="/var/log/errlog")
+} else {
+  action(type="omfile" specifics="/var/log/system")
 }
 ```
 

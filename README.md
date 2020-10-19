@@ -126,7 +126,48 @@ The hash accepts the following three values:
 * `config`: its a hash which provides optional parameters to the module loaded.
 * `priority`: The module load order can be prioritised based on the optional `priority` value.
 
-eg:
+
+Puppet example:
+```puppet
+class { 'rsyslog::config':
+  'modules' => {
+    'imuxsock' => {},
+    'imudp' => {
+      'config' => {
+        'threads'     => '2',
+        'TimeRequery' => '8',
+        'batchSize'   => '128',
+      },
+    },
+    'omusrmsg' => {
+      'type' => 'builtin',
+    },
+    'omfile' => {
+      'type'   => 'builtin',
+      'config' => {
+        'fileOwner'      => 'syslog',
+        'fileGroup'      => 'adm',
+        'dirGroup'       => 'adm',
+        'fileCreateMode' => '0640',
+        'dirCreateMode'  => '0755',
+      },
+    },
+    'impstats' => {
+      'type'     => 'external',
+      'priority' => 29,
+      'config'   => {
+        'interval'   => '60',
+        'severity'   => '7',
+        'log.syslog' => 'off',
+        'log.file'   => '/var/log/rsyslog/logs/stats/stats.log',
+        'Ruleset'    => 'remote',
+      },
+    },
+  },
+}
+```
+
+Hiera example:
 
 ```yaml
 rsyslog::config::modules:
@@ -193,8 +234,41 @@ A hash of hashes, they key represents the configuration setting and the value is
 * `value`: the value of the setting
 * `type`: the type of format to use (legacy or rainerscript), if omitted rainerscript is used.
 
-eg:
+Puppet example:
+```puppet
+class { 'rsyslog::config':
+  'global_config' => {
+    'umask' => {
+      'value'    => '0000',
+      'type'     => 'legacy',
+      'priority' => 01,
+    },
+    'RepeatedMsgReduction' => {
+      'value' => 'on',
+      'type'  => 'legacy',
+    },
+    'PrivDropToUser' => {
+      'value' => 'syslog',
+      'type'  => 'legacy',
+    },
+    'PrivDropToGroup' => {
+      'value' => 'syslog',
+      'type'  => 'legacy',
+    },
+    'parser.escapeControlCharactersOnReceive' => {
+      'value' => 'on',
+    },
+    'workDirectory' => {
+      'value' => '/var/spool/rsyslog',
+    },
+    'maxMessageSize' => {
+      'value' => '64k',
+    },
+  },
+}
+```
 
+Hiera example:
 ```yaml
 rsyslog::config::global_config:
   umask:
@@ -236,6 +310,17 @@ global (
 
 Configures the `main_queue` object in rsyslog as a hash. eg:
 
+Puppet Example:
+```puppet
+class { 'rsyslog::config':
+  'main_queue_opts' => {
+    'queue.maxdiskspace'     => '1000G',
+    'queue.dequeuebatchsize' => 1000,
+  }
+}
+```
+
+Hiera Example:
 ```yaml
 rsyslog::config::main_queue_opts:
   queue.maxdiskspace: 1000G
@@ -255,7 +340,28 @@ main_queue(
 
 Configures `template` objects in rsyslog.  Each element is a hash containing the name of the template, the type and the template data.    The type parameter can be one of `string`, `subtree`, `plugin` or `list`
 
-eg:
+Puppet Example:
+
+```puppet
+class { 'rsyslog::config':
+  'templates' => {
+    'remote' => {
+      'type'   => 'string',
+      'string' => '/var/log/rsyslog/logs/%fromhost-ip%.log',
+    },
+    'tpl2' => {
+      'type'    => 'subtree',
+      'subtree' => '$1!$usr',
+    },
+    'someplug' => {
+      'type'   => 'plugin',
+      'plugin' => 'foobar',
+    },
+  }
+}
+```
+
+Hiera Example:
 
 ```yaml
 rsyslog::config::templates:
@@ -280,7 +386,94 @@ template (name="remote" type="string"
 
 When using `list`, the `list_descriptions` hash should contain an array of single element hashes, the key should be `constant` or `property` with their corresponding parameters in a sub hash.
 
-eg:
+Puppet example:
+
+```puppet
+class { 'rsyslog::config':
+  'templates' => {
+    'plain-syslog' => {
+      'type' => 'list',
+      'list_descriptions' => [
+        {
+          'constant' => {
+            'value' => '{',
+          }
+        },
+        {
+          'constant' => {
+            'value' => '\"@timestamp\":\"',
+          }
+        },
+        {
+          'propery' => {
+            'name' => 'timereported',
+            'dateFormat' => 'rfc3339',
+          }
+        },
+        {
+          'constant' => {
+            'value' => '\",\"host\":\"'
+          }
+        },
+        {
+          'property' => {
+            'name' => 'hostname'
+          }
+        },
+        {
+          'constant' => {
+            'value' => '\",\"severity\":\"'
+          }
+        },
+        {
+          'property' => {
+            'name' => 'syslogseverity-text',
+          }
+        },
+        {
+          'constant' => {
+            'value' => '\",\"facility\":\"'
+          }
+        },
+        {
+          'property' => {
+            'name' => 'syslogfacility-text'
+          }
+        },
+        {
+          'constant' => {
+            'value' => '\",\"host\":\"'
+          }
+        },
+        {
+          'property' => {
+            'name'   => 'syslogtag',
+            'format' => 'json',
+          }
+        },
+        {
+          'constant' => {
+            'value' => '\",\"message\":\"'
+          }
+        },
+        {
+          'property' => {
+            'name'   => 'msg',
+            'format' => 'json'
+          }
+        },
+        {
+          'constant' => {
+            'value' => '\"}'
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+Hiera example:
 
 ```yaml
   plain-syslog:
@@ -348,7 +541,40 @@ template (name="plain-syslog" type="list"
 Configures action objects in rainerscript.  Each element of the hash contains the type of action, followed by a hash of configuration options.
 It also accepts an optional facility parameter and the content is formatted based on the no of config options passed and if the facility option is present.
 
-eg:
+Puppet example:
+
+```puppet
+class { 'rsyslog::config':
+  'actions' => {
+    'all_logs' => {
+      'type'     => 'omfile',
+      'facility' => '*.*;auth,authpriv.none',
+      'config'   => {
+        'dynaFile'  => 'remoteSyslog',
+        'specifics' => '/var/log/test',
+      }
+    },
+    'kern_logs' => {
+      'type'     => 'omfile',
+      'facility' => 'kern.*',
+      'config'   => {
+        'dynaFile' => 'remoteSyslog',
+        'file'     => '/var/log/kern.log',
+        'cmd'      => '/proc/cmdline',
+      }
+    },
+    'elasticsearch' => {
+      'type'   => 'omelasticsearch',
+      'config' => {
+        'queue.type'           => 'linkedlist',
+        'queue.spoolDirectory' => '/var/log/rsyslog/queue'
+      }
+    }
+  }
+}
+```
+
+Hiera example:
 
 ```yaml
 rsyslog::config::actions:
@@ -398,6 +624,21 @@ action(type="omelasticsearch"
 
 Configures input objects in rainerscript.  Each element of the hash contains the type of input, followed by a hash of configuration options. Eg:
 
+Puppet examples:
+
+```puppet
+class { 'rsyslog:config':
+  'inputs' => {
+    'type'   => 'imudp',
+    'config' => {
+      'port' => '514'
+    }
+  }
+}
+```
+
+Hiera examples:
+
 ```yaml
 rsyslog::config::inputs:
   imudp:
@@ -427,6 +668,36 @@ The json hash contains 4 elements: `version`, `nolookup`, `type`, and `table`. T
 * `nolookup` - String denoting what should be returned if a lookup doesn't find a match in the table.
 * `type` - Enumerable denoting the type of lookup table. This can be `string`, `array`, or `sparseArray`.
 * `table` - An Array of hashes containing the table index and value for each lookup.
+
+Puppet example:
+
+```puppet
+class { 'rsyslog::config':
+  'lookup_tables' => {
+    'ip_lookup' => {
+      'lookup_json' => {
+        'version'  => 1,
+        'nolookup' => 'unk',
+        'type'     => 'string',
+        'table'    => [
+          {
+            'index' => '1.1.1.1',
+            'value' => 'AB'
+          },
+          {
+            'index' => '2.2.2.2',
+            'value' => 'CD'
+          }
+        ]
+      },
+      'lookup_file'   => '/etc/rsyslog.d/tables/ip_lookup.json',
+      'reload_on_hup' => true
+    }
+  }
+}
+```
+
+Hiera Example:
 
 ```yaml
 rsyslog::config::lookup_tables:
@@ -478,6 +749,23 @@ the `rsyslog::server::custom_config` and `rsyslog::client::custom_config` resour
 
 Configures parser objects in rainerscript. Each Element of the hash contains the type of parser, followed by a hash of configuration options. Eg:
 
+Puppet Example:
+
+```puppet
+class { 'rsyslog::config':
+  'parser' => {
+    'pmrfc3164_hostname_with_slashes' => {
+      'type'   => 'pmrfc3164',
+      'config' => {
+        'permit.slashesinhostname' => 'on'
+      }
+    }
+  }
+}
+```
+
+Hiera Example:
+
 ```yaml
 rsyslog::config::parser:
   pmrfc3164_hostname_with_slashes:
@@ -512,6 +800,10 @@ Configures Rsyslog ruleset blocks in rainerscript. There are two elements in the
 * `stop` - a Boolean to set if the ruleset ends with a stop or not.
 
 **NOTE: For any `rule` key that can also be a standalone rsyslog resource (`action`, `expression_filter`, or `property_filter`), the user MUST define a name key that will be passed as the resource name to the template. This will be simplified in a future release.**
+
+**NOTE: While it is entirely possible to configure Rulesets using the Puppet DSL, it is recommended against as Rulesets can easily become difficult to read when compared to the YAML-based hieradata.**
+
+Hiera example:
 
 ```yaml
 rsyslog::config::rulesets:

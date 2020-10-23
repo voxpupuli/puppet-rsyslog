@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v5.1.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v5.1.0) (2020-10-23)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v5.0.1...v5.1.0)
+
+**Implemented enhancements:**
+
+- Cannot set syslog conf file and directory permissions [\#150](https://github.com/voxpupuli/puppet-rsyslog/issues/150)
+
+**Fixed bugs:**
+
+- Can't create an expressión filter with more than one 'else if' [\#164](https://github.com/voxpupuli/puppet-rsyslog/issues/164)
+- Fix issues with the expression filter keys [\#165](https://github.com/voxpupuli/puppet-rsyslog/pull/165) ([dhollinger](https://github.com/dhollinger))
+
+**Merged pull requests:**
+
+- Update several examples in documentation to include Puppet examples [\#166](https://github.com/voxpupuli/puppet-rsyslog/pull/166) ([dhollinger](https://github.com/dhollinger))
+- Let config values be an array in inputs [\#163](https://github.com/voxpupuli/puppet-rsyslog/pull/163) ([amateo](https://github.com/amateo))
+- Fix README.md typo [\#162](https://github.com/voxpupuli/puppet-rsyslog/pull/162) ([arjenz](https://github.com/arjenz))
+- README: fix table of contents and section levels [\#158](https://github.com/voxpupuli/puppet-rsyslog/pull/158) ([kenyon](https://github.com/kenyon))
+- modulesync 3.0.0 & puppet-lint updates [\#157](https://github.com/voxpupuli/puppet-rsyslog/pull/157) ([bastelfreak](https://github.com/bastelfreak))
+- Add ability to modify conf file and directory permissions [\#155](https://github.com/voxpupuli/puppet-rsyslog/pull/155) ([dhollinger](https://github.com/dhollinger))
+
 ## [v5.0.1](https://github.com/voxpupuli/puppet-rsyslog/tree/v5.0.1) (2020-05-05)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v5.0.0...v5.0.1)

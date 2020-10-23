@@ -5,10 +5,12 @@
 
 **Classes**
 
-* [`rsyslog`](#rsyslog): Class: rsyslog ===========================  Full description of class rsyslog here.  Parameters ----------  Document parameters here.  * `sam
+* [`rsyslog`](#rsyslog): Manage the Rsyslog daemon package, service, and
+configuration.
 * [`rsyslog::base`](#rsyslogbase): Class: rsyslog::base  Description -----------  This class manages the base installation for rsyslog
-* [`rsyslog::client`](#rsyslogclient): 
-* [`rsyslog::config`](#rsyslogconfig): 
+* [`rsyslog::config`](#rsyslogconfig): Manage the configuration parameters for rsyslog.
+This class can be called explicitly or through the use of
+hieradata.
 * [`rsyslog::config::actions`](#rsyslogconfigactions): 
 * [`rsyslog::config::custom`](#rsyslogconfigcustom): 
 * [`rsyslog::config::expression_filters`](#rsyslogconfigexpression_filters): 
@@ -22,7 +24,6 @@
 * [`rsyslog::config::property_filters`](#rsyslogconfigproperty_filters): 
 * [`rsyslog::config::rulesets`](#rsyslogconfigrulesets): 
 * [`rsyslog::config::templates`](#rsyslogconfigtemplates): 
-* [`rsyslog::server`](#rsyslogserver): Class that manages Rsyslog Server config
 
 **Defined types**
 
@@ -85,60 +86,39 @@
 * [`Rsyslog::Modules::String`](#rsyslogmodulesstring): 
 * [`Rsyslog::PropertyOperator`](#rsyslogpropertyoperator): Enumerable custom type for rsyslog property operators
 * [`Rsyslog::Queue::Parameters`](#rsyslogqueueparameters): 
-* [`Rsyslog::Syslog::Facility`](#rsyslogsyslogfacility): Syslog facility data type
-* [`Rsyslog::Syslog::Severity`](#rsyslogsyslogseverity): Syslog severoty data type
+* [`Rsyslog::Syslog::Severity`](#rsyslogsyslogseverity): Syslog severity data type
 
 ## Classes
 
 ### rsyslog
 
-Class: rsyslog
-===========================
-
-Full description of class rsyslog here.
-
-Parameters
-----------
-
-Document parameters here.
-
-* `sample parameter`
-Explanation of what this parameter affects and what it defaults to.
-e.g. "Specify one or more upstream ntp servers as an array."
-
-Variables
-----------
-
-Here you should define a list of variables that this module would require.
-
-* `sample variable`
- Explanation of how this variable affects the function of this class and if
- it has a default. e.g. "The parameter enc_ntp_servers must be set by the
- External Node Classifier as a comma separated list of hostnames." (Note,
- global variables should be avoided in favor of class parameters as
- of Puppet 2.6.)
-
-Examples
---------
-
-Authors
--------
-
-Author Name <author@domain.com>
-
-Copyright
----------
-
-Copyright 2016 Your name here, unless otherwise noted.
+Manage the Rsyslog daemon package, service, and
+configuration.
 
 #### Examples
 
-##### 
+##### using class
 
 ```puppet
 class { 'rsyslog':
-  servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
+  manage_service => true,
 }
+```
+
+##### using hieradata
+
+```puppet
+# Manifest
+include rsyslog
+include rsyslog::config
+
+# Hieradata
+---
+rsyslog::confdir: /etc/rsyslog.d
+rsyslog::package_name: rsyslog
+rsysog::config::global_config:
+  workDirectory:
+    value: '/var/spool/rsyslog'
 ```
 
 #### Parameters
@@ -149,167 +129,196 @@ The following parameters are available in the `rsyslog` class.
 
 Data type: `String`
 
-
+The rsyslog configuration directory.
 
 ##### `package_name`
 
 Data type: `String`
 
-
+The name of the rsyslog package to install.
 
 ##### `package_version`
 
 Data type: `String`
 
-
+The version of rsyslog to install.
 
 ##### `config_file`
 
 Data type: `String`
 
-
+The global rsyslog configuration file.
 
 ##### `feature_packages`
 
 Data type: `Array`
 
-
+List of additional rsyslog packages to install.
 
 ##### `module_load_priority`
 
 Data type: `Integer`
 
-
+Order the loading of rsyslog modules relative to other configuration.
 
 ##### `service_name`
 
 Data type: `String`
 
-
+Name of the SystemD, Upstart, or SysVInit service.
 
 ##### `service_status`
 
 Data type: `String`
 
-
+State desired for the rsyslog service.
 
 ##### `service_enabled`
 
 Data type: `Boolean`
 
-
+Is the service enabled or not.
 
 ##### `override_default_config`
 
 Data type: `Boolean`
 
-
+Override the default rsyslog.conf file.
 
 ##### `manage_package`
 
 Data type: `Boolean`
 
-
+Toggle the managing of the rsyslog package.
 
 ##### `use_upstream_repo`
 
 Data type: `Boolean`
 
-
+Toggle using the upstream Adiscon Rsyslog repository.
 
 ##### `manage_confdir`
 
 Data type: `Boolean`
 
-
+Toggle management of the Rsyslog configuration directory.
 
 ##### `manage_service`
 
 Data type: `Boolean`
 
-
+Toggle management of the rsyslog service.
 
 ##### `external_service`
 
 Data type: `Boolean`
 
-
+Toggle if the service is external to where rsyslog is being run.
+I.E. a service that starts a docker container running rsyslog.
 
 ##### `purge_config_files`
 
 Data type: `Boolean`
 
-
+Toggle purging of unmanaged configuration files.
 
 ##### `global_config_priority`
 
 Data type: `Integer`
 
-
+Set the global ordering of global configuration parameters in rsyslog.
 
 ##### `legacy_config_priority`
 
 Data type: `Integer`
 
-
+Set the global ordering of legacy configuration parameters in rsyslog.
 
 ##### `template_priority`
 
 Data type: `Integer`
 
-
+Set the global ordering of template configuration in rsyslog.
 
 ##### `action_priority`
 
 Data type: `Integer`
 
-
+Set the global ordering of action configuration in rsyslog.
 
 ##### `input_priority`
 
 Data type: `Integer`
 
-
+Set the global ordering of input configuration in rsyslog.
 
 ##### `custom_priority`
 
 Data type: `Integer`
 
-
+Set the global ordering of custom configuration in rsyslog.
 
 ##### `main_queue_priority`
 
 Data type: `Integer`
 
-
+Set the global ordering of main queue configuration in rsyslog.
 
 ##### `lookup_table_priority`
 
 Data type: `Integer`
 
+Set the global ordering of lookup table configuration in rsyslog.
 
+##### `parser_priorty`
 
-##### `parser_priority`
-
-Data type: `Integer`
-
-
+Set the global ordering of parser configuration in rsyslog.
 
 ##### `ruleset_priority`
 
 Data type: `Integer`
 
-
+Set the global ordering of rulesets configuration in rsyslog.
 
 ##### `filter_priority`
 
 Data type: `Integer`
 
-
+Set the global ordering of filter configuration in rsyslog.
 
 ##### `target_file`
 
 Data type: `String`
+
+Target file to insert configuration into.
+
+##### `conf_permissions`
+
+Data type: `Stdlib::Filemode`
+
+Set the file mode for the generated configuration files.
+
+Default value: '0644'
+
+##### `confdir_permissions`
+
+Data type: `Stdlib::Filemode`
+
+Set the file mode for the rsyslog.d configuration directory.
+
+Default value: '0755'
+
+##### `global_conf_perms`
+
+Data type: `Stdlib::Filemode`
+
+Set the file mode for the /etc/rsyslog.conf
+
+Default value: $conf_permissions
+
+##### `parser_priority`
+
+Data type: `Integer`
 
 
 
@@ -322,97 +331,60 @@ Description
 
 This class manages the base installation for rsyslog
 
-### rsyslog::client
-
-The rsyslog::client class.
-
-#### Parameters
-
-The following parameters are available in the `rsyslog::client` class.
-
-##### `global_config`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: {}
-
-##### `legacy_config`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: {}
-
-##### `actions`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: {}
-
-##### `inputs`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: {}
-
-##### `custom_config`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: {}
-
-##### `modules`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: {}
-
-##### `lookup_tables`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: {}
-
-##### `rulesets`
-
-Data type: `Hash`
-
-
-
-Default value: {}
-
-##### `property_filters`
-
-Data type: `Hash`
-
-
-
-Default value: {}
-
-##### `expression_filters`
-
-Data type: `Hash`
-
-
-
-Default value: {}
-
 ### rsyslog::config
 
-The rsyslog::config class.
+Manage the configuration parameters for rsyslog.
+This class can be called explicitly or through the use of
+hieradata.
+
+#### Examples
+
+##### using class
+
+```puppet
+class { 'rsyslog::config':
+  global_config      => {
+    'workDirectory'  => {
+      'value'        => '/var/spool/rsyslog',
+    },
+    'maxMessageSize' => {
+      'value'        => '64k'
+    }
+  },
+  actions            => {
+    'all_logs'       => {
+      'type'         => 'omfile',
+      'facility'     => '*.*;auth,authpriv.none',
+      'config'       => {
+        'dynaFile'   => 'remoteSyslog',
+        'specifics'  => '/var/log/test',
+      },
+    },
+  },
+}
+```
+
+##### using hieradata
+
+```puppet
+# Include class
+include rsyslog::config
+
+# Hieradata
+---
+rsyslog::config::global_config:
+  workDirectory:
+    value: '/var/spool/rsyslog'
+  maxMessageSize:
+    value: '64k'
+rsyslog::config::actions:
+  all_logs:
+    type: omfile
+    factiliy: "*.*;auth,authpriv.none"
+    config:
+      dynaFile: remoteSyslog
+      specifics: '/var/log/test'
+```
 
 #### Parameters
 
@@ -420,55 +392,106 @@ The following parameters are available in the `rsyslog::config` class.
 
 ##### `global_config`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
-
+Hash of global configuration options. Supports both Rainerscript and Legacy
+configuration formats depending on the configuration option.
+* :name (String) [undef] Name of the global configuration option to set.
+  * :priority (Integer) [10] Sets where in the config the option will be placed in the target file.
+  * :target (String) [50_rsyslog.conf] File to place the conf
+  * :confdir (String) [/etc/rsyslog.d] Directory where the configuration file exists.
+  * :value (String) [] Value of the configuration item
+  * :config (Hash) [{}] Hash of configuration data for the option. Contents
+  dependent on the configuration option.
+  * :type (Enum['rainerscript', 'legacy']) [rainerscript] configuration format to use.
+  * :format (String) ['<%= $content %>'] The content format. Defaults to epp template code.
 
 Default value: {}
 
 ##### `legacy_config`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
-
+Hash of rsyslog configuration in the legacy format.
+* :name (String) [undef] Na,e of the legacy configuration option.
+  * :priority (Integer) [10] Sets where in the config the option will be placed in the target file.
+  * :target (String) [50_rsyslog.conf] File to place the conf
+  * :value (String) [] Value of the configuration item
+  * :confdir (String) [/etc/rsyslog.d] The configuration directory where config file exists.
+  * :key (String) [legacy_key] The rsyslog legacy configuration key name
+  * :type (String) [sysklogd] The type of legacy configuration it is.
+  * :format (String) ['<%= $content %>'] The content format. Defaults to epp template code.
 
 Default value: {}
 
 ##### `templates`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
-
+Hash of rsyslog templates.
+* :name (String) [undef] Name of the global configuration option to set.
+  * :priority (Integer) [10] Sets where in the config the option will be placed in the target file.
+  * :target (String) [50_rsyslog.conf] File to place the conf
+  * :confdir (String) [/etc/rsyslog.d] Directory where the configuration file exists.
+  * :type (Enum['string', 'list', 'subtree', 'plugin']) [undef] Rsyslog template type.
+  * :list_descriptions (Array) [[]] An array of hashes representing list
+  template constants and properties
+  * :string (String) [''] String value for a String template.
+  * :subtree (String) [''] String representation of the subtree value.
+  * :plugin (String) [''] Name of the plugin the template will use.
+  * :options (Hash) [{}] Hash of additional template options.
+  * :format (String) ['<%= $content %>'] The content format. Defaults to epp template code.
 
 Default value: {}
 
 ##### `actions`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
-
+Hash of rsyslog actions.
+* :name (String) [undef] Name of the global configuration option to set.
+  * :priority (Integer) [10] Sets where in the config the option will be placed in the target file.
+  * :target (String) [50_rsyslog.conf] File to place the conf
+  * :confdir (String) [/etc/rsyslog.d] Directory where the configuration file exists.
+  * :type (String) [undef] Type of output module the action will use.
+  * :config (Optional[Hash]) [undef] A hash of output module specific configuration options.
+  * :facility (String) ['default'] The syslog facility to use when outputting this action.
+  * :format (String) ['<%= $content %>'] The content format. Defaults to epp template code.
 
 Default value: {}
 
 ##### `inputs`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
-
+Hash of rsyslog input plugins to use.
+* :name (String) [undef] Name of the global configuration option to set.
+  * :priority (Integer) [10] Sets where in the config the option will be placed in the target file.
+  * :target (String) [50_rsyslog.conf] File to place the conf
+  * :confdir (String) [/etc/rsyslog.d] Directory where the configuration file exists.
+  * :type (String) [undef] The name of the input module to use.
+  * :config (Optional[Hash]) [undef] Hash of input module specific
+  configuration settings. Depends on value of type
+  * :format (String) ['<%= $content %>'] The content format. Defaults to epp template code.
 
 Default value: {}
 
 ##### `custom_config`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
-
+Hash of custom raw configuration to place in the rsyslog config file.
+* :name (String) [undef] Name of the global configuration option to set.
+  * :priority (Integer) [10] Sets where in the config the option will be placed in the target file.
+  * :target (String) [50_rsyslog.conf] File to place the conf
+  * :confdir (String) [/etc/rsyslog.d] Directory where the configuration file exists.
+  * :content (String) [undef] The single/multi-line string representing the config.
 
 Default value: {}
 
 ##### `main_queue_opts`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
 
 
@@ -476,7 +499,7 @@ Default value: {}
 
 ##### `modules`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
 
 
@@ -484,7 +507,7 @@ Default value: {}
 
 ##### `lookup_tables`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
 
 
@@ -492,7 +515,7 @@ Default value: {}
 
 ##### `parsers`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
 
 
@@ -500,7 +523,7 @@ Default value: {}
 
 ##### `rulesets`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
 
 
@@ -573,118 +596,6 @@ The rsyslog::config::rulesets class.
 ### rsyslog::config::templates
 
 The rsyslog::config::templates class.
-
-### rsyslog::server
-
-Class that manages Rsyslog Server config
-
-#### Parameters
-
-The following parameters are available in the `rsyslog::server` class.
-
-##### `global_config`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: {}
-
-##### `legacy_config`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: {}
-
-##### `templates`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: {}
-
-##### `actions`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: {}
-
-##### `inputs`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: {}
-
-##### `custom_config`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: {}
-
-##### `main_queue_opts`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: {}
-
-##### `modules`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: {}
-
-##### `lookup_tables`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: {}
-
-##### `parsers`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: {}
-
-##### `rulesets`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: {}
-
-##### `property_filters`
-
-Data type: `Hash`
-
-
-
-Default value: {}
-
-##### `expression_filters`
-
-Data type: `Hash`
-
-
-
-Default value: {}
 
 ## Defined types
 
@@ -1823,7 +1734,7 @@ Data type for Rsyslog Input module parameters for batch report inputs.
 Alias of `Struct[{
   reports           => String[1],
   tag               => String[1],
-  facility          => Optional[Rsyslog::Syslog::Facility],
+  facility          => Optional[Stdlib::Syslogfacility],
   severity          => Optional[Rsyslog::Syslog::Severity],
   deduplicatespaces => Optional[Enum['on', 'off']],
   delete            => Optional[String[1]],
@@ -1839,7 +1750,7 @@ Data type for Rsyslog Input module input parameters for file inputs.
 Alias of `Struct[{
   file                    => String[1],
   tag                     => String[1],
-  facility                => Optional[Rsyslog::Syslog::Facility],
+  facility                => Optional[Stdlib::Syslogfacility],
   severity                => Optional[Rsyslog::Syslog::Severity],
   persiststateinterval    => Optional[Integer],
   'startmsg.regex'        => Optional[String[1]],
@@ -1894,7 +1805,7 @@ Data type for Rsyslog Input module input parameters for Program input
 Alias of `Struct[{
   binary           => String[1],
   tag              => String[1],
-  facility         => Optional[Rsyslog::Syslog::Facility],
+  facility         => Optional[Stdlib::Syslogfacility],
   severity         => Optional[Rsyslog::Syslog::Severity],
   confirmmessages  => Optional[Enum['on', 'off']],
   signalonclose    => Optional[Enum['on', 'off']],
@@ -1989,7 +1900,7 @@ Data for Rsyslog Input Tuxedo ULOG module
 Alias of `Struct[{
   ulogbase             => Stdlib::Absolutepath,
   tag                  => String[1],
-  facility             => Optional[Rsyslog::Syslog::Facility],
+  facility             => Optional[Stdlib::Syslogfacility],
   severity             => Optional[Rsyslog::Syslog::Severity],
   persiststateinterval => Optional[Integer],
   maxlinesatonce       => Optional[Integer],
@@ -2055,7 +1966,7 @@ Alias of `Struct[{
   listcontaineroptions     => Optional[String[1]],
   getcontainerlogoptions   => Optional[String[1]],
   retrievenewlogsfromstart => Optional[Integer[0,1]],
-  defaultfacility          => Optional[Rsyslog::Syslog::Facility],
+  defaultfacility          => Optional[Stdlib::Syslogfacility],
   defaultseverity          => Optional[Rsyslog::Syslog::Severity],
   escapelf                 => Optional[Enum['on', 'off']],
 }]`
@@ -2083,7 +1994,7 @@ Alias of `Struct[{
   'ratelimit.burst'       => Optional[Integer],
   ignorepreviousmessage   => Optional[Enum['on', 'off']],
   defaultseverity         => Optional[Rsyslog::Syslog::Severity],
-  defaultfacility         => Optional[Rsyslog::Syslog::Facility],
+  defaultfacility         => Optional[Stdlib::Syslogfacility],
   usepidfromsystem        => Optional[Enum['on', 'off']],
   usepid                  => Optional[Enum['syslog', 'system', 'both']],
   ignorenonvalidstatefile => Optional[Enum['on', 'off']],
@@ -2153,40 +2064,9 @@ Alias of `Struct[{
   'queue.dequeueTimeEnd'              => Optional[Integer[1, 25]],
 }]`
 
-### Rsyslog::Syslog::Facility
-
-Syslog facility data type
-
-Alias of `Variant[Enum[
-    'kern',
-    'user',
-    'mail',
-    'daemon',
-    'auth',
-    'syslog',
-    'lpr',
-    'news',
-    'uucp',
-    'cron',
-    'authpriv',
-    'ftp',
-    'ntp',
-    'security',
-    'console',
-    'solaris-cron',
-    'local0',
-    'local1',
-    'local2',
-    'local3',
-    'local4',
-    'local5',
-    'local6',
-    'local7'
-  ], Integer[0, 23]]`
-
 ### Rsyslog::Syslog::Severity
 
-Syslog severoty data type
+Syslog severity data type
 
 Alias of `Variant[Enum[
     'emerg',

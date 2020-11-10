@@ -3,10 +3,10 @@
 # with any of the shipped models.  
 #
 define rsyslog::component::custom_config (
-  Integer $priority,
-  String  $target,
-  String  $confdir,
   String  $content,
+  Integer $priority = $rsyslog::custom_priority,
+  String  $target = "${name}.conf",
+  String  $confdir = $rsyslog::confdir,
   String  $filename_part = $name,
 ) {
   include rsyslog

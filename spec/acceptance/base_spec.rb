@@ -18,7 +18,7 @@ describe 'Rsyslog base' do
           $overrides = true
           $upstream = true
         }
-        'CentOS', 'RedHat', 'Scientific': {
+        'CentOS', 'RedHat', 'Scientific', 'Fedora': {
           $overrides = false
           $upstream = true
         }

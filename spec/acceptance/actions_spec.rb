@@ -8,6 +8,10 @@ describe 'Rsyslog actions' do
   context 'basic action' do
     it 'applies with action' do
       pp = <<-MANIFEST
+      if $facts['os']['name'] == 'Fedora' and $facts['os']['release']['full'] == 32 {
+        package { 'rsyslog-elasticsearch': ensure => installed }
+      }
+
       class { 'rsyslog::config':
         actions => {
           'omfile_all_logs' => {

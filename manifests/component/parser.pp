@@ -6,13 +6,12 @@ define rsyslog::component::parser (
   Optional[Hash]    $config,
   Optional[String]  $format = '<%= $content %>'
 ) {
-
   include rsyslog
 
   $content = epp('rsyslog/parser.epp', {
-        'parser_name' => $name,
-        'type'        => $type,
-        'config'      => $config
+      'parser_name' => $name,
+      'type'        => $type,
+      'config'      => $config
   })
 
   rsyslog::generate_concat { "rsyslog::concat::parser::${name}":

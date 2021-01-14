@@ -6,13 +6,12 @@ define rsyslog::component::module (
   Optional[String]  $type = 'external',
   Optional[String]  $format = '<%= $content %>'
 ) {
-
   include rsyslog
 
   $content = epp('rsyslog/modules.epp', {
-        'config_item' => $name,
-        'type'        => $type,
-        'config'      => $config,
+      'config_item' => $name,
+      'type'        => $type,
+      'config'      => $config,
   })
 
   rsyslog::generate_concat { "rsyslog::concat::module::${name}":
@@ -21,10 +20,9 @@ define rsyslog::component::module (
     before  => Concat::Fragment["rsyslog::component::module::${name}"],
   }
 
-  concat::fragment {"rsyslog::component::module::${name}":
+  concat::fragment { "rsyslog::component::module::${name}":
     target  => "${confdir}/${target}",
     content => inline_epp($format),
     order   => $priority,
   }
 }
-

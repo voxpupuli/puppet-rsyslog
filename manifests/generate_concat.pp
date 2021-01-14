@@ -8,6 +8,7 @@ define rsyslog::generate_concat (
         owner  => 'root',
         notify => Service[$rsyslog::service_name],
         order  => 'numeric',
+        mode   => $rsyslog::conf_permissions,
       }
     }
   } else {
@@ -15,6 +16,7 @@ define rsyslog::generate_concat (
       concat { "${confdir}/${target}":
         owner => 'root',
         order => 'numeric',
+        mode  => $rsyslog::conf_permissions,
       }
     }
   }

@@ -10,18 +10,17 @@ define rsyslog::component::template (
   Optional[Hash]    $options = {},
   Optional[String]  $format = '<%= $content %>'
 ) {
-
   include rsyslog
 
   $content = epp('rsyslog/template.epp',
-      {
-        'string'            => $string,
-        'list_descriptions' => $list_descriptions,
-        'type'              => $type,
-        'template_name'     => $name,
-        'subtree'           => $subtree,
-        'plugin'            => $plugin,
-        'options'           => $options,
+    {
+      'string'            => $string,
+      'list_descriptions' => $list_descriptions,
+      'type'              => $type,
+      'template_name'     => $name,
+      'subtree'           => $subtree,
+      'plugin'            => $plugin,
+      'options'           => $options,
   })
 
   rsyslog::generate_concat { "rsyslog::concat::template::${name}":
@@ -30,10 +29,9 @@ define rsyslog::component::template (
     before  => Concat::Fragment["rsyslog::component::template::${name}"],
   }
 
-  concat::fragment {"rsyslog::component::template::${name}":
+  concat::fragment { "rsyslog::component::template::${name}":
     target  => "${confdir}/${target}",
     content => inline_epp($format),
     order   => $priority,
   }
-
 }

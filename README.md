@@ -8,46 +8,30 @@
 [![Puppet Forge](https://img.shields.io/puppetforge/f/puppet/rsyslog.svg?style=flat-square)](https://forge.puppet.com/puppet/rsyslog)
 
 #### Table of Contents
-
-* [Overview](#overview)
-* [Description](#description)
-* [Usage](#usage)
-* [Public Classes](#public-classes)
-* [Configuration](#configuration)
-  * [Main system configuration](#main-system-configuration)
-  * [Rsyslog configuration directives](#rsyslog-configuration-directives)
-  * [Configuring objects](#configuring-options)
-    * [Modules](#rsyslogservermodules)
-    * [global_config](#rsyslogserverglobal_config-rsyslogclientglobal_config)
-    * [Queue options](#rsyslogservermain_queue_opts)
-    * [Templates](#rsyslogservertemplates)
-    * [Actions](#rsyslogserveractions-rsyslogclientactions)
-    * [Inputs](#rsyslogserverinputs-rsyslogclientinputs)
-    * [Lookup_tables](#rsyslogserverlookup_tables)
-    * [Parser](#rsyslogserverparser)
-    * [Rulesets](#rsyslogserverrulesets)
-    * [Filters](#rsyslogserverproperty_filters-rsyslogserverexpression_filters)
-    * [legacy_config](#rsyslogserverlegacy_config)
-  * [Positioning](#positioning)
-  * [Formatting](#formatting)
-
 1. [Overview](#overview)
 2. [Module Description](#module-description)
 3. [Setup](#setup)
     * [What this module affects](#what-this-module-affects)
-    * [What this module requires](#requirements)
     * [Beginning with this module](#beginning-with-this-module)
 4. [Usage](#usage)
-    * [Client](#client)
-    * [Trap Daemon](#trap-daemon)
-    * [SNMPv3 Users](#snmpv3-users)
-    * [Access Control](#access-control)
-5. [Reference](#reference)
-6. [Limitations](#limitations)
-    * [OS Support](#os-support)
-    * [Notes](#notes)
-    * [Issues](#issues)
-7. [Development - Guide for contributing to the module](#development)
+    * [Rsyslog configuration directives](#rsyslog-configuration-directives)
+    * [Configuring objects](#configuring-objects)
+       * [Modules](#rsyslogconfigmodules)
+       * [Global configuration](#rsyslogconfigglobal_config)
+       * [Main queue options](#rsyslogconfigmain_queue_opts)
+       * [Templates](#rsyslogconfigtemplates)
+       * [Actions](#rsyslogconfigactions)
+       * [Inputs](#rsyslogconfiginputs)
+       * [Lookup_tables](#rsyslogconfiglookup_tables)
+       * [Parser](#rsyslogconfigparser)
+       * [Rulesets](#rsyslogconfigrulesets)
+       * [Filters](#rsyslogconfigproperty_filters)
+       * [legacy_config](#rsyslogconfiglegacy_config)
+    * [Positioning](#positioning)
+    * [Formatting](#formatting)
+5. [Known Issues](#known-issues)
+6. [License](#license)
+7. [Maintainer](#maintainer)
 
 ## Overview
 This module was first published as `crayfishx/rsyslog`.  It has now moved to `puppet/rsyslog` and is managed by the community group [Vox Pupuli](https://voxpupuli.org).
@@ -140,9 +124,50 @@ The hash accepts the following three values:
 
 * `type`: values can be `external or builtin` the default value is external and need not be specified explicitly.
 * `config`: its a hash which provides optional parameters to the module loaded.
-* `priority`: The module load order can be priortised based on the optional `priority` value.
+* `priority`: The module load order can be prioritised based on the optional `priority` value.
 
-eg:
+
+Puppet example:
+```puppet
+class { 'rsyslog::config':
+  'modules' => {
+    'imuxsock' => {},
+    'imudp' => {
+      'config' => {
+        'threads'     => '2',
+        'TimeRequery' => '8',
+        'batchSize'   => '128',
+      },
+    },
+    'omusrmsg' => {
+      'type' => 'builtin',
+    },
+    'omfile' => {
+      'type'   => 'builtin',
+      'config' => {
+        'fileOwner'      => 'syslog',
+        'fileGroup'      => 'adm',
+        'dirGroup'       => 'adm',
+        'fileCreateMode' => '0640',
+        'dirCreateMode'  => '0755',
+      },
+    },
+    'impstats' => {
+      'type'     => 'external',
+      'priority' => 29,
+      'config'   => {
+        'interval'   => '60',
+        'severity'   => '7',
+        'log.syslog' => 'off',
+        'log.file'   => '/var/log/rsyslog/logs/stats/stats.log',
+        'Ruleset'    => 'remote',
+      },
+    },
+  },
+}
+```
+
+Hiera example:
 
 ```yaml
 rsyslog::config::modules:
@@ -209,8 +234,41 @@ A hash of hashes, they key represents the configuration setting and the value is
 * `value`: the value of the setting
 * `type`: the type of format to use (legacy or rainerscript), if omitted rainerscript is used.
 
-eg:
+Puppet example:
+```puppet
+class { 'rsyslog::config':
+  'global_config' => {
+    'umask' => {
+      'value'    => '0000',
+      'type'     => 'legacy',
+      'priority' => 01,
+    },
+    'RepeatedMsgReduction' => {
+      'value' => 'on',
+      'type'  => 'legacy',
+    },
+    'PrivDropToUser' => {
+      'value' => 'syslog',
+      'type'  => 'legacy',
+    },
+    'PrivDropToGroup' => {
+      'value' => 'syslog',
+      'type'  => 'legacy',
+    },
+    'parser.escapeControlCharactersOnReceive' => {
+      'value' => 'on',
+    },
+    'workDirectory' => {
+      'value' => '/var/spool/rsyslog',
+    },
+    'maxMessageSize' => {
+      'value' => '64k',
+    },
+  },
+}
+```
 
+Hiera example:
 ```yaml
 rsyslog::config::global_config:
   umask:
@@ -252,6 +310,17 @@ global (
 
 Configures the `main_queue` object in rsyslog as a hash. eg:
 
+Puppet Example:
+```puppet
+class { 'rsyslog::config':
+  'main_queue_opts' => {
+    'queue.maxdiskspace'     => '1000G',
+    'queue.dequeuebatchsize' => 1000,
+  }
+}
+```
+
+Hiera Example:
 ```yaml
 rsyslog::config::main_queue_opts:
   queue.maxdiskspace: 1000G
@@ -271,7 +340,28 @@ main_queue(
 
 Configures `template` objects in rsyslog.  Each element is a hash containing the name of the template, the type and the template data.    The type parameter can be one of `string`, `subtree`, `plugin` or `list`
 
-eg:
+Puppet Example:
+
+```puppet
+class { 'rsyslog::config':
+  'templates' => {
+    'remote' => {
+      'type'   => 'string',
+      'string' => '/var/log/rsyslog/logs/%fromhost-ip%.log',
+    },
+    'tpl2' => {
+      'type'    => 'subtree',
+      'subtree' => '$1!$usr',
+    },
+    'someplug' => {
+      'type'   => 'plugin',
+      'plugin' => 'foobar',
+    },
+  }
+}
+```
+
+Hiera Example:
 
 ```yaml
 rsyslog::config::templates:
@@ -296,7 +386,94 @@ template (name="remote" type="string"
 
 When using `list`, the `list_descriptions` hash should contain an array of single element hashes, the key should be `constant` or `property` with their corresponding parameters in a sub hash.
 
-eg:
+Puppet example:
+
+```puppet
+class { 'rsyslog::config':
+  'templates' => {
+    'plain-syslog' => {
+      'type' => 'list',
+      'list_descriptions' => [
+        {
+          'constant' => {
+            'value' => '{',
+          }
+        },
+        {
+          'constant' => {
+            'value' => '\"@timestamp\":\"',
+          }
+        },
+        {
+          'propery' => {
+            'name' => 'timereported',
+            'dateFormat' => 'rfc3339',
+          }
+        },
+        {
+          'constant' => {
+            'value' => '\",\"host\":\"'
+          }
+        },
+        {
+          'property' => {
+            'name' => 'hostname'
+          }
+        },
+        {
+          'constant' => {
+            'value' => '\",\"severity\":\"'
+          }
+        },
+        {
+          'property' => {
+            'name' => 'syslogseverity-text',
+          }
+        },
+        {
+          'constant' => {
+            'value' => '\",\"facility\":\"'
+          }
+        },
+        {
+          'property' => {
+            'name' => 'syslogfacility-text'
+          }
+        },
+        {
+          'constant' => {
+            'value' => '\",\"host\":\"'
+          }
+        },
+        {
+          'property' => {
+            'name'   => 'syslogtag',
+            'format' => 'json',
+          }
+        },
+        {
+          'constant' => {
+            'value' => '\",\"message\":\"'
+          }
+        },
+        {
+          'property' => {
+            'name'   => 'msg',
+            'format' => 'json'
+          }
+        },
+        {
+          'constant' => {
+            'value' => '\"}'
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+Hiera example:
 
 ```yaml
   plain-syslog:
@@ -364,7 +541,40 @@ template (name="plain-syslog" type="list"
 Configures action objects in rainerscript.  Each element of the hash contains the type of action, followed by a hash of configuration options.
 It also accepts an optional facility parameter and the content is formatted based on the no of config options passed and if the facility option is present.
 
-eg:
+Puppet example:
+
+```puppet
+class { 'rsyslog::config':
+  'actions' => {
+    'all_logs' => {
+      'type'     => 'omfile',
+      'facility' => '*.*;auth,authpriv.none',
+      'config'   => {
+        'dynaFile'  => 'remoteSyslog',
+        'specifics' => '/var/log/test',
+      }
+    },
+    'kern_logs' => {
+      'type'     => 'omfile',
+      'facility' => 'kern.*',
+      'config'   => {
+        'dynaFile' => 'remoteSyslog',
+        'file'     => '/var/log/kern.log',
+        'cmd'      => '/proc/cmdline',
+      }
+    },
+    'elasticsearch' => {
+      'type'   => 'omelasticsearch',
+      'config' => {
+        'queue.type'           => 'linkedlist',
+        'queue.spoolDirectory' => '/var/log/rsyslog/queue'
+      }
+    }
+  }
+}
+```
+
+Hiera example:
 
 ```yaml
 rsyslog::config::actions:
@@ -414,6 +624,21 @@ action(type="omelasticsearch"
 
 Configures input objects in rainerscript.  Each element of the hash contains the type of input, followed by a hash of configuration options. Eg:
 
+Puppet examples:
+
+```puppet
+class { 'rsyslog:config':
+  'inputs' => {
+    'type'   => 'imudp',
+    'config' => {
+      'port' => '514'
+    }
+  }
+}
+```
+
+Hiera examples:
+
 ```yaml
 rsyslog::config::inputs:
   imudp:
@@ -443,6 +668,36 @@ The json hash contains 4 elements: `version`, `nolookup`, `type`, and `table`. T
 * `nolookup` - String denoting what should be returned if a lookup doesn't find a match in the table.
 * `type` - Enumerable denoting the type of lookup table. This can be `string`, `array`, or `sparseArray`.
 * `table` - An Array of hashes containing the table index and value for each lookup.
+
+Puppet example:
+
+```puppet
+class { 'rsyslog::config':
+  'lookup_tables' => {
+    'ip_lookup' => {
+      'lookup_json' => {
+        'version'  => 1,
+        'nolookup' => 'unk',
+        'type'     => 'string',
+        'table'    => [
+          {
+            'index' => '1.1.1.1',
+            'value' => 'AB'
+          },
+          {
+            'index' => '2.2.2.2',
+            'value' => 'CD'
+          }
+        ]
+      },
+      'lookup_file'   => '/etc/rsyslog.d/tables/ip_lookup.json',
+      'reload_on_hup' => true
+    }
+  }
+}
+```
+
+Hiera Example:
 
 ```yaml
 rsyslog::config::lookup_tables:
@@ -494,6 +749,23 @@ the `rsyslog::server::custom_config` and `rsyslog::client::custom_config` resour
 
 Configures parser objects in rainerscript. Each Element of the hash contains the type of parser, followed by a hash of configuration options. Eg:
 
+Puppet Example:
+
+```puppet
+class { 'rsyslog::config':
+  'parser' => {
+    'pmrfc3164_hostname_with_slashes' => {
+      'type'   => 'pmrfc3164',
+      'config' => {
+        'permit.slashesinhostname' => 'on'
+      }
+    }
+  }
+}
+```
+
+Hiera Example:
+
 ```yaml
 rsyslog::config::parser:
   pmrfc3164_hostname_with_slashes:
@@ -528,6 +800,67 @@ Configures Rsyslog ruleset blocks in rainerscript. There are two elements in the
 * `stop` - a Boolean to set if the ruleset ends with a stop or not.
 
 **NOTE: For any `rule` key that can also be a standalone rsyslog resource (`action`, `expression_filter`, or `property_filter`), the user MUST define a name key that will be passed as the resource name to the template. This will be simplified in a future release.**
+
+**NOTE: While it is entirely possible to configure Rulesets using the Puppet DSL, it is recommended against as Rulesets can easily become difficult to read when compared to the YAML-based hieradata.**
+
+Puppet example:
+
+```puppet
+class { 'rsyslog::config':
+  'rulesets' => {
+    'ruleset_eth0_514_tcp' => {
+      'parameters' => {
+        'parser'     => 'pmrfc3164.hostname_with_slashes',
+        'queue.size' => '10000',
+      },
+      'rules' => [
+        { 'set' => { '$!rcv_time'  => 'exec_template("s_rcv_time")' }},
+        { 'set' => { '$.utime_gen' => 'exec_template("s_unixtime_generated")' }},
+        { 'set' => { 'uuid'        => '$uuid' }},
+        {
+          'action' => {
+            'name' => 'utf8-fix',
+            'type' => 'mmutf8fix',
+          }
+        },
+        {
+          'action' => {
+            'name'     => 'test-action',
+            'type'     => 'omfile',
+            'facility' => '*.*;auth,authpriv.none',
+            'config'   => {
+              'dynaFile'  => 'remoteSyslog',
+              'specifics' => '/var/log/test'
+            }
+          }
+        },
+        {
+          'action' => {
+            'name'   => 'test-action2',
+            'type'   => 'omfile',
+            'config' => {
+              'dynaFile'  => 'remoteSyslog',
+              'specifics' => '/var/log/test'
+            }
+          }
+        },
+        {
+          'lookup' => {
+            'var'          => 'srv',
+            'lookup_table' => 'srv-map',
+            'expr'         => '$fromhost-ip'
+          }
+        },
+        { 'call' => 'action.parse.rawmsg' },
+        { 'call' => 'action.parse.r_msg' },
+      ],
+      'stop' => true,
+    }
+  }
+}
+```
+
+Hiera example:
 
 ```yaml
 rsyslog::config::rulesets:
@@ -624,7 +957,39 @@ The Ruleset `expression_filter` key has a few different keys than the `rsyslog::
 * `name` - Currently required to prevent errors. This is logical and only used by Puppet.
 * `filter` - The `filter` key is synonymous with the `conditionals` key found in the `rsyslog::server::expression_filters` parameter. See the [Expression Filter Docs](#expression-based-filters) for more info.
 
-Example:
+Puppet Example:
+
+```puppet
+class { 'rsyslog::config':
+  'rulesets' => {
+    'ruleset_eth0_514_udp' => {
+      'parameters' => {
+        'queue.type' => 'LinkedList'
+      },
+      'rules' => [
+        {
+          'expression_filter' => {
+            'filter' => {
+              'if' => {
+                'expression' => '$fromhost-ip == "192.168.255.1"',
+                'tasks' => [
+                  { 'call' => 'ruleset.action.rawlog.standard' },
+                  { 'stop' => true }
+                ]
+              }
+            }
+          }
+        },
+        { 'call' => 'ruleset.client.log.standard' },
+        { 'call' => 'ruleset.unknown.standard' },
+      ],
+      'stop' => true
+    }
+  }
+}
+```
+
+Hiera Example:
 ```yaml
 rsyslog::config::rulesets:
   ruleset_eth0_514_udp:
@@ -659,6 +1024,76 @@ ruleset (name="ruleset_eth0_514_tcp"
 }
 ```
 
+Puppet example with lookup tables:
+*NOTE: Good example for how to define multiple rsyslog resources in a single `rsyslog::config` class*
+```puppet
+class { 'rsyslog::config':
+  'lookup_tables' => {
+    'srv-map' => {
+      'lookup_json' => {
+        'version'  => 1,
+        'nolookup' => 'unk',
+        'type'     => 'string',
+        'table'    => [
+          {
+            'index' => '192.168.255.10',
+            'value' => 'windows'
+          },
+          {
+            'index' => '192.168.255.11',
+            'value' => 'windows'
+          },
+          {
+            'index' => '192.168.255.12',
+            'value' => 'linux'
+          }
+        ],
+        'lookup_file'   => '/etc/rsyslog.d/tables/srv-map.json',
+        'reload_on_hup' => true
+      }
+    }
+  },
+  'rulesets' => {
+    'ruleset_lookup_set_windows_by_ip' => {
+      'rules' => [
+        {
+          'lookup' => {
+            'var'          => 'srv',
+            'lookup_table' => 'srv-map',
+            'expr'         => '$fromhost-ip'
+          }
+        },
+        {
+          'expression_filter' => {
+            'filter' => {
+              'main' => {
+                'expression' => '$.srv == \"windows\"',
+                'tasks' => [
+                  { 'call' => 'ruleset.action.forward.windows' },
+                  { 'stop' => true }
+                ]
+              },
+              'unknown_log' => {
+                'expression' => '$.srv == \"unk\"',
+                'tasks' => [
+                  { 'call' => 'ruleset.action.drop.unknown' },
+                  { 'stop' => 'true' }
+                ]
+              },
+              'default' => {
+                'tasks' => [
+                  { 'stop' => 'true' }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
 Example with lookup:
 ```yaml
 rsyslog::config::lookup_tables:
@@ -685,17 +1120,17 @@ rsyslog::config::rulesets:
           expr: '$fromhost-ip'
       - expression_filter:
           filter:
-            if:
+            main:
               expression: '$.srv == "windows"'
               tasks:
                 - call: "ruleset.action.forward.windows"
                 - stop: true
-            "else if":
+            unknown_log:
               expression: '$.srv == "unk"'
               tasks:
                 - call: "ruleset.action.drop.unknown"
                 - stop: true
-            else:
+            default:
               tasks:
                 - stop: true
     stop: true
@@ -749,7 +1184,30 @@ ruleset(name="ruleset_lookup_set_windows_by_ip"
 
 `property_filters` are unique to rsyslogd. They allow to filter on any property, like HOSTNAME, syslogtag and msg. `property_filters` are faster than `expression_filters` as they us built-in rsyslog properties to lookup and match data.
 
-Example:
+Puppet Example:
+```puppet
+class { 'rsyslog::config':
+  'rulesets' => {
+    'ruleset_msg_check_for_error' => {
+      'rules' => [
+        {
+          'property_filter' => {
+            'property' => 'msg',
+            'operator' => 'contains',
+            'value'    => 'error',
+            'tasks'    => [
+              { 'call' => 'ruleset.action.error' },
+              { 'stop' => true }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+Hiera Example:
 ```yaml
 rsyslog::config::rulesets:
   ruleset_msg_check_for_error:
@@ -802,7 +1260,43 @@ The `rsyslog::server::property_filters` parameter is a Hash of hashes where the 
 * `tasks` - A hash of actions to take in the event of a filter match.
   * All sub-keys for the `tasks` hash maps to another rsyslog configuration object.
 
-eg:
+Puppet Example:
+
+```puppet
+class { 'rsyslog::config':
+  'property_filters' => {
+    'hostname_filter' => {
+      'property' => 'hostname',
+      'operator' => 'contains',
+      'value'    => 'some_hostname',
+      'tasks'    => [
+        {
+          'action' => {
+            'name'     => 'omfile_defaults',
+            'type'     => 'omfile',
+            'facility' => '*.*;auth,authpriv.none',
+            'config'   => {
+              'dynaFile'  => 'remoteSyslog',
+              'specifics' => '/var/log/test',
+            }
+          }
+        },
+        { 'stop' => true }
+      ]
+    },
+    'ip_filter' => {
+      'property' => 'fromhost-ip',
+      'operator' => 'startswith',
+      'value'    => '192',
+      'tasks'    => [
+        { 'stop' => true }
+      ]
+    }
+  }
+}
+```
+
+Hiera Example:
 
 ```yaml
 rsyslog::config::property_filters:
@@ -815,9 +1309,9 @@ rsyslog::config::property_filters:
           name: omfile_defaults
           type: omfile
           facility: "*.*;auth,authpriv.none"
-            config:
-              dynaFile: "remoteSyslog"
-              specifics: "/var/log/test"
+          config:
+            dynaFile: "remoteSyslog"
+            specifics: "/var/log/test"
       - stop: true
   ip_filter:
     property: fromhost-ip
@@ -848,18 +1342,73 @@ Expression-based filters are also what are used to match against lookup_table da
 
 The `rsyslog::server::expression_filters` parameter is a Hash of hashes where the hash-key is the logical name for the filter. This name is for Puppet resource naming purposes only and has no other function. The filter name has a few additional child keys as well:
 
-* `conditionals` - Hash containing one of three keys (`if`, `else if`, and `else`), which are hashes of hashes.
-  * `if`/`else if`/`else` - Hash of hashes. Must be one of `if`, `else if`, or `else`
+* `conditionals` - Hash describing the different conditional cases, which are hashes of hashes.
+    * `cases` - Hash of hashes. This has two reserved keys and four reserved names:
+      * `if`/`main` - This is the primary condition for your expression. `if` is provided for backwards compatibility. **_required_**
+      * `else`/`default` - This defines the optional "default" or "fall through" condition. `else` is provided for backwards compatibility.
+      * [string] case - All other cases are defined by your own descriptive name. These names are non-functional and purely for organizational purposes. They will render as an `else if` in the rsyslog configuration.
     * `expression` - The string "expression" that will be used to match values. With all the potential options for logic, this was the easiest way to provide everyone with what they may need.
     * `tasks` -  A hash of actions to take in the event of a filter match.
       * All sub-keys for the `tasks` hash maps to another rsyslog configuration object.
 
-eg:
+##### Puppet Examples
+
+Old Syntax (still works):
+```puppet
+class { 'rsyslog::config':
+  'expression_filters' => {
+    'hostname_filter' => {
+      'conditionals' => {
+        'if' => {
+          'expression' => '$msg contains "error"',
+          'tasks'      => [
+            {
+              'action' => {
+                'name'   => 'omfile_error',
+                'type'   => 'omfile',
+                'config' => { 'specifics' => '/var/log/errlog' }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+```
+
+New Syntax:
+```puppet
+class { 'rsyslog::config':
+  'expression_filters' => {
+    'hostname_filter' => {
+      'conditionals' => {
+        'main' => {
+          'expression' => '$msg contains "error"',
+          'tasks'      => [
+            {
+              'action' => {
+                'name'   => 'omfile_error',
+                'type'   => 'omfile',
+                'config' => { 'specifics' => '/var/log/errlog' }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+```
+
+##### Hiera Examples
+Old syntax (still works):
 
 ```yaml
 rsyslog::config::expression_filters:
   hostname_filter:
     conditionals:
+      # Uses the "if" keyword
       if:
         expression: '$msg contains "error"'
         tasks:
@@ -870,7 +1419,24 @@ rsyslog::config::expression_filters:
                 specifics: /var/log/errlog
 ```
 
-will produce
+New syntax:
+
+```yaml
+rsyslog::config::expression_filters:
+  hostname_filter:
+    conditionals:
+      # Uses the "main" keyword
+      main:
+        expression: '$msg contains "error"'
+        tasks:
+          - action:
+              name: omfile_error
+              type: omfile
+              config:
+                specifics: /var/log/errlog
+```
+
+both will produce:
 
 ```
 if $msg contains "error" then {
@@ -880,16 +1446,75 @@ if $msg contains "error" then {
 
 NOTE: Due to the amount of potential options available to the user, the `expression` key is a plain text string field and the expression logic must be written out. See next example for more details.
 
-eg:
+##### Puppet Examples
+Old Syntax (still works):
+```puppet
+class { 'rsyslog::config':
+  'expression_filters' => {
+    'complex_filter' => {
+      'conditionals' => {
+        'if' => {
+          'expression' => '$syslogfacility-text == "local0" and $msg startswith "DEVNAME" and ($msg contains "error1" or $msg contains "error0")',
+          'tasks'      => [
+            { 'stop' => true }
+          ]
+        },
+        'else' => {
+          'tasks' => [
+            'action' => {
+              'name'   => 'error_log',
+              'type'   => 'omfile',
+              'config' => { 'specifics' => '/var/log/errlog' }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+```
+
+
+New Syntax:
+```puppet
+class { 'rsyslog::config':
+  'expression_filters' => {
+    'complex_filter' => {
+      'conditionals' => {
+        'main' => {
+          'expression' => '$syslogfacility-text == "local0" and $msg startswith "DEVNAME" and ($msg contains "error1" or $msg contains "error0")',
+          'tasks'      => [
+            { 'stop' => true }
+          ]
+        },
+        'default' => {
+          'tasks' => [
+            'action' => {
+              'name'   => 'error_log',
+              'type'   => 'omfile',
+              'config' => { 'specifics' => '/var/log/errlog' }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+```
+
+##### Hiera Examples
+Old Syntax (still works):
 
 ```yaml
 rsyslog::config::expression_filters:
   complex_filter:
     conditionals:
+      # Uses the "if" keyword
       if:
         expression: '$syslogfacility-text == "local0" and $msg startswith "DEVNAME" and ($msg contains "error1" or $msg contains "error0")'
         tasks:
           - stop: true
+      # Uses the "else" keyword
       else:
         tasks:
           - action:
@@ -899,7 +1524,28 @@ rsyslog::config::expression_filters:
                 specifics: /var/log/errlog
 ```
 
-will produce:
+New Syntax:
+
+```yaml
+rsyslog::config::expression_filters:
+  complex_filter:
+    conditionals:
+      # Uses the "main" keyword
+      main:
+        expression: '$syslogfacility-text == "local0" and $msg startswith "DEVNAME" and ($msg contains "error1" or $msg contains "error0")'
+        tasks:
+          - stop: true
+      # Uses the "default" keyword
+      default:
+        tasks:
+          - action:
+              name: error_log
+              type: omfile
+              config:
+                specifics: /var/log/errlog
+```
+
+both will produce:
 
 ```
 if $syslogfacility-text == "local0" and $msg startswith "DEVNAME" and ($msg contains "error1" or $msg contains "error0") then {
@@ -907,6 +1553,88 @@ if $syslogfacility-text == "local0" and $msg startswith "DEVNAME" and ($msg cont
 }
 else {
   action(type="omfile" specifics="/var/log/errlog")
+}
+```
+
+
+Example using more than two conditions:
+
+#### Puppet Examples
+```puppet
+class { 'rsyslog::config':
+  'expression_filters' => {
+    'conditionals' => {
+      'main' => {
+        'expression' => '$syslogfacility-text == "local0" and $msg startswith "DEVNAME" and ($msg contains "error1" or $msg contains "error0")',
+        'tasks'      => [{ 'stop' => true }]
+      },
+      'errlog' => {
+        'expression' => '$msg contains "error"',
+        'tasks'      => [
+          {
+            'action' => {
+              'name'   => 'omfile_error',
+              'type'   => 'omfile',
+              'config' => { 'specifics' => '/var/log/errlog' }
+            }
+          }
+        ]
+      },
+      'default' => {
+        'tasks' => [
+          {
+            'action' => {
+              'name'   => 'system_log',
+              'type'   => 'omfile',
+              'config' => { 'specifics' => '/var/log/system' }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+#### Hiera Examples
+
+```yaml
+rsyslog::config::expression_filters:
+  complex_filter:
+    conditionals:
+      # Uses the "main" keyword
+      main:
+        expression: '$syslogfacility-text == "local0" and $msg startswith "DEVNAME" and ($msg contains "error1" or $msg contains "error0")'
+        tasks:
+          - stop: true
+      # Uses a descriptive keyname
+      errlog:
+        expression: '$msg contains "error"'
+        tasks:
+          - action:
+              name: omfile_error
+              type: omfile
+              config:
+                - specifics: /var/log/errlog
+      # Uses the "default" keyword
+      default:
+        tasks:
+          - action:
+              name: system_log
+              type: omfile
+              config:
+                specifics: /var/log/system
+```
+
+will produce:
+
+```
+if $syslogfacility-text == "local0" and $msg startswith "DEVNAME" and ($msg contains "error1" or $msg contains "error0") then {
+  stop
+} else if $msg == "error" then {
+  action(type="omfile" specifics="/var/log/errlog")
+} else {
+  action(type="omfile" specifics="/var/log/system")
 }
 ```
 
@@ -920,7 +1648,35 @@ A hash of hashes, each hash name is used as the comment/reference for the settin
 * `value`: the value/target of the setting
 * `type`: the type of format to use (legacy or sysklogd), if omitted sysklogd is used. If legacy type is used `key` can be skipped and one long string can be provided as value.
 
-eg:
+##### Puppet Examples
+```puppet
+class { 'rsyslog::config':
+  'legacy_config' => {
+    'auth_priv_rule' => {
+      'key'   => 'auth,authpriv.*',
+      'value' => '/var/log/auth.log',
+    },
+    'auth_none_rule' => {
+      'key'   => '*.*;auth,authpriv.none',
+      'value' => '/var/log/syslog',
+    },
+    'syslog_all_rule' => {
+      'key'   => 'syslog.*',
+      'value' => '/var/log/rsyslog.log',
+    },
+    'mail_error_rule' => {
+      'key'   => 'mail.err',
+      'value' => '/var/log/mail.err',
+    },
+    'news_critical_rule' => {
+      'key'   => 'news.crit',
+      'value' => '/var/log/news/news.crit',
+    }
+  }
+}
+```
+
+##### Hiera Examples
 
 ```yaml
 rsyslog::config::legacy_config:
@@ -964,8 +1720,7 @@ news.crit    /var/log/news/news.crit
 legacy type values can be passed as one long string skipping the key parameter like below and you can also override the priority in the hash to rearrange the contents
 eg:
 
-```
-
+```yaml
   emergency_rule:
     key: "*.emerg"
     value: ":omusrmsg:*"
@@ -1050,16 +1805,15 @@ rsyslog::config::custom_config:
 
 ```
 
-### Known Issues
+## Known Issues
 
 * Designed specifically for Rsyslog 8+ and the Rainerscript configuration format. Legacy configuration/Rsyslog < 8 support requires the use of the `custom_config` parameter.
 * The upstream repository for EL8 is currently broken and will not work.
 
-### License
+## License
 
 * This module is licensed under Apache 2.0, see LICENSE for more details
 
-### Maintainer
+## Maintainer
 
 * This module is maintained by Vox Pupuli.  It was originally written by Craig Dunn (craig@craigdunn.org) @crayfishx.
-

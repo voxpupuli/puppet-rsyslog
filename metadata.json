@@ -1,6 +1,6 @@
 {
   "name": "puppet-rsyslog",
-  "version": "5.0.2-rc0",
+  "version": "5.1.1-rc0",
   "author": "Vox Pupuli",
   "summary": "Manage rsyslog v8 configuration",
   "license": "Apache-2.0",
@@ -53,7 +53,7 @@
     {
       "operatingsystem": "Fedora",
       "operatingsystemrelease": [
-        "28"
+        "32"
       ]
     }
   ],

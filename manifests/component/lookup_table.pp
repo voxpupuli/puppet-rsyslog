@@ -9,7 +9,6 @@ define rsyslog::component::lookup_table (
   Optional[Stdlib::AbsolutePath] $json_file = undef,
   Optional[String]               $format = '<%= $content %>'
 ) {
-
   include rsyslog
 
   if $rsyslog_in_docker {
@@ -27,9 +26,9 @@ define rsyslog::component::lookup_table (
   }
 
   $content = epp('rsyslog/lookup_table.epp', {
-        'lookup_table_name' => $name,
-        'file'              => $lookup_file,
-        'reload_on_hup'     => $reload_on_hup,
+      'lookup_table_name' => $name,
+      'file'              => $lookup_file,
+      'reload_on_hup'     => $reload_on_hup,
   })
 
   rsyslog::generate_concat { "rsyslog::concat::lookup_table::${name}":
@@ -38,7 +37,7 @@ define rsyslog::component::lookup_table (
     before  => Concat::Fragment["rsyslog::component::lookup_table::${name}"],
   }
 
-  concat::fragment {"rsyslog::component::lookup_table::${name}":
+  concat::fragment { "rsyslog::component::lookup_table::${name}":
     target  => "${confdir}/${target}",
     content => inline_epp($format),
     order   => $priority,

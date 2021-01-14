@@ -7,14 +7,13 @@ define rsyslog::component::legacy_config (
   Optional[String]  $type = 'sysklogd',
   Optional[String]  $format = '<%= $content %>'
 ) {
-
   include rsyslog
 
   $content = epp('rsyslog/legacy_config.epp', {
-        'config_item' => $name,
-        'type'        => $type,
-        'key'         => $key,
-        'value'       => $value,
+      'config_item' => $name,
+      'type'        => $type,
+      'key'         => $key,
+      'value'       => $value,
   })
 
   rsyslog::generate_concat { "rsyslog::concat::legacy_config::${name}":
@@ -23,10 +22,9 @@ define rsyslog::component::legacy_config (
     before  => Concat::Fragment["rsyslog::component::legacy_config::${name}"],
   }
 
-  concat::fragment {"rsyslog::component::legacy_config::${name}":
+  concat::fragment { "rsyslog::component::legacy_config::${name}":
     target  => "${confdir}/${target}",
     content => inline_epp($format),
     order   => $priority,
   }
-
 }

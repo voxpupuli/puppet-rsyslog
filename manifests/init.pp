@@ -85,6 +85,14 @@
 #   Set the file mode for the rsyslog.d configuration directory.
 # @param global_conf_perms
 #   Set the file mode for the /etc/rsyslog.conf
+# @param owner_name
+#   Set the owner name for rsyslog configuration files.
+# @param group_name
+#   Set the group name for rsyslog configuration files.
+# @param AIX_switch_syslog
+#   Set the rsyslog switch to false.
+# @param package_source
+#   Required for AIX to specify package source.
 #
 class rsyslog (
   String            $confdir,
@@ -115,9 +123,13 @@ class rsyslog (
   Integer           $ruleset_priority,
   Integer           $filter_priority,
   String            $target_file,
+  Optional[Stdlib::Absolutepath] $package_source = undef,
   Stdlib::Filemode  $conf_permissions = '0644',
   Stdlib::Filemode  $confdir_permissions = '0755',
   Stdlib::Filemode  $global_conf_perms = $conf_permissions,
+  String            $owner_name = 'root',
+  String            $group_name = 'root',
+  Boolean           $switch_default_syslog = false,
 ) {
   if $manage_service == true and $external_service == true {
     fail('manage_service and external_service cannot be set at the same time!')

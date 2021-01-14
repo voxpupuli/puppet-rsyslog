@@ -6,5 +6,7 @@ defaults:
   data_hash: yaml_data
 
 hierarchy:
+  - name: "Operating System"
+    path: "os/%{operatingsystem}.yaml"
   - name: "Common Data"
     path: "common.yaml"

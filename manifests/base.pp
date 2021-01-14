@@ -33,12 +33,24 @@ class rsyslog::base {
   if $rsyslog::manage_package {
     package { $rsyslog::package_name:
       ensure => $rsyslog::package_version,
+      source => $rsyslog::package_source,
     }
   }
 
   if $rsyslog::feature_packages {
     package { $rsyslog::feature_packages:
       ensure  => installed,
+      require => Package[$rsyslog::package_name],
+    }
+  }
+
+  if $rsyslog::switch_default_syslog {
+    # Manage package must be set to true
+    # For AIX only
+    exec{'switch_to_rsyslog':
+      command => 'syslog_ssw -r',
+      path    => ['/usr/bin','/usr/sbin'],
+      unless  => "odmget -q \"subsysname = 'syslogd'\" SRCsubsys | grep rsyslog",
       require => Package[$rsyslog::package_name],
     }
   }
@@ -61,8 +73,8 @@ class rsyslog::base {
 
     file { $rsyslog::confdir:
       ensure => directory,
-      owner  => 'root',
-      group  => 'root',
+      owner  => $rsyslog::owner_name,
+      group  => $rsyslog::group_name,
       mode   => $rsyslog::confdir_permissions,
       *      => $purge_params + $require_package,
     }

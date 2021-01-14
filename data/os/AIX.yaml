@@ -1,0 +1,8 @@
+---
+rsyslog::package_name: rsyslog.base
+rsyslog::group_name: system
+rsyslog::service_name: syslogd
+rsyslog::switch_default_syslog: true
+# you will need to fill the source out 
+# aix has no yum like service
+rsyslog::package_source: '<package_location>'

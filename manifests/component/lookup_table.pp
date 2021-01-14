@@ -20,8 +20,8 @@ define rsyslog::component::lookup_table (
   file { "rsyslog::component::lookup_table_json::${title}":
     path    => $_json_file,
     content => inline_template('<%= JSON.pretty_generate @lookup_json %>'),
-    owner   => 'root',
-    group   => 'root',
+    owner   => $rsyslog::owner_name,
+    group   => $rsyslog::group_name,
     mode    => '0644',
   }
 

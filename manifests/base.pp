@@ -81,5 +81,10 @@ class rsyslog::base {
       ensure => $rsyslog::service_status,
       enable => $rsyslog::service_enabled,
     }
+
+    # Ensure if files are purged from the confdir the service is restarted.
+    if $rsyslog::manage_confdir {
+      File[$rsyslog::confdir] ~> Service[$rsyslog::service_name]
+    }
   }
 }

@@ -91,5 +91,9 @@ class rsyslog::base {
       ensure => $rsyslog::service_status,
       enable => $rsyslog::service_enabled,
     }
+
+    if $rsyslog::manage_confdir {
+      File[$rsyslog::confdir] ~> Service[$rsyslog::service_name]
+    }
   }
 }

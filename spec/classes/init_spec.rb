@@ -55,6 +55,22 @@ describe 'Rsyslog', include_rsyslog: true do
           it { is_expected.not_to contain_file('/etc/rsyslog.conf') }
         end
 
+        context 'with manage_confdir and manage_service' do
+          let(:params) do
+            {
+              'manage_service' => true,
+              'manage_confdir' => true,
+            }
+          end
+
+          it 'manages the rsyslog directory and restarts a service' do
+            is_expected.to contain_file('/etc/rsyslog.d').
+              with_ensure('directory').
+              with_purge(true).
+              that_notifies('Service[rsyslog]')
+          end
+        end
+
         context 'with service disabled' do
           let(:params) { { 'manage_service' => false } }
 

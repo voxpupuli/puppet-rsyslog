@@ -44,27 +44,17 @@ class rsyslog::base {
   }
 
   if $rsyslog::manage_confdir {
-    $purge_params = $rsyslog::purge_config_files ? {
-      true  => {
-        'purge'   => true,
-        'recurse' => true,
-      },
-      false => {}
-    }
-
-    $require_package = $rsyslog::manage_package ? {
-      true => {
-        'require' => Package[$rsyslog::package_name],
-      },
-      false => {}
-    }
-
     file { $rsyslog::confdir:
-      ensure => directory,
-      owner  => 'root',
-      group  => 'root',
-      mode   => $rsyslog::confdir_permissions,
-      *      => $purge_params + $require_package,
+      ensure  => directory,
+      owner   => 'root',
+      group   => 'root',
+      mode    => $rsyslog::confdir_permissions,
+      purge   => $rsyslog::purge_config_files,
+      recurse => $rsyslog::purge_config_files,
+    }
+
+    if $rsyslog::manage_package {
+      Package[$rsyslog::package_name] -> File[$rsyslog::confdir]
     }
   }
 

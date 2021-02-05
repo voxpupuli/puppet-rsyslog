@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v5.2.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v5.2.0) (2021-02-05)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v5.1.0...v5.2.0)
+
+**Implemented enhancements:**
+
+- Add parameter defaults to rsyslog::component::custom\_config [\#170](https://github.com/voxpupuli/puppet-rsyslog/pull/170) ([rj667](https://github.com/rj667))
+
+**Fixed bugs:**
+
+- Add service restart to rsyslog confdir file resource [\#177](https://github.com/voxpupuli/puppet-rsyslog/pull/177) ([dhollinger](https://github.com/dhollinger))
+
+**Closed issues:**
+
+- Purging config files does not restart rsyslogd [\#172](https://github.com/voxpupuli/puppet-rsyslog/issues/172)
+
+**Merged pull requests:**
+
+- Refactor base.pp [\#179](https://github.com/voxpupuli/puppet-rsyslog/pull/179) ([alexjfisher](https://github.com/alexjfisher))
+- Update README with more Puppet DSL examples [\#169](https://github.com/voxpupuli/puppet-rsyslog/pull/169) ([dhollinger](https://github.com/dhollinger))
+
 ## [v5.1.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v5.1.0) (2020-10-23)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v5.0.1...v5.1.0)

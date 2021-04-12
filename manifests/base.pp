@@ -38,8 +38,8 @@ class rsyslog::base {
   if $rsyslog::manage_confdir {
     file { $rsyslog::confdir:
       ensure  => directory,
-      owner   => 'root',
-      group   => 'root',
+      owner   => $rsyslog::conf_owner_name,
+      group   => $rsyslog::conf_group_name,
       mode    => $rsyslog::confdir_permissions,
       purge   => $rsyslog::purge_config_files,
       recurse => $rsyslog::purge_config_files,

@@ -81,6 +81,10 @@
 #   Target file to insert configuration into.
 # @param conf_permissions
 #   Set the file mode for the generated configuration files.
+# @param conf_owner_name
+#   Set the owner for the rsyslog.d configuration directory and related files.
+# @param conf_group_name
+#   Set the group for the rsyslog.d configuration directory and related files.
 # @param confdir_permissions
 #   Set the file mode for the rsyslog.d configuration directory.
 # @param global_conf_perms
@@ -88,6 +92,8 @@
 #
 class rsyslog (
   String            $confdir,
+  String            $conf_owner_name,
+  String            $conf_group_name,
   String            $package_name,
   String            $package_version,
   String            $config_file,

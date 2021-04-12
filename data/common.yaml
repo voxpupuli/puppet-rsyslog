@@ -2,6 +2,7 @@
 rsyslog::confdir: /etc/rsyslog.d
 rsyslog::conf_owner_name: root
 rsyslog::conf_group_name: root
+rsyslog::confdir_group_name: root
 rsyslog::package_name: rsyslog
 rsyslog::package_version: installed
 rsyslog::manage_package: true

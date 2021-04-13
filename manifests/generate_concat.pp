@@ -5,7 +5,7 @@ define rsyslog::generate_concat (
   if $rsyslog::manage_service or $rsyslog::external_service {
     if ! defined(Concat["${confdir}/${target}"]) {
       concat { "${confdir}/${target}":
-        owner  => $rsyslog::conf_owner_name
+        owner  => $rsyslog::conf_owner_name,
         group  => $rsyslog::conf_group_name,
         notify => Service[$rsyslog::service_name],
         order  => 'numeric',

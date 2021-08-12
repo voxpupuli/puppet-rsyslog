@@ -25,9 +25,11 @@ action(type="<%= $type %>"
     name="<%= $action_name %>"
 <%}-%>
 <% if $config { -%>
-  <% $config.each |$k, $v| { -%>
+  <%- if $v =~ Array { -%>
+  <%= $k %>=[ <%= $v.map |$i| { "\"${i}\"" }.join(', ') %> ]
+  <%- } else { -%>
   <%= $k %>="<%= $v %>"
-  <%}-%>
+  <%- } -%>
 <%}-%>
 )
 <%}-%>

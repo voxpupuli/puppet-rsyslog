@@ -84,4 +84,32 @@ CONTENT
       )
     end
   end
+
+  context 'action with array in config' do
+    let(:params) do
+      {
+        type: 'omrelp',
+        priority: 40,
+        target: '50_rsyslog.conf',
+        confdir: '/etc/rsyslog.d',
+        config: {
+          'tls.permittedpeer' => ['permittedpeer1', 'permittedpeer2'],
+        }
+      }
+    end
+
+    it do
+      is_expected.to contain_concat__fragment('rsyslog::component::action::myaction').with_content(<<-CONTENT
+# myaction
+action(type="omrelp"
+    name="myaction"
+    tls.permittedpeer=[ "permittedpeer1", "permittedpeer2" ]
+  )
+CONTENT
+                                                                                                  )
+    end
+
+    it { is_expected.to contain_concat('/etc/rsyslog.d/50_rsyslog.conf') }
+    it { is_expected.to contain_rsyslog__generate_concat('rsyslog::concat::action::myaction') }
+  end
 end

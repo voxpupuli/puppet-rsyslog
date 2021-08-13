@@ -1,11 +1,11 @@
 define rsyslog::component::ruleset (
-  Integer           $priority,
-  String            $target,
-  String            $confdir,
-  Optional[Array]   $rules = [],
-  Optional[Boolean] $stop = false,
-  Optional[Hash]    $parameters = {},
-  Optional[String]  $format = '<%= $content %>'
+  Integer $priority,
+  String $target,
+  String $confdir,
+  Array $rules = [],
+  Boolean $stop = false,
+  Hash $parameters = {},
+  String[1] $format = '<%= $content %>'
 ) {
   include rsyslog
 

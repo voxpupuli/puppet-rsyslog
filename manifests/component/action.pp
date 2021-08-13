@@ -1,11 +1,11 @@
 define rsyslog::component::action (
-  Integer           $priority,
-  String            $target,
-  String            $confdir,
-  String            $type,
-  Optional[Hash]    $config,
-  Optional[String]  $facility = 'default',
-  Optional[String]  $format = '<%= $content %>'
+  Integer $priority,
+  String $target,
+  String $confdir,
+  String $type,
+  Hash $config = {},
+  String[1] $facility = 'default',
+  String[1] $format = '<%= $content %>'
 ) {
   include rsyslog
 

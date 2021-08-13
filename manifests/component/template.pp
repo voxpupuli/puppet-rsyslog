@@ -1,14 +1,14 @@
 define rsyslog::component::template (
-  Integer           $priority,
-  String            $target,
-  String            $confdir,
+  Integer $priority,
+  String $target,
+  String $confdir,
   Enum['string', 'list', 'subtree', 'plugin'] $type,
-  Optional[Array]   $list_descriptions = [],
-  Optional[String]  $string = '',
-  Optional[String]  $subtree = '',
-  Optional[String]  $plugin = '',
-  Optional[Hash]    $options = {},
-  Optional[String]  $format = '<%= $content %>'
+  Array $list_descriptions = [],
+  String $string = '',
+  String $subtree = '',
+  String $plugin = '',
+  Hash $options = {},
+  String[1] $format = '<%= $content %>'
 ) {
   include rsyslog
 

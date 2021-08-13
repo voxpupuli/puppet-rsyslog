@@ -1,11 +1,11 @@
 define rsyslog::component::legacy_config (
-  Integer           $priority,
-  String            $target,
-  String            $confdir,
-  String            $value,
-  Optional[String]  $key = 'legacy_key',
-  Optional[String]  $type = 'sysklogd',
-  Optional[String]  $format = '<%= $content %>'
+  Integer $priority,
+  String $target,
+  String $confdir,
+  String $value,
+  String[1] $key = 'legacy_key',
+  String[1] $type = 'sysklogd',
+  String[1] $format = '<%= $content %>'
 ) {
   include rsyslog
 

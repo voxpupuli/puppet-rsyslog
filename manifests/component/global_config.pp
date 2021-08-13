@@ -1,11 +1,11 @@
 define rsyslog::component::global_config (
-  Integer           $priority,
-  String            $target,
-  String            $confdir,
-  Optional[String]  $value = '',
-  Optional[Hash]    $config = {},
-  Optional[String]  $type = 'rainerscript',
-  Optional[String]  $format = '<%= $content %>'
+  Integer $priority,
+  String $target,
+  String $confdir,
+  String $value = '',
+  Hash $config = {},
+  String[1] $type = 'rainerscript',
+  String[1] $format = '<%= $content %>'
 ) {
   include rsyslog
 

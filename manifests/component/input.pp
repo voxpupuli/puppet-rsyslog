@@ -1,10 +1,10 @@
 define rsyslog::component::input (
-  Integer           $priority,
-  String            $target,
-  String            $confdir,
-  String            $type,
-  Optional[Hash]    $config,
-  Optional[String]  $format = '<%= $content %>'
+  Integer $priority,
+  String $target,
+  String $confdir,
+  String $type,
+  Hash $config = {},
+  String[1] $format = '<%= $content %>'
 ) {
   include rsyslog
 

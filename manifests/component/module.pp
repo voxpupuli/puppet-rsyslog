@@ -1,10 +1,10 @@
 define rsyslog::component::module (
-  Integer           $priority,
-  String            $target,
-  String            $confdir,
-  Optional[Hash]    $config = {},
-  Optional[String]  $type = 'external',
-  Optional[String]  $format = '<%= $content %>'
+  Integer $priority,
+  String $target,
+  String $confdir,
+  Hash $config = {},
+  String[1] $type = 'external',
+  String[1] $format = '<%= $content %>'
 ) {
   include rsyslog
 

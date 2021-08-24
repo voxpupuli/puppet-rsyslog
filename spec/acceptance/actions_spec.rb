@@ -25,6 +25,7 @@ describe 'Rsyslog actions' do
           'myaction' => {
             'type'   => 'omelasticsearch',
             'config' => {
+              'host'                 => '["127.0.0.1", "192.168.0.1"]',
               'queue.type'           => 'linkedlist',
               'queue.spoolDirectory' => '/var/log/rsyslog/queue'
             }
@@ -38,7 +39,10 @@ describe 'Rsyslog actions' do
     end
 
     describe file('/etc/rsyslog.d/50_rsyslog.conf') do
-      its(:content) { is_expected.to match(%r{# omfile_all_logs\naction\(type="omfile"\n.*name="omfile_all_logs"\n.*queue.type="LinkedList"\n.*queue.spoolDirectory="\/var\/log\/rsyslog\/queue"\n.*file="\/tmp\/log"\n.*\)}) }
+      its(:content) {
+        is_expected.to match(%r{# omfile_all_logs\naction\(type="omfile"\n.*name="omfile_all_logs"\n.*queue.type="LinkedList"\n.*queue.spoolDirectory="\/var\/log\/rsyslog\/queue"\n.*file="\/tmp\/log"\n.*\)})
+        is_expected.to match(%r{# myaction\naction\(type="omelasticsearch"\n.*name="myaction"\n.*host=\["127.0.0.1", "192.168.0.1"\]\n.*queue.type="linkedlist"\n.*queue.spoolDirectory="\/var\/log\/rsyslog\/queue"\n.*\)})
+      }
     end
   end
 end

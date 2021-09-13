@@ -25,7 +25,7 @@ describe 'Rsyslog actions' do
           'myaction' => {
             'type'   => 'omelasticsearch',
             'config' => {
-              'host'                 => '["127.0.0.1", "192.168.0.1"]',
+              'host'                 => ["127.0.0.1", "192.168.0.1"],
               'queue.type'           => 'linkedlist',
               'queue.spoolDirectory' => '/var/log/rsyslog/queue'
             }

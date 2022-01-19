@@ -28,11 +28,15 @@ class rsyslog::base {
     }
   }
 
-  if $rsyslog::feature_packages {
-    package { $rsyslog::feature_packages:
-      ensure  => installed,
-      require => Package[$rsyslog::package_name],
-    }
+  $feature_packages_parms = $rsyslog::manage_service ? {
+    true    => { 'notify' => Service[$rsyslog::service_name], },
+    default => {},
+  }
+
+  package { $rsyslog::feature_packages:
+    ensure  => installed,
+    require => Package[$rsyslog::package_name],
+    *       => $feature_packages_parms,
   }
 
   if $rsyslog::manage_confdir {

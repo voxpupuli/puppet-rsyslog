@@ -32,6 +32,19 @@ describe 'Rsyslog', include_rsyslog: true do
           it { is_expected.to contain_package('rsyslog-gnutls').with_ensure('installed').that_notifies('Service[rsyslog]') }
         end
 
+        context 'with feature packages and service disabled' do
+          let(:params) do
+            {
+              'feature_packages' => %w[rsyslog-relp rsyslog-mmnormalize rsyslog-gnutls],
+              'manage_service' => false,
+            }
+          end
+
+          it { is_expected.to contain_package('rsyslog-relp').with_ensure('installed').that_notifies('Service[rsyslog]') }
+          it { is_expected.to contain_package('rsyslog-mmnormalize').with_ensure('installed').that_notifies('Service[rsyslog]') }
+          it { is_expected.to contain_package('rsyslog-gnutls').with_ensure('installed').that_notifies('Service[rsyslog]') }
+        end
+
         context "with upstream packages enabled on #{facts[:os]['name']}" do
           let(:params) { { 'use_upstream_repo' => true } }
 

@@ -52,61 +52,61 @@ describe 'Rsyslog inputs' do
 
   context 'inputs with custom priorities' do
     it 'applies with custom priorities' do
-      pp = <<-MANIFEST
-class { 'rsyslog::config':
-        modules => {
-          'imfile' => {
-            'priority' => 5,
-          },
-          'imudp'  => {
-            'priority' => 5,
-          },
-          'imptcp' => {
-            'priority' => 5,
-          },
-        },
-        inputs => {
-          'imfile' => {
-            'priority' => 10,
-            'type'     => 'imfile',
-            'config'   => {
-              'File' => '/tmp/test-file',
-            },
-          },
-          'imudp' => {
-            'priority' => 111,
-            'type'     => 'imudp',
-            'config'   => {
-              'port' => '514',
-            },
-          },
-          'imptcp' => {
-            'priority' => 112,
-            'type'     => 'imptcp',
-            'config'   => {
-              'port' => '514',
-            },
-          },
-          'imfile2' => {
-            'priority' => 50,
-            'type'     => 'imfile',
-            'config'   => {
-              'File' => '/tmp/test-file2',
-            },
-          },
-        },
-        actions => {
-          'default_output' => {
-            'priority' => 113,
-            'type'     => 'omfile',
-            'config'   => {
-              'queue.type'           => 'LinkedList',
-              'queue.spoolDirectory' => '/var/log/rsyslog/queue',
-              'file'                 => '/tmp/log',
-            }
-          },
-        },
-      }
+      pp = <<~MANIFEST
+        class { 'rsyslog::config':
+                modules => {
+                  'imfile' => {
+                    'priority' => 5,
+                  },
+                  'imudp'  => {
+                    'priority' => 5,
+                  },
+                  'imptcp' => {
+                    'priority' => 5,
+                  },
+                },
+                inputs => {
+                  'imfile' => {
+                    'priority' => 10,
+                    'type'     => 'imfile',
+                    'config'   => {
+                      'File' => '/tmp/test-file',
+                    },
+                  },
+                  'imudp' => {
+                    'priority' => 111,
+                    'type'     => 'imudp',
+                    'config'   => {
+                      'port' => '514',
+                    },
+                  },
+                  'imptcp' => {
+                    'priority' => 112,
+                    'type'     => 'imptcp',
+                    'config'   => {
+                      'port' => '514',
+                    },
+                  },
+                  'imfile2' => {
+                    'priority' => 50,
+                    'type'     => 'imfile',
+                    'config'   => {
+                      'File' => '/tmp/test-file2',
+                    },
+                  },
+                },
+                actions => {
+                  'default_output' => {
+                    'priority' => 113,
+                    'type'     => 'omfile',
+                    'config'   => {
+                      'queue.type'           => 'LinkedList',
+                      'queue.spoolDirectory' => '/var/log/rsyslog/queue',
+                      'file'                 => '/tmp/log',
+                    }
+                  },
+                },
+              }
       MANIFEST
 
       apply_manifest(pp, catch_failures: true)

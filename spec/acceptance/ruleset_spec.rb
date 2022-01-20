@@ -4,6 +4,7 @@ describe 'Rsyslog::Component::Ruleset' do
   before(:context) do
     cleanup_helper
   end
+
   it 'applies a ruleset' do
     pp = <<-MANIFEST
       class { 'rsyslog::config':

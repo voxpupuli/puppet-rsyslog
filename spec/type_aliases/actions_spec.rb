@@ -39,8 +39,8 @@ describe 'Rsyslog::Actions' do
             type: 'omfile',
             action_params: {
               'action.writeallmarkmessages' => 'on',
-              'action.errorfile'            => '/var/log/rsyslog/errors',
-              'action.resumeinterval'       => 20
+              'action.errorfile' => '/var/log/rsyslog/errors',
+              'action.resumeinterval' => 20
             }
           }
         ]
@@ -88,9 +88,9 @@ describe 'Rsyslog::Actions' do
             name: 'test_action',
             type: 'omfile',
             queue_params: {
-              'queue.filename'       => 'queue_file',
+              'queue.filename' => 'queue_file',
               'queue.spoolDirectory' => '/var/run/rsyslog/spool',
-              'queue.type'           => 'LinkedList'
+              'queue.type' => 'LinkedList'
             }
           }
         ]
@@ -390,8 +390,8 @@ describe 'Rsyslog::Actions' do
                 mailfrom: 'user1@example.com',
                 mailto: 'user2@example.com',
                 'subject.template' => 't_subject',
-                'subject.text'     => 'Test Subject',
-                'body.enable'      => 'on',
+                'subject.text' => 'Test Subject',
+                'body.enable' => 'on',
                 template: 't_mail'
               }
             }
@@ -439,7 +439,7 @@ describe 'Rsyslog::Actions' do
                 db: 'database1',
                 uid: 'user',
                 pwd: 'password',
-                'mysqlconfig.file'    => '/etc/mysql/my.cnf',
+                'mysqlconfig.file' => '/etc/mysql/my.cnf',
                 'mysqlconfig.section' => 'foo',
                 template: 't_mysql'
               }
@@ -585,7 +585,7 @@ describe 'Rsyslog::Actions' do
                 port: 514,
                 sourcetemplate: 't_foo',
                 'sourceport.start' => 32_000,
-                'sourceport.end'   => 33_000,
+                'sourceport.end' => 33_000,
                 mtu: 1500,
                 template: 't_udpspoof'
               }

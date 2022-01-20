@@ -19,14 +19,14 @@ describe 'Rsyslog::Component::Action', include_rsyslog: true do
     end
 
     it do
-      is_expected.to contain_concat__fragment('rsyslog::component::action::myaction').with_content(<<-CONTENT
-# myaction
-action(type="omelasticsearch"
-    name="myaction"
-    queue.type="linkedlist"
-    queue.spoolDirectory="/var/log/rsyslog/queue"
-  )
-CONTENT
+      is_expected.to contain_concat__fragment('rsyslog::component::action::myaction').with_content(<<~CONTENT
+        # myaction
+        action(type="omelasticsearch"
+            name="myaction"
+            queue.type="linkedlist"
+            queue.spoolDirectory="/var/log/rsyslog/queue"
+          )
+      CONTENT
                                                                                                   )
     end
 
@@ -63,24 +63,24 @@ CONTENT
         facility: '*.*',
         config: {
           'template' => 'plain-syslog',
-          'searchIndex'             => 'logstash-index',
-          'queue.type'              => 'linkedlist',
-          'queue.spoolDirectory'    => '/var/log/rsyslog/queue',
-          'queue.filename'          => 'dbq',
-          'queue.maxdiskspace'      => '100g',
-          'queue.maxfilesize'       => '100m',
-          'queue.SaveOnShutdown'    => 'on',
-          'server'                  => 'logstash.domain.local',
+          'searchIndex' => 'logstash-index',
+          'queue.type' => 'linkedlist',
+          'queue.spoolDirectory' => '/var/log/rsyslog/queue',
+          'queue.filename' => 'dbq',
+          'queue.maxdiskspace' => '100g',
+          'queue.maxfilesize' => '100m',
+          'queue.SaveOnShutdown' => 'on',
+          'server' => 'logstash.domain.local',
           'action.resumeretrycount' => '-1',
-          'bulkmode'                => 'on',
-          'dynSearchIndex'          => 'on'
+          'bulkmode' => 'on',
+          'dynSearchIndex' => 'on'
         }
       }
     end
 
     it do
       is_expected.to contain_concat__fragment('rsyslog::component::action::myaction').with_content(
-        %r{# myaction\n.*\*\.\*.*action\(type="omelasticsearch".*\n.*template="plain-syslog".*\n.*searchIndex="logstash-index".*\n.*queue.type="linkedlist".*\n.*queue.spoolDirectory="\/var\/log\/rsyslog\/queue".*\n.*queue.filename="dbq".*\n.*queue.maxdiskspace="100g".*\n.*queue.maxfilesize="100m".*\n.*queue.SaveOnShutdown="on".*\n.*server="logstash.domain.local".*\n.*action.resumeretrycount="-1".*\n.*bulkmode="on".*\n.*dynSearchIndex="on".*\n.*\)}
+        %r{# myaction\n.*\*\.\*.*action\(type="omelasticsearch".*\n.*template="plain-syslog".*\n.*searchIndex="logstash-index".*\n.*queue.type="linkedlist".*\n.*queue.spoolDirectory="/var/log/rsyslog/queue".*\n.*queue.filename="dbq".*\n.*queue.maxdiskspace="100g".*\n.*queue.maxfilesize="100m".*\n.*queue.SaveOnShutdown="on".*\n.*server="logstash.domain.local".*\n.*action.resumeretrycount="-1".*\n.*bulkmode="on".*\n.*dynSearchIndex="on".*\n.*\)}
       )
     end
   end

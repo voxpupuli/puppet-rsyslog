@@ -13,8 +13,8 @@ describe 'rsyslog::component::lookup_table', include_rsyslog: true do
         lookup_json: {
           'version' => 1,
           'nomatch' => 'unk',
-          'type'    => 'string',
-          'table'   => [
+          'type' => 'string',
+          'table' => [
             { 'index' => '1.1.1.1', 'value' => 'A' },
             { 'index' => '2.2.2.2', 'value' => 'B' }
           ]
@@ -50,8 +50,8 @@ describe 'rsyslog::component::lookup_table', include_rsyslog: true do
         lookup_json: {
           'version' => 1,
           'nomatch' => 'unk',
-          'type'    => 'string',
-          'table'   => [
+          'type' => 'string',
+          'table' => [
             { 'index' => '1.1.1.1', 'value' => 'A' },
             { 'index' => '2.2.2.2', 'value' => 'B' }
           ]

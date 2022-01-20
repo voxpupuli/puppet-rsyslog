@@ -9,7 +9,7 @@ describe 'Rsyslog::Actions::Outputs::Ommysql' do
       uid: 'user',
       pwd: 'password',
       serverport: 80,
-      'mysqlconfig.file'    => '/etc/my.cnf',
+      'mysqlconfig.file' => '/etc/my.cnf',
       'mysqlconfig.section' => 'server',
       template: 't_mysql'
     }

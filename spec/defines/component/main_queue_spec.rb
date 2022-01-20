@@ -20,7 +20,7 @@ describe 'rsyslog::component::main_queue', include_rsyslog: true do
       it do
         is_expected.to contain_concat__fragment('rsyslog::component::main_queue::main_queue_opts').with(
           'target' => '/etc/rsyslog.d/50_rsyslog.conf',
-          'order'  => 40
+          'order' => 40
         )
       end
 

@@ -9,7 +9,7 @@ describe 'Rsyslog::Inputs::Imfile' do
       severity: 'info',
       persiststateinterval: 60,
       'startmsg.regex' => '^test$',
-      'endmsg.regex'   => '^end$',
+      'endmsg.regex' => '^end$',
       readtimeout: 10,
       readmode: 2,
       escapelf: 'off',
@@ -61,7 +61,7 @@ describe 'Rsyslog::Inputs::Imfile' do
           file: '',
           tag: '',
           'startmsg.regex' => '',
-          'endmsg.regex'   => '',
+          'endmsg.regex' => '',
           ruleset: ''
         }
       end

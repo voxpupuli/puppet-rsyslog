@@ -29,16 +29,16 @@ describe 'rsyslog::component::property_filter', include_rsyslog: true do
 
     it do
       is_expected.to contain_concat__fragment('rsyslog::component::property_filter::mypropertyfilter').with_content(
-        <<-CONTENT
-# mypropertyfilter
-:msg, contains, "val" {
-  # myaction
-action(type="omfile"
-    name="myaction"
-    dynaFile="remoteSyslog"
-  )
+        <<~CONTENT
+          # mypropertyfilter
+          :msg, contains, "val" {
+            # myaction
+          action(type="omfile"
+              name="myaction"
+              dynaFile="remoteSyslog"
+            )
 
-}
+          }
         CONTENT
       )
     end

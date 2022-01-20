@@ -8,8 +8,8 @@ describe 'Rsyslog::Actions::Outputs::Ommail' do
       mailfrom: 'user@example.com',
       mailto: 'user2@example.com',
       'subject.template' => 'subject_temp',
-      'subject.text'     => 'Test Subject',
-      'body.enable'      => 'on',
+      'subject.text' => 'Test Subject',
+      'body.enable' => 'on',
       template: 't_mail'
     }
   end
@@ -29,8 +29,8 @@ describe 'Rsyslog::Actions::Outputs::Ommail' do
           mailfrom: 'user',
           mailto: 'user2',
           'subject.template' => 1,
-          'subject.text'     => '',
-          'body.enable'      => true,
+          'subject.text' => '',
+          'body.enable' => true,
           template: ''
         }
       end

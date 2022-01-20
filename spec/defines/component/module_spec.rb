@@ -13,10 +13,10 @@ describe 'rsyslog::component::module', include_rsyslog: true do
         confdir: '/etc/rsyslog.d',
         config: {
           'interval' => '60',
-          'severity'    => '7',
-          'log.syslog'  => 'off',
-          'log.file'    => '/var/log/rsyslog/logs/stats/stats.log',
-          'Ruleset'     => 'remote'
+          'severity' => '7',
+          'log.syslog' => 'off',
+          'log.file' => '/var/log/rsyslog/logs/stats/stats.log',
+          'Ruleset' => 'remote'
         }
       }
     end
@@ -27,7 +27,7 @@ describe 'rsyslog::component::module', include_rsyslog: true do
         \s*interval="60"\n
         \s*severity="7"\n
         \s*log.syslog="off"\n
-        \s*log.file="\/var\/log\/rsyslog\/logs\/stats\/stats.log"\n
+        \s*log.file="/var/log/rsyslog/logs/stats/stats.log"\n
         \s*Ruleset="remote"\n
         \s*\n
         \)\n$}
@@ -37,7 +37,7 @@ describe 'rsyslog::component::module', include_rsyslog: true do
     it do
       is_expected.to contain_concat__fragment('rsyslog::component::module::impstats').with(
         'target' => '/etc/rsyslog.d/50_rsyslog.conf',
-        'order'  => 20
+        'order' => 20
       )
     end
 

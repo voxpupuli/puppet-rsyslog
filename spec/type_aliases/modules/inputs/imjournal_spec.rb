@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'Rsyslog::Modules::Inputs::Imjournal' do
@@ -6,7 +8,7 @@ describe 'Rsyslog::Modules::Inputs::Imjournal' do
       persiststateinterval: 10,
       statefile: '/var/log/statefile',
       'ratelimit.interval' => 600,
-      'ratelimit.burst'    => 20_000,
+      'ratelimit.burst' => 20_000,
       ignorepreviousmessage: 'off',
       defaultseverity: 'notice',
       defaultfacility: 'kern',

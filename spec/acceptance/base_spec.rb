@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'Rsyslog base' do
@@ -46,6 +48,7 @@ describe 'Rsyslog base' do
     end
   when 'Debian'
     next if fact('os.name') != 'Ubuntu'
+
     describe file("/etc/apt/sources.list.d/adiscon-ubuntu-v8-stable-#{fact('os.distro.codename')}.list") do
       it { is_expected.to exist }
     end

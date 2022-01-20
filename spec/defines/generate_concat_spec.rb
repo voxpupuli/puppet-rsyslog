@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'Rsyslog::Generate_concat', include_rsyslog: true do

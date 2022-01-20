@@ -1,8 +1,8 @@
 <%- |
   String $type,
-  Optional[String] $value="dummy",
-  Optional[String] $config_item="dummy",
-  Optional[Hash]  $config={},
+  String $value="dummy",
+  String $config_item="dummy",
+  Hash  $config={},
 | -%>
 <% if $type == 'legacy' { -%>
 $<%= $config_item %> <%= $value %>

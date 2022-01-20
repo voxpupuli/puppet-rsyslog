@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'Rsyslog::Actions::Outputs::Omkafka' do
@@ -8,8 +10,8 @@ describe 'Rsyslog::Actions::Outputs::Omkafka' do
       key: 'primary',
       dynatopic: 'off',
       'dynatopic.cachesize' => 512,
-      'partitions.auto'     => 'off',
-      'partitions.number'   => 10,
+      'partitions.auto' => 'off',
+      'partitions.number' => 10,
       'partitions.usefixed' => 0,
       errorfile: 'error.log',
       confparam: %w[param1 param2],
@@ -64,7 +66,7 @@ describe 'Rsyslog::Actions::Outputs::Omkafka' do
       let(:bad_int) do
         {
           'dynatopic.cachesize' => '50m',
-          'partitions.number'   => '50',
+          'partitions.number' => '50',
           'partitions.usefixed' => '0',
           closetimeout: '5h'
         }

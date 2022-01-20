@@ -4,9 +4,11 @@ define rsyslog::component::template (
   String $confdir,
   Enum['string', 'list', 'subtree', 'plugin'] $type,
   Array $list_descriptions = [],
+  # lint:ignore:params_empty_string_assignment
   String $string = '',
   String $subtree = '',
   String $plugin = '',
+  # lint:endignore
   Hash $options = {},
   String[1] $format = '<%= $content %>'
 ) {

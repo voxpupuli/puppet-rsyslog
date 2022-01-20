@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'Rsyslog::Actions::Outputs::Omrelp' do
@@ -11,12 +13,12 @@ describe 'Rsyslog::Actions::Outputs::Omrelp' do
       rebindinterval: 30,
       windowsize: 10,
       tls: 'on',
-      'tls.compression'    => 'off',
-      'tls.permittedpeer'  => %w[host1 host2 host3],
-      'tls.automode'       => 'name',
-      'tls.cacert'         => '/var/cert/ca.pem',
-      'tls.mycert'         => '/var/cert/cert.pem',
-      'tls.myprivkey'      => '/var/cert/key.pem',
+      'tls.compression' => 'off',
+      'tls.permittedpeer' => %w[host1 host2 host3],
+      'tls.automode' => 'name',
+      'tls.cacert' => '/var/cert/ca.pem',
+      'tls.mycert' => '/var/cert/cert.pem',
+      'tls.myprivkey' => '/var/cert/key.pem',
       'tls.prioritystring' => 'urgent',
       localclientip: '192.168.1.1'
     }
@@ -44,9 +46,9 @@ describe 'Rsyslog::Actions::Outputs::Omrelp' do
         {
           template: true,
           tls: false,
-          'tls.compression'    => true,
-          'tls.permittedpeer'  => [0, 1, 2],
-          'tls.automode'       => 'foo',
+          'tls.compression' => true,
+          'tls.permittedpeer' => [0, 1, 2],
+          'tls.automode' => 'foo',
           'tls.prioritystring' => 10
         }
       end
@@ -82,8 +84,8 @@ describe 'Rsyslog::Actions::Outputs::Omrelp' do
     context 'bad path' do
       let(:bad_path) do
         {
-          'tls.cacert'    => 'ca.pem',
-          'tls.mycert'    => 'cert.pem',
+          'tls.cacert' => 'ca.pem',
+          'tls.mycert' => 'cert.pem',
           'tls.myprivkey' => 'key.pem'
         }
       end

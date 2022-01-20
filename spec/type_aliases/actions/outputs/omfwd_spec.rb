@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'Rsyslog::Actions::Outputs::Omfwd' do
@@ -13,13 +15,13 @@ describe 'Rsyslog::Actions::Outputs::Omfwd' do
       tcp_framing: 'traditional',
       tcp_framedelimiter: 152,
       ziplevel: 0,
-      'compression.mode'                => 'none',
+      'compression.mode' => 'none',
       'compression.stream.flushontxend' => 'off',
       rebindinterval: 600,
       keepalive: 'on',
-      'keepalive.probes'   => 0,
+      'keepalive.probes' => 0,
       'keepalive.interval' => 300,
-      'keepalive.time'     => 0,
+      'keepalive.time' => 0,
       streamdriver: 'tcp',
       streamdrivermode: 0,
       streamdriverauthmode: 'foo',
@@ -54,7 +56,7 @@ describe 'Rsyslog::Actions::Outputs::Omfwd' do
           networknamespace: '',
           device: '',
           tcp_framing: 'bar',
-          'compression.mode'                => 'double',
+          'compression.mode' => 'double',
           'compression.stream.flushontxend' => true,
           keepalive: false,
           streamdriver: 'udp',
@@ -77,9 +79,9 @@ describe 'Rsyslog::Actions::Outputs::Omfwd' do
           tcp_framedelimiter: 600,
           ziplevel: 10,
           rebindinterval: '15s',
-          'keepalive.probes'   => '10',
+          'keepalive.probes' => '10',
           'keepalive.interval' => '30s',
-          'keepalive.time'     => '0',
+          'keepalive.time' => '0',
           streamdrivermode: '0',
           'udp.senddelay' => '30m'
         }

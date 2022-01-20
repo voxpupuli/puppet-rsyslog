@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'Rsyslog::Actions::Outputs::Omudpspoof' do
@@ -7,7 +9,7 @@ describe 'Rsyslog::Actions::Outputs::Omudpspoof' do
       port: 514,
       sourcetemplate: 't_source',
       'sourceport.start' => 32_000,
-      'sourceport.end'   => 33_000,
+      'sourceport.end' => 33_000,
       mtu: 1500,
       template: 't_udp_spoof'
     }
@@ -48,7 +50,7 @@ describe 'Rsyslog::Actions::Outputs::Omudpspoof' do
           target: 'localhost',
           port: '514',
           'sourceport.start' => 70_000,
-          'sourceport.end'   => 71_000,
+          'sourceport.end' => 71_000,
           mtu: '1500'
         }
       end

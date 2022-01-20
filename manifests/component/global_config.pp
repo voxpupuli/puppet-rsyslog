@@ -2,7 +2,7 @@ define rsyslog::component::global_config (
   Integer $priority,
   String $target,
   String $confdir,
-  String $value = '',
+  Optional[String[1]] $value = undef,
   Hash $config = {},
   String[1] $type = 'rainerscript',
   String[1] $format = '<%= $content %>'

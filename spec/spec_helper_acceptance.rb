@@ -1,13 +1,11 @@
+# frozen_string_literal: true
+
 require 'voxpupuli/acceptance/spec_helper_acceptance'
 
 configure_beaker do |host|
-  if fact_on(host, 'os.name') == 'Ubuntu'
-    host.install_package('software-properties-common')
-  end
+  host.install_package('software-properties-common') if fact_on(host, 'os.name') == 'Ubuntu'
 
-  if ENV['BEAKER_PUPPET_COLLECTION'] != 'puppet6'
-    on host, puppet('module', 'uninstall', 'puppetlabs-yumrepo_core', '--force'), acceptable_exit_codes: [0, 1]
-  end
+  on host, puppet('module', 'uninstall', 'puppetlabs-yumrepo_core', '--force'), acceptable_exit_codes: [0, 1] if ENV['BEAKER_PUPPET_COLLECTION'] != 'puppet6'
 end
 
 def cleanup_helper

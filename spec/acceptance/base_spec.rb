@@ -20,7 +20,11 @@ describe 'Rsyslog base' do
           $overrides = true
           $upstream = true
         }
-        'CentOS', 'RedHat', 'Scientific', 'Fedora': {
+        'CentOS', 'RedHat': {
+          $overrides = false
+          $upstream = ( Integer($facts['os']['release']['major']) < 9 )
+        }
+        'Scientific', 'Fedora': {
           $overrides = false
           $upstream = true
         }
@@ -43,8 +47,10 @@ describe 'Rsyslog base' do
 
   case fact('os.family')
   when 'RedHat'
-    describe file('/etc/yum.repos.d/upstream_rsyslog.repo') do
-      it { is_expected.to exist }
+    if fact('os.release.major').to_i < 9
+      describe file('/etc/yum.repos.d/upstream_rsyslog.repo') do
+        it { is_expected.to exist }
+      end
     end
   when 'Debian'
     next if fact('os.name') != 'Ubuntu'

@@ -29,9 +29,9 @@ describe 'Rsyslog', include_rsyslog: true do
         context 'with feature packages' do
           let(:params) { { 'feature_packages' => %w[rsyslog-relp rsyslog-mmnormalize rsyslog-gnutls] } }
 
-          it { is_expected.to contain_package('rsyslog-relp').with_ensure('installed') }
-          it { is_expected.to contain_package('rsyslog-mmnormalize').with_ensure('installed') }
-          it { is_expected.to contain_package('rsyslog-gnutls').with_ensure('installed') }
+          it { is_expected.to contain_package('rsyslog-relp').with_ensure('installed').that_notifies('Service[rsyslog]') }
+          it { is_expected.to contain_package('rsyslog-mmnormalize').with_ensure('installed').that_notifies('Service[rsyslog]') }
+          it { is_expected.to contain_package('rsyslog-gnutls').with_ensure('installed').that_notifies('Service[rsyslog]') }
         end
 
         context "with upstream packages enabled on #{facts[:os]['name']}" do # rubocop:disable RSpec/EmptyExampleGroup

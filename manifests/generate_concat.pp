@@ -9,7 +9,7 @@ define rsyslog::generate_concat (
         notify       => Service[$rsyslog::service_name],
         order        => 'numeric',
         mode         => $rsyslog::conf_permissions,
-        validate_cmd => $rsyslog::validate_cmd
+        validate_cmd => $rsyslog::validate_cmd,
       }
     }
   } else {
@@ -17,7 +17,7 @@ define rsyslog::generate_concat (
       concat { "${confdir}/${target}":
         owner        => 'root',
         order        => 'numeric',
-        validate_cmd => $rsyslog::validate_cmd
+        validate_cmd => $rsyslog::validate_cmd,
       }
     }
   }

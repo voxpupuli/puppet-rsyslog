@@ -61,7 +61,7 @@ class rsyslog::base {
       ensure       => file,
       content      => "${message}\n\$IncludeConfig ${rsyslog::confdir}/*.conf\n",
       mode         => $rsyslog::global_conf_perms,
-      validate_cmd => $rsyslog::validate_cmd
+      validate_cmd => $rsyslog::validate_cmd,
     }
 
     if $rsyslog::manage_package {

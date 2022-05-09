@@ -34,7 +34,7 @@ describe 'Rsyslog', include_rsyslog: true do
           it { is_expected.to contain_package('rsyslog-gnutls').with_ensure('installed') }
         end
 
-        context "with upstream packages enabled on #{facts[:os]['name']}" do # rubocop:disable RSpec/EmptyExampleGroup
+        context "with upstream packages enabled on #{facts[:os]['name']}" do
           let(:params) { { 'use_upstream_repo' => true } }
 
           case facts[:os]['family']

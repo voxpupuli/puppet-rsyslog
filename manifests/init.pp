@@ -85,6 +85,8 @@
 #   Set the file mode for the rsyslog.d configuration directory.
 # @param global_conf_perms
 #   Set the file mode for the /etc/rsyslog.conf
+# @param validate_cmd
+#   The command to run in order to syntax check after file changes.
 #
 class rsyslog (
   String            $confdir,
@@ -118,6 +120,7 @@ class rsyslog (
   Stdlib::Filemode  $conf_permissions = '0644',
   Stdlib::Filemode  $confdir_permissions = '0755',
   Stdlib::Filemode  $global_conf_perms = $conf_permissions,
+  String            $validate_cmd = '',
 ) {
   if $manage_service == true and $external_service == true {
     fail('manage_service and external_service cannot be set at the same time!')

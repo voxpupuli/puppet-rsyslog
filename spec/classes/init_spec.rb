@@ -38,8 +38,8 @@ describe 'Rsyslog', include_rsyslog: true do
           let(:params) { { 'use_upstream_repo' => true } }
 
           case facts[:os]['family']
-          when 'Ubuntu'
-            it { is_expected.to contain_apt__ppa('ppa:adiscon/v8-stable') }
+          when 'Debian'
+            it { is_expected.to contain_apt__ppa('ppa:adiscon/v8-stable') } if facts[:os]['name'] == 'Ubuntu'
           when 'RedHat'
             it { is_expected.to contain_yumrepo('upstream_rsyslog') }
           end

@@ -48,6 +48,7 @@ describe 'Rsyslog base' do
     end
   when 'Debian'
     next if fact('os.name') != 'Ubuntu'
+    next if fact('facterversion').split('.').first.to_i < 4
 
     describe file("/etc/apt/sources.list.d/adiscon-ubuntu-v8-stable-#{fact('os.distro.codename')}.list") do
       it { is_expected.to exist }

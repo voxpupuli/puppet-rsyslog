@@ -18,7 +18,7 @@ class rsyslog::base {
           gpgkey   => 'http://rpms.adiscon.com/v8-stable/epel-$releasever/$basearch',
         }
       }
-      default: { fail("${facts['os']['name']} is not current supported by upstream packages.") }
+      default: { fail("${facts['os']['name']} is not currently supported by upstream packages.") }
     }
   }
 

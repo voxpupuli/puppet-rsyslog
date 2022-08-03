@@ -684,13 +684,15 @@ Data type: `String`
 
 ##### <a name="config"></a>`config`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
 
+
+Default value: `{}`
 
 ##### <a name="facility"></a>`facility`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
@@ -698,7 +700,7 @@ Default value: `'default'`
 
 ##### <a name="format"></a>`format`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
@@ -840,15 +842,15 @@ Data type: `String`
 
 ##### <a name="value"></a>`value`
 
-Data type: `Optional[String]`
+Data type: `Optional[String[1]]`
 
 
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="config"></a>`config`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
 
 
@@ -856,7 +858,7 @@ Default value: `{}`
 
 ##### <a name="type"></a>`type`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
@@ -864,7 +866,7 @@ Default value: `'rainerscript'`
 
 ##### <a name="format"></a>`format`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
@@ -911,13 +913,15 @@ Data type: `String`
 
 ##### <a name="config"></a>`config`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
 
+
+Default value: `{}`
 
 ##### <a name="format"></a>`format`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
@@ -965,7 +969,7 @@ Data type: `String`
 
 ##### <a name="key"></a>`key`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
@@ -973,7 +977,7 @@ Default value: `'legacy_key'`
 
 ##### <a name="type"></a>`type`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
@@ -981,7 +985,7 @@ Default value: `'sysklogd'`
 
 ##### <a name="format"></a>`format`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
@@ -1059,7 +1063,7 @@ Default value: ``undef``
 
 ##### <a name="format"></a>`format`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
@@ -1137,7 +1141,7 @@ Data type: `String`
 
 ##### <a name="config"></a>`config`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
 
 
@@ -1145,7 +1149,7 @@ Default value: `{}`
 
 ##### <a name="type"></a>`type`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
@@ -1153,7 +1157,7 @@ Default value: `'external'`
 
 ##### <a name="format"></a>`format`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
@@ -1200,13 +1204,15 @@ Data type: `String`
 
 ##### <a name="config"></a>`config`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
 
+
+Default value: `{}`
 
 ##### <a name="format"></a>`format`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
@@ -1317,7 +1323,7 @@ Data type: `String`
 
 ##### <a name="rules"></a>`rules`
 
-Data type: `Optional[Array]`
+Data type: `Array`
 
 
 
@@ -1325,7 +1331,7 @@ Default value: `[]`
 
 ##### <a name="stop"></a>`stop`
 
-Data type: `Optional[Boolean]`
+Data type: `Boolean`
 
 
 
@@ -1333,7 +1339,7 @@ Default value: ``false``
 
 ##### <a name="parameters"></a>`parameters`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
 
 
@@ -1341,7 +1347,7 @@ Default value: `{}`
 
 ##### <a name="format"></a>`format`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
@@ -1392,7 +1398,7 @@ Data type: `Enum['string', 'list', 'subtree', 'plugin']`
 
 ##### <a name="list_descriptions"></a>`list_descriptions`
 
-Data type: `Optional[Array]`
+Data type: `Array`
 
 
 
@@ -1400,7 +1406,7 @@ Default value: `[]`
 
 ##### <a name="string"></a>`string`
 
-Data type: `Optional[String]`
+Data type: `String`
 
 
 
@@ -1408,7 +1414,7 @@ Default value: `''`
 
 ##### <a name="subtree"></a>`subtree`
 
-Data type: `Optional[String]`
+Data type: `String`
 
 
 
@@ -1416,7 +1422,7 @@ Default value: `''`
 
 ##### <a name="plugin"></a>`plugin`
 
-Data type: `Optional[String]`
+Data type: `String`
 
 
 
@@ -1424,7 +1430,7 @@ Default value: `''`
 
 ##### <a name="options"></a>`options`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
 
 
@@ -1432,7 +1438,7 @@ Default value: `{}`
 
 ##### <a name="format"></a>`format`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 

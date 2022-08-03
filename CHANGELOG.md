@@ -4,6 +4,29 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v6.0.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v6.0.0) (2022-08-03)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v5.2.0...v6.0.0)
+
+**Breaking changes:**
+
+- Drop support of Puppet 5 \(EOL\) [\#186](https://github.com/voxpupuli/puppet-rsyslog/pull/186) ([smortex](https://github.com/smortex))
+
+**Implemented enhancements:**
+
+- Add CentOS 9 to supported operating systems [\#195](https://github.com/voxpupuli/puppet-rsyslog/pull/195) ([kajinamit](https://github.com/kajinamit))
+- Add Puppet 7 support [\#188](https://github.com/voxpupuli/puppet-rsyslog/pull/188) ([root-expert](https://github.com/root-expert))
+- Allow multiple array values for actions [\#184](https://github.com/voxpupuli/puppet-rsyslog/pull/184) ([paramite](https://github.com/paramite))
+
+**Fixed bugs:**
+
+- Fix wrong condition to detect Ubuntu [\#200](https://github.com/voxpupuli/puppet-rsyslog/pull/200) ([kajinamit](https://github.com/kajinamit))
+- puppet-lint: Fix optional\_default violations [\#183](https://github.com/voxpupuli/puppet-rsyslog/pull/183) ([bastelfreak](https://github.com/bastelfreak))
+
+**Merged pull requests:**
+
+- Allow recent dependencies [\#185](https://github.com/voxpupuli/puppet-rsyslog/pull/185) ([smortex](https://github.com/smortex))
+
 ## [v5.2.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v5.2.0) (2021-02-05)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v5.1.0...v5.2.0)

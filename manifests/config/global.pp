@@ -16,7 +16,7 @@ class rsyslog::config::global {
   $newtype = $rsyslog::config::global_config.filter |$key, $value| { ! has_key( $value, 'type') }
 
   #flatten the nested hash of hashes to one single hash
-  $flattendata = $newtype.keys.reduce( {}) |$memo, $key| { $memo + { $key => $newtype[$key]["value"] } }
+  $flattendata = $newtype.keys.reduce({}) |$memo, $key| { $memo + { $key => $newtype[$key]["value"] } }
 
   unless empty($flattendata) {
     rsyslog::component::global_config {

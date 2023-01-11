@@ -115,8 +115,6 @@ Configuration objects are written to the configuration file in rainerscript form
 * [Filters](#rsyslogconfigproperty_filters)
 * [legacy_config](#rsyslogconfiglegacy_config)
 
-Configuration objects should be declared in the rsyslog::server or rsyslog::client namespaces accordingly.
-
 #### `rsyslog::config::modules`
 
 A hash of hashes, hash key represents the module name and accepts a hash with values or an empty hash as its value.
@@ -746,7 +744,7 @@ lookup_table(name="ip_lookup" file="/etc/rsyslog.d/tables/ip_lookup.json" reload
 ```
 
 NOTE: This does not create the actual `lookup()` call in the Rsyslog configuration file(s). Currently that is only supported via
-the `rsyslog::server::custom_config` and `rsyslog::client::custom_config` resources as it requires setting rsyslog variables (I.E. - `set $.iplook = lookup('ip_lookup', $hostname)`).
+the `rsyslog::config::custom_config` hash as it requires setting rsyslog variables (I.E. - `set $.iplook = lookup('ip_lookup', $hostname)`).
 
 ##### `rsyslog::config::parser`
 
@@ -955,10 +953,10 @@ More information about Rsyslog Filters can be found at: http://www.rsyslog.com/d
 
 Expression filters use traditional `if/else` and `if/else if/else` logic to execute rules on specific return values. `lookup_tables` are compatible ONLY with `expression_filters`
 
-The Ruleset `expression_filter` key has a few different keys than the `rsyslog::server::expression_filters` parameter:
+The Ruleset `expression_filter` key has a few different keys than the `rsyslog::config::expression_filters` parameter:
 
 * `name` - Currently required to prevent errors. This is logical and only used by Puppet.
-* `filter` - The `filter` key is synonymous with the `conditionals` key found in the `rsyslog::server::expression_filters` parameter. See the [Expression Filter Docs](#expression-based-filters) for more info.
+* `filter` - The `filter` key is synonymous with the `conditionals` key found in the `rsyslog::config::expression_filters` parameter. See the [Expression Filter Docs](#expression-based-filters) for more info.
 
 Puppet Example:
 
@@ -1255,7 +1253,7 @@ This section covers Property and Expression based filters.
 Property-based filters are unique to rsyslogd. They allow to filter on any property, like HOSTNAME, syslogtag and msg.
 Property-based filters are only supported with native properties in Rsyslog. See [Rsyslog Properties](http://www.rsyslog.com/doc/v8-stable/configuration/property_replacer.html) for a list of supported properties.
 
-The `rsyslog::server::property_filters` parameter is a Hash of hashes where the hash-key is the logical name for the filter. This name is for Puppet resource naming purposes only and has no other function. The filter name has several additional child keys as well:
+The `rsyslog::config::property_filters` parameter is a Hash of hashes where the hash-key is the logical name for the filter. This name is for Puppet resource naming purposes only and has no other function. The filter name has several additional child keys as well:
 
 * `property` - the Rsyslogd property the filter will lookup.
 * `operator` - the Rsyslogd property filter-supported operator to compare the property value with the expected value. See [Rsyslog Property Compare-Operations](http://www.rsyslog.com/doc/v8-stable/configuration/filters.html#compare-operations) for a list of supported operators. These operators are validated with the `Rsyslog::PropertyOperator` data type.
@@ -1343,7 +1341,7 @@ Expression-based filters allow filtering on arbitrary complex expressions, which
 
 Expression-based filters are also what are used to match against lookup_table data.
 
-The `rsyslog::server::expression_filters` parameter is a Hash of hashes where the hash-key is the logical name for the filter. This name is for Puppet resource naming purposes only and has no other function. The filter name has a few additional child keys as well:
+The `rsyslog::config::expression_filters` parameter is a Hash of hashes where the hash-key is the logical name for the filter. This name is for Puppet resource naming purposes only and has no other function. The filter name has a few additional child keys as well:
 
 * `conditionals` - Hash describing the different conditional cases, which are hashes of hashes.
     * `cases` - Hash of hashes. This has two reserved keys and four reserved names:

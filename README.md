@@ -629,9 +629,11 @@ Puppet examples:
 ```puppet
 class { 'rsyslog:config':
   'inputs' => {
-    'type'   => 'imudp',
-    'config' => {
-      'port' => '514'
+    'imudp' => {
+      'type'   => 'imudp',
+      'config' => {
+        'port' => '514'
+      }
     }
   }
 }
@@ -650,6 +652,7 @@ rsyslog::config::inputs:
 will produce
 
 ```
+# imdup
 input(type="imudp"
   port="514"
 )

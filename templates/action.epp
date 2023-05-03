@@ -26,7 +26,7 @@ action(type="<%= $type %>"
 <%}-%>
 <% if $config { -%>
   <% $config.each |$k, $v| { -%>
-  <%- if is_array($v) { -%>
+  <%- if $v =~ Array { -%>
   <%= $k %>=<%= join(["[\"", join($v, '", "'), "\"]"], "")  %>
   <%- } else { -%>
   <%= $k %>="<%= $v %>"

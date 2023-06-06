@@ -4,7 +4,26 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
-## [v6.0.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v6.0.0) (2022-08-03)
+## [v7.0.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v7.0.0) (2023-06-06)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v6.0.0...v7.0.0)
+
+**Breaking changes:**
+
+- Drop Debian 9 / Ubuntu 16.04 \(EOL\) [\#217](https://github.com/voxpupuli/puppet-rsyslog/pull/217) ([smortex](https://github.com/smortex))
+- Remove stdlib's legacy function usage [\#216](https://github.com/voxpupuli/puppet-rsyslog/pull/216) ([smortex](https://github.com/smortex))
+- Drop Puppet 6 support [\#215](https://github.com/voxpupuli/puppet-rsyslog/pull/215) ([bastelfreak](https://github.com/bastelfreak))
+
+**Implemented enhancements:**
+
+- allow apt 9.x, concat 8.x, stdlib 9.x [\#222](https://github.com/voxpupuli/puppet-rsyslog/pull/222) ([evgeni](https://github.com/evgeni))
+- Add RHEL 9 to supported OS [\#210](https://github.com/voxpupuli/puppet-rsyslog/pull/210) ([tuxmea](https://github.com/tuxmea))
+
+**Merged pull requests:**
+
+- Fix typo for `inputs` example in README [\#212](https://github.com/voxpupuli/puppet-rsyslog/pull/212) ([lmontand](https://github.com/lmontand))
+
+## [v6.0.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v6.0.0) (2022-08-04)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v5.2.0...v6.0.0)
 

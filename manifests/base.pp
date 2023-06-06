@@ -37,12 +37,13 @@ class rsyslog::base {
 
   if $rsyslog::manage_confdir {
     file { $rsyslog::confdir:
-      ensure  => directory,
-      owner   => 'root',
-      group   => 'root',
-      mode    => $rsyslog::confdir_permissions,
-      purge   => $rsyslog::purge_config_files,
-      recurse => $rsyslog::purge_config_files,
+      ensure       => directory,
+      owner        => 'root',
+      group        => 'root',
+      mode         => $rsyslog::confdir_permissions,
+      purge        => $rsyslog::purge_config_files,
+      recurse      => $rsyslog::purge_config_files,
+      validate_cmd => $rsyslog::validate_cmd,
     }
 
     if $rsyslog::manage_package {
@@ -57,9 +58,10 @@ class rsyslog::base {
       |EOT
 
     file { $rsyslog::config_file:
-      ensure  => file,
-      content => "${message}\n\$IncludeConfig ${rsyslog::confdir}/*.conf\n",
-      mode    => $rsyslog::global_conf_perms,
+      ensure       => file,
+      content      => "${message}\n\$IncludeConfig ${rsyslog::confdir}/*.conf\n",
+      mode         => $rsyslog::global_conf_perms,
+      validate_cmd => $rsyslog::validate_cmd,
     }
 
     if $rsyslog::manage_package {

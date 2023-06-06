@@ -31,3 +31,5 @@ rsyslog::lookup_table_priority: 70
 rsyslog::legacy_config_priority: 80
 rsyslog::custom_priority: 90
 rsyslog::target_file: 50_rsyslog.conf
+#rsyslog::validate_cmd: "" # If you want to be backwards compatible?
+rsyslog::validate_cmd: "rsyslogd -N1"

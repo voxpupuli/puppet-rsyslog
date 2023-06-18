@@ -117,7 +117,7 @@ include rsyslog::config
 ---
 rsyslog::confdir: /etc/rsyslog.d
 rsyslog::package_name: rsyslog
-rsysog::config::global_config:
+rsyslog::config::global_config:
   workDirectory:
     value: '/var/spool/rsyslog'
 ```

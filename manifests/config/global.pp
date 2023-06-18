@@ -13,7 +13,7 @@ class rsyslog::config::global {
   }
 
   #create a hash just with the non legacy type value
-  $newtype = $rsyslog::config::global_config.filter |$key, $value| { ! 'type' in $value }
+  $newtype = $rsyslog::config::global_config.filter |$key, $value| { ! ('type' in $value) }
 
   #flatten the nested hash of hashes to one single hash
   $flattendata = $newtype.keys.reduce({}) |$memo, $key| { $memo + { $key => $newtype[$key]["value"] } }

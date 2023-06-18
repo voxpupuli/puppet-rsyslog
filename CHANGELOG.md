@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v7.0.1](https://github.com/voxpupuli/puppet-rsyslog/tree/v7.0.1) (2023-06-18)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v7.0.0...v7.0.1)
+
+**Fixed bugs:**
+
+- Fix `global_config` rendering [\#226](https://github.com/voxpupuli/puppet-rsyslog/pull/226) ([kenyon](https://github.com/kenyon))
+
+**Closed issues:**
+
+- Global config issue in 7.0.0 [\#223](https://github.com/voxpupuli/puppet-rsyslog/issues/223)
+
+**Merged pull requests:**
+
+- Fix typo in example [\#225](https://github.com/voxpupuli/puppet-rsyslog/pull/225) ([kenyon](https://github.com/kenyon))
+- Fix lookup\_tables typo in readme examples [\#224](https://github.com/voxpupuli/puppet-rsyslog/pull/224) ([lmontand](https://github.com/lmontand))
+
 ## [v7.0.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v7.0.0) (2023-06-06)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v6.0.0...v7.0.0)

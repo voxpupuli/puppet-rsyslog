@@ -41,7 +41,7 @@ describe 'Rsyslog', include_rsyslog: true do
           when 'Debian'
             it { is_expected.to contain_apt__ppa('ppa:adiscon/v8-stable') } if facts[:os]['name'] == 'Ubuntu'
           when 'RedHat'
-            it { is_expected.to contain_yumrepo('upstream_rsyslog') }
+            it { is_expected.to contain_yumrepo('upstream_rsyslog') } if facts[:os]['release']['major'].to_i < 9
           end
         end
 

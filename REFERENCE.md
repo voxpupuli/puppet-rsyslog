@@ -8,86 +8,86 @@
 
 * [`rsyslog`](#rsyslog): Manage the Rsyslog daemon package, service, and
 configuration.
-* [`rsyslog::base`](#rsyslogbase): This class manages the base installation for rsyslog
-* [`rsyslog::config`](#rsyslogconfig): Manage the configuration parameters for rsyslog.
+* [`rsyslog::base`](#rsyslog--base): This class manages the base installation for rsyslog
+* [`rsyslog::config`](#rsyslog--config): Manage the configuration parameters for rsyslog.
 This class can be called explicitly or through the use of
 hieradata.
-* [`rsyslog::config::actions`](#rsyslogconfigactions)
-* [`rsyslog::config::custom`](#rsyslogconfigcustom)
-* [`rsyslog::config::expression_filters`](#rsyslogconfigexpression_filters)
-* [`rsyslog::config::global`](#rsyslogconfigglobal)
-* [`rsyslog::config::inputs`](#rsyslogconfiginputs)
-* [`rsyslog::config::legacy`](#rsyslogconfiglegacy)
-* [`rsyslog::config::lookup_tables`](#rsyslogconfiglookup_tables)
-* [`rsyslog::config::main_queue`](#rsyslogconfigmain_queue)
-* [`rsyslog::config::modules`](#rsyslogconfigmodules)
-* [`rsyslog::config::parsers`](#rsyslogconfigparsers)
-* [`rsyslog::config::property_filters`](#rsyslogconfigproperty_filters)
-* [`rsyslog::config::rulesets`](#rsyslogconfigrulesets)
-* [`rsyslog::config::templates`](#rsyslogconfigtemplates)
+* [`rsyslog::config::actions`](#rsyslog--config--actions)
+* [`rsyslog::config::custom`](#rsyslog--config--custom)
+* [`rsyslog::config::expression_filters`](#rsyslog--config--expression_filters)
+* [`rsyslog::config::global`](#rsyslog--config--global)
+* [`rsyslog::config::inputs`](#rsyslog--config--inputs)
+* [`rsyslog::config::legacy`](#rsyslog--config--legacy)
+* [`rsyslog::config::lookup_tables`](#rsyslog--config--lookup_tables)
+* [`rsyslog::config::main_queue`](#rsyslog--config--main_queue)
+* [`rsyslog::config::modules`](#rsyslog--config--modules)
+* [`rsyslog::config::parsers`](#rsyslog--config--parsers)
+* [`rsyslog::config::property_filters`](#rsyslog--config--property_filters)
+* [`rsyslog::config::rulesets`](#rsyslog--config--rulesets)
+* [`rsyslog::config::templates`](#rsyslog--config--templates)
 
 ### Defined types
 
-* [`rsyslog::component::action`](#rsyslogcomponentaction)
-* [`rsyslog::component::custom_config`](#rsyslogcomponentcustom_config): This is a catch-all definition for use in edge cases where some code needs inserting somewhere in rsyslog.d according to priority but cannot 
-* [`rsyslog::component::expression_filter`](#rsyslogcomponentexpression_filter)
-* [`rsyslog::component::global_config`](#rsyslogcomponentglobal_config)
-* [`rsyslog::component::input`](#rsyslogcomponentinput)
-* [`rsyslog::component::legacy_config`](#rsyslogcomponentlegacy_config)
-* [`rsyslog::component::lookup_table`](#rsyslogcomponentlookup_table)
-* [`rsyslog::component::main_queue`](#rsyslogcomponentmain_queue)
-* [`rsyslog::component::module`](#rsyslogcomponentmodule)
-* [`rsyslog::component::parser`](#rsyslogcomponentparser)
-* [`rsyslog::component::property_filter`](#rsyslogcomponentproperty_filter)
-* [`rsyslog::component::ruleset`](#rsyslogcomponentruleset)
-* [`rsyslog::component::template`](#rsyslogcomponenttemplate)
-* [`rsyslog::generate_concat`](#rsysloggenerate_concat)
+* [`rsyslog::component::action`](#rsyslog--component--action)
+* [`rsyslog::component::custom_config`](#rsyslog--component--custom_config): This is a catch-all definition for use in edge cases where some code needs inserting somewhere in rsyslog.d according to priority but cannot 
+* [`rsyslog::component::expression_filter`](#rsyslog--component--expression_filter)
+* [`rsyslog::component::global_config`](#rsyslog--component--global_config)
+* [`rsyslog::component::input`](#rsyslog--component--input)
+* [`rsyslog::component::legacy_config`](#rsyslog--component--legacy_config)
+* [`rsyslog::component::lookup_table`](#rsyslog--component--lookup_table)
+* [`rsyslog::component::main_queue`](#rsyslog--component--main_queue)
+* [`rsyslog::component::module`](#rsyslog--component--module)
+* [`rsyslog::component::parser`](#rsyslog--component--parser)
+* [`rsyslog::component::property_filter`](#rsyslog--component--property_filter)
+* [`rsyslog::component::ruleset`](#rsyslog--component--ruleset)
+* [`rsyslog::component::template`](#rsyslog--component--template)
+* [`rsyslog::generate_concat`](#rsyslog--generate_concat)
 
 ### Data types
 
-* [`Rsyslog::Actions`](#rsyslogactions): Struct data type alias for Rsyslog Actions
-* [`Rsyslog::Actions::Outputs::Omamqp1`](#rsyslogactionsoutputsomamqp1)
-* [`Rsyslog::Actions::Outputs::Omelasticsearch`](#rsyslogactionsoutputsomelasticsearch)
-* [`Rsyslog::Actions::Outputs::Omfile`](#rsyslogactionsoutputsomfile)
-* [`Rsyslog::Actions::Outputs::Omfwd`](#rsyslogactionsoutputsomfwd)
-* [`Rsyslog::Actions::Outputs::Omhiredis`](#rsyslogactionsoutputsomhiredis)
-* [`Rsyslog::Actions::Outputs::Omhttpfs`](#rsyslogactionsoutputsomhttpfs)
-* [`Rsyslog::Actions::Outputs::Omjournal`](#rsyslogactionsoutputsomjournal): Struct data type for the Rsyslog JournalD module's Action options
-* [`Rsyslog::Actions::Outputs::Omkafka`](#rsyslogactionsoutputsomkafka): Struct data type for the Rsyslog Kafka module's Action options
-* [`Rsyslog::Actions::Outputs::Omlibdbi`](#rsyslogactionsoutputsomlibdbi): Struct data type for the Rsyslog libdbi module's Action options
-* [`Rsyslog::Actions::Outputs::Ommail`](#rsyslogactionsoutputsommail): Struct data type for the Rsyslog E-Mail module's Action options
-* [`Rsyslog::Actions::Outputs::Ommongodb`](#rsyslogactionsoutputsommongodb): Struct data type for the Rsyslog MongoDB output module's Action options
-* [`Rsyslog::Actions::Outputs::Ommysql`](#rsyslogactionsoutputsommysql): Struct data type alias for MySQL Rsyslog output module.
-* [`Rsyslog::Actions::Outputs::Ompgsql`](#rsyslogactionsoutputsompgsql): Struct data type for the Rsyslog PostgreSQL module's Action options  Not allowing the serverport, uid, or pwd rsyslog options as they are ide
-* [`Rsyslog::Actions::Outputs::Ompipe`](#rsyslogactionsoutputsompipe): Struct data type for the Rsyslog Pipe module's Action options
-* [`Rsyslog::Actions::Outputs::Omprog`](#rsyslogactionsoutputsomprog): Struct data type for the Rsyslog Program module's Action options
-* [`Rsyslog::Actions::Outputs::Omrelp`](#rsyslogactionsoutputsomrelp): Struct data type for the Rsyslog RELP module's Action options
-* [`Rsyslog::Actions::Outputs::Omsnmp`](#rsyslogactionsoutputsomsnmp): Struct data type for the Rsyslog SNMP module's Action options
-* [`Rsyslog::Actions::Outputs::Omudpspoof`](#rsyslogactionsoutputsomudpspoof): Struct data type for the Rsyslog UDP Spoof module's Action options
-* [`Rsyslog::Actions::Outputs::Omusrmsg`](#rsyslogactionsoutputsomusrmsg): Struct data type for the Rsyslog User MSG module's Action Parameters.
-* [`Rsyslog::Actions::Parameters`](#rsyslogactionsparameters): Struct data type for general Rsyslog Action parameters
-* [`Rsyslog::Inputs::Imbatchreports`](#rsysloginputsimbatchreports): Data type for Rsyslog Input module parameters for batch report inputs.
-* [`Rsyslog::Inputs::Imfile`](#rsysloginputsimfile): Data type for Rsyslog Input module input parameters for file inputs.
-* [`Rsyslog::Inputs::Imgssapi`](#rsysloginputsimgssapi): Data type for Rsyslog Input module input parameters for gssapi.
-* [`Rsyslog::Inputs::Imkafka`](#rsysloginputsimkafka): Data type for Rsyslog Input module input parameters for Apache Kafka.
-* [`Rsyslog::Inputs::Improg`](#rsysloginputsimprog): Data type for Rsyslog Input module input parameters for Program input
-* [`Rsyslog::Inputs::Imptcp`](#rsysloginputsimptcp): Data type for Rsyslog Plain TCP input module
-* [`Rsyslog::Inputs::Imrelp`](#rsysloginputsimrelp): Data type for Rsyslog Plain TCP input module
-* [`Rsyslog::Inputs::Imtcp`](#rsysloginputsimtcp): Data type for Rsyslog TCP input module
-* [`Rsyslog::Inputs::Imtuxedoulog`](#rsysloginputsimtuxedoulog): Data for Rsyslog Input Tuxedo ULOG module
-* [`Rsyslog::Inputs::Imudp`](#rsysloginputsimudp): Data type for Rsyslog UDP input module
-* [`Rsyslog::Inputs::Imuxsock`](#rsysloginputsimuxsock): Data type for Rsyslog Unix Socket input module
-* [`Rsyslog::Modules::Input`](#rsyslogmodulesinput)
-* [`Rsyslog::Modules::Inputs::Imdocker`](#rsyslogmodulesinputsimdocker): Data type for Rsyslog module parameters for imdocker
-* [`Rsyslog::Modules::Inputs::Imfile`](#rsyslogmodulesinputsimfile): Data type for Rsyslog Input module parameters for file inputs.
-* [`Rsyslog::Modules::Inputs::Imjournal`](#rsyslogmodulesinputsimjournal): Rsyslog imjournal Module parameter data type
-* [`Rsyslog::Modules::Message`](#rsyslogmodulesmessage)
-* [`Rsyslog::Modules::Output`](#rsyslogmodulesoutput)
-* [`Rsyslog::Modules::Parser`](#rsyslogmodulesparser)
-* [`Rsyslog::Modules::String`](#rsyslogmodulesstring)
-* [`Rsyslog::PropertyOperator`](#rsyslogpropertyoperator): Enumerable custom type for rsyslog property operators
-* [`Rsyslog::Queue::Parameters`](#rsyslogqueueparameters)
-* [`Rsyslog::Syslog::Severity`](#rsyslogsyslogseverity): Syslog severity data type
+* [`Rsyslog::Actions`](#Rsyslog--Actions): Struct data type alias for Rsyslog Actions
+* [`Rsyslog::Actions::Outputs::Omamqp1`](#Rsyslog--Actions--Outputs--Omamqp1)
+* [`Rsyslog::Actions::Outputs::Omelasticsearch`](#Rsyslog--Actions--Outputs--Omelasticsearch)
+* [`Rsyslog::Actions::Outputs::Omfile`](#Rsyslog--Actions--Outputs--Omfile)
+* [`Rsyslog::Actions::Outputs::Omfwd`](#Rsyslog--Actions--Outputs--Omfwd)
+* [`Rsyslog::Actions::Outputs::Omhiredis`](#Rsyslog--Actions--Outputs--Omhiredis)
+* [`Rsyslog::Actions::Outputs::Omhttpfs`](#Rsyslog--Actions--Outputs--Omhttpfs)
+* [`Rsyslog::Actions::Outputs::Omjournal`](#Rsyslog--Actions--Outputs--Omjournal): Struct data type for the Rsyslog JournalD module's Action options
+* [`Rsyslog::Actions::Outputs::Omkafka`](#Rsyslog--Actions--Outputs--Omkafka): Struct data type for the Rsyslog Kafka module's Action options
+* [`Rsyslog::Actions::Outputs::Omlibdbi`](#Rsyslog--Actions--Outputs--Omlibdbi): Struct data type for the Rsyslog libdbi module's Action options
+* [`Rsyslog::Actions::Outputs::Ommail`](#Rsyslog--Actions--Outputs--Ommail): Struct data type for the Rsyslog E-Mail module's Action options
+* [`Rsyslog::Actions::Outputs::Ommongodb`](#Rsyslog--Actions--Outputs--Ommongodb): Struct data type for the Rsyslog MongoDB output module's Action options
+* [`Rsyslog::Actions::Outputs::Ommysql`](#Rsyslog--Actions--Outputs--Ommysql): Struct data type alias for MySQL Rsyslog output module.
+* [`Rsyslog::Actions::Outputs::Ompgsql`](#Rsyslog--Actions--Outputs--Ompgsql): Struct data type for the Rsyslog PostgreSQL module's Action options  Not allowing the serverport, uid, or pwd rsyslog options as they are ide
+* [`Rsyslog::Actions::Outputs::Ompipe`](#Rsyslog--Actions--Outputs--Ompipe): Struct data type for the Rsyslog Pipe module's Action options
+* [`Rsyslog::Actions::Outputs::Omprog`](#Rsyslog--Actions--Outputs--Omprog): Struct data type for the Rsyslog Program module's Action options
+* [`Rsyslog::Actions::Outputs::Omrelp`](#Rsyslog--Actions--Outputs--Omrelp): Struct data type for the Rsyslog RELP module's Action options
+* [`Rsyslog::Actions::Outputs::Omsnmp`](#Rsyslog--Actions--Outputs--Omsnmp): Struct data type for the Rsyslog SNMP module's Action options
+* [`Rsyslog::Actions::Outputs::Omudpspoof`](#Rsyslog--Actions--Outputs--Omudpspoof): Struct data type for the Rsyslog UDP Spoof module's Action options
+* [`Rsyslog::Actions::Outputs::Omusrmsg`](#Rsyslog--Actions--Outputs--Omusrmsg): Struct data type for the Rsyslog User MSG module's Action Parameters.
+* [`Rsyslog::Actions::Parameters`](#Rsyslog--Actions--Parameters): Struct data type for general Rsyslog Action parameters
+* [`Rsyslog::Inputs::Imbatchreports`](#Rsyslog--Inputs--Imbatchreports): Data type for Rsyslog Input module parameters for batch report inputs.
+* [`Rsyslog::Inputs::Imfile`](#Rsyslog--Inputs--Imfile): Data type for Rsyslog Input module input parameters for file inputs.
+* [`Rsyslog::Inputs::Imgssapi`](#Rsyslog--Inputs--Imgssapi): Data type for Rsyslog Input module input parameters for gssapi.
+* [`Rsyslog::Inputs::Imkafka`](#Rsyslog--Inputs--Imkafka): Data type for Rsyslog Input module input parameters for Apache Kafka.
+* [`Rsyslog::Inputs::Improg`](#Rsyslog--Inputs--Improg): Data type for Rsyslog Input module input parameters for Program input
+* [`Rsyslog::Inputs::Imptcp`](#Rsyslog--Inputs--Imptcp): Data type for Rsyslog Plain TCP input module
+* [`Rsyslog::Inputs::Imrelp`](#Rsyslog--Inputs--Imrelp): Data type for Rsyslog Plain TCP input module
+* [`Rsyslog::Inputs::Imtcp`](#Rsyslog--Inputs--Imtcp): Data type for Rsyslog TCP input module
+* [`Rsyslog::Inputs::Imtuxedoulog`](#Rsyslog--Inputs--Imtuxedoulog): Data for Rsyslog Input Tuxedo ULOG module
+* [`Rsyslog::Inputs::Imudp`](#Rsyslog--Inputs--Imudp): Data type for Rsyslog UDP input module
+* [`Rsyslog::Inputs::Imuxsock`](#Rsyslog--Inputs--Imuxsock): Data type for Rsyslog Unix Socket input module
+* [`Rsyslog::Modules::Input`](#Rsyslog--Modules--Input)
+* [`Rsyslog::Modules::Inputs::Imdocker`](#Rsyslog--Modules--Inputs--Imdocker): Data type for Rsyslog module parameters for imdocker
+* [`Rsyslog::Modules::Inputs::Imfile`](#Rsyslog--Modules--Inputs--Imfile): Data type for Rsyslog Input module parameters for file inputs.
+* [`Rsyslog::Modules::Inputs::Imjournal`](#Rsyslog--Modules--Inputs--Imjournal): Rsyslog imjournal Module parameter data type
+* [`Rsyslog::Modules::Message`](#Rsyslog--Modules--Message)
+* [`Rsyslog::Modules::Output`](#Rsyslog--Modules--Output)
+* [`Rsyslog::Modules::Parser`](#Rsyslog--Modules--Parser)
+* [`Rsyslog::Modules::String`](#Rsyslog--Modules--String)
+* [`Rsyslog::PropertyOperator`](#Rsyslog--PropertyOperator): Enumerable custom type for rsyslog property operators
+* [`Rsyslog::Queue::Parameters`](#Rsyslog--Queue--Parameters)
+* [`Rsyslog::Syslog::Severity`](#Rsyslog--Syslog--Severity): Syslog severity data type
 
 ## Classes
 
@@ -117,7 +117,7 @@ include rsyslog::config
 ---
 rsyslog::confdir: /etc/rsyslog.d
 rsyslog::package_name: rsyslog
-rsysog::config::global_config:
+rsyslog::config::global_config:
   workDirectory:
     value: '/var/spool/rsyslog'
 ```
@@ -126,207 +126,207 @@ rsysog::config::global_config:
 
 The following parameters are available in the `rsyslog` class:
 
-* [`confdir`](#confdir)
-* [`package_name`](#package_name)
-* [`package_version`](#package_version)
-* [`config_file`](#config_file)
-* [`feature_packages`](#feature_packages)
-* [`module_load_priority`](#module_load_priority)
-* [`service_name`](#service_name)
-* [`service_status`](#service_status)
-* [`service_enabled`](#service_enabled)
-* [`override_default_config`](#override_default_config)
-* [`manage_package`](#manage_package)
-* [`use_upstream_repo`](#use_upstream_repo)
-* [`manage_confdir`](#manage_confdir)
-* [`manage_service`](#manage_service)
-* [`external_service`](#external_service)
-* [`purge_config_files`](#purge_config_files)
-* [`global_config_priority`](#global_config_priority)
-* [`legacy_config_priority`](#legacy_config_priority)
-* [`template_priority`](#template_priority)
-* [`action_priority`](#action_priority)
-* [`input_priority`](#input_priority)
-* [`custom_priority`](#custom_priority)
-* [`main_queue_priority`](#main_queue_priority)
-* [`lookup_table_priority`](#lookup_table_priority)
-* [`parser_priorty`](#parser_priorty)
-* [`ruleset_priority`](#ruleset_priority)
-* [`filter_priority`](#filter_priority)
-* [`target_file`](#target_file)
-* [`conf_permissions`](#conf_permissions)
-* [`confdir_permissions`](#confdir_permissions)
-* [`global_conf_perms`](#global_conf_perms)
-* [`parser_priority`](#parser_priority)
+* [`confdir`](#-rsyslog--confdir)
+* [`package_name`](#-rsyslog--package_name)
+* [`package_version`](#-rsyslog--package_version)
+* [`config_file`](#-rsyslog--config_file)
+* [`feature_packages`](#-rsyslog--feature_packages)
+* [`module_load_priority`](#-rsyslog--module_load_priority)
+* [`service_name`](#-rsyslog--service_name)
+* [`service_status`](#-rsyslog--service_status)
+* [`service_enabled`](#-rsyslog--service_enabled)
+* [`override_default_config`](#-rsyslog--override_default_config)
+* [`manage_package`](#-rsyslog--manage_package)
+* [`use_upstream_repo`](#-rsyslog--use_upstream_repo)
+* [`manage_confdir`](#-rsyslog--manage_confdir)
+* [`manage_service`](#-rsyslog--manage_service)
+* [`external_service`](#-rsyslog--external_service)
+* [`purge_config_files`](#-rsyslog--purge_config_files)
+* [`global_config_priority`](#-rsyslog--global_config_priority)
+* [`legacy_config_priority`](#-rsyslog--legacy_config_priority)
+* [`template_priority`](#-rsyslog--template_priority)
+* [`action_priority`](#-rsyslog--action_priority)
+* [`input_priority`](#-rsyslog--input_priority)
+* [`custom_priority`](#-rsyslog--custom_priority)
+* [`main_queue_priority`](#-rsyslog--main_queue_priority)
+* [`lookup_table_priority`](#-rsyslog--lookup_table_priority)
+* [`parser_priorty`](#-rsyslog--parser_priorty)
+* [`ruleset_priority`](#-rsyslog--ruleset_priority)
+* [`filter_priority`](#-rsyslog--filter_priority)
+* [`target_file`](#-rsyslog--target_file)
+* [`conf_permissions`](#-rsyslog--conf_permissions)
+* [`confdir_permissions`](#-rsyslog--confdir_permissions)
+* [`global_conf_perms`](#-rsyslog--global_conf_perms)
+* [`parser_priority`](#-rsyslog--parser_priority)
 
-##### <a name="confdir"></a>`confdir`
+##### <a name="-rsyslog--confdir"></a>`confdir`
 
 Data type: `String`
 
 The rsyslog configuration directory.
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-rsyslog--package_name"></a>`package_name`
 
 Data type: `String`
 
 The name of the rsyslog package to install.
 
-##### <a name="package_version"></a>`package_version`
+##### <a name="-rsyslog--package_version"></a>`package_version`
 
 Data type: `String`
 
 The version of rsyslog to install.
 
-##### <a name="config_file"></a>`config_file`
+##### <a name="-rsyslog--config_file"></a>`config_file`
 
 Data type: `String`
 
 The global rsyslog configuration file.
 
-##### <a name="feature_packages"></a>`feature_packages`
+##### <a name="-rsyslog--feature_packages"></a>`feature_packages`
 
 Data type: `Array`
 
 List of additional rsyslog packages to install.
 
-##### <a name="module_load_priority"></a>`module_load_priority`
+##### <a name="-rsyslog--module_load_priority"></a>`module_load_priority`
 
 Data type: `Integer`
 
 Order the loading of rsyslog modules relative to other configuration.
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-rsyslog--service_name"></a>`service_name`
 
 Data type: `String`
 
 Name of the SystemD, Upstart, or SysVInit service.
 
-##### <a name="service_status"></a>`service_status`
+##### <a name="-rsyslog--service_status"></a>`service_status`
 
 Data type: `String`
 
 State desired for the rsyslog service.
 
-##### <a name="service_enabled"></a>`service_enabled`
+##### <a name="-rsyslog--service_enabled"></a>`service_enabled`
 
 Data type: `Boolean`
 
 Is the service enabled or not.
 
-##### <a name="override_default_config"></a>`override_default_config`
+##### <a name="-rsyslog--override_default_config"></a>`override_default_config`
 
 Data type: `Boolean`
 
 Override the default rsyslog.conf file.
 
-##### <a name="manage_package"></a>`manage_package`
+##### <a name="-rsyslog--manage_package"></a>`manage_package`
 
 Data type: `Boolean`
 
 Toggle the managing of the rsyslog package.
 
-##### <a name="use_upstream_repo"></a>`use_upstream_repo`
+##### <a name="-rsyslog--use_upstream_repo"></a>`use_upstream_repo`
 
 Data type: `Boolean`
 
 Toggle using the upstream Adiscon Rsyslog repository.
 
-##### <a name="manage_confdir"></a>`manage_confdir`
+##### <a name="-rsyslog--manage_confdir"></a>`manage_confdir`
 
 Data type: `Boolean`
 
 Toggle management of the Rsyslog configuration directory.
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-rsyslog--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Toggle management of the rsyslog service.
 
-##### <a name="external_service"></a>`external_service`
+##### <a name="-rsyslog--external_service"></a>`external_service`
 
 Data type: `Boolean`
 
 Toggle if the service is external to where rsyslog is being run.
 I.E. a service that starts a docker container running rsyslog.
 
-##### <a name="purge_config_files"></a>`purge_config_files`
+##### <a name="-rsyslog--purge_config_files"></a>`purge_config_files`
 
 Data type: `Boolean`
 
 Toggle purging of unmanaged configuration files.
 
-##### <a name="global_config_priority"></a>`global_config_priority`
+##### <a name="-rsyslog--global_config_priority"></a>`global_config_priority`
 
 Data type: `Integer`
 
 Set the global ordering of global configuration parameters in rsyslog.
 
-##### <a name="legacy_config_priority"></a>`legacy_config_priority`
+##### <a name="-rsyslog--legacy_config_priority"></a>`legacy_config_priority`
 
 Data type: `Integer`
 
 Set the global ordering of legacy configuration parameters in rsyslog.
 
-##### <a name="template_priority"></a>`template_priority`
+##### <a name="-rsyslog--template_priority"></a>`template_priority`
 
 Data type: `Integer`
 
 Set the global ordering of template configuration in rsyslog.
 
-##### <a name="action_priority"></a>`action_priority`
+##### <a name="-rsyslog--action_priority"></a>`action_priority`
 
 Data type: `Integer`
 
 Set the global ordering of action configuration in rsyslog.
 
-##### <a name="input_priority"></a>`input_priority`
+##### <a name="-rsyslog--input_priority"></a>`input_priority`
 
 Data type: `Integer`
 
 Set the global ordering of input configuration in rsyslog.
 
-##### <a name="custom_priority"></a>`custom_priority`
+##### <a name="-rsyslog--custom_priority"></a>`custom_priority`
 
 Data type: `Integer`
 
 Set the global ordering of custom configuration in rsyslog.
 
-##### <a name="main_queue_priority"></a>`main_queue_priority`
+##### <a name="-rsyslog--main_queue_priority"></a>`main_queue_priority`
 
 Data type: `Integer`
 
 Set the global ordering of main queue configuration in rsyslog.
 
-##### <a name="lookup_table_priority"></a>`lookup_table_priority`
+##### <a name="-rsyslog--lookup_table_priority"></a>`lookup_table_priority`
 
 Data type: `Integer`
 
 Set the global ordering of lookup table configuration in rsyslog.
 
-##### <a name="parser_priorty"></a>`parser_priorty`
+##### <a name="-rsyslog--parser_priorty"></a>`parser_priorty`
 
 Set the global ordering of parser configuration in rsyslog.
 
-##### <a name="ruleset_priority"></a>`ruleset_priority`
+##### <a name="-rsyslog--ruleset_priority"></a>`ruleset_priority`
 
 Data type: `Integer`
 
 Set the global ordering of rulesets configuration in rsyslog.
 
-##### <a name="filter_priority"></a>`filter_priority`
+##### <a name="-rsyslog--filter_priority"></a>`filter_priority`
 
 Data type: `Integer`
 
 Set the global ordering of filter configuration in rsyslog.
 
-##### <a name="target_file"></a>`target_file`
+##### <a name="-rsyslog--target_file"></a>`target_file`
 
 Data type: `String`
 
 Target file to insert configuration into.
 
-##### <a name="conf_permissions"></a>`conf_permissions`
+##### <a name="-rsyslog--conf_permissions"></a>`conf_permissions`
 
 Data type: `Stdlib::Filemode`
 
@@ -334,7 +334,7 @@ Set the file mode for the generated configuration files.
 
 Default value: `'0644'`
 
-##### <a name="confdir_permissions"></a>`confdir_permissions`
+##### <a name="-rsyslog--confdir_permissions"></a>`confdir_permissions`
 
 Data type: `Stdlib::Filemode`
 
@@ -342,7 +342,7 @@ Set the file mode for the rsyslog.d configuration directory.
 
 Default value: `'0755'`
 
-##### <a name="global_conf_perms"></a>`global_conf_perms`
+##### <a name="-rsyslog--global_conf_perms"></a>`global_conf_perms`
 
 Data type: `Stdlib::Filemode`
 
@@ -350,17 +350,17 @@ Set the file mode for the /etc/rsyslog.conf
 
 Default value: `$conf_permissions`
 
-##### <a name="parser_priority"></a>`parser_priority`
+##### <a name="-rsyslog--parser_priority"></a>`parser_priority`
 
 Data type: `Integer`
 
 
 
-### <a name="rsyslogbase"></a>`rsyslog::base`
+### <a name="rsyslog--base"></a>`rsyslog::base`
 
 This class manages the base installation for rsyslog
 
-### <a name="rsyslogconfig"></a>`rsyslog::config`
+### <a name="rsyslog--config"></a>`rsyslog::config`
 
 Manage the configuration parameters for rsyslog.
 This class can be called explicitly or through the use of
@@ -419,21 +419,21 @@ rsyslog::config::actions:
 
 The following parameters are available in the `rsyslog::config` class:
 
-* [`global_config`](#global_config)
-* [`legacy_config`](#legacy_config)
-* [`templates`](#templates)
-* [`actions`](#actions)
-* [`inputs`](#inputs)
-* [`custom_config`](#custom_config)
-* [`main_queue_opts`](#main_queue_opts)
-* [`modules`](#modules)
-* [`lookup_tables`](#lookup_tables)
-* [`parsers`](#parsers)
-* [`rulesets`](#rulesets)
-* [`property_filters`](#property_filters)
-* [`expression_filters`](#expression_filters)
+* [`global_config`](#-rsyslog--config--global_config)
+* [`legacy_config`](#-rsyslog--config--legacy_config)
+* [`templates`](#-rsyslog--config--templates)
+* [`actions`](#-rsyslog--config--actions)
+* [`inputs`](#-rsyslog--config--inputs)
+* [`custom_config`](#-rsyslog--config--custom_config)
+* [`main_queue_opts`](#-rsyslog--config--main_queue_opts)
+* [`modules`](#-rsyslog--config--modules)
+* [`lookup_tables`](#-rsyslog--config--lookup_tables)
+* [`parsers`](#-rsyslog--config--parsers)
+* [`rulesets`](#-rsyslog--config--rulesets)
+* [`property_filters`](#-rsyslog--config--property_filters)
+* [`expression_filters`](#-rsyslog--config--expression_filters)
 
-##### <a name="global_config"></a>`global_config`
+##### <a name="-rsyslog--config--global_config"></a>`global_config`
 
 Data type: `Hash`
 
@@ -451,7 +451,7 @@ configuration formats depending on the configuration option.
 
 Default value: `{}`
 
-##### <a name="legacy_config"></a>`legacy_config`
+##### <a name="-rsyslog--config--legacy_config"></a>`legacy_config`
 
 Data type: `Hash`
 
@@ -467,7 +467,7 @@ Hash of rsyslog configuration in the legacy format.
 
 Default value: `{}`
 
-##### <a name="templates"></a>`templates`
+##### <a name="-rsyslog--config--templates"></a>`templates`
 
 Data type: `Hash`
 
@@ -487,7 +487,7 @@ Hash of rsyslog templates.
 
 Default value: `{}`
 
-##### <a name="actions"></a>`actions`
+##### <a name="-rsyslog--config--actions"></a>`actions`
 
 Data type: `Hash`
 
@@ -503,7 +503,7 @@ Hash of rsyslog actions.
 
 Default value: `{}`
 
-##### <a name="inputs"></a>`inputs`
+##### <a name="-rsyslog--config--inputs"></a>`inputs`
 
 Data type: `Hash`
 
@@ -519,7 +519,7 @@ Hash of rsyslog input plugins to use.
 
 Default value: `{}`
 
-##### <a name="custom_config"></a>`custom_config`
+##### <a name="-rsyslog--config--custom_config"></a>`custom_config`
 
 Data type: `Hash`
 
@@ -532,7 +532,7 @@ Hash of custom raw configuration to place in the rsyslog config file.
 
 Default value: `{}`
 
-##### <a name="main_queue_opts"></a>`main_queue_opts`
+##### <a name="-rsyslog--config--main_queue_opts"></a>`main_queue_opts`
 
 Data type: `Hash`
 
@@ -540,7 +540,7 @@ Data type: `Hash`
 
 Default value: `{}`
 
-##### <a name="modules"></a>`modules`
+##### <a name="-rsyslog--config--modules"></a>`modules`
 
 Data type: `Hash`
 
@@ -548,7 +548,7 @@ Data type: `Hash`
 
 Default value: `{}`
 
-##### <a name="lookup_tables"></a>`lookup_tables`
+##### <a name="-rsyslog--config--lookup_tables"></a>`lookup_tables`
 
 Data type: `Hash`
 
@@ -556,7 +556,7 @@ Data type: `Hash`
 
 Default value: `{}`
 
-##### <a name="parsers"></a>`parsers`
+##### <a name="-rsyslog--config--parsers"></a>`parsers`
 
 Data type: `Hash`
 
@@ -564,7 +564,7 @@ Data type: `Hash`
 
 Default value: `{}`
 
-##### <a name="rulesets"></a>`rulesets`
+##### <a name="-rsyslog--config--rulesets"></a>`rulesets`
 
 Data type: `Hash`
 
@@ -572,7 +572,7 @@ Data type: `Hash`
 
 Default value: `{}`
 
-##### <a name="property_filters"></a>`property_filters`
+##### <a name="-rsyslog--config--property_filters"></a>`property_filters`
 
 Data type: `Hash`
 
@@ -580,7 +580,7 @@ Data type: `Hash`
 
 Default value: `{}`
 
-##### <a name="expression_filters"></a>`expression_filters`
+##### <a name="-rsyslog--config--expression_filters"></a>`expression_filters`
 
 Data type: `Hash`
 
@@ -588,61 +588,61 @@ Data type: `Hash`
 
 Default value: `{}`
 
-### <a name="rsyslogconfigactions"></a>`rsyslog::config::actions`
+### <a name="rsyslog--config--actions"></a>`rsyslog::config::actions`
 
 The rsyslog::config::actions class.
 
-### <a name="rsyslogconfigcustom"></a>`rsyslog::config::custom`
+### <a name="rsyslog--config--custom"></a>`rsyslog::config::custom`
 
 The rsyslog::config::custom class.
 
-### <a name="rsyslogconfigexpression_filters"></a>`rsyslog::config::expression_filters`
+### <a name="rsyslog--config--expression_filters"></a>`rsyslog::config::expression_filters`
 
 The rsyslog::config::expression_filters class.
 
-### <a name="rsyslogconfigglobal"></a>`rsyslog::config::global`
+### <a name="rsyslog--config--global"></a>`rsyslog::config::global`
 
 The rsyslog::config::global class.
 
-### <a name="rsyslogconfiginputs"></a>`rsyslog::config::inputs`
+### <a name="rsyslog--config--inputs"></a>`rsyslog::config::inputs`
 
 The rsyslog::config::inputs class.
 
-### <a name="rsyslogconfiglegacy"></a>`rsyslog::config::legacy`
+### <a name="rsyslog--config--legacy"></a>`rsyslog::config::legacy`
 
 The rsyslog::config::legacy class.
 
-### <a name="rsyslogconfiglookup_tables"></a>`rsyslog::config::lookup_tables`
+### <a name="rsyslog--config--lookup_tables"></a>`rsyslog::config::lookup_tables`
 
 The rsyslog::config::lookup_tables class.
 
-### <a name="rsyslogconfigmain_queue"></a>`rsyslog::config::main_queue`
+### <a name="rsyslog--config--main_queue"></a>`rsyslog::config::main_queue`
 
 The rsyslog::config::main_queue class.
 
-### <a name="rsyslogconfigmodules"></a>`rsyslog::config::modules`
+### <a name="rsyslog--config--modules"></a>`rsyslog::config::modules`
 
 The rsyslog::config::modules class.
 
-### <a name="rsyslogconfigparsers"></a>`rsyslog::config::parsers`
+### <a name="rsyslog--config--parsers"></a>`rsyslog::config::parsers`
 
 The rsyslog::config::parsers class.
 
-### <a name="rsyslogconfigproperty_filters"></a>`rsyslog::config::property_filters`
+### <a name="rsyslog--config--property_filters"></a>`rsyslog::config::property_filters`
 
 The rsyslog::config::property_filters class.
 
-### <a name="rsyslogconfigrulesets"></a>`rsyslog::config::rulesets`
+### <a name="rsyslog--config--rulesets"></a>`rsyslog::config::rulesets`
 
 The rsyslog::config::rulesets class.
 
-### <a name="rsyslogconfigtemplates"></a>`rsyslog::config::templates`
+### <a name="rsyslog--config--templates"></a>`rsyslog::config::templates`
 
 The rsyslog::config::templates class.
 
 ## Defined types
 
-### <a name="rsyslogcomponentaction"></a>`rsyslog::component::action`
+### <a name="rsyslog--component--action"></a>`rsyslog::component::action`
 
 The rsyslog::component::action class.
 
@@ -650,61 +650,63 @@ The rsyslog::component::action class.
 
 The following parameters are available in the `rsyslog::component::action` defined type:
 
-* [`priority`](#priority)
-* [`target`](#target)
-* [`confdir`](#confdir)
-* [`type`](#type)
-* [`config`](#config)
-* [`facility`](#facility)
-* [`format`](#format)
+* [`priority`](#-rsyslog--component--action--priority)
+* [`target`](#-rsyslog--component--action--target)
+* [`confdir`](#-rsyslog--component--action--confdir)
+* [`type`](#-rsyslog--component--action--type)
+* [`config`](#-rsyslog--component--action--config)
+* [`facility`](#-rsyslog--component--action--facility)
+* [`format`](#-rsyslog--component--action--format)
 
-##### <a name="priority"></a>`priority`
+##### <a name="-rsyslog--component--action--priority"></a>`priority`
 
 Data type: `Integer`
 
 
 
-##### <a name="target"></a>`target`
+##### <a name="-rsyslog--component--action--target"></a>`target`
 
 Data type: `String`
 
 
 
-##### <a name="confdir"></a>`confdir`
+##### <a name="-rsyslog--component--action--confdir"></a>`confdir`
 
 Data type: `String`
 
 
 
-##### <a name="type"></a>`type`
+##### <a name="-rsyslog--component--action--type"></a>`type`
 
 Data type: `String`
 
 
 
-##### <a name="config"></a>`config`
+##### <a name="-rsyslog--component--action--config"></a>`config`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
 
 
-##### <a name="facility"></a>`facility`
+Default value: `{}`
 
-Data type: `Optional[String]`
+##### <a name="-rsyslog--component--action--facility"></a>`facility`
+
+Data type: `String[1]`
 
 
 
 Default value: `'default'`
 
-##### <a name="format"></a>`format`
+##### <a name="-rsyslog--component--action--format"></a>`format`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
 Default value: `'<%= $content %>'`
 
-### <a name="rsyslogcomponentcustom_config"></a>`rsyslog::component::custom_config`
+### <a name="rsyslog--component--custom_config"></a>`rsyslog::component::custom_config`
 
 This is a catch-all definition for use in edge cases where some code needs
 inserting somewhere in rsyslog.d according to priority but cannot be modelled
@@ -714,19 +716,19 @@ with any of the shipped models.
 
 The following parameters are available in the `rsyslog::component::custom_config` defined type:
 
-* [`content`](#content)
-* [`priority`](#priority)
-* [`target`](#target)
-* [`confdir`](#confdir)
-* [`filename_part`](#filename_part)
+* [`content`](#-rsyslog--component--custom_config--content)
+* [`priority`](#-rsyslog--component--custom_config--priority)
+* [`target`](#-rsyslog--component--custom_config--target)
+* [`confdir`](#-rsyslog--component--custom_config--confdir)
+* [`filename_part`](#-rsyslog--component--custom_config--filename_part)
 
-##### <a name="content"></a>`content`
+##### <a name="-rsyslog--component--custom_config--content"></a>`content`
 
 Data type: `String`
 
 
 
-##### <a name="priority"></a>`priority`
+##### <a name="-rsyslog--component--custom_config--priority"></a>`priority`
 
 Data type: `Integer`
 
@@ -734,7 +736,7 @@ Data type: `Integer`
 
 Default value: `$rsyslog::custom_priority`
 
-##### <a name="target"></a>`target`
+##### <a name="-rsyslog--component--custom_config--target"></a>`target`
 
 Data type: `String`
 
@@ -742,7 +744,7 @@ Data type: `String`
 
 Default value: `"${name}.conf"`
 
-##### <a name="confdir"></a>`confdir`
+##### <a name="-rsyslog--component--custom_config--confdir"></a>`confdir`
 
 Data type: `String`
 
@@ -750,7 +752,7 @@ Data type: `String`
 
 Default value: `$rsyslog::confdir`
 
-##### <a name="filename_part"></a>`filename_part`
+##### <a name="-rsyslog--component--custom_config--filename_part"></a>`filename_part`
 
 Data type: `String`
 
@@ -758,7 +760,7 @@ Data type: `String`
 
 Default value: `$name`
 
-### <a name="rsyslogcomponentexpression_filter"></a>`rsyslog::component::expression_filter`
+### <a name="rsyslog--component--expression_filter"></a>`rsyslog::component::expression_filter`
 
 The rsyslog::component::expression_filter class.
 
@@ -766,37 +768,37 @@ The rsyslog::component::expression_filter class.
 
 The following parameters are available in the `rsyslog::component::expression_filter` defined type:
 
-* [`priority`](#priority)
-* [`target`](#target)
-* [`confdir`](#confdir)
-* [`conditionals`](#conditionals)
-* [`format`](#format)
+* [`priority`](#-rsyslog--component--expression_filter--priority)
+* [`target`](#-rsyslog--component--expression_filter--target)
+* [`confdir`](#-rsyslog--component--expression_filter--confdir)
+* [`conditionals`](#-rsyslog--component--expression_filter--conditionals)
+* [`format`](#-rsyslog--component--expression_filter--format)
 
-##### <a name="priority"></a>`priority`
+##### <a name="-rsyslog--component--expression_filter--priority"></a>`priority`
 
 Data type: `Integer`
 
 
 
-##### <a name="target"></a>`target`
+##### <a name="-rsyslog--component--expression_filter--target"></a>`target`
 
 Data type: `String`
 
 
 
-##### <a name="confdir"></a>`confdir`
+##### <a name="-rsyslog--component--expression_filter--confdir"></a>`confdir`
 
 Data type: `String`
 
 
 
-##### <a name="conditionals"></a>`conditionals`
+##### <a name="-rsyslog--component--expression_filter--conditionals"></a>`conditionals`
 
 Data type: `Hash`
 
 
 
-##### <a name="format"></a>`format`
+##### <a name="-rsyslog--component--expression_filter--format"></a>`format`
 
 Data type: `String`
 
@@ -804,7 +806,7 @@ Data type: `String`
 
 Default value: `'<%= $content %>'`
 
-### <a name="rsyslogcomponentglobal_config"></a>`rsyslog::component::global_config`
+### <a name="rsyslog--component--global_config"></a>`rsyslog::component::global_config`
 
 The rsyslog::component::global_config class.
 
@@ -812,65 +814,65 @@ The rsyslog::component::global_config class.
 
 The following parameters are available in the `rsyslog::component::global_config` defined type:
 
-* [`priority`](#priority)
-* [`target`](#target)
-* [`confdir`](#confdir)
-* [`value`](#value)
-* [`config`](#config)
-* [`type`](#type)
-* [`format`](#format)
+* [`priority`](#-rsyslog--component--global_config--priority)
+* [`target`](#-rsyslog--component--global_config--target)
+* [`confdir`](#-rsyslog--component--global_config--confdir)
+* [`value`](#-rsyslog--component--global_config--value)
+* [`config`](#-rsyslog--component--global_config--config)
+* [`type`](#-rsyslog--component--global_config--type)
+* [`format`](#-rsyslog--component--global_config--format)
 
-##### <a name="priority"></a>`priority`
+##### <a name="-rsyslog--component--global_config--priority"></a>`priority`
 
 Data type: `Integer`
 
 
 
-##### <a name="target"></a>`target`
+##### <a name="-rsyslog--component--global_config--target"></a>`target`
 
 Data type: `String`
 
 
 
-##### <a name="confdir"></a>`confdir`
+##### <a name="-rsyslog--component--global_config--confdir"></a>`confdir`
 
 Data type: `String`
 
 
 
-##### <a name="value"></a>`value`
+##### <a name="-rsyslog--component--global_config--value"></a>`value`
 
-Data type: `Optional[String]`
+Data type: `Optional[String[1]]`
 
 
 
-Default value: `''`
+Default value: `undef`
 
-##### <a name="config"></a>`config`
+##### <a name="-rsyslog--component--global_config--config"></a>`config`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
 
 
 Default value: `{}`
 
-##### <a name="type"></a>`type`
+##### <a name="-rsyslog--component--global_config--type"></a>`type`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
 Default value: `'rainerscript'`
 
-##### <a name="format"></a>`format`
+##### <a name="-rsyslog--component--global_config--format"></a>`format`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
 Default value: `'<%= $content %>'`
 
-### <a name="rsyslogcomponentinput"></a>`rsyslog::component::input`
+### <a name="rsyslog--component--input"></a>`rsyslog::component::input`
 
 The rsyslog::component::input class.
 
@@ -878,52 +880,54 @@ The rsyslog::component::input class.
 
 The following parameters are available in the `rsyslog::component::input` defined type:
 
-* [`priority`](#priority)
-* [`target`](#target)
-* [`confdir`](#confdir)
-* [`type`](#type)
-* [`config`](#config)
-* [`format`](#format)
+* [`priority`](#-rsyslog--component--input--priority)
+* [`target`](#-rsyslog--component--input--target)
+* [`confdir`](#-rsyslog--component--input--confdir)
+* [`type`](#-rsyslog--component--input--type)
+* [`config`](#-rsyslog--component--input--config)
+* [`format`](#-rsyslog--component--input--format)
 
-##### <a name="priority"></a>`priority`
+##### <a name="-rsyslog--component--input--priority"></a>`priority`
 
 Data type: `Integer`
 
 
 
-##### <a name="target"></a>`target`
+##### <a name="-rsyslog--component--input--target"></a>`target`
 
 Data type: `String`
 
 
 
-##### <a name="confdir"></a>`confdir`
+##### <a name="-rsyslog--component--input--confdir"></a>`confdir`
 
 Data type: `String`
 
 
 
-##### <a name="type"></a>`type`
+##### <a name="-rsyslog--component--input--type"></a>`type`
 
 Data type: `String`
 
 
 
-##### <a name="config"></a>`config`
+##### <a name="-rsyslog--component--input--config"></a>`config`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
 
 
-##### <a name="format"></a>`format`
+Default value: `{}`
 
-Data type: `Optional[String]`
+##### <a name="-rsyslog--component--input--format"></a>`format`
+
+Data type: `String[1]`
 
 
 
 Default value: `'<%= $content %>'`
 
-### <a name="rsyslogcomponentlegacy_config"></a>`rsyslog::component::legacy_config`
+### <a name="rsyslog--component--legacy_config"></a>`rsyslog::component::legacy_config`
 
 The rsyslog::component::legacy_config class.
 
@@ -931,63 +935,63 @@ The rsyslog::component::legacy_config class.
 
 The following parameters are available in the `rsyslog::component::legacy_config` defined type:
 
-* [`priority`](#priority)
-* [`target`](#target)
-* [`confdir`](#confdir)
-* [`value`](#value)
-* [`key`](#key)
-* [`type`](#type)
-* [`format`](#format)
+* [`priority`](#-rsyslog--component--legacy_config--priority)
+* [`target`](#-rsyslog--component--legacy_config--target)
+* [`confdir`](#-rsyslog--component--legacy_config--confdir)
+* [`value`](#-rsyslog--component--legacy_config--value)
+* [`key`](#-rsyslog--component--legacy_config--key)
+* [`type`](#-rsyslog--component--legacy_config--type)
+* [`format`](#-rsyslog--component--legacy_config--format)
 
-##### <a name="priority"></a>`priority`
+##### <a name="-rsyslog--component--legacy_config--priority"></a>`priority`
 
 Data type: `Integer`
 
 
 
-##### <a name="target"></a>`target`
+##### <a name="-rsyslog--component--legacy_config--target"></a>`target`
 
 Data type: `String`
 
 
 
-##### <a name="confdir"></a>`confdir`
+##### <a name="-rsyslog--component--legacy_config--confdir"></a>`confdir`
 
 Data type: `String`
 
 
 
-##### <a name="value"></a>`value`
+##### <a name="-rsyslog--component--legacy_config--value"></a>`value`
 
 Data type: `String`
 
 
 
-##### <a name="key"></a>`key`
+##### <a name="-rsyslog--component--legacy_config--key"></a>`key`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
 Default value: `'legacy_key'`
 
-##### <a name="type"></a>`type`
+##### <a name="-rsyslog--component--legacy_config--type"></a>`type`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
 Default value: `'sysklogd'`
 
-##### <a name="format"></a>`format`
+##### <a name="-rsyslog--component--legacy_config--format"></a>`format`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
 Default value: `'<%= $content %>'`
 
-### <a name="rsyslogcomponentlookup_table"></a>`rsyslog::component::lookup_table`
+### <a name="rsyslog--component--lookup_table"></a>`rsyslog::component::lookup_table`
 
 The rsyslog::component::lookup_table class.
 
@@ -995,77 +999,77 @@ The rsyslog::component::lookup_table class.
 
 The following parameters are available in the `rsyslog::component::lookup_table` defined type:
 
-* [`priority`](#priority)
-* [`target`](#target)
-* [`confdir`](#confdir)
-* [`lookup_json`](#lookup_json)
-* [`lookup_file`](#lookup_file)
-* [`reload_on_hup`](#reload_on_hup)
-* [`rsyslog_in_docker`](#rsyslog_in_docker)
-* [`json_file`](#json_file)
-* [`format`](#format)
+* [`priority`](#-rsyslog--component--lookup_table--priority)
+* [`target`](#-rsyslog--component--lookup_table--target)
+* [`confdir`](#-rsyslog--component--lookup_table--confdir)
+* [`lookup_json`](#-rsyslog--component--lookup_table--lookup_json)
+* [`lookup_file`](#-rsyslog--component--lookup_table--lookup_file)
+* [`reload_on_hup`](#-rsyslog--component--lookup_table--reload_on_hup)
+* [`rsyslog_in_docker`](#-rsyslog--component--lookup_table--rsyslog_in_docker)
+* [`json_file`](#-rsyslog--component--lookup_table--json_file)
+* [`format`](#-rsyslog--component--lookup_table--format)
 
-##### <a name="priority"></a>`priority`
+##### <a name="-rsyslog--component--lookup_table--priority"></a>`priority`
 
 Data type: `Integer`
 
 
 
-##### <a name="target"></a>`target`
+##### <a name="-rsyslog--component--lookup_table--target"></a>`target`
 
 Data type: `String`
 
 
 
-##### <a name="confdir"></a>`confdir`
+##### <a name="-rsyslog--component--lookup_table--confdir"></a>`confdir`
 
 Data type: `String`
 
 
 
-##### <a name="lookup_json"></a>`lookup_json`
+##### <a name="-rsyslog--component--lookup_table--lookup_json"></a>`lookup_json`
 
 Data type: `Hash`
 
 
 
-##### <a name="lookup_file"></a>`lookup_file`
+##### <a name="-rsyslog--component--lookup_table--lookup_file"></a>`lookup_file`
 
 Data type: `Stdlib::AbsolutePath`
 
 
 
-##### <a name="reload_on_hup"></a>`reload_on_hup`
+##### <a name="-rsyslog--component--lookup_table--reload_on_hup"></a>`reload_on_hup`
 
 Data type: `Boolean`
 
 
 
-##### <a name="rsyslog_in_docker"></a>`rsyslog_in_docker`
+##### <a name="-rsyslog--component--lookup_table--rsyslog_in_docker"></a>`rsyslog_in_docker`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="json_file"></a>`json_file`
+##### <a name="-rsyslog--component--lookup_table--json_file"></a>`json_file`
 
 Data type: `Optional[Stdlib::AbsolutePath]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="format"></a>`format`
+##### <a name="-rsyslog--component--lookup_table--format"></a>`format`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
 Default value: `'<%= $content %>'`
 
-### <a name="rsyslogcomponentmain_queue"></a>`rsyslog::component::main_queue`
+### <a name="rsyslog--component--main_queue"></a>`rsyslog::component::main_queue`
 
 The rsyslog::component::main_queue class.
 
@@ -1073,36 +1077,36 @@ The rsyslog::component::main_queue class.
 
 The following parameters are available in the `rsyslog::component::main_queue` defined type:
 
-* [`priority`](#priority)
-* [`target`](#target)
-* [`confdir`](#confdir)
-* [`config`](#config)
+* [`priority`](#-rsyslog--component--main_queue--priority)
+* [`target`](#-rsyslog--component--main_queue--target)
+* [`confdir`](#-rsyslog--component--main_queue--confdir)
+* [`config`](#-rsyslog--component--main_queue--config)
 
-##### <a name="priority"></a>`priority`
+##### <a name="-rsyslog--component--main_queue--priority"></a>`priority`
 
 Data type: `Integer`
 
 
 
-##### <a name="target"></a>`target`
+##### <a name="-rsyslog--component--main_queue--target"></a>`target`
 
 Data type: `String`
 
 
 
-##### <a name="confdir"></a>`confdir`
+##### <a name="-rsyslog--component--main_queue--confdir"></a>`confdir`
 
 Data type: `String`
 
 
 
-##### <a name="config"></a>`config`
+##### <a name="-rsyslog--component--main_queue--config"></a>`config`
 
 Data type: `Hash`
 
 
 
-### <a name="rsyslogcomponentmodule"></a>`rsyslog::component::module`
+### <a name="rsyslog--component--module"></a>`rsyslog::component::module`
 
 The rsyslog::component::module class.
 
@@ -1110,56 +1114,56 @@ The rsyslog::component::module class.
 
 The following parameters are available in the `rsyslog::component::module` defined type:
 
-* [`priority`](#priority)
-* [`target`](#target)
-* [`confdir`](#confdir)
-* [`config`](#config)
-* [`type`](#type)
-* [`format`](#format)
+* [`priority`](#-rsyslog--component--module--priority)
+* [`target`](#-rsyslog--component--module--target)
+* [`confdir`](#-rsyslog--component--module--confdir)
+* [`config`](#-rsyslog--component--module--config)
+* [`type`](#-rsyslog--component--module--type)
+* [`format`](#-rsyslog--component--module--format)
 
-##### <a name="priority"></a>`priority`
+##### <a name="-rsyslog--component--module--priority"></a>`priority`
 
 Data type: `Integer`
 
 
 
-##### <a name="target"></a>`target`
+##### <a name="-rsyslog--component--module--target"></a>`target`
 
 Data type: `String`
 
 
 
-##### <a name="confdir"></a>`confdir`
+##### <a name="-rsyslog--component--module--confdir"></a>`confdir`
 
 Data type: `String`
 
 
 
-##### <a name="config"></a>`config`
+##### <a name="-rsyslog--component--module--config"></a>`config`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
 
 
 Default value: `{}`
 
-##### <a name="type"></a>`type`
+##### <a name="-rsyslog--component--module--type"></a>`type`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
 Default value: `'external'`
 
-##### <a name="format"></a>`format`
+##### <a name="-rsyslog--component--module--format"></a>`format`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
 Default value: `'<%= $content %>'`
 
-### <a name="rsyslogcomponentparser"></a>`rsyslog::component::parser`
+### <a name="rsyslog--component--parser"></a>`rsyslog::component::parser`
 
 The rsyslog::component::parser class.
 
@@ -1167,52 +1171,54 @@ The rsyslog::component::parser class.
 
 The following parameters are available in the `rsyslog::component::parser` defined type:
 
-* [`priority`](#priority)
-* [`target`](#target)
-* [`confdir`](#confdir)
-* [`type`](#type)
-* [`config`](#config)
-* [`format`](#format)
+* [`priority`](#-rsyslog--component--parser--priority)
+* [`target`](#-rsyslog--component--parser--target)
+* [`confdir`](#-rsyslog--component--parser--confdir)
+* [`type`](#-rsyslog--component--parser--type)
+* [`config`](#-rsyslog--component--parser--config)
+* [`format`](#-rsyslog--component--parser--format)
 
-##### <a name="priority"></a>`priority`
+##### <a name="-rsyslog--component--parser--priority"></a>`priority`
 
 Data type: `Integer`
 
 
 
-##### <a name="target"></a>`target`
+##### <a name="-rsyslog--component--parser--target"></a>`target`
 
 Data type: `String`
 
 
 
-##### <a name="confdir"></a>`confdir`
+##### <a name="-rsyslog--component--parser--confdir"></a>`confdir`
 
 Data type: `String`
 
 
 
-##### <a name="type"></a>`type`
+##### <a name="-rsyslog--component--parser--type"></a>`type`
 
 Data type: `String`
 
 
 
-##### <a name="config"></a>`config`
+##### <a name="-rsyslog--component--parser--config"></a>`config`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
 
 
-##### <a name="format"></a>`format`
+Default value: `{}`
 
-Data type: `Optional[String]`
+##### <a name="-rsyslog--component--parser--format"></a>`format`
+
+Data type: `String[1]`
 
 
 
 Default value: `'<%= $content %>'`
 
-### <a name="rsyslogcomponentproperty_filter"></a>`rsyslog::component::property_filter`
+### <a name="rsyslog--component--property_filter"></a>`rsyslog::component::property_filter`
 
 The rsyslog::component::property_filter class.
 
@@ -1220,52 +1226,52 @@ The rsyslog::component::property_filter class.
 
 The following parameters are available in the `rsyslog::component::property_filter` defined type:
 
-* [`priority`](#priority)
-* [`target`](#target)
-* [`confdir`](#confdir)
-* [`property`](#property)
-* [`operator`](#operator)
-* [`value`](#value)
-* [`tasks`](#tasks)
-* [`format`](#format)
+* [`priority`](#-rsyslog--component--property_filter--priority)
+* [`target`](#-rsyslog--component--property_filter--target)
+* [`confdir`](#-rsyslog--component--property_filter--confdir)
+* [`property`](#-rsyslog--component--property_filter--property)
+* [`operator`](#-rsyslog--component--property_filter--operator)
+* [`value`](#-rsyslog--component--property_filter--value)
+* [`tasks`](#-rsyslog--component--property_filter--tasks)
+* [`format`](#-rsyslog--component--property_filter--format)
 
-##### <a name="priority"></a>`priority`
+##### <a name="-rsyslog--component--property_filter--priority"></a>`priority`
 
 Data type: `Integer`
 
 
 
-##### <a name="target"></a>`target`
+##### <a name="-rsyslog--component--property_filter--target"></a>`target`
 
 Data type: `String`
 
 
 
-##### <a name="confdir"></a>`confdir`
+##### <a name="-rsyslog--component--property_filter--confdir"></a>`confdir`
 
 Data type: `String`
 
 
 
-##### <a name="property"></a>`property`
+##### <a name="-rsyslog--component--property_filter--property"></a>`property`
 
 Data type: `String`
 
 
 
-##### <a name="operator"></a>`operator`
+##### <a name="-rsyslog--component--property_filter--operator"></a>`operator`
 
 Data type: `Rsyslog::PropertyOperator`
 
 
 
-##### <a name="value"></a>`value`
+##### <a name="-rsyslog--component--property_filter--value"></a>`value`
 
 Data type: `String`
 
 
 
-##### <a name="tasks"></a>`tasks`
+##### <a name="-rsyslog--component--property_filter--tasks"></a>`tasks`
 
 Data type: `Array`
 
@@ -1273,7 +1279,7 @@ Data type: `Array`
 
 Default value: `[]`
 
-##### <a name="format"></a>`format`
+##### <a name="-rsyslog--component--property_filter--format"></a>`format`
 
 Data type: `String`
 
@@ -1281,7 +1287,7 @@ Data type: `String`
 
 Default value: `'<%= $content %>'`
 
-### <a name="rsyslogcomponentruleset"></a>`rsyslog::component::ruleset`
+### <a name="rsyslog--component--ruleset"></a>`rsyslog::component::ruleset`
 
 The rsyslog::component::ruleset class.
 
@@ -1289,65 +1295,65 @@ The rsyslog::component::ruleset class.
 
 The following parameters are available in the `rsyslog::component::ruleset` defined type:
 
-* [`priority`](#priority)
-* [`target`](#target)
-* [`confdir`](#confdir)
-* [`rules`](#rules)
-* [`stop`](#stop)
-* [`parameters`](#parameters)
-* [`format`](#format)
+* [`priority`](#-rsyslog--component--ruleset--priority)
+* [`target`](#-rsyslog--component--ruleset--target)
+* [`confdir`](#-rsyslog--component--ruleset--confdir)
+* [`rules`](#-rsyslog--component--ruleset--rules)
+* [`stop`](#-rsyslog--component--ruleset--stop)
+* [`parameters`](#-rsyslog--component--ruleset--parameters)
+* [`format`](#-rsyslog--component--ruleset--format)
 
-##### <a name="priority"></a>`priority`
+##### <a name="-rsyslog--component--ruleset--priority"></a>`priority`
 
 Data type: `Integer`
 
 
 
-##### <a name="target"></a>`target`
+##### <a name="-rsyslog--component--ruleset--target"></a>`target`
 
 Data type: `String`
 
 
 
-##### <a name="confdir"></a>`confdir`
+##### <a name="-rsyslog--component--ruleset--confdir"></a>`confdir`
 
 Data type: `String`
 
 
 
-##### <a name="rules"></a>`rules`
+##### <a name="-rsyslog--component--ruleset--rules"></a>`rules`
 
-Data type: `Optional[Array]`
+Data type: `Array`
 
 
 
 Default value: `[]`
 
-##### <a name="stop"></a>`stop`
+##### <a name="-rsyslog--component--ruleset--stop"></a>`stop`
 
-Data type: `Optional[Boolean]`
+Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="parameters"></a>`parameters`
+##### <a name="-rsyslog--component--ruleset--parameters"></a>`parameters`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
 
 
 Default value: `{}`
 
-##### <a name="format"></a>`format`
+##### <a name="-rsyslog--component--ruleset--format"></a>`format`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
 Default value: `'<%= $content %>'`
 
-### <a name="rsyslogcomponenttemplate"></a>`rsyslog::component::template`
+### <a name="rsyslog--component--template"></a>`rsyslog::component::template`
 
 The rsyslog::component::template class.
 
@@ -1355,90 +1361,90 @@ The rsyslog::component::template class.
 
 The following parameters are available in the `rsyslog::component::template` defined type:
 
-* [`priority`](#priority)
-* [`target`](#target)
-* [`confdir`](#confdir)
-* [`type`](#type)
-* [`list_descriptions`](#list_descriptions)
-* [`string`](#string)
-* [`subtree`](#subtree)
-* [`plugin`](#plugin)
-* [`options`](#options)
-* [`format`](#format)
+* [`priority`](#-rsyslog--component--template--priority)
+* [`target`](#-rsyslog--component--template--target)
+* [`confdir`](#-rsyslog--component--template--confdir)
+* [`type`](#-rsyslog--component--template--type)
+* [`list_descriptions`](#-rsyslog--component--template--list_descriptions)
+* [`string`](#-rsyslog--component--template--string)
+* [`subtree`](#-rsyslog--component--template--subtree)
+* [`plugin`](#-rsyslog--component--template--plugin)
+* [`options`](#-rsyslog--component--template--options)
+* [`format`](#-rsyslog--component--template--format)
 
-##### <a name="priority"></a>`priority`
+##### <a name="-rsyslog--component--template--priority"></a>`priority`
 
 Data type: `Integer`
 
 
 
-##### <a name="target"></a>`target`
+##### <a name="-rsyslog--component--template--target"></a>`target`
 
 Data type: `String`
 
 
 
-##### <a name="confdir"></a>`confdir`
+##### <a name="-rsyslog--component--template--confdir"></a>`confdir`
 
 Data type: `String`
 
 
 
-##### <a name="type"></a>`type`
+##### <a name="-rsyslog--component--template--type"></a>`type`
 
 Data type: `Enum['string', 'list', 'subtree', 'plugin']`
 
 
 
-##### <a name="list_descriptions"></a>`list_descriptions`
+##### <a name="-rsyslog--component--template--list_descriptions"></a>`list_descriptions`
 
-Data type: `Optional[Array]`
+Data type: `Array`
 
 
 
 Default value: `[]`
 
-##### <a name="string"></a>`string`
+##### <a name="-rsyslog--component--template--string"></a>`string`
 
-Data type: `Optional[String]`
-
-
-
-Default value: `''`
-
-##### <a name="subtree"></a>`subtree`
-
-Data type: `Optional[String]`
+Data type: `String`
 
 
 
 Default value: `''`
 
-##### <a name="plugin"></a>`plugin`
+##### <a name="-rsyslog--component--template--subtree"></a>`subtree`
 
-Data type: `Optional[String]`
+Data type: `String`
 
 
 
 Default value: `''`
 
-##### <a name="options"></a>`options`
+##### <a name="-rsyslog--component--template--plugin"></a>`plugin`
 
-Data type: `Optional[Hash]`
+Data type: `String`
+
+
+
+Default value: `''`
+
+##### <a name="-rsyslog--component--template--options"></a>`options`
+
+Data type: `Hash`
 
 
 
 Default value: `{}`
 
-##### <a name="format"></a>`format`
+##### <a name="-rsyslog--component--template--format"></a>`format`
 
-Data type: `Optional[String]`
+Data type: `String[1]`
 
 
 
 Default value: `'<%= $content %>'`
 
-### <a name="rsysloggenerate_concat"></a>`rsyslog::generate_concat`
+### <a name="rsyslog--generate_concat"></a>`rsyslog::generate_concat`
 
 The rsyslog::generate_concat class.
 
@@ -1446,16 +1452,16 @@ The rsyslog::generate_concat class.
 
 The following parameters are available in the `rsyslog::generate_concat` defined type:
 
-* [`confdir`](#confdir)
-* [`target`](#target)
+* [`confdir`](#-rsyslog--generate_concat--confdir)
+* [`target`](#-rsyslog--generate_concat--target)
 
-##### <a name="confdir"></a>`confdir`
+##### <a name="-rsyslog--generate_concat--confdir"></a>`confdir`
 
 Data type: `String`
 
 
 
-##### <a name="target"></a>`target`
+##### <a name="-rsyslog--generate_concat--target"></a>`target`
 
 Data type: `String`
 
@@ -1463,7 +1469,7 @@ Data type: `String`
 
 ## Data types
 
-### <a name="rsyslogactions"></a>`Rsyslog::Actions`
+### <a name="Rsyslog--Actions"></a>`Rsyslog::Actions`
 
 Struct data type alias for Rsyslog Actions
 
@@ -1500,7 +1506,7 @@ Array[Struct[{
   }]]
 ```
 
-### <a name="rsyslogactionsoutputsomamqp1"></a>`Rsyslog::Actions::Outputs::Omamqp1`
+### <a name="Rsyslog--Actions--Outputs--Omamqp1"></a>`Rsyslog::Actions::Outputs::Omamqp1`
 
 The Rsyslog::Actions::Outputs::Omamqp1 data type.
 
@@ -1520,7 +1526,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogactionsoutputsomelasticsearch"></a>`Rsyslog::Actions::Outputs::Omelasticsearch`
+### <a name="Rsyslog--Actions--Outputs--Omelasticsearch"></a>`Rsyslog::Actions::Outputs::Omelasticsearch`
 
 The Rsyslog::Actions::Outputs::Omelasticsearch data type.
 
@@ -1560,7 +1566,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogactionsoutputsomfile"></a>`Rsyslog::Actions::Outputs::Omfile`
+### <a name="Rsyslog--Actions--Outputs--Omfile"></a>`Rsyslog::Actions::Outputs::Omfile`
 
 The Rsyslog::Actions::Outputs::Omfile data type.
 
@@ -1597,7 +1603,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogactionsoutputsomfwd"></a>`Rsyslog::Actions::Outputs::Omfwd`
+### <a name="Rsyslog--Actions--Outputs--Omfwd"></a>`Rsyslog::Actions::Outputs::Omfwd`
 
 The Rsyslog::Actions::Outputs::Omfwd data type.
 
@@ -1633,7 +1639,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogactionsoutputsomhiredis"></a>`Rsyslog::Actions::Outputs::Omhiredis`
+### <a name="Rsyslog--Actions--Outputs--Omhiredis"></a>`Rsyslog::Actions::Outputs::Omhiredis`
 
 The Rsyslog::Actions::Outputs::Omhiredis data type.
 
@@ -1651,7 +1657,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogactionsoutputsomhttpfs"></a>`Rsyslog::Actions::Outputs::Omhttpfs`
+### <a name="Rsyslog--Actions--Outputs--Omhttpfs"></a>`Rsyslog::Actions::Outputs::Omhttpfs`
 
 The Rsyslog::Actions::Outputs::Omhttpfs data type.
 
@@ -1669,7 +1675,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogactionsoutputsomjournal"></a>`Rsyslog::Actions::Outputs::Omjournal`
+### <a name="Rsyslog--Actions--Outputs--Omjournal"></a>`Rsyslog::Actions::Outputs::Omjournal`
 
 Struct data type for the Rsyslog JournalD module's Action options
 
@@ -1681,7 +1687,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogactionsoutputsomkafka"></a>`Rsyslog::Actions::Outputs::Omkafka`
+### <a name="Rsyslog--Actions--Outputs--Omkafka"></a>`Rsyslog::Actions::Outputs::Omkafka`
 
 Struct data type for the Rsyslog Kafka module's Action options
 
@@ -1708,7 +1714,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogactionsoutputsomlibdbi"></a>`Rsyslog::Actions::Outputs::Omlibdbi`
+### <a name="Rsyslog--Actions--Outputs--Omlibdbi"></a>`Rsyslog::Actions::Outputs::Omlibdbi`
 
 Struct data type for the Rsyslog libdbi module's Action options
 
@@ -1733,7 +1739,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogactionsoutputsommail"></a>`Rsyslog::Actions::Outputs::Ommail`
+### <a name="Rsyslog--Actions--Outputs--Ommail"></a>`Rsyslog::Actions::Outputs::Ommail`
 
 Struct data type for the Rsyslog E-Mail module's Action options
 
@@ -1752,7 +1758,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogactionsoutputsommongodb"></a>`Rsyslog::Actions::Outputs::Ommongodb`
+### <a name="Rsyslog--Actions--Outputs--Ommongodb"></a>`Rsyslog::Actions::Outputs::Ommongodb`
 
 Struct data type for the Rsyslog MongoDB output module's Action options
 
@@ -1774,7 +1780,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogactionsoutputsommysql"></a>`Rsyslog::Actions::Outputs::Ommysql`
+### <a name="Rsyslog--Actions--Outputs--Ommysql"></a>`Rsyslog::Actions::Outputs::Ommysql`
 
 Struct data type alias for MySQL Rsyslog output module.
 
@@ -1798,7 +1804,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogactionsoutputsompgsql"></a>`Rsyslog::Actions::Outputs::Ompgsql`
+### <a name="Rsyslog--Actions--Outputs--Ompgsql"></a>`Rsyslog::Actions::Outputs::Ompgsql`
 
 Struct data type for the Rsyslog PostgreSQL module's Action options
 
@@ -1819,7 +1825,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogactionsoutputsompipe"></a>`Rsyslog::Actions::Outputs::Ompipe`
+### <a name="Rsyslog--Actions--Outputs--Ompipe"></a>`Rsyslog::Actions::Outputs::Ompipe`
 
 Struct data type for the Rsyslog Pipe module's Action options
 
@@ -1831,7 +1837,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogactionsoutputsomprog"></a>`Rsyslog::Actions::Outputs::Omprog`
+### <a name="Rsyslog--Actions--Outputs--Omprog"></a>`Rsyslog::Actions::Outputs::Omprog`
 
 Struct data type for the Rsyslog Program module's Action options
 
@@ -1857,7 +1863,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogactionsoutputsomrelp"></a>`Rsyslog::Actions::Outputs::Omrelp`
+### <a name="Rsyslog--Actions--Outputs--Omrelp"></a>`Rsyslog::Actions::Outputs::Omrelp`
 
 Struct data type for the Rsyslog RELP module's Action options
 
@@ -1884,7 +1890,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogactionsoutputsomsnmp"></a>`Rsyslog::Actions::Outputs::Omsnmp`
+### <a name="Rsyslog--Actions--Outputs--Omsnmp"></a>`Rsyslog::Actions::Outputs::Omsnmp`
 
 Struct data type for the Rsyslog SNMP module's Action options
 
@@ -1905,7 +1911,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogactionsoutputsomudpspoof"></a>`Rsyslog::Actions::Outputs::Omudpspoof`
+### <a name="Rsyslog--Actions--Outputs--Omudpspoof"></a>`Rsyslog::Actions::Outputs::Omudpspoof`
 
 Struct data type for the Rsyslog UDP Spoof module's Action options
 
@@ -1923,7 +1929,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogactionsoutputsomusrmsg"></a>`Rsyslog::Actions::Outputs::Omusrmsg`
+### <a name="Rsyslog--Actions--Outputs--Omusrmsg"></a>`Rsyslog::Actions::Outputs::Omusrmsg`
 
 Struct data type for the Rsyslog User MSG module's Action Parameters.
 
@@ -1936,7 +1942,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogactionsparameters"></a>`Rsyslog::Actions::Parameters`
+### <a name="Rsyslog--Actions--Parameters"></a>`Rsyslog::Actions::Parameters`
 
 Struct data type for general Rsyslog Action parameters
 
@@ -1963,7 +1969,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsysloginputsimbatchreports"></a>`Rsyslog::Inputs::Imbatchreports`
+### <a name="Rsyslog--Inputs--Imbatchreports"></a>`Rsyslog::Inputs::Imbatchreports`
 
 Data type for Rsyslog Input module parameters for batch report inputs.
 
@@ -1983,7 +1989,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsysloginputsimfile"></a>`Rsyslog::Inputs::Imfile`
+### <a name="Rsyslog--Inputs--Imfile"></a>`Rsyslog::Inputs::Imfile`
 
 Data type for Rsyslog Input module input parameters for file inputs.
 
@@ -2016,7 +2022,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsysloginputsimgssapi"></a>`Rsyslog::Inputs::Imgssapi`
+### <a name="Rsyslog--Inputs--Imgssapi"></a>`Rsyslog::Inputs::Imgssapi`
 
 Data type for Rsyslog Input module input parameters for gssapi.
 
@@ -2033,7 +2039,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsysloginputsimkafka"></a>`Rsyslog::Inputs::Imkafka`
+### <a name="Rsyslog--Inputs--Imkafka"></a>`Rsyslog::Inputs::Imkafka`
 
 Data type for Rsyslog Input module input parameters for Apache Kafka.
 
@@ -2050,7 +2056,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsysloginputsimprog"></a>`Rsyslog::Inputs::Improg`
+### <a name="Rsyslog--Inputs--Improg"></a>`Rsyslog::Inputs::Improg`
 
 Data type for Rsyslog Input module input parameters for Program input
 
@@ -2069,7 +2075,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsysloginputsimptcp"></a>`Rsyslog::Inputs::Imptcp`
+### <a name="Rsyslog--Inputs--Imptcp"></a>`Rsyslog::Inputs::Imptcp`
 
 Data type for Rsyslog Plain TCP input module
 
@@ -2112,7 +2118,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsysloginputsimrelp"></a>`Rsyslog::Inputs::Imrelp`
+### <a name="Rsyslog--Inputs--Imrelp"></a>`Rsyslog::Inputs::Imrelp`
 
 Data type for Rsyslog Plain TCP input module
 
@@ -2142,7 +2148,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsysloginputsimtcp"></a>`Rsyslog::Inputs::Imtcp`
+### <a name="Rsyslog--Inputs--Imtcp"></a>`Rsyslog::Inputs::Imtcp`
 
 Data type for Rsyslog TCP input module
 
@@ -2161,7 +2167,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsysloginputsimtuxedoulog"></a>`Rsyslog::Inputs::Imtuxedoulog`
+### <a name="Rsyslog--Inputs--Imtuxedoulog"></a>`Rsyslog::Inputs::Imtuxedoulog`
 
 Data for Rsyslog Input Tuxedo ULOG module
 
@@ -2179,7 +2185,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsysloginputsimudp"></a>`Rsyslog::Inputs::Imudp`
+### <a name="Rsyslog--Inputs--Imudp"></a>`Rsyslog::Inputs::Imudp`
 
 Data type for Rsyslog UDP input module
 
@@ -2201,7 +2207,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsysloginputsimuxsock"></a>`Rsyslog::Inputs::Imuxsock`
+### <a name="Rsyslog--Inputs--Imuxsock"></a>`Rsyslog::Inputs::Imuxsock`
 
 Data type for Rsyslog Unix Socket input module
 
@@ -2229,17 +2235,13 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogmodulesinput"></a>`Rsyslog::Modules::Input`
+### <a name="Rsyslog--Modules--Input"></a>`Rsyslog::Modules::Input`
 
 The Rsyslog::Modules::Input data type.
 
-Alias of
+Alias of `Enum['im3195', 'imfile', 'imgssapi', 'imjournal', 'imkafka', 'imklog', 'imkmsg', 'immark', 'impstats', 'imptcp', 'imrelp', 'imsolaris', 'imtcp', 'imupd', 'imuxsock']`
 
-```puppet
-Enum['im3195', 'imfile', 'imgssapi', 'imjournal', 'imkafka', 'imklog', 'imkmsg', 'immark', 'impstats', 'imptcp', 'imrelp', 'imsolaris', 'imtcp', 'imupd', 'imuxsock']
-```
-
-### <a name="rsyslogmodulesinputsimdocker"></a>`Rsyslog::Modules::Inputs::Imdocker`
+### <a name="Rsyslog--Modules--Inputs--Imdocker"></a>`Rsyslog::Modules::Inputs::Imdocker`
 
 Data type for Rsyslog module parameters for imdocker
 
@@ -2259,7 +2261,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogmodulesinputsimfile"></a>`Rsyslog::Modules::Inputs::Imfile`
+### <a name="Rsyslog--Modules--Inputs--Imfile"></a>`Rsyslog::Modules::Inputs::Imfile`
 
 Data type for Rsyslog Input module parameters for file inputs.
 
@@ -2275,7 +2277,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogmodulesinputsimjournal"></a>`Rsyslog::Modules::Inputs::Imjournal`
+### <a name="Rsyslog--Modules--Inputs--Imjournal"></a>`Rsyslog::Modules::Inputs::Imjournal`
 
 Rsyslog imjournal Module parameter data type
 
@@ -2297,57 +2299,37 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogmodulesmessage"></a>`Rsyslog::Modules::Message`
+### <a name="Rsyslog--Modules--Message"></a>`Rsyslog::Modules::Message`
 
 The Rsyslog::Modules::Message data type.
 
-Alias of
+Alias of `Enum['mmanon', 'mmcount', 'mmdblookup', 'mmexternal', 'mmfields', 'mmjsonparse', 'mmkubernetes', 'mmnormalize', 'mmpstructdata', 'mmrfc5424addhmac', 'mmrm1stspace', 'mmsequence', 'mmsnmptrapd', 'mmutf8fix']`
 
-```puppet
-Enum['mmanon', 'mmcount', 'mmdblookup', 'mmexternal', 'mmfields', 'mmjsonparse', 'mmkubernetes', 'mmnormalize', 'mmpstructdata', 'mmrfc5424addhmac', 'mmrm1stspace', 'mmsequence', 'mmsnmptrapd', 'mmutf8fix']
-```
-
-### <a name="rsyslogmodulesoutput"></a>`Rsyslog::Modules::Output`
+### <a name="Rsyslog--Modules--Output"></a>`Rsyslog::Modules::Output`
 
 The Rsyslog::Modules::Output data type.
 
-Alias of
+Alias of `Enum['omamqp1', 'omelasticsearch', 'omfile', 'omfwd', 'omhdfs', 'omhiredis', 'omhttpfs', 'omjournal', 'omkafka', 'omlibdbi', 'ommail', 'ommongodb', 'ommysql', 'ompgsql', 'ompipe', 'omprog', 'omrelp', 'omsnmp', 'omudpspoof', 'omusrmsg', 'omuxsock']`
 
-```puppet
-Enum['omamqp1', 'omelasticsearch', 'omfile', 'omfwd', 'omhdfs', 'omhiredis', 'omhttpfs', 'omjournal', 'omkafka', 'omlibdbi', 'ommail', 'ommongodb', 'ommysql', 'ompgsql', 'ompipe', 'omprog', 'omrelp', 'omsnmp', 'omudpspoof', 'omusrmsg', 'omuxsock']
-```
-
-### <a name="rsyslogmodulesparser"></a>`Rsyslog::Modules::Parser`
+### <a name="Rsyslog--Modules--Parser"></a>`Rsyslog::Modules::Parser`
 
 The Rsyslog::Modules::Parser data type.
 
-Alias of
+Alias of `Enum['pmciscoios', 'pmlastmsg', 'pmnormalize', 'pmnull', 'pmrfc3164', 'pmrfc3164sd', 'pmrfc5424']`
 
-```puppet
-Enum['pmciscoios', 'pmlastmsg', 'pmnormalize', 'pmnull', 'pmrfc3164', 'pmrfc3164sd', 'pmrfc5424']
-```
-
-### <a name="rsyslogmodulesstring"></a>`Rsyslog::Modules::String`
+### <a name="Rsyslog--Modules--String"></a>`Rsyslog::Modules::String`
 
 The Rsyslog::Modules::String data type.
 
-Alias of
+Alias of `Enum['smfile', 'smfwd', 'smtradfile', 'smtradfwd']`
 
-```puppet
-Enum['smfile', 'smfwd', 'smtradfile', 'smtradfwd']
-```
-
-### <a name="rsyslogpropertyoperator"></a>`Rsyslog::PropertyOperator`
+### <a name="Rsyslog--PropertyOperator"></a>`Rsyslog::PropertyOperator`
 
 Enumerable custom type for rsyslog property operators
 
-Alias of
+Alias of `Enum['contains', 'isequal', 'startswith', 'regex', 'ereregex', '!contains', '!isequal', '!startswith', '!regex', '!ereregex']`
 
-```puppet
-Enum['contains', 'isequal', 'startswith', 'regex', 'ereregex', '!contains', '!isequal', '!startswith', '!regex', '!ereregex']
-```
-
-### <a name="rsyslogqueueparameters"></a>`Rsyslog::Queue::Parameters`
+### <a name="Rsyslog--Queue--Parameters"></a>`Rsyslog::Queue::Parameters`
 
 The Rsyslog::Queue::Parameters data type.
 
@@ -2384,7 +2366,7 @@ Struct[{
 }]
 ```
 
-### <a name="rsyslogsyslogseverity"></a>`Rsyslog::Syslog::Severity`
+### <a name="Rsyslog--Syslog--Severity"></a>`Rsyslog::Syslog::Severity`
 
 Syslog severity data type
 

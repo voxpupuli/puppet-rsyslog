@@ -629,9 +629,11 @@ Puppet examples:
 ```puppet
 class { 'rsyslog:config':
   'inputs' => {
-    'type'   => 'imudp',
-    'config' => {
-      'port' => '514'
+    'imudp' => {
+      'type'   => 'imudp',
+      'config' => {
+        'port' => '514'
+      }
     }
   }
 }
@@ -650,6 +652,7 @@ rsyslog::config::inputs:
 will produce
 
 ```
+# imdup
 input(type="imudp"
   port="514"
 )
@@ -1030,7 +1033,7 @@ Puppet example with lookup tables:
 class { 'rsyslog::config':
   'lookup_tables' => {
     'srv-map' => {
-      'lookup_json' => {
+      'lookup_json'   => {
         'version'  => 1,
         'nolookup' => 'unk',
         'type'     => 'string',
@@ -1048,9 +1051,9 @@ class { 'rsyslog::config':
             'value' => 'linux'
           }
         ],
-        'lookup_file'   => '/etc/rsyslog.d/tables/srv-map.json',
-        'reload_on_hup' => true
-      }
+      },
+      'lookup_file'   => '/etc/rsyslog.d/tables/srv-map.json',
+      'reload_on_hup' => true
     }
   },
   'rulesets' => {
@@ -1109,8 +1112,8 @@ rsyslog::config::lookup_tables:
           value: 'windows'
         - index: '192.168.255.12'
           value: 'linux'
-      lookup_file: '/etc/rsyslog.d/tables/srv-map.json'
-      reload_on_hup: true
+    lookup_file: '/etc/rsyslog.d/tables/srv-map.json'
+    reload_on_hup: true
 rsyslog::config::rulesets:
   ruleset_lookup_set_windows_by_ip:
     rules:

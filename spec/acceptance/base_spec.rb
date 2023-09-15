@@ -20,7 +20,7 @@ describe 'Rsyslog base' do
           $overrides = true
           $upstream = true
         }
-        'CentOS', 'RedHat': {
+        'CentOS', 'OracleLinux', 'RedHat': {
           $overrides = false
           $upstream = ( Integer($facts['os']['release']['major']) < 9 )
         }

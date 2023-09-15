@@ -14,7 +14,7 @@ describe 'Rsyslog' do
         'Ubuntu': {
           $overrides = true
         }
-        'RedHat', 'CentOS', 'Scientific', 'Fedora': {
+        'RedHat', 'CentOS', 'Scientific', 'Fedora', 'OracleLinux': {
           $overrides = false
         }
       }

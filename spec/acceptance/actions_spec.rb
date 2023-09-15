@@ -10,7 +10,7 @@ describe 'Rsyslog actions' do
   context 'basic action' do
     it 'applies with action' do
       pp = <<-MANIFEST
-      if $facts['os']['name'] == 'Fedora' and $facts['os']['release']['full'] == 32 {
+      if $facts['os']['name'] == 'Fedora' {
         package { 'rsyslog-elasticsearch': ensure => installed }
       }
 

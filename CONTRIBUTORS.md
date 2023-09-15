@@ -9,7 +9,7 @@
 ## Module Layout
   The module is written as 2 main components one is is installing the package,
   configuring the service etc.., with base install and the second is configuring
-  it as client/server based on the configuration data provided. The configuration
+  it based on the configuration data provided. The configuration
   class is broken down into 8 classes
 
   ```
@@ -47,7 +47,7 @@
   rsyslog::confdir: /etc/rsyslog.d
 
   #configuration data for global_config class
-  rsyslog::server::global_config:
+  rsyslog::config::global_config:
   parser.SomeConfigurationOption:
     value: 'on'
   EscapeControlCharactersOnReceive:
@@ -145,4 +145,3 @@
   50_rsyslog.conf file or it can also be dropped as a separate file into
   /etc/rsyslog.d directory. The class/component/template structure shoule
   be maintained as above to keep the code consistent.
-

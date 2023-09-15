@@ -9,6 +9,7 @@ define rsyslog::generate_concat (
         notify => Service[$rsyslog::service_name],
         order  => 'numeric',
         mode   => $rsyslog::conf_permissions,
+        warn   => true,
       }
     }
   } else {
@@ -17,6 +18,7 @@ define rsyslog::generate_concat (
         owner => 'root',
         order => 'numeric',
         mode  => $rsyslog::conf_permissions,
+        warn  => true,
       }
     }
   }

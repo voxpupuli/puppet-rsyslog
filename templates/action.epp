@@ -2,7 +2,7 @@
 $action_name,
 $type,
 $facility,
-Boolean $dont_linebreak_actions = false,
+Boolean $dont_linebreak_actions,
 $config
 | -%>
 # <%= $action_name %>

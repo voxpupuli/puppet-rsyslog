@@ -2,11 +2,12 @@
 $action_name,
 $type,
 $facility,
+Boolean $dont_linebreak_actions = false,
 $config
 | -%>
 # <%= $action_name %>
-<% if $facility != "default" and size($config) < 3 { -%>
-  <%= sprintf( '%-30s %s%s%s', $facility, 'action(type="',$type,'" ' )-%>
+<% if $facility != "default" and size($config) < 3 or $dont_linebreak_actions { -%>
+  <%= sprintf('%-30s action(type="%s" ', $facility, $type) -%>
   <%  if $config { -%>
     <% $config.each |$k, $v| { -%> <%= $k -%>="<%= $v -%>" <% }-%>)
   <%-}%>

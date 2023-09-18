@@ -146,6 +146,7 @@ The following parameters are available in the `rsyslog` class:
 * [`legacy_config_priority`](#-rsyslog--legacy_config_priority)
 * [`template_priority`](#-rsyslog--template_priority)
 * [`action_priority`](#-rsyslog--action_priority)
+* [`dont_linebreak_actions`](#-rsyslog--dont_linebreak_actions)
 * [`input_priority`](#-rsyslog--input_priority)
 * [`custom_priority`](#-rsyslog--custom_priority)
 * [`main_queue_priority`](#-rsyslog--main_queue_priority)
@@ -279,6 +280,14 @@ Set the global ordering of template configuration in rsyslog.
 Data type: `Integer`
 
 Set the global ordering of action configuration in rsyslog.
+
+##### <a name="-rsyslog--dont_linebreak_actions"></a>`dont_linebreak_actions`
+
+Data type: `Boolean`
+
+Ensure that all action options are placed on a single line.
+
+Default value: `false`
 
 ##### <a name="-rsyslog--input_priority"></a>`input_priority`
 
@@ -654,6 +663,7 @@ The following parameters are available in the `rsyslog::component::action` defin
 * [`target`](#-rsyslog--component--action--target)
 * [`confdir`](#-rsyslog--component--action--confdir)
 * [`type`](#-rsyslog--component--action--type)
+* [`dont_linebreak_actions`](#-rsyslog--component--action--dont_linebreak_actions)
 * [`config`](#-rsyslog--component--action--config)
 * [`facility`](#-rsyslog--component--action--facility)
 * [`format`](#-rsyslog--component--action--format)
@@ -681,6 +691,14 @@ Data type: `String`
 Data type: `String`
 
 
+
+##### <a name="-rsyslog--component--action--dont_linebreak_actions"></a>`dont_linebreak_actions`
+
+Data type: `Boolean`
+
+
+
+Default value: `$rsyslog::dont_linebreak_actions`
 
 ##### <a name="-rsyslog--component--action--config"></a>`config`
 

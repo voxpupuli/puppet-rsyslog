@@ -3,6 +3,7 @@ define rsyslog::component::action (
   String $target,
   String $confdir,
   String $type,
+  Boolean $dont_linebreak_actions = $rsyslog::dont_linebreak_actions,
   Hash $config = {},
   String[1] $facility = 'default',
   String[1] $format = '<%= $content %>'
@@ -10,10 +11,11 @@ define rsyslog::component::action (
   include rsyslog
 
   $content = epp('rsyslog/action.epp', {
-      'action_name' => $name,
-      'type'        => $type,
-      'facility'    => $facility,
-      'config'      => $config,
+      'action_name'            => $name,
+      'type'                   => $type,
+      'facility'               => $facility,
+      'config'                 => $config,
+      'dont_linebreak_actions' => $dont_linebreak_actions,
   })
 
   rsyslog::generate_concat { "rsyslog::concat::action::${title}":

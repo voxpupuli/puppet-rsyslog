@@ -63,6 +63,8 @@
 #   Set the global ordering of template configuration in rsyslog.
 # @param action_priority
 #   Set the global ordering of action configuration in rsyslog.
+# @param dont_linebreak_actions
+#   Ensure that all action options are placed on a single line.
 # @param input_priority
 #   Set the global ordering of input configuration in rsyslog.
 # @param custom_priority
@@ -118,6 +120,7 @@ class rsyslog (
   Stdlib::Filemode  $conf_permissions = '0644',
   Stdlib::Filemode  $confdir_permissions = '0755',
   Stdlib::Filemode  $global_conf_perms = $conf_permissions,
+  Boolean           $dont_linebreak_actions = false,
 ) {
   if $manage_service == true and $external_service == true {
     fail('manage_service and external_service cannot be set at the same time!')

@@ -12,7 +12,7 @@ $tasks
     <%}-%>
   <%- } elsif $config == 'action' { -%>
     <%- if ! $cfgval['facility'] or $cfgval['facility'] == '' { $facility = 'default' } else { $facility = $cfgval['facility'] } -%>
-  <%= epp('rsyslog/action.epp', { 'action_name' => $cfgval['name'], 'type' => $cfgval['type'], 'facility' => $facility, 'config' => $cfgval['config'],}) %>
+  <%= epp('rsyslog/action.epp', { 'action_name' => $cfgval['name'], 'type' => $cfgval['type'], 'facility' => $facility, 'config' => $cfgval['config'], 'dont_linebreak_actions' => $cfgval['dont_linebreak_actions'], }) %>
   <%-} elsif $config == 'stop' { -%>
   stop
   <%} elsif $config == 'exec' { -%>

@@ -18,6 +18,7 @@ describe 'Rsyslog::Component::Action', include_rsyslog: true do
             type: 'omelasticsearch',
             priority: 40,
             target: '50_rsyslog.conf',
+            dont_linebreak_actions: false,
             confdir: '/etc/rsyslog.d',
             config: {
               'queue.type' => 'linkedlist',
@@ -49,6 +50,7 @@ describe 'Rsyslog::Component::Action', include_rsyslog: true do
             priority: 40,
             target: '50_rsyslog.conf',
             confdir: '/etc/rsyslog.d',
+            dont_linebreak_actions: false,
             facility: 'kern.*',
             config: {
               'dynaFile' => 'remoteKern'
@@ -67,6 +69,7 @@ describe 'Rsyslog::Component::Action', include_rsyslog: true do
             type: 'omelasticsearch',
             priority: 40,
             target: '50_rsyslog.conf',
+            dont_linebreak_actions: false,
             confdir: '/etc/rsyslog.d',
             facility: '*.*',
             config: {

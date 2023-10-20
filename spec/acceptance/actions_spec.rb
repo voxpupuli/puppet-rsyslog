@@ -46,5 +46,20 @@ describe 'Rsyslog actions' do
         is_expected.to match(%r{# myaction\naction\(type="omelasticsearch"\n.*name="myaction"\n.*host=\["127.0.0.1", "192.168.0.1"\]\n.*queue.type="linkedlist"\n.*queue.spoolDirectory="/var/log/rsyslog/queue"\n.*\)})
       end
     end
+
+    # rm the rsyslog-elasticsearch package as it will block the uninstall of
+    # the rsyslog package in other acceptance tests
+    if fact('os.name') == 'Fedora'
+      it 'applies with action' do
+        pp = <<-MANIFEST
+        if $facts['os']['name'] == 'Fedora' {
+          package { 'rsyslog-elasticsearch': ensure => absent }
+        }
+        MANIFEST
+
+        apply_manifest(pp, catch_failures: true)
+        apply_manifest(pp, catch_changes: true)
+      end
+    end
   end
 end

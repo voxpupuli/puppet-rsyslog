@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v7.1.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v7.1.0) (2023-10-20)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v7.0.1...v7.1.0)
+
+**Implemented enhancements:**
+
+- metadata.json: allow puppetlabs-concat \< 10 [\#234](https://github.com/voxpupuli/puppet-rsyslog/pull/234) ([kenyon](https://github.com/kenyon))
+- Update supported Fedora version to 38 [\#233](https://github.com/voxpupuli/puppet-rsyslog/pull/233) ([kenyon](https://github.com/kenyon))
+- Add Puppet 8 support [\#228](https://github.com/voxpupuli/puppet-rsyslog/pull/228) ([bastelfreak](https://github.com/bastelfreak))
+- Add warning to indicate that the files are managed by Puppet. [\#214](https://github.com/voxpupuli/puppet-rsyslog/pull/214) ([bschonec](https://github.com/bschonec))
+
+**Fixed bugs:**
+
+- fix f38 acceptance tests failing on rsyslog-elasticsearch [\#237](https://github.com/voxpupuli/puppet-rsyslog/pull/237) ([jhoblitt](https://github.com/jhoblitt))
+- drop support for scientific linux 8 -- sl8 never existed [\#236](https://github.com/voxpupuli/puppet-rsyslog/pull/236) ([jhoblitt](https://github.com/jhoblitt))
+- Fix CI on OracleLinux [\#231](https://github.com/voxpupuli/puppet-rsyslog/pull/231) ([smortex](https://github.com/smortex))
+- Fix old client/server model reference in README [\#209](https://github.com/voxpupuli/puppet-rsyslog/pull/209) ([cruelsmith](https://github.com/cruelsmith))
+
 ## [v7.0.1](https://github.com/voxpupuli/puppet-rsyslog/tree/v7.0.1) (2023-06-18)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v7.0.0...v7.0.1)

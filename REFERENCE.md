@@ -456,7 +456,7 @@ Default value: `{}`
 Data type: `Hash`
 
 Hash of rsyslog configuration in the legacy format.
-* :name (String) [undef] Na,e of the legacy configuration option.
+* :name (String) [undef] Name of the legacy configuration option.
   * :priority (Integer) [10] Sets where in the config the option will be placed in the target file.
   * :target (String) [50_rsyslog.conf] File to place the conf
   * :value (String) [] Value of the configuration item

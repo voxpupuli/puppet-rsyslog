@@ -127,6 +127,7 @@ describe 'rsyslog::component::template', include_rsyslog: true do
             \s+constant\(value="\\"@timestamp\\":\\""\s\)
             \s+property\(name="timereported"\s+dateformat="rfc3339"\s\)
             \s+constant\(value="\\"\}"\s\)
+            \s+constant\(value="\\"message\\":\\""\s\)\s+property\(name="msg"\s+format="json"\s\)
             }x
           )
         end

@@ -25,8 +25,10 @@ describe 'rsyslog::component::template', include_rsyslog: true do
 
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::template::mytpl').with_content(
-            %r{(?x)\s*template\s*\(name="mytpl"\s*type="string"
-            \s+string="/var/log/rsyslog/logs/%fromhost-ip%/%fromhost-ip%.log"\s*\)\s*$}
+            %r{
+              template\s\(name="mytpl"\stype="string"
+              \s+string="/var/log/rsyslog/logs/%fromhost-ip%/%fromhost-ip%.log"\s\)
+            }x
           )
         end
 
@@ -48,8 +50,10 @@ describe 'rsyslog::component::template', include_rsyslog: true do
 
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::template::mytpl').with_content(
-            %r{(?x)\s*template\s*\(name="mytpl"\s*type="plugin"
-            \s+plugin="mystringgen"\s*\)\s*$}
+            %r{
+              template\s\(name="mytpl"\stype="plugin"
+              \s+plugin="mystringgen"\s\)
+            }x
           )
         end
       end
@@ -67,8 +71,10 @@ describe 'rsyslog::component::template', include_rsyslog: true do
 
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::template::mytpl').with_content(
-            %r{(?x)\s*template\s*\(name="mytpl"\s*type="subtree"
-            \s+subtree="\$!usr!tpl2"\s*\)\s*$}
+            %r{
+              template\s\(name="mytpl"\stype="subtree"
+              \s+subtree="\$!usr!tpl2"\s\)
+            }x
           )
         end
       end
@@ -87,9 +93,11 @@ describe 'rsyslog::component::template', include_rsyslog: true do
 
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::template::mytpl').with_content(
-            %r{(?x)\s*template\s*\(name="mytpl"\s*type="string"
-            \s+string="/var/log/rsyslog/logs/%fromhost-ip%/%fromhost-ip%.log"
-            \s+option\.sql="on"\s*\)\s*$}
+            %r{
+              template\s\(name="mytpl"\stype="string"
+              \s+string="/var/log/rsyslog/logs/%fromhost-ip%/%fromhost-ip%.log"
+              \s+option\.sql="on"\)
+            }x
           )
         end
       end
@@ -105,20 +113,21 @@ describe 'rsyslog::component::template', include_rsyslog: true do
               { 'constant' => { 'value' => '{' } },
               { 'constant' => { 'value' => '\"@timestamp\":\"' } },
               { 'property' => { 'name'  => 'timereported', 'dateformat' => 'rfc3339' } },
-              { 'constant' => { 'value' => '\"}' } }
+              { 'constant' => { 'value' => '\"}' } },
+              { 'constant' => { 'value' => '\"message\\":\"' }, 'property' => { 'name' => 'msg', 'format' => 'json' } }
             ]
           }
         end
 
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::template::mytpl').with_content(
-            %r{(?x)\s*template\s+\(name="mytpl"\s+type="list"\s*\)
-            \s*\{
-            \s*constant\(\s*value="\{"\s*\)\s*\n
-            \s*constant\(\s*value="\\"@timestamp\\":\\""\s*\)\s*\n
-            \s*property\(\s*name="timereported"\s+dateformat="rfc3339"\s*\)\s*\n
-            \s*constant\(\s*value="\\"\}"\s*\)\s*$
-            }
+            %r{template\s\(name="mytpl"\stype="list"\s\)
+            \s+\{
+            \s+constant\(value="\{"\s\)
+            \s+constant\(value="\\"@timestamp\\":\\""\s\)
+            \s+property\(name="timereported"\s+dateformat="rfc3339"\s\)
+            \s+constant\(value="\\"\}"\s\)
+            }x
           )
         end
       end

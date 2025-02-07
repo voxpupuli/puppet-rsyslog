@@ -25,7 +25,7 @@ describe 'rsyslog::component::global_config', include_rsyslog: true do
 
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::global_config::configoption').with_content(
-            %r{(?x)\$configoption\s+on\s*\n}
+            %r{\$configoption\son\n}
           )
         end
 

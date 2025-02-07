@@ -25,9 +25,10 @@ describe 'rsyslog::component::legacy_config', include_rsyslog: true do
 
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::legacy_config::mylegacy_rules').with_content(
-            %r{(?x)# mylegacy_rules\n
-            ^auth,authpriv\.\*\s*/var/log/auth.log\s*\n
-            }
+            %r{
+              mylegacy_rules\n
+              ^auth,authpriv\.\*\s+/var/log/auth.log\n
+            }x
           )
         end
 

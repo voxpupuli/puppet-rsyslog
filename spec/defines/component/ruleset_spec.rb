@@ -26,10 +26,12 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
 
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(
-            %r{(?x)\s*ruleset\s*\(name="myruleset"
-            \s*\)\s*{
-            \s*call\s*action\.parse\.rawmsg
-            \s*}$}
+            %r{
+              ruleset\s\(name="myruleset"
+              \s+\)\s{
+              \s+call\saction\.parse\.rawmsg
+              \s+}$
+            }x
           )
         end
 

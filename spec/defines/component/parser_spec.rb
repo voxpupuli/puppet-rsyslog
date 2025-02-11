@@ -27,11 +27,13 @@ describe 'rsyslog::component::parser', include_rsyslog: true do
 
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::parser::pmrfc3164.hostname_with_slashes').with_content(
-            %r{(?x)# pmrfc3164.hostname_with_slashes\n
-            \s*parser\(name="pmrfc3164.hostname_with_slashes"\s*\n
-            \s*type="pmrfc3164"\s*\n
-            \s*permit.slashesinhostname="on"\s*\n
-            \s*\)\s*}
+            %r{
+              pmrfc3164.hostname_with_slashes
+              \s+parser\(name="pmrfc3164.hostname_with_slashes"
+              \s+type="pmrfc3164"
+              \s+permit.slashesinhostname="on"
+              \s+\)
+            }x
           )
         end
 

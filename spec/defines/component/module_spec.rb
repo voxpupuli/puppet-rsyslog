@@ -31,14 +31,15 @@ describe 'rsyslog::component::module', include_rsyslog: true do
 
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::module::impstats').with_content(
-            %r{(?x)module\s*\(\s*load="impstats"\s*\n
-            \s*interval="60"\n
-            \s*severity="7"\n
-            \s*log.syslog="off"\n
-            \s*log.file="/var/log/rsyslog/logs/stats/stats.log"\n
-            \s*Ruleset="remote"\n
-            \s*\n
-            \)\n$}
+            %r{
+              module\(load="impstats"
+              \s+interval="60"
+              \s+severity="7"
+              \s+log\.syslog="off"
+              \s+log\.file="/var/log/rsyslog/logs/stats/stats.log"
+              \s+Ruleset="remote"
+              \s+\)
+            }x
           )
         end
 

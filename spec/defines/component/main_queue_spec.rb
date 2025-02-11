@@ -34,10 +34,12 @@ describe 'rsyslog::component::main_queue', include_rsyslog: true do
 
           it do
             is_expected.to contain_concat__fragment('rsyslog::component::main_queue::main_queue_opts').with_content(
-              %r{(?x)\s*main_queue\s*\(\n
-              \s*queue.maxdiskspace="1000G"\s*\n
-              \s*queue.dequeuebatchsize="1000"\s*\n
-              \s*\)\s*}
+              %r{
+                main_queue\(
+                \s+queue.maxdiskspace="1000G"
+                \s+queue.dequeuebatchsize="1000"
+                \s+\)
+              }x
             )
           end
 

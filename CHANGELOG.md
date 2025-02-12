@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v7.2.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v7.2.0) (2025-02-11)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v7.1.0...v7.2.0)
+
+**Closed issues:**
+
+- template list\_descriptions not rendering correctly [\#252](https://github.com/voxpupuli/puppet-rsyslog/issues/252)
+- Configuration files do not identify themselves as "Managed by Puppet, do not edit." [\#202](https://github.com/voxpupuli/puppet-rsyslog/issues/202)
+
+**Merged pull requests:**
+
+- templates/template.epp:correct formating [\#253](https://github.com/voxpupuli/puppet-rsyslog/pull/253) ([b4ldr](https://github.com/b4ldr))
+- base: rainerscript replacement for `$IncludeConfig` [\#248](https://github.com/voxpupuli/puppet-rsyslog/pull/248) ([m8t](https://github.com/m8t))
+- Remove legacy top-scope syntax [\#239](https://github.com/voxpupuli/puppet-rsyslog/pull/239) ([smortex](https://github.com/smortex))
+
 ## [v7.1.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v7.1.0) (2023-10-20)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v7.0.1...v7.1.0)

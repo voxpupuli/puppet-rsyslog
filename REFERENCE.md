@@ -157,6 +157,7 @@ The following parameters are available in the `rsyslog` class:
 * [`conf_permissions`](#-rsyslog--conf_permissions)
 * [`confdir_permissions`](#-rsyslog--confdir_permissions)
 * [`global_conf_perms`](#-rsyslog--global_conf_perms)
+* [`config_file_include`](#-rsyslog--config_file_include)
 * [`parser_priority`](#-rsyslog--parser_priority)
 
 ##### <a name="-rsyslog--confdir"></a>`confdir`
@@ -349,6 +350,14 @@ Data type: `Stdlib::Filemode`
 Set the file mode for the /etc/rsyslog.conf
 
 Default value: `$conf_permissions`
+
+##### <a name="-rsyslog--config_file_include"></a>`config_file_include`
+
+Data type: `String`
+
+Override the include directive in the /etc/rsyslog.conf file.
+
+Default value: `"include(file=\"${rsyslog::confdir}/*.conf\" mode=\"optional\")"`
 
 ##### <a name="-rsyslog--parser_priority"></a>`parser_priority`
 

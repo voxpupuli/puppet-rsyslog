@@ -62,6 +62,10 @@ class rsyslog::base {
       mode    => $rsyslog::global_conf_perms,
     }
 
+    if $rsyslog::manage_service {
+      File[$rsyslog::config_file] ~> Service[$rsyslog::service_name]
+    }
+
     if $rsyslog::manage_package {
       Package[$rsyslog::package_name] -> File[$rsyslog::config_file]
     }

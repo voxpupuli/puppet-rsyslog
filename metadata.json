@@ -52,6 +52,12 @@
       "operatingsystemrelease": [
         "38"
       ]
+    },
+    {
+      "operatingsystem": "Solaris",
+      "operatingsystemrelease": [
+        "11.4"
+      ]
     }
   ],
   "dependencies": [

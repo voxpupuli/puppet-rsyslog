@@ -8,11 +8,13 @@ define rsyslog::component::input (
 ) {
   include rsyslog
 
-  $content = epp('rsyslog/input.epp', {
+  $content = epp('rsyslog/input.epp',
+    {
       'input_name'  => $name,
       'type'        => $type,
       'config'      => $config
-  })
+    },
+  )
 
   rsyslog::generate_concat { "rsyslog::concat::input::${name}":
     confdir => $confdir,

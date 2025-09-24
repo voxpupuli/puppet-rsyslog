@@ -1,12 +1,14 @@
 # Struct data type alias for Rsyslog Actions
 type Rsyslog::Actions = Array[
-  Struct[{
+  Struct[
+    {
       name          => String[1],
       type          => Rsyslog::Modules::Output,
       facility      => Optional[String[1]],
       action_params => Optional[Rsyslog::Actions::Parameters],
       queue_params  => Optional[Rsyslog::Queue::Parameters],
-      output_params => Optional[Variant[
+      output_params => Optional[
+        Variant[
           Rsyslog::Actions::Outputs::Omamqp1,
           Rsyslog::Actions::Outputs::Omelasticsearch,
           Rsyslog::Actions::Outputs::Omfile,
@@ -26,6 +28,8 @@ type Rsyslog::Actions = Array[
           Rsyslog::Actions::Outputs::Omsnmp,
           Rsyslog::Actions::Outputs::Omudpspoof,
           Rsyslog::Actions::Outputs::Omusrmsg,
-      ]],
-  }]
+        ]
+      ],
+    }
+  ]
 ]

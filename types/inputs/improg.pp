@@ -1,5 +1,6 @@
 # Data type for Rsyslog Input module input parameters for Program input
-type Rsyslog::Inputs::Improg = Struct[{
+type Rsyslog::Inputs::Improg = Struct[
+  {
     binary           => String[1],
     tag              => String[1],
     facility         => Optional[Stdlib::Syslogfacility],
@@ -8,4 +9,5 @@ type Rsyslog::Inputs::Improg = Struct[{
     signalonclose    => Optional[Enum['on', 'off']],
     closetimeout     => Optional[Integer],
     killunresponsive => Optional[Enum['on', 'off']],
-}]
+  }
+]

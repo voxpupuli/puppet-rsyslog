@@ -1,5 +1,6 @@
 # Data type for Rsyslog Input module parameters for batch report inputs.
-type Rsyslog::Inputs::Imbatchreports = Struct[{
+type Rsyslog::Inputs::Imbatchreports = Struct[
+  {
     reports           => String[1],
     tag               => String[1],
     facility          => Optional[Stdlib::Syslogfacility],
@@ -9,4 +10,5 @@ type Rsyslog::Inputs::Imbatchreports = Struct[{
     rename            => Optional[String[1]],
     programkey        => Optional[String[1]],
     timestampkey      => Optional[String[1]],
-}]
+  }
+]

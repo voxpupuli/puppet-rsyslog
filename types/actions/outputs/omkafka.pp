@@ -1,5 +1,6 @@
 # Struct data type for the Rsyslog Kafka module's Action options
-type Rsyslog::Actions::Outputs::Omkafka = Struct[{
+type Rsyslog::Actions::Outputs::Omkafka = Struct[
+  {
     broker                => Optional[String[1]],
     topic                 => String[1],
     key                   => Optional[String[1]],
@@ -16,4 +17,5 @@ type Rsyslog::Actions::Outputs::Omkafka = Struct[{
     resubmitonfailure     => Optional[Enum['on', 'off']],
     keepfailedmessages    => Optional[Enum['on', 'off']],
     failedmsgfile         => Optional[String[1]],
-}]
+  }
+]

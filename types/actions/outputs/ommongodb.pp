@@ -1,5 +1,6 @@
 # Struct data type for the Rsyslog MongoDB output module's Action options
-type Rsyslog::Actions::Outputs::Ommongodb = Struct[{
+type Rsyslog::Actions::Outputs::Ommongodb = Struct[
+  {
     uristr              => Optional[String[1]],
     ssl_cert            => Optional[Stdlib::Absolutepath],
     ssl_ca              => Optional[Stdlib::Absolutepath],
@@ -11,4 +12,5 @@ type Rsyslog::Actions::Outputs::Ommongodb = Struct[{
     serverported        => Optional[Stdlib::Port],
     uid                 => Optional[String[1]],
     pwd                 => Optional[String[1]],
-}]
+  }
+]

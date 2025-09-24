@@ -1,4 +1,5 @@
-type Rsyslog::Actions::Outputs::Omhttpfs = Struct[{
+type Rsyslog::Actions::Outputs::Omhttpfs = Struct[
+  {
     host      => Optional[Stdlib::Host],
     port      => Optional[Stdlib::Port],
     user      => Optional[String[1]],
@@ -6,4 +7,5 @@ type Rsyslog::Actions::Outputs::Omhttpfs = Struct[{
     file      => String[1],
     isdynfile => Optional[Enum['on', 'off']],
     template  => Optional[String[1]]
-}]
+  }
+]

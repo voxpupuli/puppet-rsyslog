@@ -25,11 +25,13 @@ define rsyslog::component::lookup_table (
     mode    => '0644',
   }
 
-  $content = epp('rsyslog/lookup_table.epp', {
+  $content = epp('rsyslog/lookup_table.epp',
+    {
       'lookup_table_name' => $name,
       'file'              => $lookup_file,
       'reload_on_hup'     => $reload_on_hup,
-  })
+    },
+  )
 
   rsyslog::generate_concat { "rsyslog::concat::lookup_table::${name}":
     confdir => $confdir,

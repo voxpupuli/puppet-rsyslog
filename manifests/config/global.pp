@@ -24,10 +24,10 @@ class rsyslog::config::global {
         priority => $rsyslog::global_config_priority,
         target   => $rsyslog::target_file,
         confdir  => $rsyslog::confdir,
-        ;
+      ;
       'rainerscript':
         config => $flattendata,
-        ;
+      ;
     }
   }
 }

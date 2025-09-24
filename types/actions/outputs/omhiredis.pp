@@ -1,4 +1,5 @@
-type Rsyslog::Actions::Outputs::Omhiredis = Struct[{
+type Rsyslog::Actions::Outputs::Omhiredis = Struct[
+  {
     server         => Optional[Stdlib::Host],
     serverport     => Optional[Stdlib::Port],
     serverpassword => Optional[String[1]],
@@ -6,4 +7,5 @@ type Rsyslog::Actions::Outputs::Omhiredis = Struct[{
     template       => Optional[String[1]],
     key            => Optional[String[1]],
     userpush       => Optional[Enum['on', 'off']]
-}]
+  }
+]

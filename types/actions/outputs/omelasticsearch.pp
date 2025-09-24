@@ -1,4 +1,5 @@
-type Rsyslog::Actions::Outputs::Omelasticsearch = Struct[{
+type Rsyslog::Actions::Outputs::Omelasticsearch = Struct[
+  {
     server               => Optional[Variant[Stdlib::Host, Array[Stdlib::Host]]],
     serverport           => Optional[Stdlib::Port],
     healthchecktimeout   => Optional[Integer],
@@ -28,4 +29,5 @@ type Rsyslog::Actions::Outputs::Omelasticsearch = Struct[{
     retryruleset         => Optional[String[1]],
     'ratelimit.interval' => Optional[Integer],
     'ratelimit.burst'    => Optional[Integer],
-}]
+  }
+]

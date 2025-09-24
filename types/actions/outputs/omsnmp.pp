@@ -1,5 +1,6 @@
 # Struct data type for the Rsyslog SNMP module's Action options
-type Rsyslog::Actions::Outputs::Omsnmp = Struct[{
+type Rsyslog::Actions::Outputs::Omsnmp = Struct[
+  {
     server => Stdlib::Host,
     port   => Optional[Stdlib::Port],
     transport => Optional[String[1]],
@@ -10,4 +11,5 @@ type Rsyslog::Actions::Outputs::Omsnmp = Struct[{
     enterpriseoid => Optional[String[1]],
     specifictype  => Optional[Integer],
     traptype      => Optional[Integer[0,6]],
-}]
+  }
+]

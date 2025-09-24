@@ -9,12 +9,14 @@ define rsyslog::component::action (
 ) {
   include rsyslog
 
-  $content = epp('rsyslog/action.epp', {
+  $content = epp('rsyslog/action.epp',
+    {
       'action_name' => $name,
       'type'        => $type,
       'facility'    => $facility,
       'config'      => $config,
-  })
+    },
+  )
 
   rsyslog::generate_concat { "rsyslog::concat::action::${title}":
     confdir => $confdir,

@@ -1,4 +1,5 @@
-type Rsyslog::Actions::Outputs::Omfwd = Struct[{
+type Rsyslog::Actions::Outputs::Omfwd = Struct[
+  {
     target                            => Optional[Stdlib::Host],
     port                              => Optional[Stdlib::Port],
     protocol                          => Optional[Enum['tcp', 'udp', 'ossl', 'gtls']],
@@ -24,4 +25,5 @@ type Rsyslog::Actions::Outputs::Omfwd = Struct[{
     'udp.sendtoall'                   => Optional[Enum['on', 'off']],
     'udp.senddelay'                   => Optional[Integer],
     gnutlsprioritystring              => Optional[String[1]],
-}]
+  }
+]

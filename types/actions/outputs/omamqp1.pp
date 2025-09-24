@@ -1,4 +1,5 @@
-type Rsyslog::Actions::Outputs::Omamqp1 = Struct[{
+type Rsyslog::Actions::Outputs::Omamqp1 = Struct[
+  {
     host           => String[1],
     target         => String[1],
     username       => Optional[String[1]],
@@ -8,4 +9,5 @@ type Rsyslog::Actions::Outputs::Omamqp1 = Struct[{
     reconnectdelay => Optional[Integer],
     maxretries     => Optional[Integer],
     disablesasl    => Optional[Integer],
-}]
+  }
+]

@@ -8,11 +8,13 @@ define rsyslog::component::parser (
 ) {
   include rsyslog
 
-  $content = epp('rsyslog/parser.epp', {
+  $content = epp('rsyslog/parser.epp',
+    {
       'parser_name' => $name,
       'type'        => $type,
       'config'      => $config
-  })
+    },
+  )
 
   rsyslog::generate_concat { "rsyslog::concat::parser::${name}":
     confdir => $confdir,

@@ -4,7 +4,8 @@
 #
 # @see https://www.rsyslog.com/doc/v8-stable/configuration/actions.html#general-action-parameters Rsyslog General Action Parameters
 #
-type Rsyslog::Actions::Parameters = Struct[{
+type Rsyslog::Actions::Parameters = Struct[
+  {
     'action.writeallmarkmessages'            => Optional[Enum['on', 'off']],
     'action.execonlyeverynthtime'            => Optional[Integer],
     'action.execonlyeverynthtimeout'         => Optional[Integer],
@@ -16,5 +17,6 @@ type Rsyslog::Actions::Parameters = Struct[{
     'action.resumeinterval'                  => Optional[Integer],
     'action.reportsuspension'                => Optional[Enum['on', 'off']],
     'action.reportsuspensioncontinuation'    => Optional[Enum['on', 'off']],
-    'action.copymsg'                         => Optional[Enum['on', 'off']]
-}]
+    'action.copymsg'                         => Optional[Enum['on', 'off']],
+  }
+]

@@ -1485,13 +1485,15 @@ Struct data type alias for Rsyslog Actions
 Alias of
 
 ```puppet
-Array[Struct[{
+Array[Struct[
+    {
       name          => String[1],
       type          => Rsyslog::Modules::Output,
       facility      => Optional[String[1]],
       action_params => Optional[Rsyslog::Actions::Parameters],
       queue_params  => Optional[Rsyslog::Queue::Parameters],
-      output_params => Optional[Variant[
+      output_params => Optional[
+        Variant[
           Rsyslog::Actions::Outputs::Omamqp1,
           Rsyslog::Actions::Outputs::Omelasticsearch,
           Rsyslog::Actions::Outputs::Omfile,
@@ -1511,8 +1513,10 @@ Array[Struct[{
           Rsyslog::Actions::Outputs::Omsnmp,
           Rsyslog::Actions::Outputs::Omudpspoof,
           Rsyslog::Actions::Outputs::Omusrmsg,
-      ]],
-  }]]
+        ]
+      ],
+    }
+  ]]
 ```
 
 ### <a name="Rsyslog--Actions--Outputs--Omamqp1"></a>`Rsyslog::Actions::Outputs::Omamqp1`
@@ -1532,7 +1536,7 @@ Struct[{
     reconnectdelay => Optional[Integer],
     maxretries     => Optional[Integer],
     disablesasl    => Optional[Integer],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Actions--Outputs--Omelasticsearch"></a>`Rsyslog::Actions::Outputs::Omelasticsearch`
@@ -1572,7 +1576,7 @@ Struct[{
     retryruleset         => Optional[String[1]],
     'ratelimit.interval' => Optional[Integer],
     'ratelimit.burst'    => Optional[Integer],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Actions--Outputs--Omfile"></a>`Rsyslog::Actions::Outputs::Omfile`
@@ -1609,7 +1613,7 @@ Struct[{
     sync               => Optional[Enum['on', 'off']],
     'sig.provider'     => Optional[Enum['ksi_ls12']],
     'cry.provider'     => Optional[Enum['gcry']],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Actions--Outputs--Omfwd"></a>`Rsyslog::Actions::Outputs::Omfwd`
@@ -1645,7 +1649,7 @@ Struct[{
     'udp.sendtoall'                   => Optional[Enum['on', 'off']],
     'udp.senddelay'                   => Optional[Integer],
     gnutlsprioritystring              => Optional[String[1]],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Actions--Outputs--Omhiredis"></a>`Rsyslog::Actions::Outputs::Omhiredis`
@@ -1663,7 +1667,7 @@ Struct[{
     template       => Optional[String[1]],
     key            => Optional[String[1]],
     userpush       => Optional[Enum['on', 'off']]
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Actions--Outputs--Omhttpfs"></a>`Rsyslog::Actions::Outputs::Omhttpfs`
@@ -1681,7 +1685,7 @@ Struct[{
     file      => String[1],
     isdynfile => Optional[Enum['on', 'off']],
     template  => Optional[String[1]]
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Actions--Outputs--Omjournal"></a>`Rsyslog::Actions::Outputs::Omjournal`
@@ -1693,7 +1697,7 @@ Alias of
 ```puppet
 Struct[{
     template => Optional[String[1]],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Actions--Outputs--Omkafka"></a>`Rsyslog::Actions::Outputs::Omkafka`
@@ -1720,7 +1724,7 @@ Struct[{
     resubmitonfailure     => Optional[Enum['on', 'off']],
     keepfailedmessages    => Optional[Enum['on', 'off']],
     failedmsgfile         => Optional[String[1]],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Actions--Outputs--Omlibdbi"></a>`Rsyslog::Actions::Outputs::Omlibdbi`
@@ -1745,7 +1749,7 @@ Struct[{
     pwd      => String[1],
     db       => String[1],
     template => Optional[String[1]],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Actions--Outputs--Ommail"></a>`Rsyslog::Actions::Outputs::Ommail`
@@ -1764,7 +1768,7 @@ Struct[{
     'subject.text'     => Optional[String[1]],
     'body.enable'      => Optional[Enum['on', 'off']],
     template           => Optional[String[1]],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Actions--Outputs--Ommongodb"></a>`Rsyslog::Actions::Outputs::Ommongodb`
@@ -1786,7 +1790,7 @@ Struct[{
     serverported        => Optional[Stdlib::Port],
     uid                 => Optional[String[1]],
     pwd                 => Optional[String[1]],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Actions--Outputs--Ommysql"></a>`Rsyslog::Actions::Outputs::Ommysql`
@@ -1810,7 +1814,7 @@ Struct[{
     'mysqlconfig.file'    => Optional[Stdlib::Absolutepath],
     'mysqlconfig.section' => Optional[String[1]],
     template              => Optional[String[1]],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Actions--Outputs--Ompgsql"></a>`Rsyslog::Actions::Outputs::Ompgsql`
@@ -1831,7 +1835,7 @@ Struct[{
     user     => Optional[String[1]],
     pass     => Optional[String[1]],
     template => Optional[String[1]],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Actions--Outputs--Ompipe"></a>`Rsyslog::Actions::Outputs::Ompipe`
@@ -1843,7 +1847,7 @@ Alias of
 ```puppet
 Struct[{
     pipe => String[1],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Actions--Outputs--Omprog"></a>`Rsyslog::Actions::Outputs::Omprog`
@@ -1869,7 +1873,7 @@ Struct[{
     closetimeout          => Optional[Integer],
     killunresponsive      => Optional[Enum['on', 'off']],
     forcesingleinstance   => Optional[Enum['on', 'off']],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Actions--Outputs--Omrelp"></a>`Rsyslog::Actions::Outputs::Omrelp`
@@ -1896,7 +1900,7 @@ Struct[{
     'tls.myprivkey'      => Optional[Stdlib::Absolutepath],
     'tls.prioritystring' => Optional[String[1]],
     localclientip        => Optional[Stdlib::IP::Address],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Actions--Outputs--Omsnmp"></a>`Rsyslog::Actions::Outputs::Omsnmp`
@@ -1917,7 +1921,7 @@ Struct[{
     enterpriseoid => Optional[String[1]],
     specifictype  => Optional[Integer],
     traptype      => Optional[Integer[0,6]],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Actions--Outputs--Omudpspoof"></a>`Rsyslog::Actions::Outputs::Omudpspoof`
@@ -1935,7 +1939,7 @@ Struct[{
     'sourceport.end'   => Optional[Stdlib::Port],
     mtu                => Optional[Integer],
     template           => Optional[String[1]],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Actions--Outputs--Omusrmsg"></a>`Rsyslog::Actions::Outputs::Omusrmsg`
@@ -1948,7 +1952,7 @@ Alias of
 Struct[{
     users    => String[1],
     template => Optional[String[1]],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Actions--Parameters"></a>`Rsyslog::Actions::Parameters`
@@ -1974,8 +1978,8 @@ Struct[{
     'action.resumeinterval'                  => Optional[Integer],
     'action.reportsuspension'                => Optional[Enum['on', 'off']],
     'action.reportsuspensioncontinuation'    => Optional[Enum['on', 'off']],
-    'action.copymsg'                         => Optional[Enum['on', 'off']]
-}]
+    'action.copymsg'                         => Optional[Enum['on', 'off']],
+  }]
 ```
 
 ### <a name="Rsyslog--Inputs--Imbatchreports"></a>`Rsyslog::Inputs::Imbatchreports`
@@ -1995,7 +1999,7 @@ Struct[{
     rename            => Optional[String[1]],
     programkey        => Optional[String[1]],
     timestampkey      => Optional[String[1]],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Inputs--Imfile"></a>`Rsyslog::Inputs::Imfile`
@@ -2028,7 +2032,7 @@ Struct[{
     discardtruncatedmsg     => Optional[Enum['on', 'off']],
     msgdiscardingerror      => Optional[Enum['on', 'off']],
     neeparse                => Optional[Enum['on', 'off']],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Inputs--Imgssapi"></a>`Rsyslog::Inputs::Imgssapi`
@@ -2045,7 +2049,7 @@ Struct[{
     inputgssservermaxsessions    => Optional[Integer],
     inputgssserverkeepalive      => Optional[Enum['on', 'off']],
     inputgsslistenportfilename   => Optional[Stdlib::Port],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Inputs--Imkafka"></a>`Rsyslog::Inputs::Imkafka`
@@ -2062,7 +2066,7 @@ Struct[{
     consumergroup => Optional[String[1]],
     ruleset       => Optional[String[1]],
     parsehostname => Optional[Enum['on', 'off']],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Inputs--Improg"></a>`Rsyslog::Inputs::Improg`
@@ -2081,7 +2085,7 @@ Struct[{
     signalonclose    => Optional[Enum['on', 'off']],
     closetimeout     => Optional[Integer],
     killunresponsive => Optional[Enum['on', 'off']],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Inputs--Imptcp"></a>`Rsyslog::Inputs::Imptcp`
@@ -2124,7 +2128,7 @@ Struct[{
     defaulttz                  => Optional[String[1]],
     'framingfix.cisco.asa'     => Optional[Enum['on', 'off']],
     listenportfilename         => Optional[String[1]],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Inputs--Imrelp"></a>`Rsyslog::Inputs::Imrelp`
@@ -2154,7 +2158,7 @@ Struct[{
     'keepalive.interval' => Optional[Integer],
     'keepalive.time'     => Optional[Integer],
     oversizemode         => Optional[Enum['truncate', 'abort', 'accept']],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Inputs--Imtcp"></a>`Rsyslog::Inputs::Imtcp`
@@ -2173,7 +2177,7 @@ Struct[{
     'ratelimit.interval'       => Optional[Integer],
     'ratelimit.burst'          => Optional[Integer],
     listenportfilename         => Optional[String[1]],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Inputs--Imtuxedoulog"></a>`Rsyslog::Inputs::Imtuxedoulog`
@@ -2191,7 +2195,7 @@ Struct[{
     persiststateinterval => Optional[Integer],
     maxlinesatonce       => Optional[Integer],
     maxsubmitatonce      => Optional[Integer],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Inputs--Imudp"></a>`Rsyslog::Inputs::Imudp`
@@ -2213,7 +2217,7 @@ Struct[{
     'name.appendport'    => Optional[Enum['on', 'off']],
     defaulttz            => Optional[String[1]],
     rcvbufsize           => Optional[Variant[Integer, String[1]]],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Inputs--Imuxsock"></a>`Rsyslog::Inputs::Imuxsock`
@@ -2241,7 +2245,7 @@ Struct[{
     unlink               => Optional[Enum['on', 'off']],
     usespecialparser     => Optional[Enum['on', 'off']],
     parsehostname        => Optional[Enum['on', 'off']],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Modules--Input"></a>`Rsyslog::Modules::Input`
@@ -2267,7 +2271,7 @@ Struct[{
     defaultfacility          => Optional[Stdlib::Syslogfacility],
     defaultseverity          => Optional[Rsyslog::Syslog::Severity],
     escapelf                 => Optional[Enum['on', 'off']],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Modules--Inputs--Imfile"></a>`Rsyslog::Modules::Inputs::Imfile`
@@ -2283,7 +2287,7 @@ Struct[{
     timeoutgranularity => Optional[Enum['on', 'off']],
     sortfiles          => Optional[Enum['on', 'off']],
     pollinginterval    => Optional[Integer],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Modules--Inputs--Imjournal"></a>`Rsyslog::Modules::Inputs::Imjournal`
@@ -2305,7 +2309,7 @@ Struct[{
     usepid                  => Optional[Enum['syslog', 'system', 'both']],
     ignorenonvalidstatefile => Optional[Enum['on', 'off']],
     workaroundjournalbug    => Optional[Enum['on', 'off']],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Modules--Message"></a>`Rsyslog::Modules::Message`
@@ -2372,7 +2376,7 @@ Struct[{
     'queue.dequeueSlowDown'             => Optional[Integer],
     'queue.dequeueTimeBegin'            => Optional[Integer[1, 24]],
     'queue.dequeueTimeEnd'              => Optional[Integer[1, 25]],
-}]
+  }]
 ```
 
 ### <a name="Rsyslog--Syslog--Severity"></a>`Rsyslog::Syslog::Severity`

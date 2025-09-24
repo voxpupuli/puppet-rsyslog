@@ -9,12 +9,14 @@ define rsyslog::component::legacy_config (
 ) {
   include rsyslog
 
-  $content = epp('rsyslog/legacy_config.epp', {
+  $content = epp('rsyslog/legacy_config.epp',
+    {
       'config_item' => $name,
       'type'        => $type,
       'key'         => $key,
       'value'       => $value,
-  })
+    },
+  )
 
   rsyslog::generate_concat { "rsyslog::concat::legacy_config::${name}":
     confdir => $confdir,

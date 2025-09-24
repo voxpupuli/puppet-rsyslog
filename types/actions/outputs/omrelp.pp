@@ -1,5 +1,6 @@
 # Struct data type for the Rsyslog RELP module's Action options
-type Rsyslog::Actions::Outputs::Omrelp = Struct[{
+type Rsyslog::Actions::Outputs::Omrelp = Struct[
+  {
     target               => Variant[Stdlib::Fqdn, Stdlib::IP::Address],
     port                 => Optional[Stdlib::Port],
     template             => Optional[String[1]],
@@ -16,4 +17,5 @@ type Rsyslog::Actions::Outputs::Omrelp = Struct[{
     'tls.myprivkey'      => Optional[Stdlib::Absolutepath],
     'tls.prioritystring' => Optional[String[1]],
     localclientip        => Optional[Stdlib::IP::Address],
-}]
+  }
+]

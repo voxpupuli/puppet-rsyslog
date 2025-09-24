@@ -13,12 +13,14 @@ define rsyslog::component::ruleset (
     fail('Ruleset MUST have at least one of: action, stop, set, call, or lookup')
   }
 
-  $content = epp('rsyslog/ruleset.epp', {
+  $content = epp('rsyslog/ruleset.epp',
+    {
       'ruleset_name' => $name,
       'parameters'   => $parameters,
       'rules'        => $rules,
       'stop'         => $stop,
-  })
+    },
+  )
 
   rsyslog::generate_concat { "rsyslog::concat::ruleset::${name}":
     confdir => $confdir,

@@ -1,5 +1,6 @@
 # Data type for Rsyslog Unix Socket input module
-type Rsyslog::Inputs::Imuxsock = Struct[{
+type Rsyslog::Inputs::Imuxsock = Struct[
+  {
     ruleset              => Optional[String[1]],
     ignoretimestamp      => Optional[Enum['on', 'off']],
     ignoreownmessages    => Optional[Enum['on', 'off']],
@@ -17,4 +18,5 @@ type Rsyslog::Inputs::Imuxsock = Struct[{
     unlink               => Optional[Enum['on', 'off']],
     usespecialparser     => Optional[Enum['on', 'off']],
     parsehostname        => Optional[Enum['on', 'off']],
-}]
+  }
+]

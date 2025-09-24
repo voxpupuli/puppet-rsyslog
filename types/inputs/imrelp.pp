@@ -1,5 +1,6 @@
 # Data type for Rsyslog Plain TCP input module
-type Rsyslog::Inputs::Imrelp = Struct[{
+type Rsyslog::Inputs::Imrelp = Struct[
+  {
     port                 => Stdlib::Port,
     address              => Optional[Stdlib::IP::Address::V4],
     name                 => Optional[String[1]],
@@ -19,4 +20,5 @@ type Rsyslog::Inputs::Imrelp = Struct[{
     'keepalive.interval' => Optional[Integer],
     'keepalive.time'     => Optional[Integer],
     oversizemode         => Optional[Enum['truncate', 'abort', 'accept']],
-}]
+  }
+]

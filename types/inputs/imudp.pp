@@ -1,5 +1,6 @@
 # Data type for Rsyslog UDP input module
-type Rsyslog::Inputs::Imudp = Struct[{
+type Rsyslog::Inputs::Imudp = Struct[
+  {
     address              => Optional[Stdlib::Host],
     port                 => Stdlib::Port,
     ipfreebind           => Optional[Integer[0,2]],
@@ -11,4 +12,5 @@ type Rsyslog::Inputs::Imudp = Struct[{
     'name.appendport'    => Optional[Enum['on', 'off']],
     defaulttz            => Optional[String[1]],
     rcvbufsize           => Optional[Variant[Integer, String[1]]],
-}]
+  }
+]

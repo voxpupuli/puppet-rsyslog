@@ -1,5 +1,6 @@
 # Rsyslog imjournal Module parameter data type
-type Rsyslog::Modules::Inputs::Imjournal = Struct[{
+type Rsyslog::Modules::Inputs::Imjournal = Struct[
+  {
     persiststateinterval    => Optional[Integer],
     statefile               => Optional[Stdlib::Absolutepath],
     'ratelimit.interval'    => Optional[Integer],
@@ -11,4 +12,5 @@ type Rsyslog::Modules::Inputs::Imjournal = Struct[{
     usepid                  => Optional[Enum['syslog', 'system', 'both']],
     ignorenonvalidstatefile => Optional[Enum['on', 'off']],
     workaroundjournalbug    => Optional[Enum['on', 'off']],
-}]
+  }
+]

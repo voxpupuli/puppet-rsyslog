@@ -1,4 +1,5 @@
-type Rsyslog::Queue::Parameters = Struct[{
+type Rsyslog::Queue::Parameters = Struct[
+  {
     'queue.filename'                    => Optional[String[1]],
     'queue.spoolDirectory'              => Optional[Stdlib::Absolutepath],
     'queue.size'                        => Optional[Integer],
@@ -25,4 +26,5 @@ type Rsyslog::Queue::Parameters = Struct[{
     'queue.dequeueSlowDown'             => Optional[Integer],
     'queue.dequeueTimeBegin'            => Optional[Integer[1, 24]],
     'queue.dequeueTimeEnd'              => Optional[Integer[1, 25]],
-}]
+  }
+]

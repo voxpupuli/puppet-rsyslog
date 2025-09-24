@@ -1,5 +1,6 @@
 # Struct data type for the Rsyslog libdbi module's Action options
-type Rsyslog::Actions::Outputs::Omlibdbi = Struct[{
+type Rsyslog::Actions::Outputs::Omlibdbi = Struct[
+  {
     driver   => Enum[
       'firebird',
       'ingres',
@@ -14,4 +15,5 @@ type Rsyslog::Actions::Outputs::Omlibdbi = Struct[{
     pwd      => String[1],
     db       => String[1],
     template => Optional[String[1]],
-}]
+  }
+]

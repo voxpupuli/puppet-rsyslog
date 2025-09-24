@@ -10,16 +10,20 @@ define rsyslog::component::global_config (
   include rsyslog
 
   if $type == 'legacy' {
-    $content = epp('rsyslog/global_config.epp', {
+    $content = epp('rsyslog/global_config.epp',
+      {
         'config_item' => $name,
         'type'        => $type,
         'value'       => $value
-    })
+      },
+    )
   } else {
-    $content = epp('rsyslog/global_config', {
+    $content = epp('rsyslog/global_config',
+      {
         'type'   => $type,
         'config' => $config,
-    })
+      },
+    )
   }
 
   rsyslog::generate_concat { "rsyslog::concat::global_config::${name}":

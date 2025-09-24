@@ -1,5 +1,6 @@
 # Data type for Rsyslog Input module input parameters for file inputs.
-type Rsyslog::Inputs::Imfile = Struct[{
+type Rsyslog::Inputs::Imfile = Struct[
+  {
     file                    => String[1],
     tag                     => String[1],
     facility                => Optional[Stdlib::Syslogfacility],
@@ -22,4 +23,5 @@ type Rsyslog::Inputs::Imfile = Struct[{
     discardtruncatedmsg     => Optional[Enum['on', 'off']],
     msgdiscardingerror      => Optional[Enum['on', 'off']],
     neeparse                => Optional[Enum['on', 'off']],
-}]
+  }
+]

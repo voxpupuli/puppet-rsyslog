@@ -23,7 +23,8 @@ define rsyslog::component::template (
       'subtree'           => $subtree,
       'plugin'            => $plugin,
       'options'           => $options,
-  })
+    },
+  )
 
   rsyslog::generate_concat { "rsyslog::concat::template::${name}":
     confdir => $confdir,

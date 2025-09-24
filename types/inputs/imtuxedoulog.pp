@@ -1,5 +1,6 @@
 # Data for Rsyslog Input Tuxedo ULOG module
-type Rsyslog::Inputs::Imtuxedoulog = Struct[{
+type Rsyslog::Inputs::Imtuxedoulog = Struct[
+  {
     ulogbase             => Stdlib::Absolutepath,
     tag                  => String[1],
     facility             => Optional[Stdlib::Syslogfacility],
@@ -7,4 +8,5 @@ type Rsyslog::Inputs::Imtuxedoulog = Struct[{
     persiststateinterval => Optional[Integer],
     maxlinesatonce       => Optional[Integer],
     maxsubmitatonce      => Optional[Integer],
-}]
+  }
+]

@@ -8,11 +8,13 @@ define rsyslog::component::module (
 ) {
   include rsyslog
 
-  $content = epp('rsyslog/modules.epp', {
+  $content = epp('rsyslog/modules.epp',
+    {
       'config_item' => $name,
       'type'        => $type,
       'config'      => $config,
-  })
+    },
+  )
 
   rsyslog::generate_concat { "rsyslog::concat::module::${name}":
     confdir => $confdir,

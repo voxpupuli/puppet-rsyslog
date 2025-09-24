@@ -1,5 +1,6 @@
 # Data type for Rsyslog Plain TCP input module
-type Rsyslog::Inputs::Imptcp = Struct[{
+type Rsyslog::Inputs::Imptcp = Struct[
+  {
     port                       => Optional[Stdlib::Port],
     path                       => Optional[Stdlib::Absolutepath],
     discardtruncatedmsg        => Optional[Enum['on', 'off']],
@@ -32,4 +33,5 @@ type Rsyslog::Inputs::Imptcp = Struct[{
     defaulttz                  => Optional[String[1]],
     'framingfix.cisco.asa'     => Optional[Enum['on', 'off']],
     listenportfilename         => Optional[String[1]],
-}]
+  }
+]

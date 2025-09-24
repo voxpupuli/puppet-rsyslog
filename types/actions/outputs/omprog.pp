@@ -1,5 +1,6 @@
 # Struct data type for the Rsyslog Program module's Action options
-type Rsyslog::Actions::Outputs::Omprog = Struct[{
+type Rsyslog::Actions::Outputs::Omprog = Struct[
+  {
     template              => Optional[String[1]],
     binary                => Stdlib::Absolutepath,
     confirmmessages       => Optional[Enum['on', 'off']],
@@ -15,4 +16,5 @@ type Rsyslog::Actions::Outputs::Omprog = Struct[{
     closetimeout          => Optional[Integer],
     killunresponsive      => Optional[Enum['on', 'off']],
     forcesingleinstance   => Optional[Enum['on', 'off']],
-}]
+  }
+]

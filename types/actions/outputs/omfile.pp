@@ -1,4 +1,5 @@
-type Rsyslog::Actions::Outputs::Omfile = Struct[{
+type Rsyslog::Actions::Outputs::Omfile = Struct[
+  {
     file               => Optional[Stdlib::Absolutepath],
     dynafile           => Optional[String[1]],
     template           => Optional[String[1]],
@@ -25,4 +26,5 @@ type Rsyslog::Actions::Outputs::Omfile = Struct[{
     sync               => Optional[Enum['on', 'off']],
     'sig.provider'     => Optional[Enum['ksi_ls12']],
     'cry.provider'     => Optional[Enum['gcry']],
-}]
+  }
+]

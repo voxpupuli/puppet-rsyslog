@@ -11,7 +11,7 @@ describe 'Rsyslog' do
     it 'applies' do
       pp = <<-MANIFEST
       case $facts['os']['name'] {
-        'Ubuntu': {
+        'Ubuntu', 'Debian': {
           $overrides = true
         }
         'RedHat', 'CentOS', 'Scientific', 'Fedora', 'OracleLinux': {

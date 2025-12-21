@@ -1,6 +1,6 @@
 # puppet-rsyslog
 
-[![Build Status](https://img.shields.io/travis/voxpupuli/puppet-rsyslog/master.svg?style=flat-square)](https://travis-ci.org/voxpupuli/puppet-rsyslog)
+![Build Status](https://github.com/voxpupuli/puppet-rsyslog/actions/workflows/ci.yml/badge.svg?branch=master)
 [![License](https://img.shields.io/github/license/voxpupuli/puppet-rsyslog.svg)](https://github.com/voxpupuli/puppet-rsyslog/blob/master/LICENSE)
 [![Puppet Forge](https://img.shields.io/puppetforge/v/puppet/rsyslog.svg?style=flat-square)](https://forge.puppetlabs.com/puppet/rsyslog)
 [![Puppet Forge](https://img.shields.io/puppetforge/dt/puppet/rsyslog.svg?style=flat-square)](https://forge.puppet.com/puppet/rsyslog)

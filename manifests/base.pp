@@ -5,7 +5,9 @@ class rsyslog::base {
       'Debian': {
         if $facts['os']['name'] == 'Ubuntu' {
           include apt
-          apt::ppa { 'ppa:adiscon/v8-stable': }
+          apt::ppa { 'ppa:adiscon/v8-stable':
+            before => Package[$rsyslog::package_name],
+          }
         }
       }
       'RedHat': {

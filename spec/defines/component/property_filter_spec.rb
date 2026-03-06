@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'yaml'
 
-describe 'rsyslog::component::property_filter', include_rsyslog: true do
+describe 'rsyslog::component::property_filter', :include_rsyslog do
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let :facts do
@@ -26,17 +26,17 @@ describe 'rsyslog::component::property_filter', include_rsyslog: true do
                   name: 'myaction',
                   type: 'omfile',
                   config: {
-                    dynaFile: 'remoteSyslog'
-                  }
-                }
-              }
-            ]
+                    dynaFile: 'remoteSyslog',
+                  },
+                },
+              },
+            ],
           }
         end
 
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::property_filter::mypropertyfilter').with_content(
-            <<~CONTENT
+            <<~CONTENT,
               # mypropertyfilter
               :msg, contains, "val" {
                 # myaction
@@ -69,10 +69,10 @@ describe 'rsyslog::component::property_filter', include_rsyslog: true do
                 name: 'myaction',
                 type: 'omfile',
                 config: {
-                  dynaFile: 'remoteSyslog'
-                }
-              } }
-            ]
+                  dynaFile: 'remoteSyslog',
+                },
+              } },
+            ],
           }
         end
 
@@ -95,10 +95,10 @@ describe 'rsyslog::component::property_filter', include_rsyslog: true do
                   name: 'myaction',
                   type: 'omfile',
                   config: {
-                    dynaFile: 'remoteSyslog'
-                  }
-                } }
-              ]
+                    dynaFile: 'remoteSyslog',
+                  },
+                } },
+              ],
             }
           end
 

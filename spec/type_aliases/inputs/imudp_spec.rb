@@ -15,7 +15,7 @@ describe 'Rsyslog::Inputs::Imudp' do
       name: 'foo',
       'name.appendport' => 'on',
       defaulttz: '-05:00',
-      rcvbufsize: 0
+      rcvbufsize: 0,
     }
   end
 

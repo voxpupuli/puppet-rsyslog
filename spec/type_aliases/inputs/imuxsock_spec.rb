@@ -21,7 +21,7 @@ describe 'Rsyslog::Inputs::Imuxsock' do
       parsetrusted: 'on',
       unlink: 'off',
       usespecialparser: 'off',
-      parsehostname: 'on'
+      parsehostname: 'on',
     }
   end
 

@@ -11,7 +11,7 @@ describe 'Rsyslog::Actions::Outputs::Omhiredis' do
       mode: 'queue',
       template: 't_redis',
       key: 'main',
-      userpush: 'off'
+      userpush: 'off',
     }
   end
 
@@ -38,7 +38,7 @@ describe 'Rsyslog::Actions::Outputs::Omhiredis' do
           mode: 'user',
           template: '',
           key: '',
-          userpush: true
+          userpush: true,
         }
       end
 
@@ -48,7 +48,7 @@ describe 'Rsyslog::Actions::Outputs::Omhiredis' do
     context 'bad integers' do
       let(:bad_int) do
         {
-          serverport: '80'
+          serverport: '80',
         }
       end
 
@@ -58,7 +58,7 @@ describe 'Rsyslog::Actions::Outputs::Omhiredis' do
     context 'bad ip address' do
       let(:bad_ip) do
         {
-          server: '300.122.32.'
+          server: '300.122.32.',
         }
       end
 

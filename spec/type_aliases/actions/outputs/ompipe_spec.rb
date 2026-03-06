@@ -5,7 +5,7 @@ require 'spec_helper'
 describe 'Rsyslog::Actions::Outputs::Ompipe' do
   let(:data) do
     {
-      pipe: 'pipe'
+      pipe: 'pipe',
     }
   end
 
@@ -19,7 +19,7 @@ describe 'Rsyslog::Actions::Outputs::Ompipe' do
     context 'bad strings' do
       let(:bad_strings) do
         {
-          pipe: ''
+          pipe: '',
         }
       end
 

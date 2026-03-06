@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'yaml'
 
-describe 'rsyslog::component::ruleset', include_rsyslog: true do
+describe 'rsyslog::component::ruleset', :include_rsyslog do
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let :facts do
@@ -19,8 +19,8 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
             target: '50_rsyslog.conf',
             confdir: '/etc/rsyslog.d',
             rules: [
-              'call' => 'action.parse.rawmsg'
-            ]
+              { 'call' => 'action.parse.rawmsg' },
+            ],
           }
         end
 
@@ -31,7 +31,7 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
               \s+\)\s{
               \s+call\saction\.parse\.rawmsg
               \s+}$
-            }x
+            }x,
           )
         end
 
@@ -49,8 +49,8 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
             rules: [
               { 'set' => { '$.uuid' => '$uuid' } },
               { 'set' => { '$!rcv_time' => 'exec_template("s_rcv_time")' } },
-              'call' => 'action.parse.r_msg'
-            ]
+              'call' => 'action.parse.r_msg',
+            ],
           }
         end
 
@@ -61,7 +61,7 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
             \s*set\s*\$\.uuid\s*=\s*\$uuid;
             \s*set\s*\$!rcv_time\s*=\s*exec_template\("s_rcv_time"\);
             \s*call\s*action\.parse\.r_msg
-            \s*}$}
+            \s*}$},
           )
         end
       end
@@ -74,17 +74,17 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
             confdir: '/etc/rsyslog.d',
             parameters: {
               'parser' => 'pmrfc3164.hostname_with_slashes',
-              'queue.size' => '10000'
+              'queue.size' => '10000',
             },
             rules: [
-              { 'lookup' => { 'var' => 'srv', 'lookup_table' => 'srv-map', 'expr' => '$fromhost-ip' } }
-            ]
+              { 'lookup' => { 'var' => 'srv', 'lookup_table' => 'srv-map', 'expr' => '$fromhost-ip' } },
+            ],
           }
         end
 
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(
-            <<~EOS
+            <<~EOS,
               # myruleset ruleset
               ruleset (name="myruleset"
                 parser="pmrfc3164.hostname_with_slashes"
@@ -106,7 +106,7 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
             confdir: '/etc/rsyslog.d',
             parameters: {
               'parser' => 'pmrfc3164.hostname_with_slashes',
-              'queue.size' => '10000'
+              'queue.size' => '10000',
             },
             stop: true,
             rules: [
@@ -115,9 +115,9 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
                   'name' => 'utf8-fix',
                   'type' => 'mmutf8fix',
                   'config' => {
-                    'file' => '/var/log/fix'
-                  }
-                }
+                    'file' => '/var/log/fix',
+                  },
+                },
               },
               {
                 'action' => {
@@ -125,17 +125,17 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
                   'type' => 'omfile',
                   'config' => {
                     'dynaFile' => 'remoteSyslog',
-                    'specifics' => '/var/log/test'
-                  }
-                }
-              }
-            ]
+                    'specifics' => '/var/log/test',
+                  },
+                },
+              },
+            ],
           }
         end
 
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(
-            <<~EOF
+            <<~EOF,
               # myruleset ruleset
               ruleset (name="myruleset"
                 parser="pmrfc3164.hostname_with_slashes"
@@ -172,7 +172,7 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
             confdir: '/etc/rsyslog.d',
             parameters: {
               'parser' => 'pmrfc3164.hostname_with_slashes',
-              'queue.size' => '10000'
+              'queue.size' => '10000',
             },
             rules: [
               {
@@ -182,19 +182,19 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
                       'expression' => '$hostname == "rsyslog_test"',
                       'tasks' => [
                         { 'call'        => 'action.ruleset.test' },
-                        { 'stop'        => true }
-                      ]
-                    }
-                  }
-                }
-              }
-            ]
+                        { 'stop'        => true },
+                      ],
+                    },
+                  },
+                },
+              },
+            ],
           }
         end
 
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(
-            <<~EOF
+            <<~EOF,
               # myruleset ruleset
               ruleset (name="myruleset"
                 parser="pmrfc3164.hostname_with_slashes"
@@ -220,7 +220,7 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
             confdir: '/etc/rsyslog.d',
             parameters: {
               'parser' => 'pmrfc3164.hostname_with_slashes',
-              'queue.size' => '10000'
+              'queue.size' => '10000',
             },
             rules: [
               {
@@ -230,17 +230,17 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
                   'value' => 'error',
                   'tasks' => [
                     { 'call'      => 'action.ruleset.test' },
-                    { 'stop'      => true }
-                  ]
-                }
-              }
-            ]
+                    { 'stop'      => true },
+                  ],
+                },
+              },
+            ],
           }
         end
 
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::ruleset::myruleset').with_content(
-            <<~EOF
+            <<~EOF,
               # myruleset ruleset
               ruleset (name="myruleset"
                 parser="pmrfc3164.hostname_with_slashes"
@@ -265,8 +265,8 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
             target: '50_rsyslog.conf',
             confdir: '/etc/rsyslog.d',
             rules: [
-              'exec' => '/bin/echo'
-            ]
+              { 'exec' => '/bin/echo' },
+            ],
           }
         end
 
@@ -275,7 +275,7 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
             %r{(?x)\s*ruleset\s*\(name="myruleset"
             \s*\)\s*{
             \s*\^/bin/echo
-            \s*}$}
+            \s*}$},
           )
         end
       end
@@ -285,7 +285,7 @@ describe 'rsyslog::component::ruleset', include_rsyslog: true do
           {
             priority: 65,
             target: '50_rsyslog.conf',
-            confdir: '/etc/rsyslog.d'
+            confdir: '/etc/rsyslog.d',
           }
         end
 

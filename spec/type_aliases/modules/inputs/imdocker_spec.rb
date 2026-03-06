@@ -13,7 +13,7 @@ describe 'Rsyslog::Modules::Inputs::Imdocker' do
       retrievenewlogsfromstart: 1,
       defaultfacility: 'kern',
       defaultseverity: 'debug',
-      escapelf: 'off'
+      escapelf: 'off',
     }
   end
 

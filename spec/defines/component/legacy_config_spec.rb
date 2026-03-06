@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'yaml'
 
-describe 'rsyslog::component::legacy_config', include_rsyslog: true do
+describe 'rsyslog::component::legacy_config', :include_rsyslog do
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let :facts do
@@ -19,7 +19,7 @@ describe 'rsyslog::component::legacy_config', include_rsyslog: true do
             target: '50_rsyslog.conf',
             confdir: '/etc/rsyslog.d',
             key: 'auth,authpriv.*',
-            value: '/var/log/auth.log'
+            value: '/var/log/auth.log',
           }
         end
 
@@ -28,7 +28,7 @@ describe 'rsyslog::component::legacy_config', include_rsyslog: true do
             %r{
               mylegacy_rules\n
               ^auth,authpriv\.\*\s+/var/log/auth.log\n
-            }x
+            }x,
           )
         end
 
@@ -44,7 +44,7 @@ describe 'rsyslog::component::legacy_config', include_rsyslog: true do
             target: '50_rsyslog.conf',
             confdir: '/etc/rsyslog.d',
             type: 'legacy',
-            value: '*.* @@logmonster.cloud.local'
+            value: '*.* @@logmonster.cloud.local',
           }
         end
 
@@ -52,7 +52,7 @@ describe 'rsyslog::component::legacy_config', include_rsyslog: true do
           is_expected.to contain_concat__fragment('rsyslog::component::legacy_config::mylegacy_rules').with_content(
             %r{(?x)# mylegacy_rules\n
             ^\*\.\*\s+@@logmonster.cloud.local\s*\n
-            }
+            },
           )
         end
       end

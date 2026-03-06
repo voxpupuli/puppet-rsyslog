@@ -10,7 +10,7 @@ describe 'Rsyslog::Inputs::Imgssapi' do
       inputgssserverpermitplaintcp: 'on',
       inputgssservermaxsessions: 200,
       inputgssserverkeepalive: 'off',
-      inputgsslistenportfilename: 514
+      inputgsslistenportfilename: 514,
     }
   end
 
@@ -36,7 +36,7 @@ describe 'Rsyslog::Inputs::Imgssapi' do
         inputgssserverpermitplaintcp: true,
         inputgssservermaxsessions: '200',
         inputgssserverkeepalive: false,
-        inputgsslistenportfilename: 234_567
+        inputgsslistenportfilename: 234_567,
       }
     end
 

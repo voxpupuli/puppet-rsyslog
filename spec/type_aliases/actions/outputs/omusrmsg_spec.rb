@@ -6,7 +6,7 @@ describe 'Rsyslog::Actions::Outputs::Omusrmsg' do
   let(:data) do
     {
       users: '*',
-      template: 't_usr_msg'
+      template: 't_usr_msg',
     }
   end
 
@@ -21,7 +21,7 @@ describe 'Rsyslog::Actions::Outputs::Omusrmsg' do
       let(:bad_strings) do
         {
           users: 0,
-          template: false
+          template: false,
         }
       end
 

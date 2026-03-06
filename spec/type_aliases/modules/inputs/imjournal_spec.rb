@@ -15,7 +15,7 @@ describe 'Rsyslog::Modules::Inputs::Imjournal' do
       usepidfromsystem: 'off',
       usepid: 'both',
       ignorenonvalidstatefile: 'on',
-      workaroundjournalbug: 'on'
+      workaroundjournalbug: 'on',
     }
   end
 

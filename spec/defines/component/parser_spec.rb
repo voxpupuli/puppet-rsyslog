@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'yaml'
 
-describe 'rsyslog::component::parser', include_rsyslog: true do
+describe 'rsyslog::component::parser', :include_rsyslog do
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let :facts do
@@ -20,8 +20,8 @@ describe 'rsyslog::component::parser', include_rsyslog: true do
             target: '50_rsyslog.conf',
             confdir: '/etc/rsyslog.d',
             config: {
-              'permit.slashesinhostname' => 'on'
-            }
+              'permit.slashesinhostname' => 'on',
+            },
           }
         end
 
@@ -33,7 +33,7 @@ describe 'rsyslog::component::parser', include_rsyslog: true do
               \s+type="pmrfc3164"
               \s+permit.slashesinhostname="on"
               \s+\)
-            }x
+            }x,
           )
         end
 

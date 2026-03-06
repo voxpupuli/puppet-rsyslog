@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'yaml'
 
-describe 'rsyslog::component::template', include_rsyslog: true do
+describe 'rsyslog::component::template', :include_rsyslog do
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let :facts do
@@ -19,7 +19,7 @@ describe 'rsyslog::component::template', include_rsyslog: true do
             priority: 30,
             target: '50_rsyslog.conf',
             confdir: '/etc/rsyslog.d',
-            string: '/var/log/rsyslog/logs/%fromhost-ip%/%fromhost-ip%.log'
+            string: '/var/log/rsyslog/logs/%fromhost-ip%/%fromhost-ip%.log',
           }
         end
 
@@ -28,7 +28,7 @@ describe 'rsyslog::component::template', include_rsyslog: true do
             %r{
               template\s\(name="mytpl"\stype="string"
               \s+string="/var/log/rsyslog/logs/%fromhost-ip%/%fromhost-ip%.log"\s\)
-            }x
+            }x,
           )
         end
 
@@ -44,7 +44,7 @@ describe 'rsyslog::component::template', include_rsyslog: true do
             priority: 30,
             target: '50_rsyslog.conf',
             confdir: '/etc/rsyslog.d',
-            plugin: 'mystringgen'
+            plugin: 'mystringgen',
           }
         end
 
@@ -53,7 +53,7 @@ describe 'rsyslog::component::template', include_rsyslog: true do
             %r{
               template\s\(name="mytpl"\stype="plugin"
               \s+plugin="mystringgen"\s\)
-            }x
+            }x,
           )
         end
       end
@@ -65,7 +65,7 @@ describe 'rsyslog::component::template', include_rsyslog: true do
             priority: 30,
             target: '50_rsyslog.conf',
             confdir: '/etc/rsyslog.d',
-            subtree: '$!usr!tpl2'
+            subtree: '$!usr!tpl2',
           }
         end
 
@@ -74,7 +74,7 @@ describe 'rsyslog::component::template', include_rsyslog: true do
             %r{
               template\s\(name="mytpl"\stype="subtree"
               \s+subtree="\$!usr!tpl2"\s\)
-            }x
+            }x,
           )
         end
       end
@@ -87,7 +87,7 @@ describe 'rsyslog::component::template', include_rsyslog: true do
             target: '50_rsyslog.conf',
             confdir: '/etc/rsyslog.d',
             string: '/var/log/rsyslog/logs/%fromhost-ip%/%fromhost-ip%.log',
-            options: { 'sql' => 'on' }
+            options: { 'sql' => 'on' },
           }
         end
 
@@ -97,7 +97,7 @@ describe 'rsyslog::component::template', include_rsyslog: true do
               template\s\(name="mytpl"\stype="string"
               \s+string="/var/log/rsyslog/logs/%fromhost-ip%/%fromhost-ip%.log"
               \s+option\.sql="on"\)
-            }x
+            }x,
           )
         end
       end
@@ -114,8 +114,8 @@ describe 'rsyslog::component::template', include_rsyslog: true do
               { 'constant' => { 'value' => '\"@timestamp\":\"' } },
               { 'property' => { 'name'  => 'timereported', 'dateformat' => 'rfc3339' } },
               { 'constant' => { 'value' => '\"}' } },
-              { 'constant' => { 'value' => '\"message\\":\"' }, 'property' => { 'name' => 'msg', 'format' => 'json' } }
-            ]
+              { 'constant' => { 'value' => '\"message\\":\"' }, 'property' => { 'name' => 'msg', 'format' => 'json' } },
+            ],
           }
         end
 
@@ -128,7 +128,7 @@ describe 'rsyslog::component::template', include_rsyslog: true do
             \s+property\(name="timereported"\s+dateformat="rfc3339"\s\)
             \s+constant\(value="\\"\}"\s\)
             \s+constant\(value="\\"message\\":\\""\s\)\s+property\(name="msg"\s+format="json"\s\)
-            }x
+            }x,
           )
         end
       end

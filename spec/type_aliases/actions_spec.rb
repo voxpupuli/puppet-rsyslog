@@ -8,8 +8,8 @@ describe 'Rsyslog::Actions' do
       [
         {
           name: 'test_action',
-          type: 'omfile'
-        }
+          type: 'omfile',
+        },
       ]
     end
 
@@ -24,9 +24,9 @@ describe 'Rsyslog::Actions' do
             name: 'test_action',
             type: 'omfile',
             action_params: {
-              'action.writeallmarkmessages' => 'on'
-            }
-          }
+              'action.writeallmarkmessages' => 'on',
+            },
+          },
         ]
       end
 
@@ -42,9 +42,9 @@ describe 'Rsyslog::Actions' do
             action_params: {
               'action.writeallmarkmessages' => 'on',
               'action.errorfile' => '/var/log/rsyslog/errors',
-              'action.resumeinterval' => 20
-            }
-          }
+              'action.resumeinterval' => 20,
+            },
+          },
         ]
       end
 
@@ -57,8 +57,8 @@ describe 'Rsyslog::Actions' do
           {
             name: 'test_action',
             type: 'omfile',
-            action_params: ['test']
-          }
+            action_params: ['test'],
+          },
         ]
       end
 
@@ -74,9 +74,9 @@ describe 'Rsyslog::Actions' do
             name: 'test_action',
             type: 'omfile',
             queue_params: {
-              'queue.filename' => 'queue_file'
-            }
-          }
+              'queue.filename' => 'queue_file',
+            },
+          },
         ]
       end
 
@@ -92,9 +92,9 @@ describe 'Rsyslog::Actions' do
             queue_params: {
               'queue.filename' => 'queue_file',
               'queue.spoolDirectory' => '/var/run/rsyslog/spool',
-              'queue.type' => 'LinkedList'
-            }
-          }
+              'queue.type' => 'LinkedList',
+            },
+          },
         ]
       end
 
@@ -108,9 +108,9 @@ describe 'Rsyslog::Actions' do
             name: 'test_action',
             type: 'omfile',
             queue_params: {
-              'queue.type' => 'file'
-            }
-          }
+              'queue.type' => 'file',
+            },
+          },
         ]
       end
 
@@ -128,9 +128,9 @@ describe 'Rsyslog::Actions' do
               type: 'omamqp1',
               output_params: {
                 host: 'localhost',
-                target: 'remotehost'
-              }
-            }
+                target: 'remotehost',
+              },
+            },
           ]
         end
 
@@ -173,9 +173,9 @@ describe 'Rsyslog::Actions' do
                 retryfailures: 'off',
                 retryruleset: 'r_elasticsearch',
                 'ratelimit.interval' => 600,
-                'ratelimit.burst' => 20_000
-              }
-            }
+                'ratelimit.burst' => 20_000,
+              },
+            },
           ]
         end
 
@@ -206,9 +206,9 @@ describe 'Rsyslog::Actions' do
                 fileowner: 'rsyslog',
                 filegroup: 'rsyslog',
                 filecreatemode: '0644',
-                dircreatemode: '0755'
-              }
-            }
+                dircreatemode: '0755',
+              },
+            },
           ]
         end
 
@@ -247,9 +247,9 @@ describe 'Rsyslog::Actions' do
                 streamdriverpermittedpeers: 'next',
                 resendlastmsgonreconnect: 'off',
                 'udp.sendtoall' => 'off',
-                gnutlsprioritystring: 'high'
-              }
-            }
+                gnutlsprioritystring: 'high',
+              },
+            },
           ]
         end
 
@@ -271,9 +271,9 @@ describe 'Rsyslog::Actions' do
                 mode: 'queue',
                 template: 't_redis_template',
                 key: 'key1',
-                userpush: 'off'
-              }
-            }
+                userpush: 'off',
+              },
+            },
           ]
         end
 
@@ -295,9 +295,9 @@ describe 'Rsyslog::Actions' do
                 https: 'on',
                 file: 'test',
                 isdynfile: 'off',
-                template: 't_httpfs'
-              }
-            }
+                template: 't_httpfs',
+              },
+            },
           ]
         end
 
@@ -313,9 +313,9 @@ describe 'Rsyslog::Actions' do
               name: 'test_action',
               type: 'omjournal',
               output_params: {
-                template: 't_journal'
-              }
-            }
+                template: 't_journal',
+              },
+            },
           ]
         end
 
@@ -346,9 +346,9 @@ describe 'Rsyslog::Actions' do
                 closetimeout: 30,
                 resubmitonfailure: 'off',
                 keepfailedmessages: 'off',
-                failedmsgfile: 'msg_file'
-              }
-            }
+                failedmsgfile: 'msg_file',
+              },
+            },
           ]
         end
 
@@ -369,9 +369,9 @@ describe 'Rsyslog::Actions' do
                 uid: 'user',
                 pwd: 'password',
                 db: 'database1',
-                template: 't_libdbi_firebird'
-              }
-            }
+                template: 't_libdbi_firebird',
+              },
+            },
           ]
         end
 
@@ -394,9 +394,9 @@ describe 'Rsyslog::Actions' do
                 'subject.template' => 't_subject',
                 'subject.text' => 'Test Subject',
                 'body.enable' => 'on',
-                template: 't_mail'
-              }
-            }
+                template: 't_mail',
+              },
+            },
           ]
         end
 
@@ -418,9 +418,9 @@ describe 'Rsyslog::Actions' do
                 db: 'foo',
                 collection: 'syslog',
                 allowed_error_codes: %w[11000 47],
-                template: 't_mongo'
-              }
-            }
+                template: 't_mongo',
+              },
+            },
           ]
         end
 
@@ -443,9 +443,9 @@ describe 'Rsyslog::Actions' do
                 pwd: 'password',
                 'mysqlconfig.file' => '/etc/mysql/my.cnf',
                 'mysqlconfig.section' => 'foo',
-                template: 't_mysql'
-              }
-            }
+                template: 't_mysql',
+              },
+            },
           ]
         end
 
@@ -466,9 +466,9 @@ describe 'Rsyslog::Actions' do
                 db: 'database1',
                 user: 'user',
                 pass: 'password',
-                template: 't_postgres'
-              }
-            }
+                template: 't_postgres',
+              },
+            },
           ]
         end
 
@@ -484,9 +484,9 @@ describe 'Rsyslog::Actions' do
               name: 'test_action',
               type: 'ompipe',
               output_params: {
-                pipe: 'pipe'
-              }
-            }
+                pipe: 'pipe',
+              },
+            },
           ]
         end
 
@@ -513,9 +513,9 @@ describe 'Rsyslog::Actions' do
                 signalonclose: 'on',
                 closetimeout: 1000,
                 killunresponsive: 'on',
-                forcesingleinstance: 'off'
-              }
-            }
+                forcesingleinstance: 'off',
+              },
+            },
           ]
         end
 
@@ -538,9 +538,9 @@ describe 'Rsyslog::Actions' do
                 rebindinterval: 30,
                 windowsize: 64,
                 tls: 'off',
-                localclientip: '192.168.100.2'
-              }
-            }
+                localclientip: '192.168.100.2',
+              },
+            },
           ]
         end
 
@@ -565,9 +565,9 @@ describe 'Rsyslog::Actions' do
                 messageoid: '1.3.6.1.4.1.19406.1.2.1',
                 enterpriseoid: '1.3.6.1.4.1.3.1.1',
                 specifictype: 0,
-                traptype: 0
-              }
-            }
+                traptype: 0,
+              },
+            },
           ]
         end
 
@@ -589,9 +589,9 @@ describe 'Rsyslog::Actions' do
                 'sourceport.start' => 32_000,
                 'sourceport.end' => 33_000,
                 mtu: 1500,
-                template: 't_udpspoof'
-              }
-            }
+                template: 't_udpspoof',
+              },
+            },
           ]
         end
 
@@ -608,9 +608,9 @@ describe 'Rsyslog::Actions' do
               type: 'omusrmsg',
               output_params: {
                 users: '*',
-                template: 't_usr_msg'
-              }
-            }
+                template: 't_usr_msg',
+              },
+            },
           ]
         end
 
@@ -624,8 +624,8 @@ describe 'Rsyslog::Actions' do
           [
             {
               name: 'test_action',
-              type: 'omuxsock'
-            }
+              type: 'omuxsock',
+            },
           ]
         end
 

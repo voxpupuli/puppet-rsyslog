@@ -9,7 +9,7 @@ describe 'Rsyslog::Modules::Inputs::Imfile' do
       readtimeout: 300,
       timeoutgranularity: 'on',
       sortfiles: 'off',
-      pollinginterval: 60
+      pollinginterval: 60,
     }
   end
 

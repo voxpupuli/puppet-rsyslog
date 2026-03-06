@@ -29,7 +29,7 @@ describe 'Rsyslog::Actions::Outputs::Omfwd' do
       resendlastmsgonreconnect: 'on',
       'udp.sendtoall' => 'off',
       'udp.senddelay' => 15,
-      gnutlsprioritystring: 'baz'
+      gnutlsprioritystring: 'baz',
     }
   end
 
@@ -64,7 +64,7 @@ describe 'Rsyslog::Actions::Outputs::Omfwd' do
           streamdriverpermittedpeers: '',
           resendlastmsgonreconnect: true,
           'udp.sendtoall' => false,
-          gnutlsprioritystring: ''
+          gnutlsprioritystring: '',
         }
       end
 
@@ -83,7 +83,7 @@ describe 'Rsyslog::Actions::Outputs::Omfwd' do
           'keepalive.interval' => '30s',
           'keepalive.time' => '0',
           streamdrivermode: '0',
-          'udp.senddelay' => '30m'
+          'udp.senddelay' => '30m',
         }
       end
 
@@ -94,7 +94,7 @@ describe 'Rsyslog::Actions::Outputs::Omfwd' do
       let(:bad_ip) do
         {
           target: '300.122.32.40',
-          address: '400.152.24.666'
+          address: '400.152.24.666',
         }
       end
 

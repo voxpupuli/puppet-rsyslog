@@ -5,7 +5,7 @@ require 'spec_helper'
 describe 'Rsyslog::Actions::Outputs::Omjournal' do
   let(:data) do
     {
-      template: 't_redis'
+      template: 't_redis',
     }
   end
 
@@ -19,7 +19,7 @@ describe 'Rsyslog::Actions::Outputs::Omjournal' do
     context 'bad strings' do
       let(:bad_strings) do
         {
-          template: ''
+          template: '',
         }
       end
 

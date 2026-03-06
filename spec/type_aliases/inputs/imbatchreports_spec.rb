@@ -13,7 +13,7 @@ describe 'Rsyslog::Inputs::Imbatchreports' do
       delete: '.ok$ .rejected',
       rename: '.ok$ .sent .rejected',
       programkey: 'APPNAME',
-      timestampkey: 'TIMESTAMP'
+      timestampkey: 'TIMESTAMP',
     }
   end
 
@@ -50,7 +50,7 @@ describe 'Rsyslog::Inputs::Imbatchreports' do
           delete: true,
           rename: false,
           programkey: '',
-          timestampkey: 20_151_011
+          timestampkey: 20_151_011,
         }
       end
 

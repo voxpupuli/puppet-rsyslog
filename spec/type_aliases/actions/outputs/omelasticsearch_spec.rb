@@ -33,7 +33,7 @@ describe 'Rsyslog::Actions::Outputs::Omelasticsearch' do
       retryfailures: 'on',
       retryruleset: 'foo_ruleset',
       'ratelimit.interval' => 10,
-      'ratelimit.burst' => 100
+      'ratelimit.burst' => 100,
     }
   end
 
@@ -76,7 +76,7 @@ describe 'Rsyslog::Actions::Outputs::Omelasticsearch' do
           uid: 10,
           pwd: 400,
           bulkid: 30,
-          retryruleset: true
+          retryruleset: true,
         }
       end
 
@@ -89,7 +89,7 @@ describe 'Rsyslog::Actions::Outputs::Omelasticsearch' do
           serverport: '80',
           healthchecktimeout: '30',
           'ratelimit.interval' => '100',
-          'ratelimit.burst' => '30'
+          'ratelimit.burst' => '30',
         }
       end
 
@@ -102,7 +102,7 @@ describe 'Rsyslog::Actions::Outputs::Omelasticsearch' do
           errorfile: 'testing/path',
           'tls.cacert' => 'ca.pem',
           'tls.mycert' => 'cert.pem',
-          'tls.myprivkey' => 'key.pem'
+          'tls.myprivkey' => 'key.pem',
         }
       end
 
@@ -121,7 +121,7 @@ describe 'Rsyslog::Actions::Outputs::Omelasticsearch' do
           dynparent: true,
           dynbulkid: false,
           writeoperation: 'delete',
-          retryfailures: false
+          retryfailures: false,
         }
       end
 

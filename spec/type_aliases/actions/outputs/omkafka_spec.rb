@@ -20,7 +20,7 @@ describe 'Rsyslog::Actions::Outputs::Omkafka' do
       closetimeout: 600,
       resubmitonfailure: 'on',
       keepfailedmessages: 'off',
-      failedmsgfile: 'message'
+      failedmsgfile: 'message',
     }
   end
 
@@ -55,7 +55,7 @@ describe 'Rsyslog::Actions::Outputs::Omkafka' do
           template: '',
           resubmitonfailure: false,
           keepfailedmessages: true,
-          failedmsgfile: ''
+          failedmsgfile: '',
         }
       end
 
@@ -68,7 +68,7 @@ describe 'Rsyslog::Actions::Outputs::Omkafka' do
           'dynatopic.cachesize' => '50m',
           'partitions.number' => '50',
           'partitions.usefixed' => '0',
-          closetimeout: '5h'
+          closetimeout: '5h',
         }
       end
 
@@ -79,7 +79,7 @@ describe 'Rsyslog::Actions::Outputs::Omkafka' do
       let(:bad_array) do
         {
           confparam: 'param1',
-          topicconfparam: 'param2'
+          topicconfparam: 'param2',
         }
       end
 

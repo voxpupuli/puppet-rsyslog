@@ -26,7 +26,7 @@ describe 'Rsyslog::Inputs::Imfile' do
       freshstarttail: 'off',
       discardtruncatedmsg: 'on',
       msgdiscardingerror: 'off',
-      neeparse: 'on'
+      neeparse: 'on',
     }
   end
 
@@ -64,7 +64,7 @@ describe 'Rsyslog::Inputs::Imfile' do
           tag: '',
           'startmsg.regex' => '',
           'endmsg.regex' => '',
-          ruleset: ''
+          ruleset: '',
         }
       end
 
@@ -80,7 +80,7 @@ describe 'Rsyslog::Inputs::Imfile' do
           readtimeout: '10m',
           maxlinesatonce: '100',
           maxsubmitatonce: nil,
-          trimlineoverbytes: '1GB'
+          trimlineoverbytes: '1GB',
         }
       end
 

@@ -10,7 +10,7 @@ describe 'Rsyslog::Inputs::Imkafka' do
       confparam: %w[bar baz test],
       consumergroup: 'group',
       ruleset: 'kafka_ruleset',
-      parsehostname: 'on'
+      parsehostname: 'on',
     }
   end
 
@@ -41,7 +41,7 @@ describe 'Rsyslog::Inputs::Imkafka' do
           topic: '',
           consumergroup: '',
           ruleset: '',
-          parsehostname: false
+          parsehostname: false,
         }
       end
 
@@ -52,7 +52,7 @@ describe 'Rsyslog::Inputs::Imkafka' do
       let(:bad_array) do
         {
           topic: 'foo',
-          confparam: 'bar'
+          confparam: 'bar',
         }
       end
 

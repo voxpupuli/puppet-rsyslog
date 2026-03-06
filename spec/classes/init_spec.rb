@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'Rsyslog', include_rsyslog: true do
+describe 'Rsyslog', :include_rsyslog do
   on_supported_os.each do |os, facts|
     context "on #{os}" do
       let(:facts) { facts }
@@ -66,10 +66,10 @@ describe 'Rsyslog', include_rsyslog: true do
           end
 
           it 'manages the rsyslog directory and restarts a service' do
-            is_expected.to contain_file('/etc/rsyslog.d').
-              with_ensure('directory').
-              with_purge(true).
-              that_notifies('Service[rsyslog]')
+            is_expected.to contain_file('/etc/rsyslog.d')
+              .with_ensure('directory')
+              .with_purge(true)
+              .that_notifies('Service[rsyslog]')
           end
         end
 

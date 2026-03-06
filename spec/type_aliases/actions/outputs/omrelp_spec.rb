@@ -20,7 +20,7 @@ describe 'Rsyslog::Actions::Outputs::Omrelp' do
       'tls.mycert' => '/var/cert/cert.pem',
       'tls.myprivkey' => '/var/cert/key.pem',
       'tls.prioritystring' => 'urgent',
-      localclientip: '192.168.1.1'
+      localclientip: '192.168.1.1',
     }
   end
 
@@ -49,7 +49,7 @@ describe 'Rsyslog::Actions::Outputs::Omrelp' do
           'tls.compression' => true,
           'tls.permittedpeer' => [0, 1, 2],
           'tls.automode' => 'foo',
-          'tls.prioritystring' => 10
+          'tls.prioritystring' => 10,
         }
       end
 
@@ -63,7 +63,7 @@ describe 'Rsyslog::Actions::Outputs::Omrelp' do
           timeout: '300',
           'conn.timeout' => '10s',
           rebindinterval: '5m',
-          windowsize: '50'
+          windowsize: '50',
         }
       end
 
@@ -74,7 +74,7 @@ describe 'Rsyslog::Actions::Outputs::Omrelp' do
       let(:bad_ip) do
         {
           target: '300.122.32.',
-          localclientip: '192.233..1'
+          localclientip: '192.233..1',
         }
       end
 
@@ -86,7 +86,7 @@ describe 'Rsyslog::Actions::Outputs::Omrelp' do
         {
           'tls.cacert' => 'ca.pem',
           'tls.mycert' => 'cert.pem',
-          'tls.myprivkey' => 'key.pem'
+          'tls.myprivkey' => 'key.pem',
         }
       end
 
@@ -96,7 +96,7 @@ describe 'Rsyslog::Actions::Outputs::Omrelp' do
     context 'bad array' do
       let(:bad_array) do
         {
-          'tls.permittedpeer' => 'host1'
+          'tls.permittedpeer' => 'host1',
         }
       end
 

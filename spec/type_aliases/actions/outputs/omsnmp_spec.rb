@@ -14,7 +14,7 @@ describe 'Rsyslog::Actions::Outputs::Omsnmp' do
       messageoid: '1.3.6.1.4.1.19406.1.2.1',
       enterpriseoid: '1.3.6.1.4.1.3.1.1',
       specifictype: 0,
-      traptype: 0
+      traptype: 0,
     }
   end
 
@@ -45,7 +45,7 @@ describe 'Rsyslog::Actions::Outputs::Omsnmp' do
           community: '',
           trapoid: 1,
           messageoid: 2,
-          enterpriseoid: 3
+          enterpriseoid: 3,
         }
       end
 
@@ -59,7 +59,7 @@ describe 'Rsyslog::Actions::Outputs::Omsnmp' do
           port: '80',
           version: 3,
           specifictype: '0',
-          traptype: 10
+          traptype: 10,
         }
       end
 
@@ -70,7 +70,7 @@ describe 'Rsyslog::Actions::Outputs::Omsnmp' do
       let(:bad_ip) do
         {
           server: '300.122.32.',
-          port: 121
+          port: 121,
         }
       end
 

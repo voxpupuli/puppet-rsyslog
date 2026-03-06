@@ -13,7 +13,7 @@ describe 'Rsyslog::Actions::Outputs::Ommysql' do
       serverport: 80,
       'mysqlconfig.file' => '/etc/my.cnf',
       'mysqlconfig.section' => 'server',
-      template: 't_mysql'
+      template: 't_mysql',
     }
   end
 
@@ -45,7 +45,7 @@ describe 'Rsyslog::Actions::Outputs::Ommysql' do
           uid: 0,
           pwd: '',
           'mysqlconfig.section' => 10,
-          template: false
+          template: false,
         }
       end
 
@@ -55,7 +55,7 @@ describe 'Rsyslog::Actions::Outputs::Ommysql' do
     context 'bad integers' do
       let(:bad_int) do
         {
-          serverport: '80'
+          serverport: '80',
         }
       end
 
@@ -65,7 +65,7 @@ describe 'Rsyslog::Actions::Outputs::Ommysql' do
     context 'bad ip address' do
       let(:bad_ip) do
         {
-          server: '300.122.32.'
+          server: '300.122.32.',
         }
       end
 
@@ -76,7 +76,7 @@ describe 'Rsyslog::Actions::Outputs::Ommysql' do
       let(:bad_path) do
         {
           socket: 'my.sock',
-          'mysqlconfig.file' => 'my.cnf'
+          'mysqlconfig.file' => 'my.cnf',
         }
       end
 

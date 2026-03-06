@@ -15,7 +15,7 @@ describe 'Rsyslog::Actions::Outputs::Ommongodb' do
       server: 'localhost',
       serverported: 57,
       uid: 'user',
-      pwd: 'password'
+      pwd: 'password',
     }
   end
 
@@ -44,7 +44,7 @@ describe 'Rsyslog::Actions::Outputs::Ommongodb' do
           allowed_error_codes: [10, 4],
           template: false,
           uid: 0,
-          pwd: ''
+          pwd: '',
         }
       end
 
@@ -54,7 +54,7 @@ describe 'Rsyslog::Actions::Outputs::Ommongodb' do
     context 'bad integers' do
       let(:bad_int) do
         {
-          serverported: '80'
+          serverported: '80',
         }
       end
 
@@ -64,7 +64,7 @@ describe 'Rsyslog::Actions::Outputs::Ommongodb' do
     context 'bad ip address' do
       let(:bad_ip) do
         {
-          server: '300.122.32.'
+          server: '300.122.32.',
         }
       end
 
@@ -75,7 +75,7 @@ describe 'Rsyslog::Actions::Outputs::Ommongodb' do
       let(:bad_path) do
         {
           ssl_cert: 'cert.pem',
-          ssl_ca: 'ca.pem'
+          ssl_ca: 'ca.pem',
         }
       end
 

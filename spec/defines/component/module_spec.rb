@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'yaml'
 
-describe 'rsyslog::component::module', include_rsyslog: true do
+describe 'rsyslog::component::module', :include_rsyslog do
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let :facts do
@@ -24,8 +24,8 @@ describe 'rsyslog::component::module', include_rsyslog: true do
               'severity' => '7',
               'log.syslog' => 'off',
               'log.file' => '/var/log/rsyslog/logs/stats/stats.log',
-              'Ruleset' => 'remote'
-            }
+              'Ruleset' => 'remote',
+            },
           }
         end
 
@@ -39,14 +39,14 @@ describe 'rsyslog::component::module', include_rsyslog: true do
               \s+log\.file="/var/log/rsyslog/logs/stats/stats.log"
               \s+Ruleset="remote"
               \s+\)
-            }x
+            }x,
           )
         end
 
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::module::impstats').with(
             'target' => '/etc/rsyslog.d/50_rsyslog.conf',
-            'order' => 20
+            'order' => 20,
           )
         end
 

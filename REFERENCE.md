@@ -166,11 +166,15 @@ Data type: `String`
 
 The rsyslog configuration directory.
 
+Default value: `'/etc/rsyslog.d'`
+
 ##### <a name="-rsyslog--package_name"></a>`package_name`
 
 Data type: `String`
 
 The name of the rsyslog package to install.
+
+Default value: `'rsyslog'`
 
 ##### <a name="-rsyslog--package_version"></a>`package_version`
 
@@ -178,11 +182,15 @@ Data type: `String`
 
 The version of rsyslog to install.
 
+Default value: `'installed'`
+
 ##### <a name="-rsyslog--config_file"></a>`config_file`
 
 Data type: `String`
 
 The global rsyslog configuration file.
+
+Default value: `'/etc/rsyslog.conf'`
 
 ##### <a name="-rsyslog--feature_packages"></a>`feature_packages`
 
@@ -190,11 +198,15 @@ Data type: `Array`
 
 List of additional rsyslog packages to install.
 
+Default value: `[]`
+
 ##### <a name="-rsyslog--module_load_priority"></a>`module_load_priority`
 
 Data type: `Integer`
 
 Order the loading of rsyslog modules relative to other configuration.
+
+Default value: `20`
 
 ##### <a name="-rsyslog--service_name"></a>`service_name`
 
@@ -202,11 +214,15 @@ Data type: `String`
 
 Name of the SystemD, Upstart, or SysVInit service.
 
+Default value: `'rsyslog'`
+
 ##### <a name="-rsyslog--service_status"></a>`service_status`
 
 Data type: `String`
 
 State desired for the rsyslog service.
+
+Default value: `'running'`
 
 ##### <a name="-rsyslog--service_enabled"></a>`service_enabled`
 
@@ -214,11 +230,15 @@ Data type: `Boolean`
 
 Is the service enabled or not.
 
+Default value: `true`
+
 ##### <a name="-rsyslog--override_default_config"></a>`override_default_config`
 
 Data type: `Boolean`
 
 Override the default rsyslog.conf file.
+
+Default value: `true`
 
 ##### <a name="-rsyslog--manage_package"></a>`manage_package`
 
@@ -226,11 +246,15 @@ Data type: `Boolean`
 
 Toggle the managing of the rsyslog package.
 
+Default value: `true`
+
 ##### <a name="-rsyslog--use_upstream_repo"></a>`use_upstream_repo`
 
 Data type: `Boolean`
 
 Toggle using the upstream Adiscon Rsyslog repository.
+
+Default value: `false`
 
 ##### <a name="-rsyslog--manage_confdir"></a>`manage_confdir`
 
@@ -238,11 +262,15 @@ Data type: `Boolean`
 
 Toggle management of the Rsyslog configuration directory.
 
+Default value: `true`
+
 ##### <a name="-rsyslog--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Toggle management of the rsyslog service.
+
+Default value: `true`
 
 ##### <a name="-rsyslog--external_service"></a>`external_service`
 
@@ -251,11 +279,15 @@ Data type: `Boolean`
 Toggle if the service is external to where rsyslog is being run.
 I.E. a service that starts a docker container running rsyslog.
 
+Default value: `false`
+
 ##### <a name="-rsyslog--purge_config_files"></a>`purge_config_files`
 
 Data type: `Boolean`
 
 Toggle purging of unmanaged configuration files.
+
+Default value: `true`
 
 ##### <a name="-rsyslog--global_config_priority"></a>`global_config_priority`
 
@@ -263,11 +295,15 @@ Data type: `Integer`
 
 Set the global ordering of global configuration parameters in rsyslog.
 
+Default value: `10`
+
 ##### <a name="-rsyslog--legacy_config_priority"></a>`legacy_config_priority`
 
 Data type: `Integer`
 
 Set the global ordering of legacy configuration parameters in rsyslog.
+
+Default value: `80`
 
 ##### <a name="-rsyslog--template_priority"></a>`template_priority`
 
@@ -275,11 +311,15 @@ Data type: `Integer`
 
 Set the global ordering of template configuration in rsyslog.
 
+Default value: `50`
+
 ##### <a name="-rsyslog--action_priority"></a>`action_priority`
 
 Data type: `Integer`
 
 Set the global ordering of action configuration in rsyslog.
+
+Default value: `60`
 
 ##### <a name="-rsyslog--input_priority"></a>`input_priority`
 
@@ -287,11 +327,15 @@ Data type: `Integer`
 
 Set the global ordering of input configuration in rsyslog.
 
+Default value: `30`
+
 ##### <a name="-rsyslog--custom_priority"></a>`custom_priority`
 
 Data type: `Integer`
 
 Set the global ordering of custom configuration in rsyslog.
+
+Default value: `90`
 
 ##### <a name="-rsyslog--main_queue_priority"></a>`main_queue_priority`
 
@@ -299,11 +343,15 @@ Data type: `Integer`
 
 Set the global ordering of main queue configuration in rsyslog.
 
+Default value: `40`
+
 ##### <a name="-rsyslog--lookup_table_priority"></a>`lookup_table_priority`
 
 Data type: `Integer`
 
 Set the global ordering of lookup table configuration in rsyslog.
+
+Default value: `70`
 
 ##### <a name="-rsyslog--parser_priorty"></a>`parser_priorty`
 
@@ -315,17 +363,23 @@ Data type: `Integer`
 
 Set the global ordering of rulesets configuration in rsyslog.
 
+Default value: `65`
+
 ##### <a name="-rsyslog--filter_priority"></a>`filter_priority`
 
 Data type: `Integer`
 
 Set the global ordering of filter configuration in rsyslog.
 
+Default value: `55`
+
 ##### <a name="-rsyslog--target_file"></a>`target_file`
 
 Data type: `String`
 
 Target file to insert configuration into.
+
+Default value: `'50_rsyslog.conf'`
 
 ##### <a name="-rsyslog--conf_permissions"></a>`conf_permissions`
 
@@ -364,6 +418,8 @@ Default value: `"include(file=\"${rsyslog::confdir}/*.conf\" mode=\"optional\")"
 Data type: `Integer`
 
 
+
+Default value: `45`
 
 ### <a name="rsyslog--base"></a>`rsyslog::base`
 
@@ -2340,7 +2396,7 @@ Alias of `Enum['smfile', 'smfwd', 'smtradfile', 'smtradfwd']`
 
 Enumerable custom type for rsyslog property operators
 
-Alias of `Enum['contains', 'isequal', 'startswith', 'regex', 'ereregex', '!contains', '!isequal', '!startswith', '!regex', '!ereregex']`
+Alias of `Enum['contains', 'isequal', 'startswith', 'endswith', 'regex', 'ereregex', '!contains', '!isequal', '!startswith', '!endswith', '!regex', '!ereregex']`
 
 ### <a name="Rsyslog--Queue--Parameters"></a>`Rsyslog::Queue::Parameters`
 

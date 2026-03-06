@@ -12,7 +12,7 @@ describe 'Rsyslog::Actions::Outputs::Ommail' do
       'subject.template' => 'subject_temp',
       'subject.text' => 'Test Subject',
       'body.enable' => 'on',
-      template: 't_mail'
+      template: 't_mail',
     }
   end
 
@@ -33,7 +33,7 @@ describe 'Rsyslog::Actions::Outputs::Ommail' do
           'subject.template' => 1,
           'subject.text' => '',
           'body.enable' => true,
-          template: ''
+          template: '',
         }
       end
 

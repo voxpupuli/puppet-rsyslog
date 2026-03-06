@@ -30,7 +30,7 @@ describe 'Rsyslog::Actions::Outputs::Omfile' do
       createdirs: 'on',
       sync: 'on',
       'sig.provider' => 'ksi_ls12',
-      'cry.provider' => 'gcry'
+      'cry.provider' => 'gcry',
     }
   end
 
@@ -69,7 +69,7 @@ describe 'Rsyslog::Actions::Outputs::Omfile' do
           createdirs: true,
           sync: true,
           'sig.provider' => 'foo',
-          'cry.provider' => 'bar'
+          'cry.provider' => 'bar',
         }
       end
 
@@ -86,7 +86,7 @@ describe 'Rsyslog::Actions::Outputs::Omfile' do
           dirownernum: '0',
           dirgroupnum: '0',
           fileownernum: '0',
-          filegroupnum: '0'
+          filegroupnum: '0',
         }
       end
 

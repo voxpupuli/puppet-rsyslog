@@ -12,7 +12,7 @@ describe 'Rsyslog::Inputs::Imtcp' do
       supportoctetcountedframing: 'off',
       'ratelimit.interval' => 0,
       'ratelimit.burst' => 60_000,
-      listenportfilename: 'foo'
+      listenportfilename: 'foo',
     }
   end
 

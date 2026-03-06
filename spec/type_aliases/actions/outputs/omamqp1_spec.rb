@@ -7,7 +7,7 @@ describe 'Rsyslog::Actions::Outputs::Omamqp1' do
     let(:data) do
       {
         host: 'localhost',
-        target: 'amq.topic'
+        target: 'amq.topic',
       }
     end
 
@@ -26,7 +26,7 @@ describe 'Rsyslog::Actions::Outputs::Omamqp1' do
           idletimeout: 10,
           reconnectdelay: 30,
           maxretries: 2,
-          disablesasl: 0
+          disablesasl: 0,
         }
       end
 
@@ -39,7 +39,7 @@ describe 'Rsyslog::Actions::Outputs::Omamqp1' do
           host: 'localhost',
           target: 'amq.topic',
           reconnectdelay: 30,
-          maxretries: 2
+          maxretries: 2,
         }
       end
 
@@ -53,7 +53,7 @@ describe 'Rsyslog::Actions::Outputs::Omamqp1' do
         {
           target: 'amq.topic',
           reconnectdelay: 30,
-          maxretries: 2
+          maxretries: 2,
         }
       end
 
@@ -65,7 +65,7 @@ describe 'Rsyslog::Actions::Outputs::Omamqp1' do
         {
           host: '',
           target: 'amq.topic',
-          reconnectdelay: '30'
+          reconnectdelay: '30',
         }
       end
 

@@ -11,7 +11,7 @@ describe 'Rsyslog::Actions::Outputs::Omudpspoof' do
       'sourceport.start' => 32_000,
       'sourceport.end' => 33_000,
       mtu: 1500,
-      template: 't_udp_spoof'
+      template: 't_udp_spoof',
     }
   end
 
@@ -37,7 +37,7 @@ describe 'Rsyslog::Actions::Outputs::Omudpspoof' do
         {
           target: 'localhost',
           sourcetemplate: false,
-          template: false
+          template: false,
         }
       end
 
@@ -51,7 +51,7 @@ describe 'Rsyslog::Actions::Outputs::Omudpspoof' do
           port: '514',
           'sourceport.start' => 70_000,
           'sourceport.end' => 71_000,
-          mtu: '1500'
+          mtu: '1500',
         }
       end
 
@@ -61,7 +61,7 @@ describe 'Rsyslog::Actions::Outputs::Omudpspoof' do
     context 'bad ip address' do
       let(:bad_ip) do
         {
-          target: '300.122.32.'
+          target: '300.122.32.',
         }
       end
 

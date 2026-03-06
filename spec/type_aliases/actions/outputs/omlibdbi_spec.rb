@@ -10,7 +10,7 @@ describe 'Rsyslog::Actions::Outputs::Omlibdbi' do
       uid: 'user',
       pwd: 'password',
       db: 'database',
-      template: 't_db'
+      template: 't_db',
     }
   end
 
@@ -29,7 +29,7 @@ describe 'Rsyslog::Actions::Outputs::Omlibdbi' do
           user: 0,
           pwd: '',
           db: 10,
-          template: ''
+          template: '',
         }
       end
 

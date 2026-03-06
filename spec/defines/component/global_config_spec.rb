@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'yaml'
 
-describe 'rsyslog::component::global_config', include_rsyslog: true do
+describe 'rsyslog::component::global_config', :include_rsyslog do
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let :facts do
@@ -19,13 +19,13 @@ describe 'rsyslog::component::global_config', include_rsyslog: true do
             value: 'on',
             priority: 40,
             target: '50_rsyslog.conf',
-            confdir: '/etc/rsyslog.d'
+            confdir: '/etc/rsyslog.d',
           }
         end
 
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::global_config::configoption').with_content(
-            %r{\$configoption\son\n}
+            %r{\$configoption\son\n},
           )
         end
 

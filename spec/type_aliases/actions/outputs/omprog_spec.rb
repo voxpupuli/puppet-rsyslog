@@ -19,7 +19,7 @@ describe 'Rsyslog::Actions::Outputs::Omprog' do
       signalonclose: 'on',
       closetimeout: 120,
       killunresponsive: 'on',
-      forcesingleinstance: 'off'
+      forcesingleinstance: 'off',
     }
   end
 
@@ -54,7 +54,7 @@ describe 'Rsyslog::Actions::Outputs::Omprog' do
           'hup.signal' => 'foo',
           signalonclose: false,
           killunresponsive: false,
-          forcesingleinstance: true
+          forcesingleinstance: true,
         }
       end
 
@@ -66,7 +66,7 @@ describe 'Rsyslog::Actions::Outputs::Omprog' do
         {
           binary: '/usr/bin/cat',
           confirmtimeout: '10m',
-          closetimeout: '1h'
+          closetimeout: '1h',
         }
       end
 
@@ -77,7 +77,7 @@ describe 'Rsyslog::Actions::Outputs::Omprog' do
       let(:bad_path) do
         {
           binary: 'cat',
-          output: 'output.log'
+          output: 'output.log',
         }
       end
 

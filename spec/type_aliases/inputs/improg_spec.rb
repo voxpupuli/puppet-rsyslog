@@ -12,7 +12,7 @@ describe 'Rsyslog::Inputs::Improg' do
       confirmmessages: 'off',
       signalonclose: 'on',
       closetimeout: 100,
-      killunresponsive: 'off'
+      killunresponsive: 'off',
     }
   end
 
@@ -50,7 +50,7 @@ describe 'Rsyslog::Inputs::Improg' do
             tag: '',
             confirmmessages: false,
             signalonclose: true,
-            killunresponsive: false
+            killunresponsive: false,
           }
         end
 
@@ -62,7 +62,7 @@ describe 'Rsyslog::Inputs::Improg' do
           {
             binary: '/bin/cat file',
             tag: 'tag',
-            closetimeout: '100'
+            closetimeout: '100',
           }
         end
 

@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'yaml'
 
-describe 'rsyslog::component::expression_filter', include_rsyslog: true do
+describe 'rsyslog::component::expression_filter', :include_rsyslog do
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let :facts do
@@ -26,10 +26,10 @@ describe 'rsyslog::component::expression_filter', include_rsyslog: true do
                     name: 'myaction',
                     type: 'omfile',
                     config: {
-                      dynaFile: 'remoteSyslog'
-                    }
-                  } }
-                ]
+                      dynaFile: 'remoteSyslog',
+                    },
+                  } },
+                ],
               },
               else: {
                 tasks: [
@@ -37,18 +37,18 @@ describe 'rsyslog::component::expression_filter', include_rsyslog: true do
                     name: 'myaction2',
                     type: 'omfwd',
                     config: {
-                      KeepAlive: 'on'
-                    }
-                  } }
-                ]
-              }
-            }
+                      KeepAlive: 'on',
+                    },
+                  } },
+                ],
+              },
+            },
           }
         end
 
         it do
           is_expected.to contain_concat__fragment('rsyslog::component::expression_filter::myexpressionfilter').with_content(
-            <<~CONTENT
+            <<~CONTENT,
               # myexpressionfilter
               if msg == "test" then {
                 # myaction

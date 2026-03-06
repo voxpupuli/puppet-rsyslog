@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'rsyslog::component::main_queue', include_rsyslog: true do
+describe 'rsyslog::component::main_queue', :include_rsyslog do
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let :facts do
@@ -18,8 +18,8 @@ describe 'rsyslog::component::main_queue', include_rsyslog: true do
           confdir: '/etc/rsyslog.d',
           config: {
             'queue.maxdiskspace' => '1000G',
-            'queue.dequeuebatchsize' => '1000'
-          }
+            'queue.dequeuebatchsize' => '1000',
+          },
         }
       end
 
@@ -28,7 +28,7 @@ describe 'rsyslog::component::main_queue', include_rsyslog: true do
           it do
             is_expected.to contain_concat__fragment('rsyslog::component::main_queue::main_queue_opts').with(
               'target' => '/etc/rsyslog.d/50_rsyslog.conf',
-              'order' => 40
+              'order' => 40,
             )
           end
 
@@ -39,7 +39,7 @@ describe 'rsyslog::component::main_queue', include_rsyslog: true do
                 \s+queue.maxdiskspace="1000G"
                 \s+queue.dequeuebatchsize="1000"
                 \s+\)
-              }x
+              }x,
             )
           end
 

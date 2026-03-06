@@ -35,7 +35,7 @@ describe 'Rsyslog::Inputs::Imptcp' do
       socketbacklog: 0,
       defaulttz: 'chicago',
       'framingfix.cisco.asa' => 'on',
-      listenportfilename: 'test'
+      listenportfilename: 'test',
     }
   end
 

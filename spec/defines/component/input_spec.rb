@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'yaml'
 
-describe 'rsyslog::component::input', include_rsyslog: true do
+describe 'rsyslog::component::input', :include_rsyslog do
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let :facts do
@@ -20,8 +20,8 @@ describe 'rsyslog::component::input', include_rsyslog: true do
             target: '50_rsyslog.conf',
             confdir: '/etc/rsyslog.d',
             config: {
-              'port' => '514'
-            }
+              'port' => '514',
+            },
           }
         end
 
@@ -32,7 +32,7 @@ describe 'rsyslog::component::input', include_rsyslog: true do
               \s+input\(type="imudp"
               \s+port="514"
               \s+\)
-            }x
+            }x,
           )
         end
 

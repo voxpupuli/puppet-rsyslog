@@ -6,7 +6,7 @@ describe 'Rsyslog::Actions::Outputs::Ompgsql' do
   context 'with minimum required valid data' do
     let(:data) do
       {
-        db: 'database'
+        db: 'database',
       }
     end
 
@@ -37,7 +37,7 @@ describe 'Rsyslog::Actions::Outputs::Ompgsql' do
         db: 'database',
         user: 'postgres',
         pass: 'test1234',
-        template: 'template1'
+        template: 'template1',
       }
     end
 
@@ -48,7 +48,7 @@ describe 'Rsyslog::Actions::Outputs::Ompgsql' do
     let(:base_data) do
       {
         server: '1.1.1.1',
-        db: 'database'
+        db: 'database',
       }
     end
 

@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'Rsyslog::Config', include_rsyslog: true do
+describe 'Rsyslog::Config', :include_rsyslog do
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let :facts do
@@ -26,81 +26,81 @@ describe 'Rsyslog::Config', include_rsyslog: true do
                 config: {
                   threads: '2',
                   TimeRequery: '8',
-                  batchSize: '128'
-                }
-              }
+                  batchSize: '128',
+                },
+              },
             },
             global_config: {
               umask: {
                 value: '0000',
                 type: 'legacy',
-                priority: 1
+                priority: 1,
               },
               workDirectory: {
-                value: '/var/spool/rsyslog'
+                value: '/var/spool/rsyslog',
               },
               maxMessageSize: {
-                value: '64k'
-              }
+                value: '64k',
+              },
             },
             legacy_config: {
               auth_priv_rule: {
                 key: 'auth,authpriv.*',
-                value: '/var/log/auth.log'
+                value: '/var/log/auth.log',
               },
               mail_error_rule: {
                 key: 'mail.err',
-                value: '/var/log/mail.err'
-              }
+                value: '/var/log/mail.err',
+              },
             },
             main_queue_opts: {
               'queue.maxdiskspace' => '1000G',
-              'queue.dequeuebatchsize' => '1000'
+              'queue.dequeuebatchsize' => '1000',
             },
             templates: {
               remote: {
                 type: 'string',
-                string: '/var/log/rsyslog/logs/%fromhost-ip%/%fromhost-ip%.log'
+                string: '/var/log/rsyslog/logs/%fromhost-ip%/%fromhost-ip%.log',
               },
               tpl2: {
                 type: 'subtree',
-                subtree: '$1!$usr'
+                subtree: '$1!$usr',
               },
               someplug: {
                 type: 'plugin',
-                plugin: 'foobar'
-              }
+                plugin: 'foobar',
+              },
             },
             actions: {
               'myaction' => {
                 type: 'omelasticsearch',
                 config: {
                   'queue.type' => 'linkedlist',
-                  'queue.spoolDirectory' => '/var/log/rsyslog/queue'
-                }
+                  'queue.spoolDirectory' => '/var/log/rsyslog/queue',
+                },
               },
               'myaction2' => {
                 type: 'omfile',
                 facility: 'kern.*',
                 config: {
-                  'dynaFile' => 'remoteKern'
-                }
-              }
+                  'dynaFile' => 'remoteKern',
+                },
+              },
             },
             inputs: {
               imudp: {
                 type: 'imudp',
                 config: {
-                  port: '514'
-                }
+                  port: '514',
+                },
               },
               imptcp: {
                 type: 'imptcp',
                 config: {
                   port: '514',
-                  address: '127.0.0.1'
-                }
-              }
+                  address: '127.0.0.1',
+                },
+              },
             },
             lookup_tables: {
               ip_lookup: {
@@ -111,16 +111,16 @@ describe 'Rsyslog::Config', include_rsyslog: true do
                   table: [
                     {
                       index: '1.1.1.1',
-                      value: 'AB'
+                      value: 'AB',
                     },
                     {
                       index: '2.2.2.2',
-                      value: 'CD'
-                    }
-                  ]
+                      value: 'CD',
+                    },
+                  ],
                 },
                 lookup_file: '/etc/rsyslog.d/tables/ip_lookup.json',
-                reload_on_hup: true
+                reload_on_hup: true,
               },
               string_lookup: {
                 lookup_json: {
@@ -130,33 +130,33 @@ describe 'Rsyslog::Config', include_rsyslog: true do
                   table: [
                     {
                       index: 'localhost',
-                      value: 'ABC'
-                    }
-                  ]
+                      value: 'ABC',
+                    },
+                  ],
                 },
                 lookup_file: '/etc/rsyslog.d/tables/string_lookup.json',
-                reload_on_hup: true
-              }
+                reload_on_hup: true,
+              },
             },
             parsers: {
               pmrfc3164_hostname_with_slashes: {
                 type: 'pmrfc3164',
                 config: {
-                  'permit.slashesinhostname' => 'on'
-                }
+                  'permit.slashesinhostname' => 'on',
+                },
               },
               custom_pmnull: {
                 type: 'pmnull',
                 config: {
-                  tag: 'foo'
-                }
-              }
+                  tag: 'foo',
+                },
+              },
             },
             rulesets: {
               eth0_514_tcp: {
                 parameters: {
                   parser: 'pmrfc3164',
-                  'queue.size' => '10000'
+                  'queue.size' => '10000',
                 },
                 rules: [
                   { set: { '$!rcv_time' => 'exec_template("s_rcv_time")' } },
@@ -165,15 +165,15 @@ describe 'Rsyslog::Config', include_rsyslog: true do
                   {
                     action: {
                       name: 'utf8-fix',
-                      type: 'mmutf8fix'
-                    }
-                  }
+                      type: 'mmutf8fix',
+                    },
+                  },
                 ],
-                stop: true
+                stop: true,
               },
               eth0_514_udp: {
                 parameters: {
-                  'queue.type' => 'LinkedList'
+                  'queue.type' => 'LinkedList',
                 },
                 rules: [
                   {
@@ -183,16 +183,16 @@ describe 'Rsyslog::Config', include_rsyslog: true do
                           expression: '$fromhost-ip == "192.168.255.1"',
                           tasks: [
                             { call: 'ruleset.client.log.standard' },
-                            { stop: true }
-                          ]
-                        }
-                      }
-                    }
+                            { stop: true },
+                          ],
+                        },
+                      },
+                    },
                   },
-                  { call: 'ruleset.unknown.standard' }
+                  { call: 'ruleset.unknown.standard' },
                 ],
-                stop: true
-              }
+                stop: true,
+              },
             },
             property_filters: {
               hostname_filter: {
@@ -207,21 +207,21 @@ describe 'Rsyslog::Config', include_rsyslog: true do
                       facility: '*.*;auth,authpriv.none',
                       config: {
                         dynaFile: 'remoteSyslog',
-                        specifics: '/var/log/test'
-                      }
-                    }
+                        specifics: '/var/log/test',
+                      },
+                    },
                   },
-                  { stop: true }
-                ]
+                  { stop: true },
+                ],
               },
               ip_filter: {
                 property: 'fromhost-ip',
                 operator: 'startswith',
                 value: '192',
                 tasks: [
-                  { stop: true }
-                ]
-              }
+                  { stop: true },
+                ],
+              },
             },
             expression_filters: {
               hostname_filter: {
@@ -234,21 +234,21 @@ describe 'Rsyslog::Config', include_rsyslog: true do
                           name: 'omfile_error',
                           type: 'omfile',
                           config: {
-                            specifics: '/var/log/errlog'
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
+                            specifics: '/var/log/errlog',
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
               },
               complex_filter: {
                 conditionals: {
                   if: {
                     expression: '$syslogfacility-text == "local0" and $msg startswith "DEVNAME" and ($msg contains "error1" or $msg contains "error0")',
                     tasks: [
-                      { stop: true }
-                    ]
+                      { stop: true },
+                    ],
                   },
                   else: {
                     tasks: [
@@ -257,15 +257,15 @@ describe 'Rsyslog::Config', include_rsyslog: true do
                           name: 'error_log',
                           type: 'omfile',
                           config: {
-                            specifics: '/var/log/errlog'
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
-            }
+                            specifics: '/var/log/errlog',
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+              },
+            },
           }
         end
 

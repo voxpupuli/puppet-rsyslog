@@ -23,7 +23,7 @@ describe 'Rsyslog::Inputs::Imrelp' do
       'keepalive.probes' => 10,
       'keepalive.interval' => 300,
       'keepalive.time' => 30,
-      oversizemode: 'truncate'
+      oversizemode: 'truncate',
     }
   end
 

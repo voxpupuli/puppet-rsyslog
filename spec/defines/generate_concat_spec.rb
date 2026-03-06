@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'Rsyslog::Generate_concat', include_rsyslog: true do
+describe 'Rsyslog::Generate_concat', :include_rsyslog do
   context 'default' do
     let(:pre_condition) { 'include rsyslog' }
     let(:title) { 'mygeneratedconcat' }
@@ -16,7 +16,7 @@ describe 'Rsyslog::Generate_concat', include_rsyslog: true do
         let(:params) do
           {
             confdir: '/etc/rsyslog.d',
-            target: '50-rsyslog.conf'
+            target: '50-rsyslog.conf',
           }
         end
 

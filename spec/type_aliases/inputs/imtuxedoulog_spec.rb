@@ -11,7 +11,7 @@ describe 'Rsyslog::Inputs::Imtuxedoulog' do
       severity: 'info',
       persiststateinterval: 0,
       maxlinesatonce: 100,
-      maxsubmitatonce: 1024
+      maxsubmitatonce: 1024,
     }
   end
 
@@ -23,7 +23,7 @@ describe 'Rsyslog::Inputs::Imtuxedoulog' do
     it 'each individual optional param' do
       req_params = {
         ulogbase: '/foo/bar/path',
-        tag: 'test'
+        tag: 'test',
       }
       data.each do |param, value|
         is_expected.to allow_value({ param.to_sym => value }.merge!(req_params))

@@ -11,7 +11,7 @@ describe 'Rsyslog::Actions::Outputs::Omhttpfs' do
       https: 'on',
       file: 'file',
       isdynfile: 'off',
-      template: 't_http'
+      template: 't_http',
     }
   end
 
@@ -39,7 +39,7 @@ describe 'Rsyslog::Actions::Outputs::Omhttpfs' do
           https: false,
           file: '',
           isdynfile: true,
-          template: ''
+          template: '',
         }
       end
 
@@ -49,7 +49,7 @@ describe 'Rsyslog::Actions::Outputs::Omhttpfs' do
     context 'bad integers' do
       let(:bad_int) do
         {
-          port: '80'
+          port: '80',
         }
       end
 
@@ -59,7 +59,7 @@ describe 'Rsyslog::Actions::Outputs::Omhttpfs' do
     context 'bad ip address' do
       let(:bad_ip) do
         {
-          host: '300.122.32.'
+          host: '300.122.32.',
         }
       end
 

@@ -2,33 +2,26 @@
 
 require 'spec_helper_acceptance'
 
-describe 'Rsyslog expression filters' do
-  before(:context) do
-    cleanup_helper
-  end
-
-  context 'with simple expression filter' do
-    it 'applies with a simply expression' do
-      pp = <<-MANIFEST
-      class { 'rsyslog::config':
-        expression_filters => {
-          'test_filter' => {
-            'conditionals' => {
-              'if' => {
-                'expression' => 'msg == "test"',
-                'tasks' => [
-                  { 'call' => 'ruleset.action.test' },
-                  { 'stop' => true },
-                ]
+describe 'rsyslog::config::expression_filters' do
+  it_behaves_like 'an idempotent resource' do
+    let(:manifest) do
+      <<-PUPPET
+        class { 'rsyslog::config':
+          expression_filters => {
+            'test_filter' => {
+              'conditionals' => {
+                'if' => {
+                  'expression' => 'msg == "test"',
+                  'tasks' => [
+                    { 'call' => 'ruleset.action.test' },
+                    { 'stop' => true },
+                  ]
+                }
               }
             }
           }
         }
-      }
-      MANIFEST
-
-      apply_manifest(pp, catch_failures: true)
-      apply_manifest(pp, catch_changes: true)
+      PUPPET
     end
 
     describe file('/etc/rsyslog.d/50_rsyslog.conf') do

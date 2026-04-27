@@ -2,48 +2,43 @@
 
 require 'spec_helper_acceptance'
 
-describe 'Rsyslog inputs' do
-  before(:context) do
-    cleanup_helper
-  end
-
+describe 'rsyslog::config::inputs' do
   context 'basic input' do
-    it 'applies with inputs' do
-      pp = <<-MANIFEST
-      class { 'rsyslog::config':
-        modules => {
-          'imudp'  => {},
-          'imptcp' => {},
-        },
-        inputs => {
-          'imudp' => {
-            'type'  => 'imudp',
-            'config' => {
-              'port' => '514',
+    it_behaves_like 'an idempotent resource' do
+      let(:manifest) do
+        <<-PUPPET
+        class { 'rsyslog::config':
+          modules => {
+            'imudp'  => {},
+            'imptcp' => {},
+          },
+          inputs => {
+            'imudp' => {
+              'type'  => 'imudp',
+              'config' => {
+                'port' => '514',
+              },
+            },
+            'imptcp' => {
+              'type'  => 'imptcp',
+              'config' => {
+                'port' => '514',
+              },
             },
           },
-          'imptcp' => {
-            'type'  => 'imptcp',
-            'config' => {
-              'port' => '514',
+          actions => {
+            'default_output' => {
+              'type' => 'omfile',
+              'config' => {
+                'queue.type'           => 'LinkedList',
+                'queue.spoolDirectory' => '/var/log/rsyslog/queue',
+                'file'                 => '/tmp/log',
+              },
             },
           },
-        },
-        actions => {
-          'default_output' => {
-            'type' => 'omfile',
-            'config' => {
-              'queue.type'           => 'LinkedList',
-              'queue.spoolDirectory' => '/var/log/rsyslog/queue',
-              'file'                 => '/tmp/log',
-            },
-          },
-        },
-      }
-      MANIFEST
-
-      apply_manifest(pp, catch_failures: true)
-      apply_manifest(pp, catch_changes: true)
+        }
+        PUPPET
+      end
     end
 
     describe file('/etc/rsyslog.d/50_rsyslog.conf') do
@@ -53,8 +48,9 @@ describe 'Rsyslog inputs' do
   end
 
   context 'inputs with custom priorities' do
-    it 'applies with custom priorities' do
-      pp = <<~MANIFEST
+    it_behaves_like 'an idempotent resource' do
+      let(:manifest) do
+        <<-PUPPET
         class { 'rsyslog::config':
                 modules => {
                   'imfile' => {
@@ -109,10 +105,8 @@ describe 'Rsyslog inputs' do
                   },
                 },
               }
-      MANIFEST
-
-      apply_manifest(pp, catch_failures: true)
-      apply_manifest(pp, catch_changes: true)
+        PUPPET
+      end
     end
 
     describe file('/etc/rsyslog.d/50_rsyslog.conf') do

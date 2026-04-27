@@ -34,7 +34,11 @@
     },
     {
       "operatingsystem": "Debian",
-      "operatingsystemrelease": []
+      "operatingsystemrelease": [
+        "11",
+        "12",
+        "13"
+      ]
     }
   ],
   "dependencies": [

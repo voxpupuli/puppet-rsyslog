@@ -1,6 +1,6 @@
 # @summary This class manages the base installation for rsyslog
 class rsyslog::base {
-  $package_res = if $rsyslog::manage_package {
+  $rsyslog_package_ref = if $rsyslog::manage_package {
     package { $rsyslog::package_name:
       ensure => $rsyslog::package_version,
     }
@@ -14,7 +14,7 @@ class rsyslog::base {
         if $facts['os']['name'] == 'Ubuntu' {
           include apt
           apt::ppa { 'ppa:adiscon/v8-stable':
-            before => $package_res
+            before => $rsyslog_package_ref,
           }
         }
       }
@@ -26,7 +26,7 @@ class rsyslog::base {
           enabled  => '1',
           gpgcheck => '0',
           gpgkey   => 'http://rpms.adiscon.com/v8-stable/epel-$releasever/$basearch',
-          before   => $package_res,
+          before   => $rsyslog_package_ref,
         }
       }
       default: { fail("${facts['os']['name']} is not currently supported by upstream packages.") }

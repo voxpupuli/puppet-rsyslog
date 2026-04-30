@@ -3,12 +3,17 @@
 require 'spec_helper_acceptance'
 
 def has_upstream_repo
-  %w[
-    CentOS
-    RedHat
-    OracleLinux
-    Ubuntu
-  ].include? fact('os.name')
+  os = fact('os')
+  case os['family']
+  when 'RedHat'
+    return true
+  else
+    case os['name']
+    when 'Ubuntu'
+      return true
+    end
+  end
+  false
 end
 
 describe 'rsyslog' do
@@ -83,14 +88,17 @@ describe 'rsyslog' do
     # Ensure the rsyslog package was installed from the upstream rsyslog repo
     describe 'rsyslog package' do
       it 'is installed from upstream repo' do
-        case os['name']
-        when 'CentOS', 'RedHat', 'OracleLinux'
+        case os['family']
+        when 'RedHat'
           expect(command('dnf repoquery --installed --qf "%{from_repo}" rsyslog').stdout.strip).to eq('upstream_rsyslog')
-        when 'Ubuntu'
-          # Least ugly way to check where a package was installed from
-          expect(
-            command('python3 -c "import apt; print(apt.Cache()[\"rsyslog\"].installed.uri)"').stdout,
-          ).to start_with('https://ppa.launchpadcontent.net/adiscon/v8-stable/ubuntu')
+        else
+          case os['name']
+          when 'Ubuntu'
+            # Least ugly way to check where a package was installed from
+            expect(
+              command('python3 -c "import apt; print(apt.Cache()[\"rsyslog\"].installed.uri)"').stdout,
+            ).to start_with('https://ppa.launchpadcontent.net/adiscon/v8-stable/ubuntu')
+          end
         end
       end
     end

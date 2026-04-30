@@ -17,9 +17,14 @@ describe 'rsyslog' do
 
   context 'with default settings' do
     it_behaves_like 'an idempotent resource' do
+      # Rsyslog requires at least one action to be defined to start
       let(:manifest) do
         <<-PUPPET
-        include rsyslog
+        include 'rsyslog'
+        file { '/etc/rsyslog.d/50-test.conf':
+          content => 'action(type="omfile" file="/dev/null")',
+          before  => Service['rsyslog'],
+        }
         PUPPET
       end
     end
@@ -48,7 +53,7 @@ describe 'rsyslog' do
     before(:all) do
       # Skip this test for OSes w/o supported upstream repos
       skip 'Not supported' unless has_upstream_repo
-      # Wipe rsyslog before doing any tests here
+      # Wipe existing rsyslog before installing from repo
       wipe_rsyslog
     end
 
@@ -57,6 +62,10 @@ describe 'rsyslog' do
         <<-PUPPET
         class { 'rsyslog':
           use_upstream_repo => true,
+        }
+        file { '/etc/rsyslog.d/50-test.conf':
+          content => 'action(type="omfile" file="/dev/null")',
+          before  => Service['rsyslog'],
         }
         PUPPET
       end
@@ -71,18 +80,18 @@ describe 'rsyslog' do
       it { is_expected.to be_enabled }
     end
 
-    case os['family']
-    when 'RedHat'
-      if os['release']['major'].to_i < 9
-        describe file('/etc/yum.repos.d/upstream_rsyslog.repo') do
-          it { is_expected.to exist }
+    # Ensure the rsyslog package was installed from the upstream rsyslog repo
+    describe 'rsyslog package' do
+      it 'is installed from upstream repo' do
+        case os['name']
+        when 'CentOS', 'RedHat', 'OracleLinux'
+          expect(command('dnf repoquery --installed --qf "%{from_repo}" rsyslog').stdout.strip).to eq('upstream_rsyslog')
+        when 'Ubuntu'
+          # Least ugly way to check where a package was installed from
+          expect(
+            command('python3 -c "import apt; print(apt.Cache()[\"rsyslog\"].installed.uri)"').stdout,
+          ).to start_with('https://ppa.launchpadcontent.net/adiscon/v8-stable/ubuntu')
         end
-      end
-    when 'Debian'
-      next if os['name'] != 'Ubuntu'
-
-      describe file("/etc/apt/sources.list.d/adiscon-ubuntu-v8-stable-#{os['distro']['codename']}.list") do
-        it { is_expected.to exist }
       end
     end
   end

@@ -26,6 +26,7 @@ class rsyslog::base {
           enabled  => '1',
           gpgcheck => '0',
           gpgkey   => 'http://rpms.adiscon.com/v8-stable/epel-$releasever/$basearch',
+          priority => 50, # Prefer packages from this repo
           before   => $rsyslog_package_ref,
         }
       }

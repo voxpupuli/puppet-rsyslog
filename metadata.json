@@ -9,8 +9,9 @@
   "issues_url": "https://github.com/voxpupuli/puppet-rsyslog/issues",
   "operatingsystem_support": [
     {
-      "operatingsystem": "RedHat",
+      "operatingsystem": "AlmaLinux",
       "operatingsystemrelease": [
+        "8",
         "9"
       ]
     },
@@ -21,20 +22,39 @@
       ]
     },
     {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "11",
+        "12",
+        "13"
+      ]
+    },
+    {
       "operatingsystem": "OracleLinux",
       "operatingsystemrelease": [
         "8"
       ]
     },
     {
-      "operatingsystem": "Ubuntu",
+      "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "18.04"
+        "9"
       ]
     },
     {
-      "operatingsystem": "Debian",
-      "operatingsystemrelease": []
+      "operatingsystem": "Rocky",
+      "operatingsystemrelease": [
+        "8",
+        "9"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "18.04",
+        "22.04",
+        "24.04"
+      ]
     }
   ],
   "dependencies": [

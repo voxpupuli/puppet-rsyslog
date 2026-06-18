@@ -2,54 +2,49 @@
 
 require 'spec_helper_acceptance'
 
-describe 'Rsyslog::Component::Ruleset' do
-  before(:context) do
-    cleanup_helper
-  end
-
-  it 'applies a ruleset' do
-    pp = <<-MANIFEST
-      class { 'rsyslog::config':
-        rulesets => {
-          'action.ruleset.test' => {
-            'rules' => [
-              {
-                action => {
-                  'name'   => 'action.test',
-                  'type'   => 'omfile',
-                  'config' => {
-                    'queue.type'           => 'LinkedList',
-                    'queue.spoolDirectory' => '/var/log/rsyslog/queue',
-                    'file'                 => '/tmp/error_log',
-                  }
-                },
-              }
-            ]
-          },
-          'ruleset_eth0_514_test' => {
-            'parameters' => {
-              'queue.size' => '10000',
-            },
-            'rules' => [
-              {
-                'property_filter' => {
-                  'property' => 'msg',
-                  'operator' => 'contains',
-                  'value'    => 'error',
-                  'tasks'    => [
-                    { 'call'     => 'action.ruleset.test' },
-                    { 'stop'     => true }
-                  ]
+describe 'rsyslog::config::rulesets' do
+  it_behaves_like 'an idempotent resource' do
+    let(:manifest) do
+      <<-PUPPET
+        class { 'rsyslog::config':
+          rulesets => {
+            'action.ruleset.test' => {
+              'rules' => [
+                {
+                  action => {
+                    'name'   => 'action.test',
+                    'type'   => 'omfile',
+                    'config' => {
+                      'queue.type'           => 'LinkedList',
+                      'queue.spoolDirectory' => '/var/log/rsyslog/queue',
+                      'file'                 => '/tmp/error_log',
+                    }
+                  },
                 }
-              }
-            ]
+              ]
+            },
+            'ruleset_eth0_514_test' => {
+              'parameters' => {
+                'queue.size' => '10000',
+              },
+              'rules' => [
+                {
+                  'property_filter' => {
+                    'property' => 'msg',
+                    'operator' => 'contains',
+                    'value'    => 'error',
+                    'tasks'    => [
+                      { 'call'     => 'action.ruleset.test' },
+                      { 'stop'     => true }
+                    ]
+                  }
+                }
+              ]
+            }
           }
         }
-      }
-    MANIFEST
-
-    apply_manifest(pp, catch_failures: true)
-    apply_manifest(pp, catch_changes: true)
+      PUPPET
+    end
   end
 
   describe file('/etc/rsyslog.d/50_rsyslog.conf') do

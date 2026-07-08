@@ -10,7 +10,7 @@ module(load="<%=$config_item -%>")
 module(load="<%= $config_item -%>" 
      <% $config.each |$key, $value| {-%>
      <%- if $value =~ Array { -%>
-     <%= $key %>=<%= to_json($value) -%>
+     <%= $key %>=<%= stdlib::to_json($value) -%>
      <%- } else { -%>
      <%= $key %>="<%= $value -%>"
      <%- } -%>

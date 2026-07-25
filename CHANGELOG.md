@@ -4,6 +4,33 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v8.0.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v8.0.0) (2026-07-24)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v7.3.0...v8.0.0)
+
+**Breaking changes:**
+
+- Puppet 8+ compat support: require stdlib 9, and switch to use `stdlib::to_json` [\#285](https://github.com/voxpupuli/puppet-rsyslog/pull/285) ([fifieldt](https://github.com/fifieldt))
+- Drop ubuntu 18.04 [\#284](https://github.com/voxpupuli/puppet-rsyslog/pull/284) ([jay7x](https://github.com/jay7x))
+- Drop puppet, update openvox minimum version to 8.19 [\#268](https://github.com/voxpupuli/puppet-rsyslog/pull/268) ([TheMeier](https://github.com/TheMeier))
+- Drop EOL EL 7, EL 8, Fedora 38 [\#267](https://github.com/voxpupuli/puppet-rsyslog/pull/267) ([kenyon](https://github.com/kenyon))
+
+**Implemented enhancements:**
+
+- Add more OSes, refactor acceptance tests [\#283](https://github.com/voxpupuli/puppet-rsyslog/pull/283) ([jay7x](https://github.com/jay7x))
+- puppetlabs/apt: Allow 11.x [\#280](https://github.com/voxpupuli/puppet-rsyslog/pull/280) ([ndubois](https://github.com/ndubois))
+- Add 'endswith' and '!endswith' to PropertyOperator [\#277](https://github.com/voxpupuli/puppet-rsyslog/pull/277) ([stboch](https://github.com/stboch))
+
+**Fixed bugs:**
+
+- \#248 \(base: rainerscript replacement for `$IncludeConfig`\) incorrectly assumes that `include` directive is supported [\#250](https://github.com/voxpupuli/puppet-rsyslog/issues/250)
+- Fix parsing of "else if" in expression\_filter.epp [\#274](https://github.com/voxpupuli/puppet-rsyslog/pull/274) ([amateo](https://github.com/amateo))
+- Allow overriding of the `Include` directive in the `/etc/rsyslog.conf` file to support older versions of `rsyslogd` [\#251](https://github.com/voxpupuli/puppet-rsyslog/pull/251) ([bschonec](https://github.com/bschonec))
+
+**Merged pull requests:**
+
+- Re-add RHEL 8 as a supported platform, as accidentally removed [\#286](https://github.com/voxpupuli/puppet-rsyslog/pull/286) ([legooolas](https://github.com/legooolas))
+
 ## [v7.3.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v7.3.0) (2025-04-01)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v7.2.0...v7.3.0)
@@ -220,7 +247,6 @@ v5.0.0 was never released to the forge due to an issue with the release process.
 - types updates [\#124](https://github.com/voxpupuli/puppet-rsyslog/pull/124) ([kenyon](https://github.com/kenyon))
 - base.pp: add final newline to rsyslog.conf [\#123](https://github.com/voxpupuli/puppet-rsyslog/pull/123) ([kenyon](https://github.com/kenyon))
 - More input module data types [\#119](https://github.com/voxpupuli/puppet-rsyslog/pull/119) ([dhollinger](https://github.com/dhollinger))
-- Fix template output if value is array [\#118](https://github.com/voxpupuli/puppet-rsyslog/pull/118) ([waipeng](https://github.com/waipeng))
 - Allow puppetlabs/apt 7.x [\#116](https://github.com/voxpupuli/puppet-rsyslog/pull/116) ([dhoppe](https://github.com/dhoppe))
 - Add imfile and im3195 input types [\#114](https://github.com/voxpupuli/puppet-rsyslog/pull/114) ([dhollinger](https://github.com/dhollinger))
 - \#112 Fix ruleset expression filter examples [\#113](https://github.com/voxpupuli/puppet-rsyslog/pull/113) ([dhollinger](https://github.com/dhollinger))
@@ -235,7 +261,6 @@ v5.0.0 was never released to the forge due to an issue with the release process.
 - warning with recent puppet [\#95](https://github.com/voxpupuli/puppet-rsyslog/issues/95)
 - Add '^' \(execute program\) rsyslog feature to ruleset tasks [\#80](https://github.com/voxpupuli/puppet-rsyslog/issues/80)
 - Allow puppetlabs/stdlib 5.x and puppetlabs/concat 5.x [\#94](https://github.com/voxpupuli/puppet-rsyslog/pull/94) ([bastelfreak](https://github.com/bastelfreak))
-- Add Feature: Allow 'execute program' \(^\) as a task in in rulesets [\#81](https://github.com/voxpupuli/puppet-rsyslog/pull/81) ([itbane](https://github.com/itbane))
 
 **Closed issues:**
 

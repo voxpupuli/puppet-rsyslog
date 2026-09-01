@@ -4,7 +4,16 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
-## [v8.0.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v8.0.0) (2026-07-24)
+## [v8.1.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v8.1.0) (2026-09-01)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v8.0.0...v8.1.0)
+
+**Implemented enhancements:**
+
+- puppetlabs/stdlib: Allow 10.x [\#290](https://github.com/voxpupuli/puppet-rsyslog/pull/290) ([bastelfreak](https://github.com/bastelfreak))
+- puppetlabs/concat: Allow 10.x [\#289](https://github.com/voxpupuli/puppet-rsyslog/pull/289) ([bastelfreak](https://github.com/bastelfreak))
+
+## [v8.0.0](https://github.com/voxpupuli/puppet-rsyslog/tree/v8.0.0) (2026-07-25)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-rsyslog/compare/v7.3.0...v8.0.0)
 
@@ -247,6 +256,7 @@ v5.0.0 was never released to the forge due to an issue with the release process.
 - types updates [\#124](https://github.com/voxpupuli/puppet-rsyslog/pull/124) ([kenyon](https://github.com/kenyon))
 - base.pp: add final newline to rsyslog.conf [\#123](https://github.com/voxpupuli/puppet-rsyslog/pull/123) ([kenyon](https://github.com/kenyon))
 - More input module data types [\#119](https://github.com/voxpupuli/puppet-rsyslog/pull/119) ([dhollinger](https://github.com/dhollinger))
+- Fix template output if value is array [\#118](https://github.com/voxpupuli/puppet-rsyslog/pull/118) ([waipeng](https://github.com/waipeng))
 - Allow puppetlabs/apt 7.x [\#116](https://github.com/voxpupuli/puppet-rsyslog/pull/116) ([dhoppe](https://github.com/dhoppe))
 - Add imfile and im3195 input types [\#114](https://github.com/voxpupuli/puppet-rsyslog/pull/114) ([dhollinger](https://github.com/dhollinger))
 - \#112 Fix ruleset expression filter examples [\#113](https://github.com/voxpupuli/puppet-rsyslog/pull/113) ([dhollinger](https://github.com/dhollinger))
@@ -261,6 +271,7 @@ v5.0.0 was never released to the forge due to an issue with the release process.
 - warning with recent puppet [\#95](https://github.com/voxpupuli/puppet-rsyslog/issues/95)
 - Add '^' \(execute program\) rsyslog feature to ruleset tasks [\#80](https://github.com/voxpupuli/puppet-rsyslog/issues/80)
 - Allow puppetlabs/stdlib 5.x and puppetlabs/concat 5.x [\#94](https://github.com/voxpupuli/puppet-rsyslog/pull/94) ([bastelfreak](https://github.com/bastelfreak))
+- Add Feature: Allow 'execute program' \(^\) as a task in in rulesets [\#81](https://github.com/voxpupuli/puppet-rsyslog/pull/81) ([itbane](https://github.com/itbane))
 
 **Closed issues:**
 
